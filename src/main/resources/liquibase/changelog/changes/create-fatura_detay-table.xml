@@ -7,19 +7,38 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet author="admin" id="1">
-        <createTable tableName="sirket">
+        <createTable tableName="fatura_detay">
             <column autoIncrement="true" name="id" type="INT">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="sirket_adi" type="VARCHAR(255)">
+
+            <column name="fatura_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_fd_fatura_id" references="fatura(id)"/>
+            </column>
+
+            <column name="stok_karti_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_fd_stok_karti_id" references="stok_karti(id)"/>
+            </column>
+
+            <column name="islem_tarihi" type="time">
                 <constraints nullable="false"/>
             </column>
-            <column name="sirket_logo" type="VARCHAR(255)"/>
-            <column name="adress" type="VARCHAR(1024)"/>
-            <column name="eposta" type="VARCHAR(255)">
+
+            <column name="miktar" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="durum" type="VARCHAR(255)">
+
+            <column name="birim_maliyet" type="currency"/>
+
+            <column name="birim_satis_fiyati" type="currency">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="kdv_orani" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="durum" type="VARCHAR(20)">
                 <constraints nullable="false"/>
             </column>
 
@@ -34,19 +53,7 @@
 
         </createTable>
         <rollback>
-            <dropTable tableName="sirket"/>
+            <dropTable tableName="fatura_detay"/>
         </rollback>
-
-        <loadData
-                file="liquibase/data/sirket.csv"
-                separator=";"
-                tableName="sirket">
-            <column name="id" type="numeric"/>
-            <column name="sirket_adi" type="STRING"/>
-            <column name="eposta" type="STRING"/>
-            <column name="durum" type="STRING"/>
-            <column name="created_by" type="STRING"/>
-            <column name="created_date" type="DATE"/>
-        </loadData>
     </changeSet>
 </databaseChangeLog>

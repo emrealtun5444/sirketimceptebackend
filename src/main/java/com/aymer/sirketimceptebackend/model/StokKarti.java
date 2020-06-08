@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -46,11 +47,13 @@ public class StokKarti extends Auditable<String> implements Serializable {
     @JoinColumn(name = "marka_id")
     private Marka marka;
 
+    @NotBlank
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(name = "para_birimi", length = 20)
     private EParaBirimi paraBirimi;
 
-    @Column(name = "urun_adi", length = 256)
+    @NotBlank
+    @Column(name = "urun_adi", length = 255)
     private String urunAdi;
 
     @Column(name = "urun_aciklama", length = 4000)
@@ -62,11 +65,13 @@ public class StokKarti extends Auditable<String> implements Serializable {
     @Column(name = "stok_adedi")
     private Long stokAdedi;
 
+    @NotBlank
     @Column(name = "stok_kodu")
     private String stokKodu;
 
+    @NotBlank
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(name = "kdv_orani", length = 20)
     private EKdvOrani kdvOrani;
 
     @Column(name = "urun_gorsel", length = 4000)
@@ -75,10 +80,12 @@ public class StokKarti extends Auditable<String> implements Serializable {
     @Column(name = "varyant")
     private String varyant;
 
+    @NotBlank
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
 
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;

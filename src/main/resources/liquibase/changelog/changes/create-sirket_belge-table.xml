@@ -7,20 +7,16 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet author="admin" id="1">
-        <createTable tableName="sirket">
+        <createTable tableName="sirket_belge">
             <column autoIncrement="true" name="id" type="INT">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="sirket_adi" type="VARCHAR(255)">
-                <constraints nullable="false"/>
+
+            <column name="sirket_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_sb_cari_id" references="sirket(id)"/>
             </column>
-            <column name="sirket_logo" type="VARCHAR(255)"/>
-            <column name="adress" type="VARCHAR(1024)"/>
-            <column name="eposta" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="durum" type="VARCHAR(255)">
-                <constraints nullable="false"/>
+            <column name="belge_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_sb_belge_id" references="belge(id)"/>
             </column>
 
             <column name="created_by" type="VARCHAR(20)">
@@ -34,19 +30,7 @@
 
         </createTable>
         <rollback>
-            <dropTable tableName="sirket"/>
+            <dropTable tableName="sirket_belge"/>
         </rollback>
-
-        <loadData
-                file="liquibase/data/sirket.csv"
-                separator=";"
-                tableName="sirket">
-            <column name="id" type="numeric"/>
-            <column name="sirket_adi" type="STRING"/>
-            <column name="eposta" type="STRING"/>
-            <column name="durum" type="STRING"/>
-            <column name="created_by" type="STRING"/>
-            <column name="created_date" type="DATE"/>
-        </loadData>
     </changeSet>
 </databaseChangeLog>

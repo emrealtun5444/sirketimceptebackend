@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
@@ -21,6 +22,7 @@ import java.util.Date;
 @DiscriminatorValue(IConstants.SENET)
 public class FinansalHareketSenet extends FinansalHareket {
 
+    @NotBlank
     @Column(name = "vade")
     private Date vade;
 
@@ -30,6 +32,7 @@ public class FinansalHareketSenet extends FinansalHareket {
     @Column(name = "borclu_adresi")
     private String borcluAdresi;
 
+    @NotBlank
     @Column(name = "evrak_no")
     private String evrakNo;
 

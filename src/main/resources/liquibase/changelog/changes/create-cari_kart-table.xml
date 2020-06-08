@@ -7,20 +7,45 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet author="admin" id="1">
-        <createTable tableName="sirket">
+        <createTable tableName="cari_kart">
             <column autoIncrement="true" name="id" type="INT">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="sirket_adi" type="VARCHAR(255)">
+
+            <column name="cari_tipi" type="VARCHAR(20)">
                 <constraints nullable="false"/>
             </column>
-            <column name="sirket_logo" type="VARCHAR(255)"/>
-            <column name="adress" type="VARCHAR(1024)"/>
-            <column name="eposta" type="VARCHAR(255)">
+
+            <column name="cari_kodu" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="durum" type="VARCHAR(255)">
+
+            <column name="cari_adi" type="VARCHAR(255)">
                 <constraints nullable="false"/>
+            </column>
+
+            <column name="cari_adres" type="VARCHAR(2048)"/>
+            <column name="cari_tel" type="VARCHAR(255)"/>
+            <column name="cari_mail" type="VARCHAR(255)"/>
+            <column name="toplam_borc" type="currency"/>
+            <column name="toplam_alacak" type="currency"/>
+
+            <column name="durum" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="sorumlu_personel_id" type="int">
+                <constraints foreignKeyName="fk_cari_kart_sp_id" references="user(id)"/>
+            </column>
+
+            <column name="yillik_hedef" type="currency"/>
+
+            <column name="ilce_id" type="int">
+                <constraints foreignKeyName="fk_cari_kart_ilce_id" references="ilce(id)"/>
+            </column>
+
+            <column name="sirket_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_cari_kart_sirket_id" references="sirket(id)"/>
             </column>
 
             <column name="created_by" type="VARCHAR(20)">
@@ -34,19 +59,7 @@
 
         </createTable>
         <rollback>
-            <dropTable tableName="sirket"/>
+            <dropTable tableName="cari_kart"/>
         </rollback>
-
-        <loadData
-                file="liquibase/data/sirket.csv"
-                separator=";"
-                tableName="sirket">
-            <column name="id" type="numeric"/>
-            <column name="sirket_adi" type="STRING"/>
-            <column name="eposta" type="STRING"/>
-            <column name="durum" type="STRING"/>
-            <column name="created_by" type="STRING"/>
-            <column name="created_date" type="DATE"/>
-        </loadData>
     </changeSet>
 </databaseChangeLog>

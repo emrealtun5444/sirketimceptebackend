@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
@@ -28,10 +29,12 @@ public class SirketBelge extends Auditable<String> implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
 
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "belge_id")
     private Belge belge;

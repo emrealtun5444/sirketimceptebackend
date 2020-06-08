@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -31,23 +32,29 @@ public class Fatura extends Auditable<String> implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "cari_kart_id")
     private CariKart cariKart;
 
+    @NotBlank
     @Column(name = "fatura_tarihi", length = 20)
     private Date faturaTarihi;
 
+    @NotBlank
     @Column(name = "fatura_no", length = 128)
     private String faturaNo;
 
+    @NotBlank
     @Column(name = "toplam_tutar")
     private BigDecimal toplamTutar;
 
+    @NotBlank
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
 
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;

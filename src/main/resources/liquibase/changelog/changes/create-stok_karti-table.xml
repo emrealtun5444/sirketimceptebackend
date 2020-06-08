@@ -7,25 +7,54 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet author="admin" id="1">
-        <createTable tableName="user">
+        <createTable tableName="stok_karti">
             <column autoIncrement="true" name="id" type="INT">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="VARCHAR(128)">
+
+            <column name="kategori_id" type="int">
+                <constraints foreignKeyName="fk_sk_kategori_id" references="kategori(id)"/>
+            </column>
+
+            <column name="barkod" type="VARCHAR(50)"/>
+            <column name="model_kodu" type="VARCHAR(255)"/>
+
+            <column name="marka_id" type="int">
+                <constraints foreignKeyName="fk_sk_marka_id" references="marka(id)"/>
+            </column>
+
+            <column name="para_birimi" type="VARCHAR(20)">
                 <constraints nullable="false"/>
             </column>
-            <column name="surname" type="VARCHAR(128)"/>
-            <column name="username" type="VARCHAR(20)">
+
+            <column name="urun_adi" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="email" type="VARCHAR(50)">
+
+            <column name="urun_aciklama" type="VARCHAR(4000)">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="VARCHAR(120)">
+
+            <column name="urun_fiyat" type="currency"/>
+            <column name="stok_adedi" type="int"/>
+
+            <column name="stok_kodu" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="durum" type="VARCHAR(255)">
+
+            <column name="kdv_orani" type="VARCHAR(20)">
                 <constraints nullable="false"/>
+            </column>
+
+            <column name="urun_gorsel" type="VARCHAR(4000)"/>
+            <column name="varyant" type="VARCHAR(255)"/>
+
+            <column name="durum" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="sirket_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_sk_sirket_id" references="sirket(id)"/>
             </column>
 
             <column name="created_by" type="VARCHAR(20)">
@@ -36,24 +65,10 @@
             </column>
             <column name="last_modified_by" type="VARCHAR(20)"/>
             <column name="last_modified_date" type="timestamp"/>
+
         </createTable>
         <rollback>
-            <dropTable tableName="user"/>
+            <dropTable tableName="stok_karti"/>
         </rollback>
-
-        <loadData
-                file="liquibase/data/user.csv"
-                separator=";"
-                tableName="user">
-            <column name="id" type="numeric"/>
-            <column name="name" type="STRING"/>
-            <column name="surname" type="STRING"/>
-            <column name="username" type="STRING"/>
-            <column name="email" type="STRING"/>
-            <column name="password" type="STRING"/>
-            <column name="durum" type="STRING"/>
-            <column name="created_by" type="STRING"/>
-            <column name="created_date" type="DATE"/>
-        </loadData>
     </changeSet>
 </databaseChangeLog>

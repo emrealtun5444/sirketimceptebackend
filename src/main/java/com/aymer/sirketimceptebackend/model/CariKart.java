@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -31,17 +32,20 @@ public class CariKart extends Auditable<String> implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @NotBlank
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(name = "cari_tipi", length = 20)
     private ECariTipi cariTipi;
 
+    @NotBlank
     @Column(name = "cari_kodu")
     private String cariKodu;
 
+    @NotBlank
     @Column(name = "cari_adi", length = 512)
     private String cariAdi;
 
-    @Column(name = "cari_adres", length = 1024)
+    @Column(name = "cari_adres", length = 2048)
     private String cariAdres;
 
     @Column(name = "cari_tel")
@@ -56,6 +60,7 @@ public class CariKart extends Auditable<String> implements Serializable {
     @Column(name = "toplam_alacak")
     private BigDecimal toplamAlacak;
 
+    @NotBlank
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
@@ -71,6 +76,7 @@ public class CariKart extends Auditable<String> implements Serializable {
     @JoinColumn(name = "ilce_id")
     private Ilce ilce;
 
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
