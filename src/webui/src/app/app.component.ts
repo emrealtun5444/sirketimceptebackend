@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { MenuService } from './app.menu.service';
+import {Component} from '@angular/core';
+import {MenuService} from './app.menu.service';
+import {AppStore} from "./shared/app.store";
 
 @Component({
     selector: 'app-root',
@@ -23,7 +24,9 @@ export class AppComponent {
 
     menuHoverActive: boolean;
 
-    constructor(private menuService: MenuService) {}
+    constructor(private menuService: MenuService,
+                public appStore: AppStore) {
+    }
 
     onMenuButtonClick(event: Event) {
         this.menuButtonClick = true;
@@ -41,9 +44,9 @@ export class AppComponent {
         this.topbarMenuButtonClick = true;
 
         if (this.activeTopbarItem === item) {
-          this.activeTopbarItem = null;
+            this.activeTopbarItem = null;
         } else {
-          this.activeTopbarItem = item;
+            this.activeTopbarItem = item;
         }
         event.preventDefault();
     }
@@ -58,7 +61,7 @@ export class AppComponent {
                 this.menuService.reset();
             }
 
-            if (this.isMobile() || this.menuMode === 'overlay' || this.menuMode === 'popup') {
+            if (this.isMobile() || this.menuMode === 'overlay' || this.menuMode === 'popup') {
                 this.menuActive = false;
             }
 

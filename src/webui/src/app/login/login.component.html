@@ -1,0 +1,34 @@
+<form [formGroup]="entityForm">
+    <div class="login-panel ui-fluid">
+        <div class="ui-g">
+            <div class="ui-g-12 logo-container">
+                <img src="../layout/images/logo-dark.png" alt="logo-dark"/>
+                <h1>Login To Your Account</h1>
+                <h2>WELCOME TO VERONA</h2>
+            </div>
+            <div class="ui-g-12">
+                <div class="input-wrapper">
+                    <input formControlName="username" type="text" autocomplete="off" placeholder="Username"
+                           class="ui-inputtext ui-widget">
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="input-wrapper">
+                    <input formControlName="password" type="password" autocomplete="off" placeholder="Password"
+                           class="ui-inputtext ui-widget">
+                </div>
+            </div>
+            <div class="ui-g-12 chkbox-container">
+                <input type="checkbox" id="remember-me" class="ui-chkbox ui-chkbox-box">
+                <label for="remember-me">Remember Me</label>
+            </div>
+            <div class="ui-g-12 button-container">
+                <button type="button"
+                        (click)="onSubmit()"
+                        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only green-btn raised-btn rounded-btn">
+                    <span class="ui-button-text ui-c">Sing In</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
