@@ -18,7 +18,6 @@ export class AppStore {
     };
     dateFormat = 'dd.mm.yy';
     breadcrumbs: MenuItem[] = [];
-    kullanici;
     sirket;
     yetkiMap = new Map();
     private _confirmData: ConfirmData;

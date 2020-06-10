@@ -18,12 +18,8 @@
                 <constraints nullable="false" foreignKeyName="fk_user_roles_role_id" references="role(id)"/>
             </column>
 
-            <column name="created_by" type="VARCHAR(20)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_date" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
+            <column name="created_by" type="VARCHAR(20)"/>
+            <column name="created_date" type="timestamp"/>
             <column name="last_modified_by" type="VARCHAR(20)"/>
             <column name="last_modified_date" type="timestamp"/>
         </createTable>

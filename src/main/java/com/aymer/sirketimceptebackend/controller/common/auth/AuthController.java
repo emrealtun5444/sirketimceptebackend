@@ -6,6 +6,7 @@ import com.aymer.sirketimceptebackend.controller.common.auth.dto.SignupRequest;
 import com.aymer.sirketimceptebackend.controller.common.auth.mapper.AuthMapper;
 import com.aymer.sirketimceptebackend.controller.common.dto.AppResponse;
 import com.aymer.sirketimceptebackend.exception.ServiceException;
+import com.aymer.sirketimceptebackend.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.model.enums.ERole;
 import com.aymer.sirketimceptebackend.model.common.Role;
 import com.aymer.sirketimceptebackend.model.common.User;
@@ -127,6 +128,7 @@ public class AuthController {
         }
 
         user.setRoles(roles);
+        user.setDurum(EDurum.AKTIF);
         userRepository.save(user);
 
         return ResponseEntity.ok(new AppResponse(HttpStatus.OK.value(), messageProvider.getMessage("success.register")));

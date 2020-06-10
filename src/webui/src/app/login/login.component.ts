@@ -5,7 +5,7 @@ import {TokenStorageService} from "../shared/service/token-storage.service";
 import {AbstractBaseComponent} from "../shared/abstract-base-component";
 import {AppStore} from "../shared/app.store";
 import {CustomValidator} from "../shared/validation/custom-validator";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -16,15 +16,15 @@ export class LoginComponent extends AbstractBaseComponent implements OnInit, OnD
 
     entityForm: FormGroup;
 
-    isLoggedIn = false;
-    isLoginFailed = false;
     errorMessage = '';
     roles: string[] = [];
+    returnUrl: string;
 
     constructor(appStore: AppStore,
                 private authService: AuthService,
                 private renderer: Renderer2,
                 private router: Router,
+                private route: ActivatedRoute,
                 private tokenStorage: TokenStorageService,
                 private formBuilder: FormBuilder) {
         super(appStore);
@@ -38,37 +38,31 @@ export class LoginComponent extends AbstractBaseComponent implements OnInit, OnD
     }
 
     ngOnInit() {
-        if (this.tokenStorage.getToken()) {
-            // this.isLoggedIn = true;
-            // this.roles = this.tokenStorage.getUser().roles;
-            this.router.navigate(['dashboard']);
-        }
-        this.renderer.addClass(document.body, "login-body");
+        this.setup();
         this.buildForms();
     }
 
+    private setup() {
+        this.renderer.addClass(document.body, "login-body");
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
+
     onSubmit() {
-        this.subscribeToResponse(this.authService.login(this.entityForm.value), this.loginSuccess, this.loginFailed);
+        this.subscribeToResponse(this.authService.login(this.entityForm.value), this.loginSuccess, undefined);
+    }
+
+    kayitOl() {
+        this.router.navigate(['/register']);
     }
 
     private loginSuccess(data: any) {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+        this.router.navigate([this.returnUrl]);
     }
 
-    private loginFailed(data: any) {
-        this.errorMessage = data.error.message;
-        this.isLoginFailed = true;
-    }
-
-    reloadPage() {
-        window.location.reload();
-    }
 
     ngOnDestroy(): void {
         this.renderer.removeClass(document.body, "login-body");

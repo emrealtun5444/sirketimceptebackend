@@ -56,7 +56,7 @@ export abstract class AbstractBaseComponent {
   }
 
   protected handleError(status, message) {
-    this.appStore.addMessage({severity: 'error', summary: '', detail: message});
+    this.appStore.addMessage({severity: 'error', summary: 'Hata!', detail: message});
     this.endFN();
   }
 

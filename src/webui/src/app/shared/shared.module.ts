@@ -53,6 +53,7 @@ import {StepsModule} from 'primeng/steps';
 import {ListboxModule} from 'primeng/listbox';
 import {FieldsetModule} from 'primeng/fieldset';
 import {StringWrapperPipe} from './utils/string-wrapper.pipe';
+import {ValidationMessageComponent} from "./validation-message/validation-message.component";
 
 @NgModule({
     imports: [
@@ -133,7 +134,8 @@ import {StringWrapperPipe} from './utils/string-wrapper.pipe';
         ParaFormatPipe,
         EnumPipe,
         StringWrapperPipe,
-        ParaComponent
+        ParaComponent,
+        ValidationMessageComponent
     ],
     exports: [
         DateFormatPipe,
@@ -214,7 +216,8 @@ import {StringWrapperPipe} from './utils/string-wrapper.pipe';
         TerminalModule,
         TieredMenuModule,
         ToastModule,
-        VirtualScrollerModule
+        VirtualScrollerModule,
+        ValidationMessageComponent
     ]
 })
 export class SharedModule {

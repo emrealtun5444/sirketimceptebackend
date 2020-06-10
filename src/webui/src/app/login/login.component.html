@@ -1,21 +1,28 @@
 <form [formGroup]="entityForm">
+    <p-toast></p-toast>
     <div class="login-panel ui-fluid">
         <div class="ui-g">
             <div class="ui-g-12 logo-container">
-                <img src="../layout/images/logo-dark.png" alt="logo-dark"/>
+                <img src="/assets/layout/images/logo-dark.png" alt="logo-dark"/>
                 <h1>Login To Your Account</h1>
                 <h2>WELCOME TO VERONA</h2>
             </div>
             <div class="ui-g-12">
                 <div class="input-wrapper">
-                    <input formControlName="username" type="text" autocomplete="off" placeholder="Username"
+                    <input id="username" formControlName="username" type="text" autocomplete="off"
+                           placeholder="Username"
                            class="ui-inputtext ui-widget">
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['username']"></app-validation-message>
                 </div>
             </div>
             <div class="ui-g-12">
                 <div class="input-wrapper">
-                    <input formControlName="password" type="password" autocomplete="off" placeholder="Password"
+                    <input id="password" formControlName="password" type="password" autocomplete="off"
+                           placeholder="Password"
                            class="ui-inputtext ui-widget">
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['password']"></app-validation-message>
                 </div>
             </div>
             <div class="ui-g-12 chkbox-container">
@@ -26,8 +33,12 @@
                 <button type="button"
                         (click)="onSubmit()"
                         class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only green-btn raised-btn rounded-btn">
-                    <span class="ui-button-text ui-c">Sing In</span>
+                    <span class="ui-button-text ui-c">{{'btn.giris.yap' | translate}}</span>
                 </button>
+            </div>
+            <div class="ui-g-12 button-container">
+                <button pButton type="button" label="{{'btn.kayit.ol' | translate}}" (click)="kayitOl()"
+                        class="rounded-btn ui-button-warning"></button>
             </div>
         </div>
     </div>

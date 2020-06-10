@@ -1,8 +1,9 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 let AppComponent = class AppComponent {
-    constructor(menuService) {
+    constructor(menuService, appStore) {
         this.menuService = menuService;
+        this.appStore = appStore;
         this.menuMode = 'horizontal';
         this.menuActive = true;
         this.topbarMenuActive = false;

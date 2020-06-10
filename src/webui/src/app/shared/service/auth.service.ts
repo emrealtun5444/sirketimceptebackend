@@ -28,6 +28,8 @@ export class AuthService extends AbstractService {
 
     register(user): Observable<AppResponse> {
         return this.http.post<AppResponse>(this.BASE_URL + URL + 'signup', {
+            name: user.name,
+            surname: user.surname,
             username: user.username,
             email: user.email,
             password: user.password

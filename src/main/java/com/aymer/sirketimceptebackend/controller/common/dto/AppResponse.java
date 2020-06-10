@@ -6,7 +6,7 @@ import lombok.Getter;
 public class AppResponse<T> {
     private Integer status;
     private T data;
-    private String message;
+    private String errorMessage;
 
     public static AppResponse nullResponse() {
         return new AppResponse(null);
@@ -17,9 +17,9 @@ public class AppResponse<T> {
         this.data = data;
     }
 
-    public AppResponse(Integer status, String message) {
+    public AppResponse(Integer status, String errorMessage) {
         this.status = status;
-        this.message = message;
+        this.errorMessage = errorMessage;
     }
 
     public void setData(T data) {

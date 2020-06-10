@@ -13,8 +13,10 @@ import { ChartsDemoComponent } from './demo/view/chartsdemo.component';
 import { FileDemoComponent } from './demo/view/filedemo.component';
 import { UtilsDemoComponent } from './demo/view/utilsdemo.component';
 import { DocumentationComponent } from './demo/view/documentation.component';
+import { LoginComponent } from "./login/login.component";
 export const routes = [
     { path: '', component: DashboardDemoComponent },
+    { path: 'login', component: LoginComponent },
     { path: 'components/sample', component: SampleDemoComponent },
     { path: 'components/forms', component: FormsDemoComponent },
     { path: 'components/data', component: DataDemoComponent },
