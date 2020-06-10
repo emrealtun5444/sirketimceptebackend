@@ -37,8 +37,11 @@
                 </button>
             </div>
             <div class="ui-g-12 button-container">
-                <button pButton type="button" label="{{'btn.kayit.ol' | translate}}" (click)="kayitOl()"
-                        class="rounded-btn ui-button-warning"></button>
+                <button type="button"
+                        (click)="kayitOl()"
+                        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only blue-btn raised-btn rounded-btn">
+                    <span class="ui-button-text ui-c">{{'btn.kayit.ol' | translate}}</span>
+                </button>
             </div>
         </div>
     </div>

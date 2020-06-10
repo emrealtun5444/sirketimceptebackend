@@ -1,10 +1,10 @@
-<div class="layout-wrapper" [ngClass]="{'layout-menu-horizontal': menuMode === 'horizontal',
+<div [class]="isLoggedIn() ? 'layout-wrapper' : ''" [ngClass]="{'layout-menu-horizontal': menuMode === 'horizontal',
                                         'layout-menu-popup': menuMode === 'popup',
                                         'layout-menu-overlay': menuMode === 'overlay',
                                         'layout-menu-static': menuMode === 'static',
                                         'layout-menu-static-inactive': (menuMode == 'static' && menuActive === false)}"
                                         (click)="onLayoutClick()">
-    <app-topbar></app-topbar>
+    <app-topbar *ngIf="isLoggedIn()"></app-topbar>
 
     <div class="layout-content">
         <p-messages id="messges" ></p-messages>
@@ -12,5 +12,5 @@
         <router-outlet></router-outlet>
     </div>
 
-    <app-footer></app-footer>
+    <app-footer *ngIf="isLoggedIn()"></app-footer>
 </div>

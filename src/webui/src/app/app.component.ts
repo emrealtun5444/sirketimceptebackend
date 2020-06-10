@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {MenuService} from './app.menu.service';
 import {AppStore} from "./shared/app.store";
 import {Router} from "@angular/router";
+import {TokenStorageService} from "./shared/service/token-storage.service";
 
 @Component({
     selector: 'app-root',
@@ -99,5 +100,9 @@ export class AppComponent {
 
     signOut() {
         this.router.navigate(['logout']);
+    }
+
+    isLoggedIn() {
+        return !!this.appStore.tokenStorage.getToken();
     }
 }

@@ -27,7 +27,7 @@ export class AppStore {
     constructor(private messageService: MessageService,
                 private _translate: TranslateService,
                 private _location: Location,
-                private tokenStorage: TokenStorageService,
+                public tokenStorage: TokenStorageService,
                 private _confirmationService: ConfirmationService) {
         AppStore.instance = this;
     }
