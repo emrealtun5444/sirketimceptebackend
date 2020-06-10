@@ -1,4 +1,4 @@
-<div *ngIf="appStore.isLoggedIn()" class="layout-wrapper" [ngClass]="{'layout-menu-horizontal': menuMode === 'horizontal',
+<div class="layout-wrapper" [ngClass]="{'layout-menu-horizontal': menuMode === 'horizontal',
                                         'layout-menu-popup': menuMode === 'popup',
                                         'layout-menu-overlay': menuMode === 'overlay',
                                         'layout-menu-static': menuMode === 'static',
@@ -13,8 +13,4 @@
     </div>
 
     <app-footer></app-footer>
-</div>
-
-<div *ngIf="!appStore.isLoggedIn()" class="layout-content">
-    <router-outlet></router-outlet>
 </div>

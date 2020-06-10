@@ -13,8 +13,8 @@
             </div>
 
             <a href="#" id="user-display" (click)="app.onTopbarMenuButtonClick($event)">
-                <span class="username">Samanta Owens</span>
-                <span class="userrole">Admin</span>
+                <span class="username">{{app.appStore.user.name}} {{app.appStore.user.surname}}</span>
+                <span class="userrole">{{app.appStore.user.roles}}</span>
                 <img alt="main logo" src="assets/layout/images/avatar.png">
             </a>
 
@@ -50,7 +50,7 @@
                             </a>
                         </li>
                         <li role="menuitem">
-                            <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                            <a href="#" (click)="app.signOut()">
                                 <i class="fa fa-fw fa-sign-out"></i>
                                 <span>Logout</span>
                             </a>

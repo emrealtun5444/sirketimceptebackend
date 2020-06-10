@@ -5,6 +5,7 @@ import {MenuItem} from 'primeng/api';
 import {ConfirmData, ConfirmType} from "./confirm-data";
 import {TranslateService} from "@ngx-translate/core";
 import {TokenStorageService} from "./service/token-storage.service";
+import {User} from "./model/user";
 
 @Injectable()
 export class AppStore {
@@ -38,6 +39,10 @@ export class AppStore {
 
     set loading(_loading: boolean) {
         this._loading = _loading;
+    }
+
+    get user(): User {
+        return this.tokenStorage.getUser();
     }
 
     get location(): Location {
@@ -239,9 +244,5 @@ export class AppStore {
             }
         }
         return path;
-    }
-
-    public isLoggedIn(): boolean {
-        return !!this.tokenStorage.getToken();
     }
 }

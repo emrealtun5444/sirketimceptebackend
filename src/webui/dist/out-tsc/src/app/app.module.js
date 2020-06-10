@@ -44,6 +44,7 @@ import { AppStore } from "./shared/app.store";
 import { AuthService } from "./shared/service/auth.service";
 import { SharedModule } from "./shared/shared.module";
 import { WebpackTranslateLoader } from "./shared/webpack-translate-loader";
+import { AuthGuard } from "./shared/auth/AuthGuard";
 // auth
 let AppModule = class AppModule {
 };
@@ -110,7 +111,8 @@ AppModule = __decorate([
             ConfirmationService,
             Title,
             AppStore,
-            AuthService
+            AuthService,
+            AuthGuard
         ],
         bootstrap: [AppComponent]
     })

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {MenuService} from './app.menu.service';
 import {AppStore} from "./shared/app.store";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent {
     menuHoverActive: boolean;
 
     constructor(private menuService: MenuService,
-                public appStore: AppStore) {
+                public appStore: AppStore,
+                private router: Router) {
     }
 
     onMenuButtonClick(event: Event) {
@@ -93,5 +95,9 @@ export class AppComponent {
     isTablet() {
         const width = window.innerWidth;
         return width <= 1024 && width > 640;
+    }
+
+    signOut() {
+        this.router.navigate(['logout']);
     }
 }
