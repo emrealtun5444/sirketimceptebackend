@@ -7,7 +7,7 @@
     <app-topbar *ngIf="isLoggedIn()"></app-topbar>
 
     <div class="layout-content">
-        <p-messages id="messges" ></p-messages>
+        <p-messages *ngIf="isLoggedIn()" id="messges" ></p-messages>
 
         <router-outlet></router-outlet>
     </div>
