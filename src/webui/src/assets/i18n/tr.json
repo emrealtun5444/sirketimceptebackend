@@ -63,6 +63,8 @@
     "label.soyad": "Soyad",
     "label.kullanici.adi": "Kullanıcı Adı",
     "label.sifre": "Şifre",
-    "label.email": "E-Posta"
+    "label.email": "E-Posta",
 
+    "##############################################################################################": "MENUS",
+    "menu.stok.yonetimi": "Stok Yönetimi"
 }

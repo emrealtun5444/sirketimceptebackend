@@ -16,9 +16,11 @@ import { DocumentationComponent } from './demo/view/documentation.component';
 import { LoginComponent } from "./login/login.component";
 import { AuthGuard } from "./shared/auth/AuthGuard";
 import { RegisterComponent } from "./register/register.component";
+import { LogoutComponent } from "./logout/logout.component";
 export const routes = [
     { path: '', component: DashboardDemoComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
+    { path: 'logout', component: LogoutComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'components/sample', component: SampleDemoComponent, canActivate: [AuthGuard] },
     { path: 'components/forms', component: FormsDemoComponent, canActivate: [AuthGuard] },

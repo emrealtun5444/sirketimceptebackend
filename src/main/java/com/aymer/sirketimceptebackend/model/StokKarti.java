@@ -7,12 +7,11 @@ import com.aymer.sirketimceptebackend.model.common.Sirket;
 import com.aymer.sirketimceptebackend.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.model.enums.EKdvOrani;
 import com.aymer.sirketimceptebackend.model.enums.EParaBirimi;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -23,7 +22,9 @@ import java.math.BigDecimal;
  */
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "stok_karti")
 public class StokKarti extends Auditable<String> implements Serializable {
@@ -47,12 +48,12 @@ public class StokKarti extends Auditable<String> implements Serializable {
     @JoinColumn(name = "marka_id")
     private Marka marka;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "para_birimi", length = 20)
     private EParaBirimi paraBirimi;
 
-    @NotBlank
+    @NotNull
     @Column(name = "urun_adi", length = 255)
     private String urunAdi;
 
@@ -65,11 +66,11 @@ public class StokKarti extends Auditable<String> implements Serializable {
     @Column(name = "stok_adedi")
     private Long stokAdedi;
 
-    @NotBlank
+    @NotNull
     @Column(name = "stok_kodu")
     private String stokKodu;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "kdv_orani", length = 20)
     private EKdvOrani kdvOrani;
@@ -80,14 +81,19 @@ public class StokKarti extends Auditable<String> implements Serializable {
     @Column(name = "varyant")
     private String varyant;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
+
+    public void updateStokAndPrice(Long stokAdedi, BigDecimal urunFiyati) {
+        this.setStokAdedi(stokAdedi);
+        this.setUrunFiyat(urunFiyati);
+    }
 
 }

@@ -45,6 +45,7 @@ import { AuthService } from "./shared/service/auth.service";
 import { SharedModule } from "./shared/shared.module";
 import { WebpackTranslateLoader } from "./shared/webpack-translate-loader";
 import { AuthGuard } from "./shared/auth/AuthGuard";
+import { LogoutComponent } from './logout/logout.component';
 // auth
 let AppModule = class AppModule {
 };
@@ -89,7 +90,8 @@ AppModule = __decorate([
             UtilsDemoComponent,
             DocumentationComponent,
             LoginComponent,
-            RegisterComponent
+            RegisterComponent,
+            LogoutComponent
         ],
         providers: [
             {

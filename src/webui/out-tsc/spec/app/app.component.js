@@ -1,9 +1,10 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 let AppComponent = class AppComponent {
-    constructor(menuService, appStore) {
+    constructor(menuService, appStore, router) {
         this.menuService = menuService;
         this.appStore = appStore;
+        this.router = router;
         this.menuMode = 'horizontal';
         this.menuActive = true;
         this.topbarMenuActive = false;
@@ -61,6 +62,12 @@ let AppComponent = class AppComponent {
     isTablet() {
         const width = window.innerWidth;
         return width <= 1024 && width > 640;
+    }
+    signOut() {
+        this.router.navigate(['logout']);
+    }
+    isLoggedIn() {
+        return !!this.appStore.tokenStorage.getToken();
     }
 };
 AppComponent = __decorate([

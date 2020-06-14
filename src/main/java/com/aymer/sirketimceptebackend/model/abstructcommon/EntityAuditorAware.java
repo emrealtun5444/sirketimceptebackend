@@ -20,6 +20,6 @@ public class EntityAuditorAware implements AuditorAware<String> {
             String currentUserName = authentication.getName();
             return Optional.ofNullable(currentUserName);
         }
-        return Optional.of(authentication.getPrincipal().toString());
+        return Optional.of("anonymous");
     }
 }

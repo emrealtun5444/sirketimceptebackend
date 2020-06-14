@@ -1,12 +1,22 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 let AppMenuComponent = class AppMenuComponent {
-    constructor(app) {
+    constructor(app, appStore) {
         this.app = app;
+        this.appStore = appStore;
     }
     ngOnInit() {
         this.model = [
             { label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
+            {
+                label: this.appStore.translate.instant('menu.stok.yonetimi'), icon: 'fa fa-fw fa-bars', badge: 4, badgeStyleClass: 'green-badge',
+                items: [
+                    { label: 'Horizontal', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'horizontal' },
+                    { label: 'Static', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'static' },
+                    { label: 'Overlay', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'overlay' },
+                    { label: 'Popup', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'popup' }
+                ]
+            },
             {
                 label: 'Menu', icon: 'fa fa-fw fa-bars', badge: 4, badgeStyleClass: 'green-badge',
                 items: [

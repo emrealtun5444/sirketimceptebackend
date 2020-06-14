@@ -32,6 +32,7 @@
             <div class="ui-g-12 button-container">
                 <button type="button"
                         (click)="onSubmit()"
+                        [disabled]="entityForm.invalid"
                         class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only green-btn raised-btn rounded-btn">
                     <span class="ui-button-text ui-c">{{'btn.giris.yap' | translate}}</span>
                 </button>

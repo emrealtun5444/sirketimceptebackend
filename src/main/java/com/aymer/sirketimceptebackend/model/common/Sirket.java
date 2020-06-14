@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "sirket-")
+@Table(name = "sirket")
 public class Sirket extends Auditable<String> implements Serializable {
 
     @Id

@@ -31,9 +31,7 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="urun_aciklama" type="VARCHAR(4000)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="urun_aciklama" type="VARCHAR(4000)"/>
 
             <column name="urun_fiyat" type="currency"/>
             <column name="stok_adedi" type="int"/>
