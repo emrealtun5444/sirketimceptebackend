@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -22,16 +22,16 @@ import java.util.Date;
 @DiscriminatorValue(IConstants.CEK)
 public class FinansalHareketCek extends FinansalHareket {
 
-    @NotBlank
+    @NotNull
     @Column(name = "vade")
     private Date vade;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "banka_id")
     private Banka banka;
 
-    @NotBlank
+    @NotNull
     @Column(name = "sube_adi")
     private String subeAdi;
 
@@ -41,7 +41,7 @@ public class FinansalHareketCek extends FinansalHareket {
     @Column(name = "borclu_adresi")
     private String borcluAdresi;
 
-    @NotBlank
+    @NotNull
     @Column(name = "evrak_no")
     private String evrakNo;
 

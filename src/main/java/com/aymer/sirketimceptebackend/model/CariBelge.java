@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -26,12 +26,12 @@ public class CariBelge extends Auditable<String> implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "cari_id")
     private CariKart cariKart;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "belge_id")
     private Belge belge;

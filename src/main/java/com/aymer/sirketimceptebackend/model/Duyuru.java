@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -28,20 +28,20 @@ public class Duyuru extends Auditable<String> implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Column(name = "konu", length = 512)
     private String konu;
 
-    @NotBlank
+    @NotNull
     @Column(name = "aciklama", length = 4000)
     private String aciklama;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;

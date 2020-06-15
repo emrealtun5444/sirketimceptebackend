@@ -1,7 +1,5 @@
 package com.aymer.sirketimceptebackend.model;
 
-import com.aymer.sirketimceptebackend.model.Belge;
-import com.aymer.sirketimceptebackend.model.CariKart;
 import com.aymer.sirketimceptebackend.model.abstructcommon.Auditable;
 import com.aymer.sirketimceptebackend.model.common.Sirket;
 import lombok.Getter;
@@ -9,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -29,12 +27,12 @@ public class SirketBelge extends Auditable<String> implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "belge_id")
     private Belge belge;

@@ -3,7 +3,7 @@ package com.aymer.sirketimceptebackend.controller.user.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @Setter
 public class RoleDto {
 
-    @NotBlank
+    @NotNull
     @Size(max = 25)
     private String name;
 

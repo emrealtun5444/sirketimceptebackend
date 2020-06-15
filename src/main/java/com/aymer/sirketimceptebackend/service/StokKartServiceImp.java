@@ -1,6 +1,6 @@
 package com.aymer.sirketimceptebackend.service;
 
-import com.aymer.sirketimceptebackend.model.StokKarti;
+import com.aymer.sirketimceptebackend.model.StokKart;
 import com.aymer.sirketimceptebackend.model.common.Sirket;
 import com.aymer.sirketimceptebackend.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.model.enums.EKdvOrani;
@@ -32,16 +32,16 @@ public class StokKartServiceImp implements StokKartService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void syncStokKart(StokKartDto stokKartDto) {
-        StokKarti stokKarti = null;
+        StokKart stokKart = null;
         Optional<Sirket> sirket = sirketRepository.findById(stokKartDto.getSirketId());
 
         // control if there ise stok kart exists
         boolean haveStokKart = stokKartRepository.existsByStokKodu(stokKartDto.getStokKodu());
         if (haveStokKart) {
-            stokKarti = stokKartRepository.findByStokKodu(stokKartDto.getStokKodu());
-            stokKarti.updateStokAndPrice(stokKartDto.getMiktar(),stokKartDto.getBirimFiyati());
+            stokKart = stokKartRepository.findByStokKodu(stokKartDto.getStokKodu());
+            stokKart.updateStokAndPrice(stokKartDto.getMiktar(),stokKartDto.getBirimFiyati());
         } else {
-            stokKarti = StokKarti.builder()
+            stokKart = StokKart.builder()
                     .stokKodu(stokKartDto.getStokKodu())
                     .urunAdi(stokKartDto.getAciklama())
                     .urunFiyat(stokKartDto.getBirimFiyati())
@@ -52,6 +52,6 @@ public class StokKartServiceImp implements StokKartService {
                     .sirket(sirket.get())
                     .build();
         }
-        stokKartRepository.save(stokKarti);
+        stokKartRepository.save(stokKart);
     }
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -27,7 +27,7 @@ public class Sirket extends Auditable<String> implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Column(name = "sirket_adi")
     private String sirketAdi;
 
@@ -37,11 +37,11 @@ public class Sirket extends Auditable<String> implements Serializable {
     @Column(name = "adress", length = 1024)
     private String adres;
 
-    @NotBlank
+    @NotNull
     @Column(name = "eposta")
     private String eposta;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;

@@ -1,7 +1,7 @@
 package com.aymer.sirketimceptebackend.mapper;
 
 
-import com.aymer.sirketimceptebackend.model.StokKarti;
+import com.aymer.sirketimceptebackend.model.StokKart;
 import com.aymer.sirketimceptebackend.model.viewholder.StokKartDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -15,6 +15,6 @@ import org.mapstruct.factory.Mappers;
 public interface StokKartMapper {
     StokKartMapper INSTANCE = Mappers.getMapper(StokKartMapper.class);
 
-    StokKarti mapToStokKart(StokKartDto stokKartDto);
+    StokKart mapToStokKart(StokKartDto stokKartDto);
 
 }

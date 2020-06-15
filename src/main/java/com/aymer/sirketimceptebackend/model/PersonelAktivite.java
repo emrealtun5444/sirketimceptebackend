@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -31,38 +31,38 @@ public class PersonelAktivite extends Auditable<String> implements Serializable 
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "aktivite_tipi", length = 20)
     private EAktiviteTipi aktiviteTipi;
 
-    @ManyToOne
+    @NotNull
     @JoinColumn(name = "cari_id")
     private CariKart cariKart;
 
-    @NotBlank
+    @NotNull
     @Column(name = "konu", length = 512)
     private String konu;
 
-    @NotBlank
+    @NotNull
     @Column(name = "aciklama", length = 4000)
     private String aciklama;
 
-    @NotBlank
+    @NotNull
     @Column(name = "aktivite_zamani", length = 20)
     private Date aktiviteZamani;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -29,42 +29,42 @@ public class Belge extends Auditable<String> implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Lob
     @Column(name = "content")
     @Basic(fetch = FetchType.LAZY)
     private byte[] content;
 
-    @NotBlank
+    @NotNull
     @Column(name = "file_name", length = 512)
     private String fileName;
 
-    @NotBlank
+    @NotNull
     @Column(name = "kisa_aciklama", length = 255)
     private String kisaAciklama;
 
     @Column(name = "aciklama", length = 2048)
     private String aciklama;
 
-    @NotBlank
+    @NotNull
     @Column(name = "size")
     private Long size;
 
-    @NotBlank
+    @NotNull
     @Column(name = "minetype")
     private String minetype;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "belge_tipi", length = 20)
     private EBelgeTipi belgeTipi;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;

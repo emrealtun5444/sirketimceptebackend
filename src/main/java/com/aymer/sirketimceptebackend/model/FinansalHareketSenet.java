@@ -1,13 +1,14 @@
 package com.aymer.sirketimceptebackend.model;
 
 import com.aymer.sirketimceptebackend.constants.IConstants;
-import com.aymer.sirketimceptebackend.model.common.Banka;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -22,7 +23,7 @@ import java.util.Date;
 @DiscriminatorValue(IConstants.SENET)
 public class FinansalHareketSenet extends FinansalHareket {
 
-    @NotBlank
+    @NotNull
     @Column(name = "vade")
     private Date vade;
 
@@ -32,7 +33,7 @@ public class FinansalHareketSenet extends FinansalHareket {
     @Column(name = "borclu_adresi")
     private String borcluAdresi;
 
-    @NotBlank
+    @NotNull
     @Column(name = "evrak_no")
     private String evrakNo;
 

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -29,25 +29,25 @@ public class IletisimBilgi extends Auditable<String> implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "bilgi_tipi", length = 20)
     private EIletisimBilgiTipi bilgiTipi;
 
-    @NotBlank
+    @NotNull
     @Column(name = "kisa_aciklama")
     String kisaAciklama;
 
-    @NotBlank
+    @NotNull
     @Column(name = "aciklama")
     String aciklama;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;

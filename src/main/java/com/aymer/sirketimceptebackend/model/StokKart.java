@@ -10,7 +10,6 @@ import com.aymer.sirketimceptebackend.model.enums.EParaBirimi;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -26,8 +25,8 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "stok_karti")
-public class StokKarti extends Auditable<String> implements Serializable {
+@Table(name = "stok_kart")
+public class StokKart extends Auditable<String> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

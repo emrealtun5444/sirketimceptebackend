@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -30,14 +30,14 @@ public class Marka extends Auditable<String> implements Serializable {
     @Column(name = "kisa_aciklama")
     private String kisaAciklama;
 
-    @NotBlank
+    @NotNull
     @Column(name = "aciklama")
     private String aciklama;
 
     @Column(name = "image_path")
     private String imagePath;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;

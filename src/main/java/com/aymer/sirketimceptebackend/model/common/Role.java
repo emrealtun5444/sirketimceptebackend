@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Getter
@@ -16,12 +16,12 @@ import java.io.Serializable;
 @Entity
 @Table(name = "role")
 public class Role extends Auditable<String> implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@NotBlank
-	@Enumerated(EnumType.STRING)
-	@Column(length = 20)
-	private ERole name;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private ERole name;
 }
