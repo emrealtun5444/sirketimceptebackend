@@ -2,6 +2,7 @@ package com.aymer.sirketimceptebackend.repository;
 
 import com.aymer.sirketimceptebackend.model.StokKart;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * Time: 16:08
  */
 @Repository
-public interface StokKartRepository extends JpaRepository<StokKart, Long> {
+public interface StokKartRepository extends JpaRepository<StokKart, Long>, JpaSpecificationExecutor<StokKart> {
 
     Boolean existsByStokKodu(String stokKodu);
 

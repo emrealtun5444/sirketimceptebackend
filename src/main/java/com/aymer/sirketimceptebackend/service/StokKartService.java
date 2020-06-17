@@ -1,10 +1,10 @@
 package com.aymer.sirketimceptebackend.service;
 
 
-import com.aymer.sirketimceptebackend.model.common.Marka;
-import com.aymer.sirketimceptebackend.model.viewholder.StokKartDto;
-
-import java.util.List;
+import com.aymer.sirketimceptebackend.controller.stokkart.dto.StokKartSorguKriteri;
+import com.aymer.sirketimceptebackend.listener.skorkart.StokKartViewHolder;
+import com.aymer.sirketimceptebackend.model.StokKart;
+import org.springframework.data.domain.Page;
 
 /**
  * User: ealtun
@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface StokKartService {
 
-    public void syncStokKart(StokKartDto stokKartDto);
+     void syncStokKart(StokKartViewHolder stokKartDto);
+
+     Page<StokKart> findStokKartByCriteria(StokKartSorguKriteri stokKartSorguKriteri, int page);
 
 }

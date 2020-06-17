@@ -1,6 +1,6 @@
-package com.aymer.sirketimceptebackend.listener;
+package com.aymer.sirketimceptebackend.listener.skorkart;
 
-import com.aymer.sirketimceptebackend.model.viewholder.StokKartDto;
+import com.aymer.sirketimceptebackend.controller.stokkart.dto.StokKartDto;
 import com.aymer.sirketimceptebackend.service.StokKartService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,9 +22,9 @@ public class StokKartListener {
     @RabbitListener(queues = "stok-kart-queue")
     public void handleStokKartMessage(String stokKartJSON) {
         ObjectMapper objectMapper = new ObjectMapper();
-        StokKartDto stokKartDto = null;
+        StokKartViewHolder stokKartDto = null;
         try {
-            stokKartDto = objectMapper.readValue(stokKartJSON, StokKartDto.class);
+            stokKartDto = objectMapper.readValue(stokKartJSON, StokKartViewHolder.class);
             stokKartService.syncStokKart(stokKartDto);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
