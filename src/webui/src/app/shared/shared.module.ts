@@ -54,6 +54,11 @@ import {ListboxModule} from 'primeng/listbox';
 import {FieldsetModule} from 'primeng/fieldset';
 import {StringWrapperPipe} from './utils/string-wrapper.pipe';
 import {ValidationMessageComponent} from "./validation-message/validation-message.component";
+import {CommonDatatableComponent} from "./datatable/common-datatable.component";
+import {DatatableInputValidatorComponent} from "./datatable-input-validator/datatable-input-validator.component";
+import {FileUploadComponent} from "./file-upload/file-upload.component";
+import {SelectService} from "./select/select.service";
+import {ParaGoruntuleComponent} from "./para-goruntule/para-goruntule.component";
 
 @NgModule({
     imports: [
@@ -127,7 +132,7 @@ import {ValidationMessageComponent} from "./validation-message/validation-messag
         ToastModule,
         VirtualScrollerModule
     ],
-    providers: [],
+    providers: [SelectService],
     declarations: [
         DateFormatPipe,
         DateTimeFormatPipe,
@@ -135,7 +140,11 @@ import {ValidationMessageComponent} from "./validation-message/validation-messag
         EnumPipe,
         StringWrapperPipe,
         ParaComponent,
-        ValidationMessageComponent
+        ValidationMessageComponent,
+        CommonDatatableComponent,
+        DatatableInputValidatorComponent,
+        FileUploadComponent,
+        ParaGoruntuleComponent
     ],
     exports: [
         DateFormatPipe,
@@ -217,7 +226,11 @@ import {ValidationMessageComponent} from "./validation-message/validation-messag
         TieredMenuModule,
         ToastModule,
         VirtualScrollerModule,
-        ValidationMessageComponent
+        ValidationMessageComponent,
+        CommonDatatableComponent,
+        DatatableInputValidatorComponent,
+        FileUploadComponent,
+        ParaGoruntuleComponent
     ]
 })
 export class SharedModule {

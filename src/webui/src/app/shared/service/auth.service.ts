@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AbstractService} from "./abstract.service";
 import {AppResponse} from "../app-response";
+import {AbstractService} from "../abstract-service";
 
 const URL = 'auth/';
 

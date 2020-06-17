@@ -34,3 +34,13 @@ export class Constants {
     ];
     static readonly LAZY_DATATABLE_EXCEL_REPORT_WARNING_LIMIT = 30000;
 }
+
+export enum BelgeTipi {
+    FIYAT_LISTESI = 'FIYAT_LISTESI',
+    KATALOG = 'KATALOG',
+    KAMPANYA = 'KAMPANYA',
+    FATURA = 'FATURA',
+    BELGE = 'BELGE',
+    SOZLESME = 'SOZLESME',
+    DIGER = 'DIGER'
+}

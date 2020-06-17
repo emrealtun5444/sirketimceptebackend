@@ -6,6 +6,8 @@ import {ConfirmData, ConfirmType} from "./confirm-data";
 import {TranslateService} from "@ngx-translate/core";
 import {TokenStorageService} from "./service/token-storage.service";
 import {User} from "./model/user";
+import {SelectService} from "./select/select.service";
+import {Para} from "./para/para";
 
 @Injectable()
 export class AppStore {
@@ -17,6 +19,7 @@ export class AppStore {
         today: 'Today',
         clear: 'Clear'
     };
+    para = Para;
     dateFormat = 'dd.mm.yy';
     breadcrumbs: MenuItem[] = [];
     sirket;
@@ -28,6 +31,7 @@ export class AppStore {
                 private _translate: TranslateService,
                 private _location: Location,
                 public tokenStorage: TokenStorageService,
+                private _selectService: SelectService,
                 private _confirmationService: ConfirmationService) {
         AppStore.instance = this;
     }
@@ -51,6 +55,10 @@ export class AppStore {
 
     get translate(): TranslateService {
         return this._translate;
+    }
+
+    get selectService(): SelectService {
+        return this._selectService;
     }
 
     static getNativeWindow() {

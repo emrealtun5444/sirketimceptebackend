@@ -1,0 +1,55 @@
+<div [ngSwitch]="type">
+  <label for="inputNgModelValidatorComponent">{{label}}</label>
+
+  <div *ngSwitchCase="'input'">
+    <input id="inputNgModelValidatorComponent"
+           pInputText
+           type="text"
+           (blur)="fix()"
+           [disabled]="_disabled"
+           [(ngModel)]="value"/>
+  </div>
+
+  <div *ngSwitchCase="'decimal'">
+    <input id="decimalNgModelValidatorComponent"
+           pInputText
+           type="number"
+           (blur)="fix()"
+           [disabled]="_disabled"
+           [(ngModel)]="value"/>
+  </div>
+
+  <div *ngSwitchCase="'para'">
+    <app-para id="paraNgModelValidatorComponent"
+              [disableParaBirimi]="disableParaBirimi"
+              (focusout)="fix()"
+              [disabled]="_disabled"
+              [(ngModel)]="value"></app-para>
+
+  </div>
+
+  <div *ngSwitchCase="'dropdown'">
+    <p-dropdown id="dropdownNgModelValidatorComponent"
+                (blur)="fix()"
+                [options]="optionList"
+                [disabled]="_disabled"
+                [(ngModel)]="value"></p-dropdown>
+  </div>
+
+  <div *ngSwitchCase="'calendar'">
+    <p-calendar id="calendarNgModelValidatorComponent"
+                [(ngModel)]="value"
+                (blur)="fix()"
+                [disabled]="_disabled"
+                [showIcon]="true"
+                [monthNavigator]="true"
+                [yearNavigator]="true"
+                [dateFormat]="appStore.dateFormat"
+                [locale]="appStore.tr"
+                yearRange="2000:2030"
+                [showButtonBar]="true">
+    </p-calendar>
+  </div>
+
+  <app-validation-message [validationControl]="control"></app-validation-message>
+</div>

@@ -64,6 +64,13 @@
     "label.kullanici.adi": "Kullanıcı Adı",
     "label.sifre": "Şifre",
     "label.email": "E-Posta",
+    "label.aradiginiz.sayfa.bulunamadi": "Kaynak Bulunamadı",
+    "label.aradiginiz.sayfa.bulunamadı.detay": "Erişmek istediğiniz kaynak bulunamadı.",
+    "label.erisim.engellendi": "Erişim Engellendi",
+    "label.erisim.engellendi.detay": "Yetkiniz olmayan kaynağa erişiminiz engellendi.",
+    "label.kayit.sayisi": "Toplam Kayıt Sayısı :",
+    "label.secilen.kayit.sayisi": "Seçilen Kayıt Sayısı :",
+    "label.empty.data.table": "Aradığınız kriterlere uygun kayıt bulunamadı",
 
     "##############################################################################################": "MENUS",
     "menu.stok.yonetimi": "Stok Yönetimi"
