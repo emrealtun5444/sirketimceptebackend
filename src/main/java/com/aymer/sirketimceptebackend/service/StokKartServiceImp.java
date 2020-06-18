@@ -78,7 +78,7 @@ public class StokKartServiceImp implements StokKartService {
         }
 
         if (stokKartSorguKriteri.getStokAdedi() != null) {
-            spesification.add(new SearchCriteria("urunAdi", stokKartSorguKriteri.getStokAdedi(), SearchOperation.EQUAL));
+            spesification.add(new SearchCriteria("stokAdedi", stokKartSorguKriteri.getStokAdedi(), SearchOperation.EQUAL));
         }
 
         Pageable pageable = PageRequest.of(page, rows, Sort.by("urunAdi").ascending());
