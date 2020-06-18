@@ -13,7 +13,7 @@
             </column>
 
             <column name="user_id" type="int">
-                <constraints nullable="false" foreignKeyName="fk_pa_user_id" references="user(id)"/>
+                <constraints nullable="false" foreignKeyName="fk_pa_user_id" references="kullanici(id)"/>
             </column>
 
             <column name="aktivite_tipi" type="VARCHAR(20)">

@@ -12,7 +12,7 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="user_id" type="int">
-                <constraints nullable="false" foreignKeyName="fk_user_roles_user_id" references="user(id)"/>
+                <constraints nullable="false" foreignKeyName="fk_user_roles_user_id" references="kullanici(id)"/>
             </column>
             <column name="role_id" type="int">
                 <constraints nullable="false" foreignKeyName="fk_user_roles_role_id" references="role(id)"/>

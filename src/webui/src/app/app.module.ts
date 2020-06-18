@@ -44,8 +44,7 @@ import {AuthService} from "./shared/service/auth.service";
 import {SharedModule} from "./shared/shared.module";
 import {WebpackTranslateLoader} from "./shared/webpack-translate-loader";
 import {AuthGuard} from "./shared/auth/AuthGuard";
-import { LogoutComponent } from './logout/logout.component';
-import { StokKartComponent } from './domain/stok-kart/stok-kart.component';
+import {LogoutComponent} from './logout/logout.component';
 
 // auth
 
@@ -92,8 +91,7 @@ import { StokKartComponent } from './domain/stok-kart/stok-kart.component';
         DocumentationComponent,
         LoginComponent,
         RegisterComponent,
-        LogoutComponent,
-        StokKartComponent
+        LogoutComponent
     ],
     providers: [
         {

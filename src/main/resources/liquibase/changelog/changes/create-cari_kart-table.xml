@@ -35,7 +35,7 @@
             </column>
 
             <column name="sorumlu_personel_id" type="int">
-                <constraints foreignKeyName="fk_cari_kart_sp_id" references="user(id)"/>
+                <constraints foreignKeyName="fk_cari_kart_sp_id" references="kullanici(id)"/>
             </column>
 
             <column name="yillik_hedef" type="currency"/>

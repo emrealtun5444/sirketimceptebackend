@@ -44,3 +44,14 @@ export enum BelgeTipi {
     SOZLESME = 'SOZLESME',
     DIGER = 'DIGER'
 }
+
+export enum ParaBirimi {
+    TRY = 'TRY',
+    USD = 'USD',
+    EURO = 'EURO'
+}
+
+export enum KdvOrani {
+    KDV_ORANI_8 = 'KDV_ORANI_8',
+    KDV_ORANI_18 = 'KDV_ORANI_18'
+}
