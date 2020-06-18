@@ -19,10 +19,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: this.appStore.translate.instant('menu.stok.yonetimi'), icon: 'fa fa-fw fa-bars', badge: 4, badgeStyleClass: 'green-badge',
                 items: [
-                    {label: 'Horizontal', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'horizontal' },
-                    {label: 'Static', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'static' },
-                    {label: 'Overlay', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'overlay' },
-                    {label: 'Popup', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'popup' }
+                    {label: this.appStore.translate.instant('menu.stok.sorgulama'), icon: 'fa fa-fw fa-columns', routerLink: ['/stokKart']}
                 ]
             },
             {

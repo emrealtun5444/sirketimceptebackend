@@ -57,7 +57,7 @@ export class LoginComponent extends AbstractBaseComponent implements OnInit, OnD
     }
 
     private loginSuccess(data: any) {
-        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data);
         this.roles = this.tokenStorage.getUser().roles;
         this.router.navigate([this.returnUrl]);

@@ -71,7 +71,19 @@
     "label.kayit.sayisi": "Toplam Kayıt Sayısı :",
     "label.secilen.kayit.sayisi": "Seçilen Kayıt Sayısı :",
     "label.empty.data.table": "Aradığınız kriterlere uygun kayıt bulunamadı",
+    "label.stok.kodu": "Stok Kodu",
+    "label.urun.adi": "Ürün Adı",
+    "label.stok.adedi": "Stok Adedi",
+    "label.stok.kartı.listesi": "Stok Kartı Listesi",
+
+    "label.barkod": "Barkod",
+    "label.model.kodu": "Model Kodu",
+    "label.para.birimi": "Para Birimi",
+    "label.urun.fiyati": "Ürün Fiyatı",
+    "label.kdv.orani": "Kdv Oranı",
+    "label.urun.gorsel": "Ürün Görseli",
 
     "##############################################################################################": "MENUS",
-    "menu.stok.yonetimi": "Stok Yönetimi"
+    "menu.stok.yonetimi": "Stok Yönetimi",
+    "menu.stok.sorgulama": "Stok Kartı Sorgulama"
 }

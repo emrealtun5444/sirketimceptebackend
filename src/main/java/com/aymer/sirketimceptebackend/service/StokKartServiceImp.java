@@ -65,7 +65,7 @@ public class StokKartServiceImp implements StokKartService {
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    public Page<StokKart> findStokKartByCriteria(StokKartSorguKriteri stokKartSorguKriteri, int page) {
+    public Page<StokKart> findStokKartByCriteria(StokKartSorguKriteri stokKartSorguKriteri, int page, int rows) {
 
         BaseSpesification spesification = new BaseSpesification<StokKart>();
 
@@ -77,7 +77,11 @@ public class StokKartServiceImp implements StokKartService {
             spesification.add(new SearchCriteria("urunAdi", stokKartSorguKriteri.getUrunAdi(), SearchOperation.MATCH));
         }
 
-        Pageable pageable = PageRequest.of(page, 20, Sort.by("urunAdi").ascending());
+        if (stokKartSorguKriteri.getStokAdedi() != null) {
+            spesification.add(new SearchCriteria("urunAdi", stokKartSorguKriteri.getStokAdedi(), SearchOperation.EQUAL));
+        }
+
+        Pageable pageable = PageRequest.of(page, rows, Sort.by("urunAdi").ascending());
         Page<StokKart> stokKartPage = stokKartRepository.findAll(spesification, pageable);
         return stokKartPage;
     }

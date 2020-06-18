@@ -13,8 +13,7 @@ import org.springframework.data.domain.Page;
  */
 public interface StokKartService {
 
-     void syncStokKart(StokKartViewHolder stokKartDto);
+    void syncStokKart(StokKartViewHolder stokKartDto);
 
-     Page<StokKart> findStokKartByCriteria(StokKartSorguKriteri stokKartSorguKriteri, int page);
-
+    public Page<StokKart> findStokKartByCriteria(StokKartSorguKriteri stokKartSorguKriteri, int page, int rows);
 }

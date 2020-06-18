@@ -1,18 +1,22 @@
 package com.aymer.sirketimceptebackend.controller.stokkart;
 
 import com.aymer.sirketimceptebackend.controller.common.dto.AppResponse;
+import com.aymer.sirketimceptebackend.controller.stokkart.dto.StokKartDto;
 import com.aymer.sirketimceptebackend.controller.stokkart.dto.StokKartSorguKriteri;
 import com.aymer.sirketimceptebackend.controller.stokkart.mapper.StokKartMapper;
 import com.aymer.sirketimceptebackend.model.StokKart;
-import com.aymer.sirketimceptebackend.controller.stokkart.dto.StokKartDto;
 import com.aymer.sirketimceptebackend.repository.StokKartRepository;
+import com.aymer.sirketimceptebackend.service.StokKartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -26,19 +30,27 @@ import java.util.Optional;
 public class StokKartController {
 
     private StokKartRepository stokKartRepository;
+    private StokKartService stokKartService;
     private StokKartMapper stokKartMapper;
 
     @Autowired
-    public StokKartController(StokKartRepository stokKartRepository, StokKartMapper stokKartMapper) {
+    public StokKartController(StokKartService stokKartService, StokKartRepository stokKartRepository, StokKartMapper stokKartMapper) {
         this.stokKartRepository = stokKartRepository;
         this.stokKartMapper = stokKartMapper;
+        this.stokKartService = stokKartService;
     }
 
     @PostMapping("/sorgula")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-    public ResponseEntity<?> sorgula(@Valid @RequestBody StokKartSorguKriteri stokKartSorguKriteri) {
-        List<StokKart> stokKarts = stokKartRepository.findAll();
-        return ResponseEntity.ok(new AppResponse(stokKartMapper.stokkartToDtoList(stokKarts)));
+    AppResponse<Map> sorgula(@Valid @RequestBody StokKartSorguKriteri stokKartSorguKriteri) {
+        int pageNum = stokKartSorguKriteri.getLazyLoadEvent().getFirst() / stokKartSorguKriteri.getLazyLoadEvent().getRows();
+        int rows = stokKartSorguKriteri.getLazyLoadEvent().getRows();
+
+        Page<StokKart> stokKarts = stokKartService.findStokKartByCriteria(stokKartSorguKriteri, pageNum, rows);
+        Map<String, Object> pageObject = new HashMap<String, Object>();
+        pageObject.put("resultList", stokKartMapper.stokkartToDtoList(stokKarts.getContent()));
+        pageObject.put("totalRecords", stokKarts.getTotalElements());
+        return new AppResponse<Map>(pageObject);
     }
 
     @GetMapping("/{id}")

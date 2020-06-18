@@ -1,3 +1,5 @@
+import {LazyLoadEvent} from "primeng";
+
 export interface StokKartSorguKriterleri {
 
     stokKodu: string;
@@ -5,5 +7,7 @@ export interface StokKartSorguKriterleri {
     urunAdi: string;
 
     stokAdedi: number;
+
+    lazyLoadEvent?: LazyLoadEvent;
 
 }
