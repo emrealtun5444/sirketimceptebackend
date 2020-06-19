@@ -59,6 +59,10 @@
     "btn.kayit.ol": "Kayıt Ol",
 
     "##############################################################################################": "LABELS",
+    "label.app.name": "Aymer Kurumsal",
+    "label.wellcome": "Aymer Kurumsal Uygulamasına Hoş Geldiniz",
+    "label.please.login": "Giriş Yap",
+    "label.register": "Kayıt Ol",
     "label.ad": "Ad",
     "label.soyad": "Soyad",
     "label.kullanici.adi": "Kullanıcı Adı",

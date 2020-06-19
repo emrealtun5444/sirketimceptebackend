@@ -1,10 +1,11 @@
 import { __decorate } from "tslib";
 import { Component, Input } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { filter } from 'rxjs/operators';
 let AppMenuitemComponent = class AppMenuitemComponent {
-    constructor(app, router, cd, menuService) {
+    constructor(tokenStorage, app, router, cd, menuService) {
+        this.tokenStorage = tokenStorage;
         this.app = app;
         this.router = router;
         this.cd = cd;
@@ -91,6 +92,12 @@ let AppMenuitemComponent = class AppMenuitemComponent {
             this.menuResetSubscription.unsubscribe();
         }
     }
+    renderItem(item) {
+        if (item.role) {
+            let roles = item.role.split(",");
+        }
+        return true;
+    }
 };
 __decorate([
     Input()
@@ -110,29 +117,30 @@ AppMenuitemComponent = __decorate([
         selector: '[app-menuitem]',
         /* tslint:enable:component-selector */
         template: `
-          <ng-container>
-              <a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="!item.routerLink || item.items" (mouseenter)="onMouseEnter()"
-                 (keydown.enter)="itemClick($event)" [attr.target]="item.target" [attr.tabindex]="0">
-				  <i [ngClass]="item.icon"></i>
-				  <span>{{item.label}}</span>
-				  <i class="fa fa-fw fa-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-				  <span class="menuitem-badge" *ngIf="item.badge" [ngClass]="item.badgeStyleClass">{{item.badge}}</span>
-              </a>
-              <a (click)="itemClick($event)" (mouseenter)="onMouseEnter()" *ngIf="item.routerLink && !item.items"
-                  [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink"
-                  [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0">
-				  <i [ngClass]="item.icon"></i>
-				  <span>{{item.label}}</span>
-				  <i class="fa fa-fw fa-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-				  <span class="menuitem-badge" *ngIf="item.badge" [ngClass]="item.badgeStyleClass">{{item.badge}}</span>
-              </a>
-              <ul *ngIf="item.items && active" [@children]="(active ? 'visibleAnimated' : 'hiddenAnimated')">
-                  <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-                      <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
-                  </ng-template>
-              </ul>
-          </ng-container>
-      `,
+        <ng-container>
+            <a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="!item.routerLink || item.items"
+               (mouseenter)="onMouseEnter()"
+               (keydown.enter)="itemClick($event)" [attr.target]="item.target" [attr.tabindex]="0">
+                <i [ngClass]="item.icon"></i>
+                <span>{{item.label}}</span>
+                <i class="fa fa-fw fa-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+                <span class="menuitem-badge" *ngIf="item.badge" [ngClass]="item.badgeStyleClass">{{item.badge}}</span>
+            </a>
+            <a (click)="itemClick($event)" (mouseenter)="onMouseEnter()" *ngIf="item.routerLink && !item.items"
+               [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink"
+               [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0">
+                <i [ngClass]="item.icon"></i>
+                <span>{{item.label}}</span>
+                <i class="fa fa-fw fa-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+                <span class="menuitem-badge" *ngIf="item.badge" [ngClass]="item.badgeStyleClass">{{item.badge}}</span>
+            </a>
+            <ul *ngIf="item.items && active" [@children]="(active ? 'visibleAnimated' : 'hiddenAnimated')">
+                <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
+                    <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+                </ng-template>
+            </ul>
+        </ng-container>
+    `,
         host: {
             '[class.active-menuitem]': 'active'
         },

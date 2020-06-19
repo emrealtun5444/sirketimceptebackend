@@ -1,39 +1,43 @@
-import { Component, Input, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { MenuService } from './app.menu.service';
-import { AppComponent } from './app.component';
+import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Subscription} from 'rxjs';
+import {filter} from 'rxjs/operators';
+import {MenuService} from './app.menu.service';
+import {AppComponent} from './app.component';
+import {TokenStorageService} from "./shared/service/token-storage.service";
 
 @Component({
     /* tslint:disable:component-selector */
     selector: '[app-menuitem]',
     /* tslint:enable:component-selector */
     template: `
-          <ng-container>
-              <a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="!item.routerLink || item.items" (mouseenter)="onMouseEnter()"
-                 (keydown.enter)="itemClick($event)" [attr.target]="item.target" [attr.tabindex]="0">
-				  <i [ngClass]="item.icon"></i>
-				  <span>{{item.label}}</span>
-				  <i class="fa fa-fw fa-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-				  <span class="menuitem-badge" *ngIf="item.badge" [ngClass]="item.badgeStyleClass">{{item.badge}}</span>
-              </a>
-              <a (click)="itemClick($event)" (mouseenter)="onMouseEnter()" *ngIf="item.routerLink && !item.items"
-                  [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink"
-                  [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0">
-				  <i [ngClass]="item.icon"></i>
-				  <span>{{item.label}}</span>
-				  <i class="fa fa-fw fa-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-				  <span class="menuitem-badge" *ngIf="item.badge" [ngClass]="item.badgeStyleClass">{{item.badge}}</span>
-              </a>
-              <ul *ngIf="item.items && active" [@children]="(active ? 'visibleAnimated' : 'hiddenAnimated')">
-                  <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-                      <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
-                  </ng-template>
-              </ul>
-          </ng-container>
-      `,
+        <ng-container>
+            <a [attr.href]="item.url" (click)="itemClick($event)"
+               *ngIf="renderItem(item) && (!item.routerLink || item.items)"
+               (mouseenter)="onMouseEnter()"
+               (keydown.enter)="itemClick($event)" [attr.target]="item.target" [attr.tabindex]="0">
+                <i [ngClass]="item.icon"></i>
+                <span>{{item.label}}</span>
+                <i class="fa fa-fw fa-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+                <span class="menuitem-badge" *ngIf="item.badge" [ngClass]="item.badgeStyleClass">{{item.badge}}</span>
+            </a>
+            <a (click)="itemClick($event)" (mouseenter)="onMouseEnter()"
+               *ngIf="renderItem(item) && (item.routerLink && !item.items)"
+               [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink"
+               [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0">
+                <i [ngClass]="item.icon"></i>
+                <span>{{item.label}}</span>
+                <i class="fa fa-fw fa-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+                <span class="menuitem-badge" *ngIf="item.badge" [ngClass]="item.badgeStyleClass">{{item.badge}}</span>
+            </a>
+            <ul *ngIf="item.items && active" [@children]="(active ? 'visibleAnimated' : 'hiddenAnimated')">
+                <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
+                    <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+                </ng-template>
+            </ul>
+        </ng-container>
+    `,
     host: {
         '[class.active-menuitem]': 'active'
     },
@@ -73,7 +77,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     key: string;
 
-    constructor(public app: AppComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService) {
+    constructor(private tokenStorage: TokenStorageService, public app: AppComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(key => {
             // deactivate current active menu
             if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
@@ -143,7 +147,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
                 this.menuService.reset();
             }
 
-            if (this.app.isMobile() || this.app.menuMode === 'overlay' || this.app.menuMode === 'popup') {
+            if (this.app.isMobile() || this.app.menuMode === 'overlay' || this.app.menuMode === 'popup') {
                 this.app.menuActive = false;
             }
 
@@ -159,7 +163,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnDestroy() {
+    ngOnDestroy() {
         if (this.menuSourceSubscription) {
             this.menuSourceSubscription.unsubscribe();
         }
@@ -167,5 +171,17 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         if (this.menuResetSubscription) {
             this.menuResetSubscription.unsubscribe();
         }
+    }
+
+    renderItem(item): boolean {
+        if (item.role) {
+            let roles = item.role.split(",");
+            for (var val of roles) {
+                let hasRole = this.tokenStorage.hasRole(val);
+                if (hasRole) return true;
+            }
+            return false;
+        }
+        return true;
     }
 }

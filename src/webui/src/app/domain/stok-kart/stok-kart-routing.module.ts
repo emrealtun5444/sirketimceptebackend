@@ -10,7 +10,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {
             id: 'stok_kart_sorgula',
-            role: 'admin'
+            role: 'ROLE_ADMIN'
         }
     }
 ];

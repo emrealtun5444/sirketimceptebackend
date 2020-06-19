@@ -4,8 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
 import { AppRoutes } from './app.routes';
+import localeTr from '@angular/common/locales/tr';
+registerLocaleData(localeTr);
 // Application Components
 import { AppComponent } from './app.component';
 import { AppMenuComponent } from './app.menu.component';

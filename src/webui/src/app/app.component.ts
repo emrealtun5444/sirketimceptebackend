@@ -10,9 +10,9 @@ import {TokenStorageService} from "./shared/service/token-storage.service";
 })
 export class AppComponent {
 
-    public menuMode = 'horizontal';
+    public menuMode = 'popup';
 
-    public menuActive = true;
+    public menuActive = false;
 
     public topbarMenuActive = false;
 

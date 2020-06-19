@@ -9,12 +9,17 @@ let AppMenuComponent = class AppMenuComponent {
         this.model = [
             { label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
             {
-                label: this.appStore.translate.instant('menu.stok.yonetimi'), icon: 'fa fa-fw fa-bars', badge: 4, badgeStyleClass: 'green-badge',
+                label: this.appStore.translate.instant('menu.stok.yonetimi'),
+                role: 'ADMIN',
+                icon: 'fa fa-fw fa-bars',
+                badge: 4,
+                badgeStyleClass: 'green-badge',
                 items: [
-                    { label: 'Horizontal', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'horizontal' },
-                    { label: 'Static', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'static' },
-                    { label: 'Overlay', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'overlay' },
-                    { label: 'Popup', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'popup' }
+                    {
+                        label: this.appStore.translate.instant('menu.stok.sorgulama'),
+                        icon: 'fa fa-fw fa-columns',
+                        routerLink: ['/stokKart']
+                    }
                 ]
             },
             {
@@ -34,17 +39,45 @@ let AppMenuComponent = class AppMenuComponent {
                         icon: 'fa fa-fw fa-circle',
                         badge: 7, badgeStyleClass: 'blue-badge',
                         items: [
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => { this.changeLayout('dark'); } },
-                            { label: 'Turquoise', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => { this.changeLayout('turquoise'); } },
-                            { label: 'Green', icon: 'fa fa-fw fa-paint-brush', command: (event) => { this.changeLayout('green'); } },
-                            { label: 'Blue', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => { this.changeLayout('blue'); } },
-                            { label: 'Rose', icon: 'fa fa-fw fa-paint-brush', command: (event) => { this.changeLayout('rose'); } },
-                            { label: 'Teal', icon: 'fa fa-fw fa-paint-brush', command: (event) => { this.changeLayout('teal'); } },
-                            { label: 'Blue Grey', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => { this.changeLayout('bluegrey'); } }
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => {
+                                    this.changeLayout('dark');
+                                }
+                            },
+                            {
+                                label: 'Turquoise', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => {
+                                    this.changeLayout('turquoise');
+                                }
+                            },
+                            {
+                                label: 'Green', icon: 'fa fa-fw fa-paint-brush', command: (event) => {
+                                    this.changeLayout('green');
+                                }
+                            },
+                            {
+                                label: 'Blue', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => {
+                                    this.changeLayout('blue');
+                                }
+                            },
+                            {
+                                label: 'Rose', icon: 'fa fa-fw fa-paint-brush', command: (event) => {
+                                    this.changeLayout('rose');
+                                }
+                            },
+                            {
+                                label: 'Teal', icon: 'fa fa-fw fa-paint-brush', command: (event) => {
+                                    this.changeLayout('teal');
+                                }
+                            },
+                            {
+                                label: 'Blue Grey', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => {
+                                    this.changeLayout('bluegrey');
+                                }
+                            }
                         ]
                     },
                     {
@@ -52,16 +85,48 @@ let AppMenuComponent = class AppMenuComponent {
                         icon: 'fa fa-fw fa-fire',
                         badge: 8, badgeStyleClass: 'blue-badge',
                         items: [
-                            { label: 'Cosmic', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => { this.changeLayout('cosmic'); } },
-                            { label: 'Lawrencium', icon: 'fa fa-fw fa-paint-brush', command: (event) => { this.changeLayout('lawrencium'); } },
-                            { label: 'Couple', icon: 'fa fa-fw fa-paint-brush', command: (event) => { this.changeLayout('couple'); } },
-                            { label: 'Stellar', icon: 'fa fa-fw fa-paint-brush', command: (event) => { this.changeLayout('stellar'); } },
-                            { label: 'Beach', icon: 'fa fa-fw fa-paint-brush', command: (event) => { this.changeLayout('beach'); } },
-                            { label: 'Flow', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => { this.changeLayout('flow'); } },
-                            { label: 'Fly', icon: 'fa fa-fw fa-paint-brush', command: (event) => { this.changeLayout('fly'); } },
-                            { label: 'Nepal', icon: 'fa fa-fw fa-paint-brush', command: (event) => { this.changeLayout('nepal'); } }
+                            {
+                                label: 'Cosmic', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => {
+                                    this.changeLayout('cosmic');
+                                }
+                            },
+                            {
+                                label: 'Lawrencium', icon: 'fa fa-fw fa-paint-brush', command: (event) => {
+                                    this.changeLayout('lawrencium');
+                                }
+                            },
+                            {
+                                label: 'Couple', icon: 'fa fa-fw fa-paint-brush', command: (event) => {
+                                    this.changeLayout('couple');
+                                }
+                            },
+                            {
+                                label: 'Stellar', icon: 'fa fa-fw fa-paint-brush', command: (event) => {
+                                    this.changeLayout('stellar');
+                                }
+                            },
+                            {
+                                label: 'Beach', icon: 'fa fa-fw fa-paint-brush', command: (event) => {
+                                    this.changeLayout('beach');
+                                }
+                            },
+                            {
+                                label: 'Flow', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => {
+                                    this.changeLayout('flow');
+                                }
+                            },
+                            {
+                                label: 'Fly', icon: 'fa fa-fw fa-paint-brush', command: (event) => {
+                                    this.changeLayout('fly');
+                                }
+                            },
+                            {
+                                label: 'Nepal', icon: 'fa fa-fw fa-paint-brush', command: (event) => {
+                                    this.changeLayout('nepal');
+                                }
+                            }
                         ]
                     }
                 ]
@@ -69,13 +134,41 @@ let AppMenuComponent = class AppMenuComponent {
             {
                 label: 'Themes', icon: 'fa fa-fw fa-paint-brush', badge: 7, badgeStyleClass: 'amber-badge',
                 items: [
-                    { label: 'Green Theme', icon: 'fa fa-fw fa-diamond', command: (event) => { this.changeTheme('green'); } },
-                    { label: 'Teal Theme', icon: 'fa fa-fw fa-diamond', command: (event) => { this.changeTheme('teal'); } },
-                    { label: 'Blue Theme', icon: 'fa fa-fw fa-diamond', command: (event) => { this.changeTheme('blue'); } },
-                    { label: 'Amber Theme', icon: 'fa fa-fw fa-diamond', command: (event) => { this.changeTheme('amber'); } },
-                    { label: 'Purple Theme', icon: 'fa fa-fw fa-diamond', command: (event) => { this.changeTheme('purple'); } },
-                    { label: 'Turquoise Theme', icon: 'fa fa-fw fa-diamond', command: (event) => { this.changeTheme('turquoise'); } },
-                    { label: 'Blue Grey Theme', icon: 'fa fa-fw fa-diamond', command: (event) => { this.changeTheme('bluegrey'); } },
+                    {
+                        label: 'Green Theme', icon: 'fa fa-fw fa-diamond', command: (event) => {
+                            this.changeTheme('green');
+                        }
+                    },
+                    {
+                        label: 'Teal Theme', icon: 'fa fa-fw fa-diamond', command: (event) => {
+                            this.changeTheme('teal');
+                        }
+                    },
+                    {
+                        label: 'Blue Theme', icon: 'fa fa-fw fa-diamond', command: (event) => {
+                            this.changeTheme('blue');
+                        }
+                    },
+                    {
+                        label: 'Amber Theme', icon: 'fa fa-fw fa-diamond', command: (event) => {
+                            this.changeTheme('amber');
+                        }
+                    },
+                    {
+                        label: 'Purple Theme', icon: 'fa fa-fw fa-diamond', command: (event) => {
+                            this.changeTheme('purple');
+                        }
+                    },
+                    {
+                        label: 'Turquoise Theme', icon: 'fa fa-fw fa-diamond', command: (event) => {
+                            this.changeTheme('turquoise');
+                        }
+                    },
+                    {
+                        label: 'Blue Grey Theme', icon: 'fa fa-fw fa-diamond', command: (event) => {
+                            this.changeTheme('bluegrey');
+                        }
+                    },
                 ]
             },
             {
@@ -97,12 +190,29 @@ let AppMenuComponent = class AppMenuComponent {
                 label: 'Template Pages', icon: 'fa fa-fw fa-life-saver', routerLink: ['/pages'],
                 items: [
                     { label: 'Empty Page', icon: 'fa fa-fw fa-square-o', routerLink: ['/pages/empty'] },
-                    { label: 'Landing Page', icon: 'fa fa-fw fa-globe', url: 'assets/pages/landing.html', target: '_blank' },
-                    { label: 'Login Page', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank' },
-                    { label: 'Error Page', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html', target: '_blank' },
+                    {
+                        label: 'Landing Page',
+                        icon: 'fa fa-fw fa-globe',
+                        url: 'assets/pages/landing.html',
+                        target: '_blank'
+                    },
+                    {
+                        label: 'Login Page',
+                        icon: 'fa fa-fw fa-sign-in',
+                        url: 'assets/pages/login.html',
+                        target: '_blank'
+                    },
+                    {
+                        label: 'Error Page',
+                        icon: 'fa fa-fw fa-exclamation-circle',
+                        url: 'assets/pages/error.html',
+                        target: '_blank'
+                    },
                     { label: '404 Page', icon: 'fa fa-fw fa-times', url: 'assets/pages/404.html', target: '_blank' },
-                    { label: 'Access Denied Page', icon: 'fa fa-fw fa-exclamation-triangle',
-                        url: 'assets/pages/access.html', target: '_blank' }
+                    {
+                        label: 'Access Denied Page', icon: 'fa fa-fw fa-exclamation-triangle',
+                        url: 'assets/pages/access.html', target: '_blank'
+                    }
                 ]
             },
             {

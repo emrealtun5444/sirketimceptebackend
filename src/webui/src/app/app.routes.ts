@@ -18,6 +18,8 @@ import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./shared/auth/AuthGuard";
 import {RegisterComponent} from "./register/register.component";
 import {LogoutComponent} from "./logout/logout.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
+import {AccessDeniedComponent} from "./access-denied/access-denied.component";
 
 export const routes: Routes = [
     {path: '', component: DashboardDemoComponent, canActivate: [AuthGuard]},
@@ -41,6 +43,11 @@ export const routes: Routes = [
     {path: 'components/file', component: FileDemoComponent, canActivate: [AuthGuard]},
     {path: 'utils', component: UtilsDemoComponent, canActivate: [AuthGuard]},
     {path: 'documentation', component: DocumentationComponent, canActivate: [AuthGuard]},
+
+    {path: 'accessDenied', component: AccessDeniedComponent},
+    {path: '404', component: NotFoundComponent},
+    {path: '**', redirectTo: '/404'}
+
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'});

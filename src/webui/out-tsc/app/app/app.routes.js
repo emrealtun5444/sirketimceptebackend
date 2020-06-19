@@ -22,6 +22,10 @@ export const routes = [
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
     { path: 'register', component: RegisterComponent },
+    {
+        path: 'stokKart',
+        loadChildren: () => import('src/app/domain/stok-kart/stok-kart.module').then(m => m.StokKartModule),
+    },
     { path: 'components/sample', component: SampleDemoComponent, canActivate: [AuthGuard] },
     { path: 'components/forms', component: FormsDemoComponent, canActivate: [AuthGuard] },
     { path: 'components/data', component: DataDemoComponent, canActivate: [AuthGuard] },
