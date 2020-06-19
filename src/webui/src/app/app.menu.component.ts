@@ -19,7 +19,7 @@ export class AppMenuComponent implements OnInit {
             {label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/']},
             {
                 label: this.appStore.translate.instant('menu.stok.yonetimi'),
-                role: 'ROLE_ADMIN',
+                role: 'ROLE_ADMIN,ROLE_MODERATOR',
                 icon: 'fa fa-fw fa-bars',
                 badge: 4,
                 badgeStyleClass: 'green-badge',
