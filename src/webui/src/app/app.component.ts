@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {MenuService} from './app.menu.service';
 import {AppStore} from "./shared/app.store";
 import {Router} from "@angular/router";
-import {TokenStorageService} from "./shared/service/token-storage.service";
+import {BnNgIdleService} from "bn-ng-idle";
+import {Constants} from "./shared/constants";
 
 @Component({
     selector: 'app-root',
@@ -28,7 +29,14 @@ export class AppComponent {
 
     constructor(private menuService: MenuService,
                 public appStore: AppStore,
-                private router: Router) {
+                private router: Router,
+                private bnIdle: BnNgIdleService) {
+        this.bnIdle.startWatching(Constants.sessionTimeOut).subscribe((res) => {
+            if (res) {
+                console.log("session expired");
+                this.signOut();
+            }
+        })
     }
 
     onMenuButtonClick(event: Event) {

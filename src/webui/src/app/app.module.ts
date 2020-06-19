@@ -51,6 +51,7 @@ import {AuthGuard} from "./shared/auth/AuthGuard";
 import {LogoutComponent} from './logout/logout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import {BnNgIdleService} from "bn-ng-idle";
 
 // auth
 
@@ -122,7 +123,8 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
         Title,
         AppStore,
         AuthService,
-        AuthGuard
+        AuthGuard,
+        BnNgIdleService
     ],
     bootstrap: [AppComponent]
 })

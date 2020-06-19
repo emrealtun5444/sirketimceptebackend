@@ -6,6 +6,7 @@ export enum HttpStatus {
 
 export class Constants {
     static readonly TURKIYE = 100000;
+    static sessionTimeOut = 3600;
     static readonly DATE_FMT = 'dd.MM.yyyy';
     static readonly DATE_TIME_FMT = `${Constants.DATE_FMT} HH:mm:ss`;
     static readonly PARA_FMT = '1.2-2';

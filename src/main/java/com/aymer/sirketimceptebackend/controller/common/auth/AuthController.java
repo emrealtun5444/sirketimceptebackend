@@ -39,7 +39,7 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         JwtResponse jwtResponse = authService.authenticateUser(loginRequest);
-        return ResponseEntity.ok(jwtResponse);
+        return ResponseEntity.ok(new AppResponse(jwtResponse));
     }
 
     @PostMapping("/signup")
