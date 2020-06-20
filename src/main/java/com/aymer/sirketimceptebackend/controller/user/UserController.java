@@ -21,7 +21,7 @@ import java.util.Optional;
  * Date: 12.04.2020
  * Time: 11:00
  */
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
