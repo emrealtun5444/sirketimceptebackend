@@ -1,6 +1,5 @@
-package com.aymer.sirketimceptebackend.listener.skorkart;
+package com.aymer.sirketimceptebackend.listener.stokkart;
 
-import com.aymer.sirketimceptebackend.controller.stokkart.dto.StokKartDto;
 import com.aymer.sirketimceptebackend.service.StokKartService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

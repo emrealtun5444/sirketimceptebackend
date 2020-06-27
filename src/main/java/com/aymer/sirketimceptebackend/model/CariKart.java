@@ -6,9 +6,7 @@ import com.aymer.sirketimceptebackend.model.common.Sirket;
 import com.aymer.sirketimceptebackend.model.common.User;
 import com.aymer.sirketimceptebackend.model.enums.ECariTipi;
 import com.aymer.sirketimceptebackend.model.enums.EDurum;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,7 +20,9 @@ import java.math.BigDecimal;
  */
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "cari_kart")
 public class CariKart extends Auditable<String> implements Serializable {
@@ -75,6 +75,12 @@ public class CariKart extends Auditable<String> implements Serializable {
     @ManyToOne
     @JoinColumn(name = "ilce_id")
     private Ilce ilce;
+
+    @Column(name = "vergi_dairesi", length = 512)
+    private String vergiDairesi;
+
+    @Column(name = "vergi_numarasi", length = 128)
+    private String vergiNumarasi;
 
     @NotNull
     @ManyToOne

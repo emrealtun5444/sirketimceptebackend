@@ -28,4 +28,7 @@
     <include file="/liquibase/changelog/changes/create-iletisim_bilgi-table.xml"/>
     <include file="/liquibase/changelog/changes/create-finansal_hareket-table.xml"/>
 
+    <include file="/liquibase/changelog/changes/update-cari_kart-table_1.xml"/>
+
+
 </databaseChangeLog>

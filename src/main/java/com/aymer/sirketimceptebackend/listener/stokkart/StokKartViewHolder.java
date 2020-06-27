@@ -1,4 +1,4 @@
-package com.aymer.sirketimceptebackend.listener.skorkart;
+package com.aymer.sirketimceptebackend.listener.stokkart;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

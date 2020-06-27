@@ -1,7 +1,7 @@
 package com.aymer.sirketimceptebackend.service;
 
 import com.aymer.sirketimceptebackend.controller.stokkart.dto.StokKartSorguKriteri;
-import com.aymer.sirketimceptebackend.listener.skorkart.StokKartViewHolder;
+import com.aymer.sirketimceptebackend.listener.stokkart.StokKartViewHolder;
 import com.aymer.sirketimceptebackend.model.StokKart;
 import com.aymer.sirketimceptebackend.model.common.Sirket;
 import com.aymer.sirketimceptebackend.model.enums.EDurum;
