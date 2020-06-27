@@ -21,7 +21,7 @@ export class AppMenuComponent implements OnInit {
                 label: this.appStore.translate.instant('menu.stok.yonetimi'),
                 role: 'ROLE_ADMIN,ROLE_MODERATOR',
                 icon: 'fa fa-fw fa-bars',
-                badge: 4,
+                badge: 1,
                 badgeStyleClass: 'green-badge',
                 items: [
                     {
@@ -35,7 +35,7 @@ export class AppMenuComponent implements OnInit {
                 label: this.appStore.translate.instant('menu.cari.yonetimi'),
                 role: 'ROLE_ADMIN,ROLE_MODERATOR',
                 icon: 'fa fa-fw fa-bars',
-                badge: 4,
+                badge: 1,
                 badgeStyleClass: 'green-badge',
                 items: [
                     {
