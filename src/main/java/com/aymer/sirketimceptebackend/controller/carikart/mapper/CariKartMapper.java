@@ -19,9 +19,10 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public abstract class CariKartMapper {
 
-    @Mappings(
-        @Mapping(target = "sorumluPersonel", source = "sorumluPersonel.name")
-    )
+    @Mappings({
+        @Mapping(target = "sorumluPersonel", source = "sorumluPersonel.name"),
+        @Mapping(target = "bakiye", expression = "java(cariKart.getToplamAlacak().subtract(cariKart.getToplamBorc()))")
+    })
     public abstract CariKartDto carikartToDto(CariKart cariKart);
 
     public abstract List<CariKartDto> carikartToDtoList(List<CariKart> cariKarts);
