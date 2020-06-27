@@ -27,6 +27,7 @@ public abstract class CariKartMapper {
     public abstract List<CariKartDto> carikartToDtoList(List<CariKart> cariKarts);
 
     @Mappings({
+        @Mapping(target = "id", ignore = true),
         @Mapping(target = "cariKodu", source = "hesapKodu"),
         @Mapping(target = "cariMail", source = "emailAdresi"),
         @Mapping(target = "cariTel", source = "telefon1"),

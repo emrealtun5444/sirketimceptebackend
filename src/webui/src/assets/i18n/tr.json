@@ -87,7 +87,18 @@
     "label.kdv.orani": "Kdv Oranı",
     "label.urun.gorsel": "Ürün Görseli",
 
+    "label.cari.kartı.listesi": "Cari Kartı Listesi",
+    "label.sorumlu.personel": "Sorumlu Personel",
+    "label.cari.tipi": "Cari Tipi",
+    "label.cari.kodu": "Cari Kodu",
+    "label.cari.adi": "Cari Adı",
+    "label.toplam.borc": "Toplam Borç",
+    "label.toplam.alacak": "Toplam Alacak",
+    "label.bakiye": "Bakiye",
+
     "##############################################################################################": "MENUS",
     "menu.stok.yonetimi": "Stok Yönetimi",
-    "menu.stok.sorgulama": "Stok Kartı Sorgulama"
+    "menu.stok.sorgulama": "Stok Kartı Sorgulama",
+    "menu.cari.yonetimi": "Cari Yönetimi",
+    "menu.cari.sorgulama": "Cari Kartı Sorgulama"
 }

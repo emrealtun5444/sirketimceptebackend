@@ -30,6 +30,10 @@ export const routes: Routes = [
         path: 'stokKart',
         loadChildren: () => import('src/app/domain/stok-kart/stok-kart.module').then(m => m.StokKartModule),
     },
+    {
+        path: 'cariKart',
+        loadChildren: () => import('src/app/domain/cari-kart/cari-kart.module').then(m => m.CariKartModule),
+    },
     {path: 'components/sample', component: SampleDemoComponent, canActivate: [AuthGuard]},
     {path: 'components/forms', component: FormsDemoComponent, canActivate: [AuthGuard]},
     {path: 'components/data', component: DataDemoComponent, canActivate: [AuthGuard]},
