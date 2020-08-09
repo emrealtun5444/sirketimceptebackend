@@ -5,7 +5,7 @@ import {MenuItem} from 'primeng/api';
 import {ConfirmData, ConfirmType} from "./confirm-data";
 import {TranslateService} from "@ngx-translate/core";
 import {TokenStorageService} from "./service/token-storage.service";
-import {User} from "./model/user";
+import {User} from "../domain/user/dto/user";
 import {SelectService} from "./select/select.service";
 import {Para} from "./para/para";
 

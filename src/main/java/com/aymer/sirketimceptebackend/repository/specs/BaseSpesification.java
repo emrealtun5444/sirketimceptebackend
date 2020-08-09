@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.repository.specs;
 
 import liquibase.pro.packaged.T;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -9,6 +10,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class BaseSpesification<T> implements Specification<T> {
 
@@ -50,16 +52,16 @@ public class BaseSpesification<T> implements Specification<T> {
                         root.get(criteria.getKey()), criteria.getValue()));
             } else if (criteria.getOperation().equals(SearchOperation.MATCH)) {
                 predicates.add(builder.like(
-                        builder.lower(root.get(criteria.getKey())),
-                        "%" + criteria.getValue().toString().toLowerCase() + "%"));
+                        builder.upper(root.get(criteria.getKey())),
+                        "%" + criteria.getValue().toString().toUpperCase(LocaleContextHolder.getLocale()) + "%"));
             } else if (criteria.getOperation().equals(SearchOperation.MATCH_END)) {
                 predicates.add(builder.like(
-                        builder.lower(root.get(criteria.getKey())),
-                        criteria.getValue().toString().toLowerCase() + "%"));
+                        builder.upper(root.get(criteria.getKey())),
+                        criteria.getValue().toString().toUpperCase(LocaleContextHolder.getLocale()) + "%"));
             } else if (criteria.getOperation().equals(SearchOperation.MATCH_START)) {
                 predicates.add(builder.like(
-                        builder.lower(root.get(criteria.getKey())),
-                        "%" + criteria.getValue().toString().toLowerCase()));
+                        builder.upper(root.get(criteria.getKey())),
+                        "%" + criteria.getValue().toString().toUpperCase(LocaleContextHolder.getLocale())));
             } else if (criteria.getOperation().equals(SearchOperation.IN)) {
                 predicates.add(builder.in(root.get(criteria.getKey())).value(criteria.getValue()));
             } else if (criteria.getOperation().equals(SearchOperation.NOT_IN)) {

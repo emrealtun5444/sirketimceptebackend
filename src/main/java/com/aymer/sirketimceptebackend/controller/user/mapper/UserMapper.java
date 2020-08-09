@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * User: ealtun
@@ -17,12 +19,16 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public abstract class UserMapper {
 
-    @Mapping(target = "roles", source = "roles")
+    @Mapping(target = "roles", expression = "java(getRoleName(user.getRoles()))")
     public abstract UserDto userToUserDto(User user);
 
     @Mapping(target = "name", source = "name")
     public abstract RoleDto roleToRoleDto(Role role);
 
     public abstract List<RoleDto> roleToRoleDtoList(List<Role> roleList);
+
+    protected List<String> getRoleName(Set<Role> roleList) {
+        return roleList.stream().map(role -> role.getName().name()).collect(Collectors.toList());
+    }
 
 }

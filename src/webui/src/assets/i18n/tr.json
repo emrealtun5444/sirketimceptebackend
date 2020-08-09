@@ -96,6 +96,25 @@
     "label.toplam.alacak": "Toplam Alacak",
     "label.bakiye": "Bakiye",
 
+    "label.gunluk.aktivite": "Günlük Aktivite",
+    "label.bayi": "Bayi",
+    "label.perakende": "Perakende",
+    "label.eticaret": "E-Ticaret",
+    "label.proje": "Proje",
+
+    "label.iletisim": "İletişim",
+    "label.bize.sorun": "Bize Sorun",
+    "label.takvim": "Takvim",
+    "label.konu": "Konu",
+    "label.mesaj": "Mesaj",
+
+    "label.guncel.ciro.ay": "GÜNCEL CİRO (AY)",
+    "label.guncel.ciro.gun": "GÜNCEL CİRO (GÜN)",
+    "label.yeni.siparis": "YENİ SİPARİŞ",
+    "label.yeni.satis": "YENİ SATIŞ",
+
+
+
     "##############################################################################################": "MENUS",
     "menu.stok.yonetimi": "Stok Yönetimi",
     "menu.stok.sorgulama": "Stok Kartı Sorgulama",

@@ -32,15 +32,9 @@
                     </a>
                     <ul>
                         <li role="menuitem">
-                            <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                            <a href="#" [routerLink]="['/profile']">
                                 <i class="fa fa-fw fa-user"></i>
                                 <span>Profile</span>
-                            </a>
-                        </li>
-                        <li role="menuitem">
-                            <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-user-secret"></i>
-                                <span>Privacy</span>
                             </a>
                         </li>
                         <li role="menuitem">

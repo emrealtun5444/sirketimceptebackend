@@ -38,5 +38,5 @@ public class UserDto {
     private String email;
 
     @NotNull
-    private List<RoleDto> roles;
+    private List<String> roles;
 }
