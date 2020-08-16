@@ -48,12 +48,18 @@ public class FaturaDetay extends Auditable<String> implements Serializable {
     @Column(name = "miktar")
     private Integer miktar;
 
-    @Column(name = "birim_maliyet")
-    private BigDecimal birimMaliyet;
+    @Column(name = "birim_fiyat")
+    private BigDecimal birimFiyati;
 
-    @NotNull
-    @Column(name = "birim_satis_fiyati")
-    private Double birimSatisFiyati;
+    @Column(name = "tutar")
+    private BigDecimal tutar;
+
+    @Column(name = "iskonto")
+    private BigDecimal iskonto;
+
+    @Column(name = "kdv_tutari")
+    private BigDecimal kdvTutari;
+
 
     @NotNull
     @Enumerated(EnumType.STRING)

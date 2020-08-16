@@ -3,6 +3,7 @@ package com.aymer.sirketimceptebackend.model;
 import com.aymer.sirketimceptebackend.model.abstructcommon.Auditable;
 import com.aymer.sirketimceptebackend.model.common.Sirket;
 import com.aymer.sirketimceptebackend.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.model.enums.EOdemeYonu;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +35,11 @@ public class Fatura extends Auditable<String> implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cari_kart_id")
     private CariKart cariKart;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "fatura_yonu", length = 20)
+    private EOdemeYonu faturaYonu;
 
     @NotNull
     @Column(name = "fatura_tarihi", length = 20)
