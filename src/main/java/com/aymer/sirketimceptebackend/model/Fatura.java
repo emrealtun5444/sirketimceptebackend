@@ -44,6 +44,22 @@ public class Fatura extends Auditable<String> implements Serializable {
     private String faturaNo;
 
     @NotNull
+    @Column(name = "mal_bedeli")
+    private BigDecimal malBedeli;
+
+    @NotNull
+    @Column(name = "iskonto")
+    private BigDecimal iskonto;
+
+    @NotNull
+    @Column(name = "net_toplam")
+    private BigDecimal netToplam;
+
+    @NotNull
+    @Column(name = "kdv_tutari")
+    private BigDecimal kdvTutari;
+
+    @NotNull
     @Column(name = "toplam_tutar")
     private BigDecimal toplamTutar;
 

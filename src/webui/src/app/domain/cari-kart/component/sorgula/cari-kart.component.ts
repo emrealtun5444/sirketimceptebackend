@@ -19,7 +19,7 @@ export class CariKartComponent extends AbstractBaseComponent implements OnInit {
         {type: ColumnType.STRING ,field: 'sorumluPersonel', header: this.appStore.translate.instant('label.sorumlu.personel')},
         {type: ColumnType.STRING, field: 'cariTipi', header: this.appStore.translate.instant('label.cari.tipi')},
         {type: ColumnType.STRING, field: 'cariKodu', header: this.appStore.translate.instant('label.cari.kodu')},
-        {type: ColumnType.STRING, field: 'cariAdi', header: this.appStore.translate.instant('label.urun.adi')},
+        {type: ColumnType.STRING, field: 'cariAdi', header: this.appStore.translate.instant('label.cari.adi')},
         {type: ColumnType.PARA, field: 'toplamBorc', header:  this.appStore.translate.instant('label.toplam.borc')},
         {type: ColumnType.PARA, field: 'toplamAlacak', header:  this.appStore.translate.instant('label.toplam.alacak')},
         {type: ColumnType.PARA, field: 'bakiye', header:  this.appStore.translate.instant('label.bakiye')},
