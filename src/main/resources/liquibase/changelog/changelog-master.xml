@@ -31,6 +31,7 @@
     <include file="/liquibase/changelog/changes/update-cari_kart-table_1.xml"/>
     <include file="/liquibase/changelog/changes/update-fatura-table_1.xml"/>
     <include file="/liquibase/changelog/changes/update-fatura-detay-table_1.xml"/>
+    <include file="/liquibase/changelog/changes/update-fatura-detay-table_2.xml"/>
 
 
 </databaseChangeLog>

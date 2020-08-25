@@ -60,6 +60,8 @@ public class FaturaDetay extends Auditable<String> implements Serializable {
     @Column(name = "kdv_tutari")
     private BigDecimal kdvTutari;
 
+    @Column(name = "toplam_tutar")
+    private BigDecimal toplamTutar;
 
     @NotNull
     @Enumerated(EnumType.STRING)
