@@ -69,6 +69,9 @@ public class Fatura extends Auditable<String> implements Serializable {
     @Column(name = "toplam_tutar")
     private BigDecimal toplamTutar;
 
+    @Column(name = "fatura_kalem_info")
+    private String faturaKalemInfo;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)

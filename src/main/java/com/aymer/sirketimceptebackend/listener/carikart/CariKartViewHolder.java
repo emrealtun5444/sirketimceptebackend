@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * User: ealtun
@@ -33,8 +34,9 @@ public class CariKartViewHolder implements Serializable {
     private String ozelKod;
     private BigDecimal toplamBorc;
     private BigDecimal toplamAlacak;
-
-
     private Long sirketId;
+
+    // fatura detayları
+    private List<FaturaViewHolder> faturaList;
 
 }
