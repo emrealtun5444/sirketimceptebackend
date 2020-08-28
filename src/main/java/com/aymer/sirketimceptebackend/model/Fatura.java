@@ -4,9 +4,13 @@ import com.aymer.sirketimceptebackend.model.abstructcommon.Auditable;
 import com.aymer.sirketimceptebackend.model.common.Sirket;
 import com.aymer.sirketimceptebackend.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.model.enums.EOdemeYonu;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,6 +28,11 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "fatura")
+@TypeDef(
+    name = "jsonb-node",
+    typeClass = JsonBinaryType.class,
+    defaultForType = JsonNode.class
+)
 public class Fatura extends Auditable<String> implements Serializable {
 
     @Id
@@ -69,8 +78,9 @@ public class Fatura extends Auditable<String> implements Serializable {
     @Column(name = "toplam_tutar")
     private BigDecimal toplamTutar;
 
-    @Column(name = "fatura_kalem_info")
-    private String faturaKalemInfo;
+    @Type(type = "jsonb-node")
+    @Column(columnDefinition = "jsonb", name = "fatura_kalem_info")
+    private JsonNode faturaKalemInfo;
 
     @NotNull
     @Enumerated(EnumType.STRING)
