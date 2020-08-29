@@ -6,9 +6,7 @@ import com.aymer.sirketimceptebackend.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.model.enums.EOdemeYonu;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -17,15 +15,19 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User: ealtun
  * Date: 12.03.2020
  * Time: 16:04
  */
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "fatura")
 @TypeDef(
@@ -41,7 +43,7 @@ public class Fatura extends Auditable<String> implements Serializable {
     private Long id;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cari_kart_id")
     private CariKart cariKart;
 
@@ -80,6 +82,7 @@ public class Fatura extends Auditable<String> implements Serializable {
 
     @Type(type = "jsonb-node")
     @Column(columnDefinition = "jsonb", name = "fatura_kalem_info")
+    @Basic(fetch = FetchType.LAZY)
     private JsonNode faturaKalemInfo;
 
     @NotNull
@@ -88,8 +91,11 @@ public class Fatura extends Auditable<String> implements Serializable {
     private EDurum durum;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
+
+    @OneToMany(mappedBy = "fatura", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<FaturaDetay> faturaDetays = new HashSet<>();
 
 }

@@ -3,9 +3,7 @@ package com.aymer.sirketimceptebackend.model;
 import com.aymer.sirketimceptebackend.model.abstructcommon.Auditable;
 import com.aymer.sirketimceptebackend.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.model.enums.EKdvOrani;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,9 +16,11 @@ import java.util.Date;
  * Date: 12.03.2020
  * Time: 16:04
  */
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "fatura_detay")
 public class FaturaDetay extends Auditable<String> implements Serializable {
@@ -31,12 +31,17 @@ public class FaturaDetay extends Auditable<String> implements Serializable {
     private Long id;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cari_kart_id")
+    private CariKart cariKart;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fatura_id")
     private Fatura fatura;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stok_kart_id")
     private StokKart stokKart;
 

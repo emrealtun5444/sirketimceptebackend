@@ -33,6 +33,8 @@
     <include file="/liquibase/changelog/changes/update-fatura-detay-table_1.xml"/>
     <include file="/liquibase/changelog/changes/update-fatura-detay-table_2.xml"/>
     <include file="/liquibase/changelog/changes/update-fatura-table_2.xml"/>
+    <include file="/liquibase/changelog/changes/update-time-to-timestampt.xml"/>
+    <include file="/liquibase/changelog/changes/update-fatura-detay-table_3.xml"/>
 
 
 </databaseChangeLog>

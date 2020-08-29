@@ -1,5 +1,6 @@
 package com.aymer.sirketimceptebackend.listener.carikart;
 
+import com.aymer.sirketimceptebackend.listener.carikart.viewholder.CariKartViewHolder;
 import com.aymer.sirketimceptebackend.service.CariKartService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
  * Time: 20:18
  */
 @Service
-public class CariKartListener {
+public class  CariKartListener {
 
     @Autowired
     private CariKartService cariKartService;

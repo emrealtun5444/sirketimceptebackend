@@ -1,7 +1,7 @@
 package com.aymer.sirketimceptebackend.controller.carikart.mapper;
 
 import com.aymer.sirketimceptebackend.controller.carikart.dto.CariKartDto;
-import com.aymer.sirketimceptebackend.listener.carikart.CariKartViewHolder;
+import com.aymer.sirketimceptebackend.listener.carikart.viewholder.CariKartViewHolder;
 import com.aymer.sirketimceptebackend.model.CariKart;
 
 import org.mapstruct.Mapper;

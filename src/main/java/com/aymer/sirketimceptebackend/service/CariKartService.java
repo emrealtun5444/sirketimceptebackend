@@ -2,11 +2,8 @@ package com.aymer.sirketimceptebackend.service;
 
 
 import com.aymer.sirketimceptebackend.controller.carikart.dto.CariKartSorguKriteri;
-import com.aymer.sirketimceptebackend.controller.stokkart.dto.StokKartSorguKriteri;
-import com.aymer.sirketimceptebackend.listener.carikart.CariKartViewHolder;
-import com.aymer.sirketimceptebackend.listener.stokkart.StokKartViewHolder;
+import com.aymer.sirketimceptebackend.listener.carikart.viewholder.CariKartViewHolder;
 import com.aymer.sirketimceptebackend.model.CariKart;
-import com.aymer.sirketimceptebackend.model.StokKart;
 import org.springframework.data.domain.Page;
 
 /**

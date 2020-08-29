@@ -1,4 +1,4 @@
-package com.aymer.sirketimceptebackend.listener.carikart;
+package com.aymer.sirketimceptebackend.listener.carikart.viewholder;
 
 
 import lombok.*;

@@ -1,5 +1,7 @@
-package com.aymer.sirketimceptebackend.listener.carikart;
+package com.aymer.sirketimceptebackend.listener.carikart.viewholder;
 
+import com.aymer.sirketimceptebackend.listener.carikart.visitor.CariKartVisitor;
+import com.aymer.sirketimceptebackend.listener.carikart.visitor.ItemElement;
 import com.aymer.sirketimceptebackend.model.enums.ECariTipi;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CariKartViewHolder implements Serializable {
+public class CariKartViewHolder implements Serializable, ItemElement {
 
     private Long id;
     private String hesapKodu;
@@ -38,5 +40,10 @@ public class CariKartViewHolder implements Serializable {
 
     // fatura detayları
     private List<FaturaViewHolder> faturaList;
+
+    @Override
+    public void accept(CariKartVisitor visitor) {
+        visitor.visit(this);
+    }
 
 }
