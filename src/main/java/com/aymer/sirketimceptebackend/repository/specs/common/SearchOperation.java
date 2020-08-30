@@ -1,4 +1,4 @@
-package com.aymer.sirketimceptebackend.repository.specs;
+package com.aymer.sirketimceptebackend.repository.specs.common;
 
 public enum SearchOperation {
     GREATER_THAN,

@@ -1,4 +1,4 @@
-package com.aymer.sirketimceptebackend.repository.specs;
+package com.aymer.sirketimceptebackend.repository.specs.common;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

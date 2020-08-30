@@ -1,6 +1,5 @@
-package com.aymer.sirketimceptebackend.repository.specs;
+package com.aymer.sirketimceptebackend.repository.specs.common;
 
-import liquibase.pro.packaged.T;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -10,7 +9,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class BaseSpesification<T> implements Specification<T> {
 

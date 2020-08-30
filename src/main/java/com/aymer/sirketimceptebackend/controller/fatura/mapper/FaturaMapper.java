@@ -1,7 +1,10 @@
 package com.aymer.sirketimceptebackend.controller.fatura.mapper;
 
+import com.aymer.sirketimceptebackend.controller.carikart.dto.CariKartDto;
+import com.aymer.sirketimceptebackend.controller.fatura.dto.FaturaDto;
 import com.aymer.sirketimceptebackend.listener.carikart.viewholder.FaturaDetayViewHolder;
 import com.aymer.sirketimceptebackend.listener.carikart.viewholder.FaturaViewHolder;
+import com.aymer.sirketimceptebackend.model.CariKart;
 import com.aymer.sirketimceptebackend.model.Fatura;
 import com.aymer.sirketimceptebackend.model.FaturaDetay;
 import com.aymer.sirketimceptebackend.utils.DateUtils;
@@ -11,6 +14,7 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * User: ealtun
@@ -19,6 +23,15 @@ import java.util.Date;
  */
 @Mapper(componentModel = "spring")
 public abstract class FaturaMapper {
+
+    @Mappings({
+        @Mapping(target = "cariAdi", source = "cariKart.cariAdi"),
+        @Mapping(target = "cariKodu", source = "cariKart.cariKodu"),
+    })
+    public abstract FaturaDto faturaToDto(Fatura fatura);
+
+    public abstract List<FaturaDto> faturaToDtoList(List<Fatura> faturaList);
+
 
     public abstract void updateFatura(FaturaViewHolder faturaViewHolder, @MappingTarget Fatura fatura);
 

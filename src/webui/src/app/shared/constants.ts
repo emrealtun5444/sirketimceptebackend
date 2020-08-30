@@ -65,3 +65,14 @@ export enum CariTipi {
     PERAKENDE = 'PERAKENDE',
     ETICARET = 'ETICARET'
 }
+
+export enum Durum {
+    AKTIF = 'AKTIF',
+    PASIF = 'PASIF',
+    MANTIKSAL_SILINMIS = 'MANTIKSAL_SILINMIS'
+}
+
+export enum FaturaYonu {
+    BORC = 'BORC',
+    ALACAK = 'ALACAK'
+}

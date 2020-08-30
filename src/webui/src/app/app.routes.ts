@@ -35,6 +35,10 @@ export const routes: Routes = [
         loadChildren: () => import('src/app/domain/cari-kart/cari-kart.module').then(m => m.CariKartModule),
     },
     {
+        path: 'fatura',
+        loadChildren: () => import('src/app/domain/fatura/fatura.module').then(m => m.FaturaModule),
+    },
+    {
         path: 'profile',
         loadChildren: () => import('src/app/domain/user/user.module').then(m => m.UserModule),
     },

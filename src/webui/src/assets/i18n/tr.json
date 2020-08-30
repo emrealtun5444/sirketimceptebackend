@@ -113,11 +113,26 @@
     "label.yeni.siparis": "YENİ SİPARİŞ",
     "label.yeni.satis": "YENİ SATIŞ",
 
+    "label.fatura.listesi": "Fatura Listesi",
+    "label.fatura.no": "Fatura No",
+    "label.fatura.tarihi": "Fatura Tarihi",
+    "label.fatura.yonu": "Fatura Yönü",
+    "label.mal.bedeli": "Mal Bedeli",
+    "label.iskonto": "İskonto",
+    "label.net.toplam": "Net Toplam",
+    "label.kdv.tutari": "Kdv Tutari",
+    "label.toplam.tutar": "Toplam Tutar",
+
+
+
+
 
 
     "##############################################################################################": "MENUS",
     "menu.stok.yonetimi": "Stok Yönetimi",
     "menu.stok.sorgulama": "Stok Kartı Sorgulama",
     "menu.cari.yonetimi": "Cari Yönetimi",
-    "menu.cari.sorgulama": "Cari Kartı Sorgulama"
+    "menu.cari.sorgulama": "Cari Kartı Sorgulama",
+    "menu.fatura.yonetimi": "Fatura Yönetimi",
+    "menu.fatura.sorgulama": "Fatura Sorgulama"
 }
