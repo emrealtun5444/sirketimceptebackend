@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AbstractBaseComponent, ColumnType} from "../../../../shared/abstract-base-component";
-import {CariKart} from "../../../cari-kart/dto/cari-kart";
 import {AppStore} from "../../../../shared/app.store";
 import {LazyLoadEvent} from "primeng";
 import {FaturaService} from "../../service/fatura.service";
 import {FaturaSorguKriterleri} from "../../dto/fatura-sorgu-kriterleri";
+import {Fatura} from "../../dto/fatura";
 
 @Component({
   selector: 'app-fatura',
@@ -17,7 +17,7 @@ export class FaturaComponent extends AbstractBaseComponent implements OnInit {
     sorguForm: FormGroup;
     cols: any[] = [
         {type: ColumnType.DATE, field: 'faturaTarihi', header: this.appStore.translate.instant('label.fatura.tarihi')},
-        {type: ColumnType.STRING ,field: 'faturaNo', header: this.appStore.translate.instant('label.fatura.no')},
+        {type: ColumnType.FATURA_NO ,field: 'faturaNo', header: this.appStore.translate.instant('label.fatura.no')},
         {type: ColumnType.STRING, field: 'faturaYonu', header: this.appStore.translate.instant('label.fatura.yonu')},
         {type: ColumnType.STRING, field: 'cariKodu', header: this.appStore.translate.instant('label.cari.kodu')},
         {type: ColumnType.STRING, field: 'cariAdi', header:  this.appStore.translate.instant('label.cari.adi')},
@@ -30,7 +30,7 @@ export class FaturaComponent extends AbstractBaseComponent implements OnInit {
 
     totalRecords: number;
     loading: boolean;
-    resultList: CariKart[];
+    resultList: Fatura[];
 
     constructor(public appStore: AppStore,
                 private faturaService: FaturaService,

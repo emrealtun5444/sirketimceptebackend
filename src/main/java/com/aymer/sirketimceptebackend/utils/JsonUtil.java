@@ -1,15 +1,22 @@
 package com.aymer.sirketimceptebackend.utils;
 
 import com.aymer.sirketimceptebackend.exception.ServiceException;
+import com.aymer.sirketimceptebackend.listener.carikart.viewholder.FaturaKalemViewHolder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import liquibase.pro.packaged.T;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 public class JsonUtil {
 
@@ -33,6 +40,18 @@ public class JsonUtil {
         }
     }
 
+    public static <T> List<T> getObjectList(JsonNode jsonNode, Class<T> tClass) {
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(BigDecimalTr.class, new ToStringSerializer());
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(module);
+        try {
+           return mapper.readValue(jsonNode.toString(), new TypeReference<>() {});
+        } catch (JsonProcessingException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
     public static JsonNode getJsonObject(String jsonStr) {
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -46,7 +65,7 @@ public class JsonUtil {
     public static ObjectNode getValueJson(JsonNode json, String s) {
         try {
             JsonNode jsonObj = (json.has(s) && !(json.get(s) instanceof NullNode)) ? json.get(s) : null;
-            if(jsonObj==null){
+            if (jsonObj == null) {
                 return null;
             }
             return (ObjectNode) jsonObj;
@@ -90,7 +109,7 @@ public class JsonUtil {
     public static LocalDate getValueLocalDate(JsonNode json, String s) {
         try {
             String str = (json.has(s) && !(json.get(s) instanceof NullNode)) ? json.get(s).asText() : null;
-            if (str==null){
+            if (str == null) {
                 return null;
             }
             return DateUtils.asLocalDateFromString(str);

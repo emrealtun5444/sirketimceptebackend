@@ -1,15 +1,23 @@
 package com.aymer.sirketimceptebackend.controller.fatura;
 
+import com.aymer.sirketimceptebackend.controller.carikart.dto.CariKartDto;
+import com.aymer.sirketimceptebackend.controller.carikart.mapper.CariKartMapper;
 import com.aymer.sirketimceptebackend.controller.common.dto.AppResponse;
+import com.aymer.sirketimceptebackend.controller.fatura.dto.FaturaDetayDto;
 import com.aymer.sirketimceptebackend.controller.fatura.dto.FaturaDto;
+import com.aymer.sirketimceptebackend.controller.fatura.dto.FaturaKalemDto;
 import com.aymer.sirketimceptebackend.controller.fatura.dto.FaturaSorguKriteri;
 import com.aymer.sirketimceptebackend.controller.fatura.mapper.FaturaMapper;
+import com.aymer.sirketimceptebackend.model.CariKart;
 import com.aymer.sirketimceptebackend.model.Fatura;
+import com.aymer.sirketimceptebackend.model.FaturaDetay;
+import com.aymer.sirketimceptebackend.repository.CariKartRepository;
+import com.aymer.sirketimceptebackend.repository.FaturaDetayRepository;
 import com.aymer.sirketimceptebackend.repository.FaturaRepository;
 import com.aymer.sirketimceptebackend.service.FaturaService;
+import com.aymer.sirketimceptebackend.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,12 +38,18 @@ import java.util.Optional;
 public class FaturaController {
 
     private FaturaRepository faturaRepository;
+    private FaturaDetayRepository faturaDetayRepository;
+    private CariKartRepository cariKartRepository;
+    private CariKartMapper cariKartMapper;
     private FaturaService faturaService;
     private FaturaMapper faturaMapper;
 
     @Autowired
-    public FaturaController(FaturaRepository faturaRepository, FaturaService faturaService, FaturaMapper faturaMapper) {
+    public FaturaController(FaturaRepository faturaRepository, FaturaDetayRepository faturaDetayRepository, CariKartRepository cariKartRepository, CariKartMapper cariKartMapper, FaturaService faturaService, FaturaMapper faturaMapper) {
         this.faturaRepository = faturaRepository;
+        this.faturaDetayRepository = faturaDetayRepository;
+        this.cariKartRepository = cariKartRepository;
+        this.cariKartMapper = cariKartMapper;
         this.faturaService = faturaService;
         this.faturaMapper = faturaMapper;
     }
@@ -55,10 +69,31 @@ public class FaturaController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-    public ResponseEntity<?> faturaById(@Valid @PathVariable(name = "id") Long faturaId) {
+    AppResponse<Map> faturaById(@Valid @PathVariable(name = "id") Long faturaId) {
+
+        // fatura çekilir
         Optional<Fatura> fatura = faturaRepository.findById(faturaId);
         FaturaDto faturaDto = faturaMapper.faturaToDto(fatura.get());
-        return ResponseEntity.ok(new AppResponse(faturaDto));
+
+        // fatura detay çekilir
+        Optional<List<FaturaDetay>> faturaDetays = faturaDetayRepository.findAllByFatura(fatura.get());
+        List<FaturaDetayDto> faturaDetayDtos = faturaMapper.faturaDetayToDtoList(faturaDetays.get());
+
+        // fatura kalem listesi çekiliyor.
+        List<FaturaKalemDto> faturaKalemDtos = JsonUtil.getObjectList(fatura.get().getFaturaKalemInfo(), FaturaKalemDto.class);
+
+        // carikart çekiliyor.
+        Optional<CariKart> cariKart = cariKartRepository.findById(fatura.get().getCariKart().getId());
+        CariKartDto cariKartDto = cariKartMapper.carikartToDto(cariKart.get());
+
+
+        Map<String, Object> pageObject = new HashMap<String, Object>();
+        pageObject.put("cariKart", cariKartDto);
+        pageObject.put("fatura", faturaDto);
+        pageObject.put("faturaDetayList", faturaDetayDtos);
+        pageObject.put("faturaKalemList", faturaKalemDtos);
+
+        return new AppResponse<Map>(pageObject);
     }
 
 }

@@ -1,0 +1,117 @@
+<form [formGroup]="sorguForm">
+
+    <div class="ui-g dashboard">
+
+        <div class="ui-g-12 ui-md-6">
+            <div class="card card-w-title">
+                <h1>{{'menu.cari.bilgileri' | translate}}</h1>
+
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-6">
+                        <label class="first">{{'label.cari.tipi' | translate}}</label>
+                        {{cariKart.cariTipi}}
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <label class="first">{{'label.cari.kodu' | translate}}</label>
+                        {{cariKart.cariKodu}}
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <label class="first">{{'label.cari.adi' | translate}}</label>
+                        {{cariKart.cariAdi}}
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <label class="first">{{'label.cari.adresi' | translate}}</label>
+                        {{cariKart.cariAdres}}
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <label class="first">{{'label.cari.tel' | translate}}</label>
+                        {{cariKart.cariTel}}
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <label class="first">{{'label.cari.mail' | translate}}</label>
+                        {{cariKart.cariMail}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-6">
+            <div class="card card-w-title">
+                <h1>{{'menu.fatura.bilgileri' | translate}}</h1>
+
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-12">
+                        <label class="first">{{'label.fatura.no' | translate}}</label>
+                        {{fatura.faturaNo}}
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <label class="first">{{'label.fatura.tarihi' | translate}}</label>
+                        {{fatura.faturaTarihi | dateFormat}}
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <label class="first">{{'label.fatura.yonu' | translate}}</label>
+                        {{fatura.faturaYonu}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-12">
+            <div class="card">
+                <p-table #dt dataKey="id" [columns]="fatDetCols" [value]="faturaDetayList" [responsive]="true"
+                         [rows]="100" [totalRecords]="totalRecords" [loading]="loading">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                            <td *ngFor="let col of columns" [ngSwitch]="col.type">
+                                <div *ngSwitchCase="ColumnType.PARA">
+                                    <span class="ui-column-title">{{col.header}}</span>
+                                    {{rowData[col.field] | paraFormat}}
+                                </div>
+                                <div *ngSwitchCase="ColumnType.DATE">
+                                    <span class="ui-column-title">{{col.header}}</span>
+                                    {{rowData[col.field] | dateFormat}}
+                                </div>
+                                <div *ngSwitchDefault>
+                                    <span class="ui-column-title">{{col.header}}</span>
+                                    {{rowData[col.field]}}
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-lg-8 contacts"></div>
+
+        <div class="ui-g-12 ui-lg-4 contacts">
+            <p-panel header="{{'label.fatura.kalem' | translate}}">
+                <ul>
+                    <li class="clearfix" *ngFor="let fkRow of faturaKalemList" [ngSwitch]="fkRow.satirTipi">
+                        <div class="contact-info" style="font-weight: bold;">
+                            <span class="name">{{fkRow.satirAciklama}}</span>
+                        </div>
+                        <div class="contact-detail" *ngSwitchCase="'K'">
+                            <span class="name">{{fkRow.tutar | paraFormat}} (% {{fkRow.kdvOrani}})</span>
+                        </div>
+                        <div class="contact-detail" *ngSwitchDefault>
+                            <span class="name">{{fkRow.tutar | paraFormat}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </p-panel>
+        </div>
+
+
+    </div>
+</form>

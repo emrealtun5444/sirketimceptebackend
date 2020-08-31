@@ -3,6 +3,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {FaturaRoutingModule} from "./fatura-routing.module";
 import {FaturaComponent} from "./component/sorgula/fatura.component";
 import {FaturaService} from "./service/fatura.service";
+import {FaturaDetayComponent} from "./component/detay/fatura-detay.component";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import {FaturaService} from "./service/fatura.service";
         FaturaRoutingModule
     ],
     declarations: [
-        FaturaComponent
+        FaturaComponent,
+        FaturaDetayComponent
     ],
     providers: [
         FaturaService

@@ -380,11 +380,21 @@
 }
 .dashboard .contacts ul li .contact-info {
   float: left;
+
+}
+.dashboard .contacts ul li .contact-detail {
+    float: right;
 }
 .dashboard .contacts ul li .contact-info .name {
   display: block;
   margin-top: 4px;
   font-size: 14px;
+}
+
+.dashboard .contacts ul li .contact-detail .name {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
 }
 .dashboard .contacts ul li .contact-info .location {
   margin-top: 4px;

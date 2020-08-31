@@ -8,15 +8,18 @@ import {FaturaSorguKriterleri} from "../dto/fatura-sorgu-kriterleri";
 @Injectable()
 export class FaturaService extends AbstractService {
 
-  readonly SERVICE_PATH = `${this.BASE_URL}/fatura`;
+    readonly SERVICE_PATH = `${this.BASE_URL}/fatura`;
 
-  constructor(private http: HttpClient) {
-    super();
-  }
+    constructor(private http: HttpClient) {
+        super();
+    }
 
-  sorgula(sorguKriteri: FaturaSorguKriterleri): Observable<AppResponse> {
-    return this.http.post<AppResponse>(`${this.SERVICE_PATH}/sorgula`, sorguKriteri);
-  }
+    sorgula(sorguKriteri: FaturaSorguKriterleri): Observable<AppResponse> {
+        return this.http.post<AppResponse>(`${this.SERVICE_PATH}/sorgula`, sorguKriteri);
+    }
 
+    loadFatura(id: number): Observable<AppResponse> {
+        return this.http.get<AppResponse>(`${this.SERVICE_PATH}/${id}`);
+    }
 }
 

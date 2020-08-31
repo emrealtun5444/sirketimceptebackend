@@ -65,6 +65,10 @@
                                     <span class="ui-column-title">{{col.header}}</span>
                                     {{rowData[col.field] | dateFormat}}
                                 </div>
+                                <div *ngSwitchCase="ColumnType.FATURA_NO">
+                                    <span class="ui-column-title">{{col.header}}</span>
+                                    <a id="faturaNo" class="pointer" [routerLink]="rowData.id + '/detay'">  {{rowData[col.field]}}</a>
+                                </div>
                                 <div *ngSwitchDefault>
                                     <span class="ui-column-title">{{col.header}}</span>
                                     {{rowData[col.field]}}

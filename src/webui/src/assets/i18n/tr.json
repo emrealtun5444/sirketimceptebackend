@@ -87,6 +87,7 @@
     "label.kdv.orani": "Kdv Oranı",
     "label.urun.gorsel": "Ürün Görseli",
 
+    "label.cari.bilgileri": "Cari Bilgileri",
     "label.cari.kartı.listesi": "Cari Kartı Listesi",
     "label.sorumlu.personel": "Sorumlu Personel",
     "label.cari.tipi": "Cari Tipi",
@@ -95,6 +96,9 @@
     "label.toplam.borc": "Toplam Borç",
     "label.toplam.alacak": "Toplam Alacak",
     "label.bakiye": "Bakiye",
+    "label.cari.adresi": "Cari Adresi",
+    "label.cari.tel": "Cari Telefon",
+    "label.cari.mail": "Cari Mail",
 
     "label.gunluk.aktivite": "Günlük Aktivite",
     "label.bayi": "Bayi",
@@ -113,15 +117,21 @@
     "label.yeni.siparis": "YENİ SİPARİŞ",
     "label.yeni.satis": "YENİ SATIŞ",
 
+    "label.fatura.bilgileri": "Fatura Bilgileri",
     "label.fatura.listesi": "Fatura Listesi",
     "label.fatura.no": "Fatura No",
     "label.fatura.tarihi": "Fatura Tarihi",
+    "label.islem.tarihi": "İşlem Tarihi",
     "label.fatura.yonu": "Fatura Yönü",
     "label.mal.bedeli": "Mal Bedeli",
     "label.iskonto": "İskonto",
     "label.net.toplam": "Net Toplam",
     "label.kdv.tutari": "Kdv Tutari",
     "label.toplam.tutar": "Toplam Tutar",
+    "label.miktar": "Miktar",
+    "label.birim.fiyati": "Birim Fiyat",
+    "label.tutar": "Tutar",
+    "label.fatura.kalem": "Fatura Kalemleri",
 
 
 

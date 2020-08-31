@@ -1,4 +1,4 @@
-import {CariTipi, KdvOrani, ParaBirimi} from "../../../shared/constants";
+import {CariTipi} from "../../../shared/constants";
 
 export class CariKart {
     id: number;
