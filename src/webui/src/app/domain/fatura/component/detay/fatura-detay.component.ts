@@ -8,9 +8,11 @@ import {FaturaDetay} from "../../dto/fatura-detay";
 import {FaturaKalem} from "../../dto/fatura-kalem";
 import {Fatura} from "../../dto/fatura";
 import {ActivatedRoute, Params} from "@angular/router";
+import { Location } from '@angular/common';
+
 
 @Component({
-    selector: 'app-fatura',
+    selector: 'app-fatura-detay',
     templateUrl: './fatura-detay.component.html',
     styleUrls: ['./fatura-detay.component.css']
 })
@@ -40,6 +42,7 @@ export class FaturaDetayComponent extends AbstractBaseComponent implements OnIni
 
     constructor(public appStore: AppStore,
                 private faturaService: FaturaService,
+                public location: Location,
                 private route: ActivatedRoute) {
         super(appStore);
     }
@@ -53,7 +56,6 @@ export class FaturaDetayComponent extends AbstractBaseComponent implements OnIni
 
     loadFatura(id) {
         this.loading = true;
-        let event = {first: 0, rows: 20};
         this.subscribeToResponseBase(this.faturaService.loadFatura(id), this.sorgulaSuccess, undefined);
     }
 

@@ -10,11 +10,13 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import liquibase.pro.packaged.T;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,7 +48,8 @@ public class JsonUtil {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(module);
         try {
-           return mapper.readValue(jsonNode.toString(), new TypeReference<>() {});
+            CollectionType listType = mapper.getTypeFactory().constructCollectionType(ArrayList.class, tClass);
+            return mapper.readValue(jsonNode.toString(), listType);
         } catch (JsonProcessingException e) {
             throw new ServiceException(e.getMessage());
         }

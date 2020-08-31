@@ -20,7 +20,8 @@ export abstract class AbstractBaseComponent {
         CUSTOM: ColumnType.CUSTOM,
         HTML: ColumnType.HTML,
         MASTERCOLON: ColumnType.MASTERCOLON,
-        TRANSLATE: ColumnType.TRANSLATE
+        TRANSLATE: ColumnType.TRANSLATE,
+        LINK: ColumnType.LINK
     };
 
     public appStore: AppStore;
@@ -114,7 +115,7 @@ export abstract class AbstractBaseComponent {
 }
 
 export enum ColumnType {
-    NUMBER, DECIMAL, PARA, PARA_OBJECT, STRING, ENUM, DATE, TRANSLATE, DATE_TIME, KULLANICI, FATURA_NO, CUSTOM, CUSTOM1, HTML, MASTERCOLON, GRUP, ORGANIZASYON, MAHKEME, EFKS_ID
+    NUMBER, DECIMAL, PARA, PARA_OBJECT, STRING, ENUM, DATE, TRANSLATE, DATE_TIME, KULLANICI, LINK, CUSTOM, CUSTOM1, HTML, MASTERCOLON, GRUP, ORGANIZASYON, MAHKEME, EFKS_ID
 }
 
 export interface Col {

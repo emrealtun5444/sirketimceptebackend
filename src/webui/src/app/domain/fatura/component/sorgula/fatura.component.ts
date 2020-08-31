@@ -17,7 +17,7 @@ export class FaturaComponent extends AbstractBaseComponent implements OnInit {
     sorguForm: FormGroup;
     cols: any[] = [
         {type: ColumnType.DATE, field: 'faturaTarihi', header: this.appStore.translate.instant('label.fatura.tarihi')},
-        {type: ColumnType.FATURA_NO ,field: 'faturaNo', header: this.appStore.translate.instant('label.fatura.no')},
+        {type: ColumnType.LINK ,field: 'faturaNo', header: this.appStore.translate.instant('label.fatura.no')},
         {type: ColumnType.STRING, field: 'faturaYonu', header: this.appStore.translate.instant('label.fatura.yonu')},
         {type: ColumnType.STRING, field: 'cariKodu', header: this.appStore.translate.instant('label.cari.kodu')},
         {type: ColumnType.STRING, field: 'cariAdi', header:  this.appStore.translate.instant('label.cari.adi')},
@@ -46,7 +46,8 @@ export class FaturaComponent extends AbstractBaseComponent implements OnInit {
     private buildForms() {
         this.sorguForm = this.formBuilder.group({
             cariKodu: null,
-            cariAdi: null
+            cariAdi: null,
+            faturaTarihi: null
         });
     }
 
@@ -69,9 +70,12 @@ export class FaturaComponent extends AbstractBaseComponent implements OnInit {
 
     private prepareData(lazyLoadEvent: LazyLoadEvent): FaturaSorguKriterleri {
         const formModel = this.sorguForm.value;
+
         return {
             cariKodu: formModel.cariKodu,
             cariAdi: formModel.cariAdi,
+            faturaBaslangicTarihi: formModel.faturaTarihi != null ? formModel.faturaTarihi[0] : null,
+            faturaBitisTarihi: formModel.faturaTarihi != null ? formModel.faturaTarihi[1] : null,
             lazyLoadEvent: lazyLoadEvent
         };
     }

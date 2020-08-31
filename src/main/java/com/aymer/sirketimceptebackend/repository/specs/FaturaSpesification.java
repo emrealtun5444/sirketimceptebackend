@@ -33,6 +33,14 @@ public class FaturaSpesification implements Specification<Fatura> {
             predicates.add(cb.like(cb.upper(cariJoin.get("cariAdi")), "%" + faturaSorguKriteri.getCariAdi().toUpperCase(LocaleContextHolder.getLocale()) + "%"));
         }
 
+        if (faturaSorguKriteri.getFaturaBaslangicTarihi() != null) {
+            predicates.add(cb.greaterThanOrEqualTo(root.get("faturaTarihi"),  faturaSorguKriteri.getFaturaBaslangicTarihi()));
+        }
+
+        if (faturaSorguKriteri.getFaturaBitisTarihi() != null) {
+            predicates.add(cb.lessThanOrEqualTo(root.get("faturaTarihi"),  faturaSorguKriteri.getFaturaBitisTarihi()));
+        }
+
         return cb.and(predicates.toArray(new Predicate[0]));
     }
 }

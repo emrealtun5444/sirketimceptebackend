@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -16,6 +17,8 @@ public class FaturaSorguKriteri implements Serializable {
 
     private String cariKodu;
     private String cariAdi;
+    private Date faturaBaslangicTarihi;
+    private Date faturaBitisTarihi;
 
     @Valid
     @NotNull

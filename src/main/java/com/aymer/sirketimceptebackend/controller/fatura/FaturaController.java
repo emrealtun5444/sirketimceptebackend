@@ -19,13 +19,11 @@ import com.aymer.sirketimceptebackend.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * User: ealtun
@@ -70,29 +68,32 @@ public class FaturaController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     AppResponse<Map> faturaById(@Valid @PathVariable(name = "id") Long faturaId) {
+        Map<String, Object> pageObject = new HashMap<String, Object>();
 
         // fatura çekilir
         Optional<Fatura> fatura = faturaRepository.findById(faturaId);
-        FaturaDto faturaDto = faturaMapper.faturaToDto(fatura.get());
+        if (fatura.isPresent()) {
+            pageObject.put("fatura", faturaMapper.faturaToDto(fatura.get()));
+        }
 
         // fatura detay çekilir
         Optional<List<FaturaDetay>> faturaDetays = faturaDetayRepository.findAllByFatura(fatura.get());
-        List<FaturaDetayDto> faturaDetayDtos = faturaMapper.faturaDetayToDtoList(faturaDetays.get());
+        if (faturaDetays.isPresent()) {
+            pageObject.put("faturaDetayList", faturaMapper.faturaDetayToDtoList(faturaDetays.get()));
+        }
 
         // fatura kalem listesi çekiliyor.
         List<FaturaKalemDto> faturaKalemDtos = JsonUtil.getObjectList(fatura.get().getFaturaKalemInfo(), FaturaKalemDto.class);
+        if (!CollectionUtils.isEmpty(faturaKalemDtos)) {
+            faturaKalemDtos.sort(Comparator.comparingInt(FaturaKalemDto::getSatirNo));
+            pageObject.put("faturaKalemList", faturaKalemDtos);
+        }
 
         // carikart çekiliyor.
         Optional<CariKart> cariKart = cariKartRepository.findById(fatura.get().getCariKart().getId());
-        CariKartDto cariKartDto = cariKartMapper.carikartToDto(cariKart.get());
-
-
-        Map<String, Object> pageObject = new HashMap<String, Object>();
-        pageObject.put("cariKart", cariKartDto);
-        pageObject.put("fatura", faturaDto);
-        pageObject.put("faturaDetayList", faturaDetayDtos);
-        pageObject.put("faturaKalemList", faturaKalemDtos);
-
+       if (cariKart.isPresent()) {
+           pageObject.put("cariKart", cariKartMapper.carikartToDto(cariKart.get()));
+       }
         return new AppResponse<Map>(pageObject);
     }
 
