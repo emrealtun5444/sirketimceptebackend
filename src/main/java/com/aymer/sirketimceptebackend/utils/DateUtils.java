@@ -34,6 +34,12 @@ public class DateUtils {
         return Date.from(firstDayOfYear.atStartOfDay(defaultZoneId).toInstant());
     }
 
+    public static Date firstDayOfMounth() {
+        LocalDate firstDayOfMonth = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        return Date.from(firstDayOfMonth.atStartOfDay(defaultZoneId).toInstant());
+    }
+
     public static Date getNow() {
         return Calendar.getInstance().getTime();
     }

@@ -2,66 +2,66 @@
     <div class="ui-g-12 ui-md-6 ui-lg-3">
         <div class="ui-g card overview-box overview-box-1">
             <div class="ui-g-4 overview-box-icon">
-                <img src="assets/layout/images/icon-paper.png">
+                <img src="../../../assets/layout/images/icon-paper.png">
             </div>
             <div class="ui-g-8">
-                <span class="overview-box-count">40</span>
+                <span class="overview-box-count">{{currentNumberOfSales}}</span>
                 <span class="overview-box-name">{{'label.yeni.satis' | translate}}</span>
-                <span class="overview-box-rate">+10%</span>
-            </div>
-        </div>
-    </div>
-    <div class="ui-g-12 ui-md-6 ui-lg-3">
-        <div class="ui-g card overview-box overview-box-2">
-            <div class="ui-g-4 overview-box-icon">
-                <img src="assets/layout/images/icon-mail.png">
-            </div>
-            <div class="ui-g-8">
-                <span class="overview-box-count">250.000 TL</span>
-                <span class="overview-box-name">{{'label.guncel.ciro.ay' | translate}}</span>
-                <span class="overview-box-rate">+34%</span>
+                <span class="overview-box-rate">+0%</span>
             </div>
         </div>
     </div>
     <div class="ui-g-12 ui-md-6 ui-lg-3">
         <div class="ui-g card overview-box overview-box-3">
             <div class="ui-g-4 overview-box-icon">
-                <img src="assets/layout/images/icon-location.png">
+                <img src="../../../assets/layout/images/icon-location.png">
             </div>
             <div class="ui-g-8">
-                <span class="overview-box-count">10.000 TL</span>
+                <span class="overview-box-count">{{currentAmountOfSales | paraFormat}} TL</span>
                 <span class="overview-box-name">{{'label.guncel.ciro.gun' | translate}}</span>
-                <span class="overview-box-rate">-15%</span>
+                <span class="overview-box-rate">0%</span>
             </div>
         </div>
     </div>
     <div class="ui-g-12 ui-md-6 ui-lg-3">
         <div class="ui-g card overview-box overview-box-4">
             <div class="ui-g-4 overview-box-icon">
-                <img src="assets/layout/images/icon-orders.png">
+                <img src="../../../assets/layout/images/icon-orders.png">
             </div>
             <div class="ui-g-8">
-                <span class="overview-box-count">15</span>
-                <span class="overview-box-name">{{'label.yeni.siparis' | translate}}</span>
-                <span class="overview-box-rate">+5%</span>
+                <span class="overview-box-count">{{monthlyNumberOfSales}}</span>
+                <span class="overview-box-name">{{'label.toplam.satis' | translate}}</span>
+                <span class="overview-box-rate">+0%</span>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g-12 ui-md-6 ui-lg-3">
+        <div class="ui-g card overview-box overview-box-2">
+            <div class="ui-g-4 overview-box-icon">
+                <img src="../../../assets/layout/images/icon-mail.png">
+            </div>
+            <div class="ui-g-8">
+                <span class="overview-box-count">{{monthlyAmountOfSales | paraFormat}} TL</span>
+                <span class="overview-box-name">{{'label.guncel.ciro.ay' | translate}}</span>
+                <span class="overview-box-rate">+0%</span>
             </div>
         </div>
     </div>
 
     <div class="ui-g-12 ui-lg-4 ui-fluid activity-feed">
-        <p-panel header="{{'label.gunluk.aktivite' | translate}}"  [style]="{minHeight: '360px'}">
+        <p-panel header="{{'label.aylik.aktivite' | translate}}" [style]="{minHeight: '360px'}">
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-4">
                     <span>{{'label.bayi' | translate}}</span>
-                    <div class="knob income">0 TL</div>
+                    <div class="knob income">{{monthlyOtherSales | paraFormat}} TL</div>
                 </div>
                 <div class="ui-g-12 ui-md-4">
                     <span>{{'label.perakende' | translate}}</span>
-                    <div class="knob tax">0 TL</div>
+                    <div class="knob tax">{{monthlyPerakendeSales | paraFormat}} TL</div>
                 </div>
                 <div class="ui-g-12 ui-md-4">
                     <span>{{'label.eticaret' | translate}}</span>
-                    <div class="knob invoice">0 TL</div>
+                    <div class="knob invoice">{{monthlyEticaretSales | paraFormat}} TL</div>
                 </div>
             </div>
         </p-panel>
@@ -71,10 +71,10 @@
         <p-panel header="{{'label.bize.sorun' | translate}}" [style]="{minHeight: '360px'}">
             <div class="ui-g">
                 <div class="ui-g-12">
-                    <p-dropdown [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
+                    <p-dropdown [options]="talepTipis" [(ngModel)]="selectedTalepTipi"></p-dropdown>
                 </div>
                 <div class="ui-g-12">
-                    <input type="text" pInputText placeholder="{{'label.ad' | translate}}" >
+                    <input type="text" pInputText placeholder="{{'label.ad' | translate}}">
                 </div>
                 <div class="ui-g-12">
                     <input type="text" pInputText placeholder="{{'label.email' | translate}}">
@@ -83,7 +83,8 @@
                     <input type="text" pInputText placeholder="{{'label.konu' | translate}}">
                 </div>
                 <div class="ui-g-12">
-                    <textarea rows="4" type="text" pInputTextarea placeholder="{{'label.mesaj' | translate}}"></textarea>
+                    <textarea rows="4" type="text" pInputTextarea
+                              placeholder="{{'label.mesaj' | translate}}"></textarea>
                 </div>
                 <div class="ui-g-12">
                     <button type="button" label="Send" icon="fa fa-send" pButton></button>
@@ -95,7 +96,7 @@
         <p-panel header="{{'label.iletisim' | translate}}" [style]="{minHeight: '360px'}">
             <ul>
                 <li class="clearfix">
-                    <img src="assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
+                    <img src="../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
                     <div class="contact-info">
                         <span class="name">Yunus ALTUN</span>
                         <span class="location">yunus@aymeryapi.com.tr</span>
@@ -107,7 +108,7 @@
                     </div>
                 </li>
                 <li class="clearfix">
-                    <img src="assets/layout/images/avatar_girl.png" library="verona-layout" width="45"/>
+                    <img src="../../../assets/layout/images/avatar_girl.png" library="verona-layout" width="45"/>
                     <div class="contact-info">
                         <span class="name">Elif TAŞDELEN</span>
                         <span class="location">elif@aymeryapi.com.tr</span>
@@ -119,7 +120,7 @@
                     </div>
                 </li>
                 <li class="clearfix">
-                    <img src="assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
+                    <img src="../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
                     <div class="contact-info">
                         <span class="name">Erhan ÜNAL</span>
                         <span class="location">erhan@aymeryapi.com.tr</span>
@@ -131,7 +132,7 @@
                     </div>
                 </li>
                 <li class="clearfix">
-                    <img src="assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
+                    <img src="../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
                     <div class="contact-info">
                         <span class="name">Celil GÜLAĞACI</span>
                         <span class="location">celil@aymeryapi.com.tr</span>
@@ -143,7 +144,7 @@
                     </div>
                 </li>
                 <li class="clearfix">
-                    <img src="assets/layout/images/avatar_girl.png" library="verona-layout" width="45"/>
+                    <img src="../../../assets/layout/images/avatar_girl.png" library="verona-layout" width="45"/>
                     <div class="contact-info">
                         <span class="name">Serap SARAÇOĞLU</span>
                         <span class="location">serap@aymeryapi.com.tr</span>
@@ -170,7 +171,8 @@
                     <span class="event-owner" style="color:#f7cb00">Katherine May</span>
                     <span class="event-text">Lorem ipsun dolor amet</span>
                     <div class="event-content">
-                        <img src="assets/layout/images/dashboard/bridge.png" library="verona-layout" width="100"/>
+                        <img src="../../../assets/layout/images/dashboard/bridge.png" library="verona-layout"
+                             width="100"/>
                     </div>
                 </div>
 
@@ -200,7 +202,7 @@
                     <span class="event-owner" style="color:#f7cb00">Jason Smith</span>
                     <span class="event-text">Laudantium, repudiandae, similique!</span>
                     <div class="event-content">
-                        <img src="assets/layout/images/dashboard/map.png">
+                        <img src="../../../assets/layout/images/dashboard/map.png">
                     </div>
                 </div>
 
@@ -210,7 +212,8 @@
                 </div>
                 <div class="ui-g-9">
                     <span class="event-owner" style="color:#ff9c59">Kevin Cox</span>
-                    <span class="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
+                    <span
+                        class="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
                 </div>
 
                 <div class="ui-g-3">
@@ -230,11 +233,9 @@
 
     <div class="ui-g-12 ui-md-8">
         <p-panel header="{{'label.takvim' | translate}}" [style]="{'height':'100%'}">
-            <p-fullCalendar [options]="fullcalendarOptions" ></p-fullCalendar>
+            <p-fullCalendar [options]="fullcalendarOptions"></p-fullCalendar>
         </p-panel>
     </div>
-
-
 
 
 </div>

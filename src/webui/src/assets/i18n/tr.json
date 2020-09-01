@@ -101,6 +101,7 @@
     "label.cari.mail": "Cari Mail",
 
     "label.gunluk.aktivite": "Günlük Aktivite",
+    "label.aylik.aktivite": "Aylık Aktivite",
     "label.bayi": "Bayi",
     "label.perakende": "Perakende",
     "label.eticaret": "E-Ticaret",
@@ -115,7 +116,8 @@
     "label.guncel.ciro.ay": "GÜNCEL CİRO (AY)",
     "label.guncel.ciro.gun": "GÜNCEL CİRO (GÜN)",
     "label.yeni.siparis": "YENİ SİPARİŞ",
-    "label.yeni.satis": "YENİ SATIŞ",
+    "label.yeni.satis": "YENİ SATIŞ (GÜN)",
+    "label.toplam.satis": "TOPLAM SATIŞ (AY)",
 
     "label.fatura.bilgileri": "Fatura Bilgileri",
     "label.fatura.listesi": "Fatura Listesi",
