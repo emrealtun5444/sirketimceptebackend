@@ -1,15 +1,19 @@
 package com.aymer.sirketimceptebackend.listener.carikart.visitor;
 
 import com.aymer.sirketimceptebackend.controller.fatura.mapper.FaturaMapper;
+import com.aymer.sirketimceptebackend.controller.stokkart.dto.StokKartDto;
 import com.aymer.sirketimceptebackend.listener.carikart.viewholder.CariKartViewHolder;
 import com.aymer.sirketimceptebackend.listener.carikart.viewholder.FaturaDetayViewHolder;
 import com.aymer.sirketimceptebackend.listener.carikart.viewholder.FaturaViewHolder;
+import com.aymer.sirketimceptebackend.listener.stokkart.StokKartViewHolder;
 import com.aymer.sirketimceptebackend.model.CariKart;
 import com.aymer.sirketimceptebackend.model.Fatura;
 import com.aymer.sirketimceptebackend.model.FaturaDetay;
 import com.aymer.sirketimceptebackend.model.StokKart;
+import com.aymer.sirketimceptebackend.model.common.Sirket;
 import com.aymer.sirketimceptebackend.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.model.enums.EKdvOrani;
+import com.aymer.sirketimceptebackend.model.enums.EParaBirimi;
 import com.aymer.sirketimceptebackend.repository.CariKartRepository;
 import com.aymer.sirketimceptebackend.repository.FaturaDetayRepository;
 import com.aymer.sirketimceptebackend.repository.FaturaRepository;
@@ -21,10 +25,12 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import freemarker.template.utility.DateUtil;
 import io.micrometer.core.instrument.util.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -50,6 +56,9 @@ public class CariFaturaVisitor implements CariKartVisitor {
 
     @Autowired
     private FaturaMapper faturaMapper;
+
+    @Value("${link.entegrasyon.url}")
+    private String linkEntegrasyonUrl;
 
 
     @Override
@@ -107,7 +116,7 @@ public class CariFaturaVisitor implements CariKartVisitor {
         Set<FaturaDetay> faturaDetaySet = new HashSet<>();
         if (!CollectionUtils.isEmpty(faturaDetayViewHolders)) {
             faturaDetayViewHolders.forEach(faturaDetayViewHolder -> {
-                StokKart stokKart = stokKartRepository.findByStokKodu(faturaDetayViewHolder.getStokKodu());
+                StokKart stokKart = getStokKart(fatura.getSirket(), faturaDetayViewHolder.getStokKodu());
                 EKdvOrani kdvOrani = getKdvOrani(faturaDetayViewHolder);
                 FaturaDetay faturaDetay = FaturaDetay.builder().cariKart(fatura.getCariKart()).fatura(fatura).durum(EDurum.AKTIF).stokKart(stokKart).kdvOrani(kdvOrani).build();
                 faturaMapper.updateFaturaDetay(faturaDetayViewHolder,faturaDetay);
@@ -115,6 +124,29 @@ public class CariFaturaVisitor implements CariKartVisitor {
             });
         }
         return faturaDetaySet;
+    }
+
+    private StokKart getStokKart(Sirket sirket, String stokKodu) {
+        StokKart stokKart = stokKartRepository.findByStokKodu(stokKodu);
+        if (stokKart == null) {
+            RestTemplate restTemplate = new RestTemplate();
+            StokKartViewHolder stokKartViewHolder = restTemplate.getForObject(linkEntegrasyonUrl+ "stokKart/" + stokKodu, StokKartViewHolder.class);
+            if (stokKartViewHolder != null) {
+                stokKart = StokKart.builder()
+                    .stokKodu(stokKartViewHolder.getStokKodu())
+                    .urunAdi(stokKartViewHolder.getAciklama())
+                    .urunFiyat(stokKartViewHolder.getBirimFiyati())
+                    .stokAdedi(stokKartViewHolder.getMiktar())
+                    .durum(EDurum.AKTIF)
+                    .kdvOrani(EKdvOrani.KDV_ORANI_18)
+                    .paraBirimi(EParaBirimi.TRY)
+                    .sirket(sirket)
+                    .build();
+
+                stokKart = stokKartRepository.save(stokKart);
+            }
+        }
+        return stokKart;
     }
 
     private EKdvOrani getKdvOrani(FaturaDetayViewHolder faturaDetayViewHolder) {
