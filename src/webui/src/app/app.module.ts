@@ -16,7 +16,7 @@ import {AppMenuitemComponent} from './app.menuitem.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
 // Demo pages
-import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
+import {DashboardComponent} from './dashboard/view/dashboard.component';
 import {SampleDemoComponent} from './demo/view/sampledemo.component';
 import {FormsDemoComponent} from './demo/view/formsdemo.component';
 import {DataDemoComponent} from './demo/view/datademo.component';
@@ -52,6 +52,7 @@ import {LogoutComponent} from './logout/logout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import {BnNgIdleService} from "bn-ng-idle";
+import {DashboardService} from "./dashboard/service/dashboard.service";
 
 // auth
 
@@ -81,7 +82,7 @@ import {BnNgIdleService} from "bn-ng-idle";
         AppMenuitemComponent,
         AppTopBarComponent,
         AppFooterComponent,
-        DashboardDemoComponent,
+        DashboardComponent,
         SampleDemoComponent,
         FormsDemoComponent,
         DataDemoComponent,
@@ -124,7 +125,8 @@ import {BnNgIdleService} from "bn-ng-idle";
         AppStore,
         AuthService,
         AuthGuard,
-        BnNgIdleService
+        BnNgIdleService,
+        DashboardService
     ],
     bootstrap: [AppComponent]
 })

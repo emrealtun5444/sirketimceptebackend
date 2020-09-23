@@ -1,6 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
-import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
+import {DashboardComponent} from './dashboard/view/dashboard.component';
 import {SampleDemoComponent} from './demo/view/sampledemo.component';
 import {FormsDemoComponent} from './demo/view/formsdemo.component';
 import {DataDemoComponent} from './demo/view/datademo.component';
@@ -22,7 +22,7 @@ import {NotFoundComponent} from "./not-found/not-found.component";
 import {AccessDeniedComponent} from "./access-denied/access-denied.component";
 
 export const routes: Routes = [
-    {path: '', component: DashboardDemoComponent, canActivate: [AuthGuard]},
+    {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
     {path: 'login', component: LoginComponent},
     {path: 'logout', component: LogoutComponent},
     {path: 'register', component: RegisterComponent},
