@@ -42,6 +42,10 @@ export const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('src/app/domain/user/user.module').then(m => m.UserModule),
     },
+    {
+        path: 'marketPlace',
+        loadChildren: () => import('src/app/domain/market-place/market-place.module').then(m => m.MarketPlaceModule),
+    },
     {path: 'components/sample', component: SampleDemoComponent, canActivate: [AuthGuard]},
     {path: 'components/forms', component: FormsDemoComponent, canActivate: [AuthGuard]},
     {path: 'components/data', component: DataDemoComponent, canActivate: [AuthGuard]},

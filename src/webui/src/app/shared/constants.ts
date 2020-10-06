@@ -1,3 +1,8 @@
+export enum Server {
+    URL = 'http://localhost:8090/api',
+    //URL = 'http://78.186.68.95:8090/api',
+}
+
 export enum HttpStatus {
     OK = 200, // Success
     BAD_REQUEST = 400, // ServiceException, HukukServiceException
@@ -75,4 +80,15 @@ export enum Durum {
 export enum FaturaYonu {
     BORC = 'BORC',
     ALACAK = 'ALACAK'
+}
+
+export enum MarketPlace {
+    N11 = 'N11',
+    TRENDYOL = 'TRENDYOL',
+    HEPSIBURADA = 'HEPSIBURADA',
+    PTTAVM = 'PTTAVM',
+    AMAZON = 'AMAZON',
+    GITTIGIDIYOR = 'GITTIGIDIYOR',
+    ALIBABA = 'ALIBABA',
+    CICEKSEPETI = 'CICEKSEPETI'
 }

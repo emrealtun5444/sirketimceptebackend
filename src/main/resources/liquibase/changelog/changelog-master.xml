@@ -36,5 +36,8 @@
     <include file="/liquibase/changelog/changes/update-time-to-timestampt.xml"/>
     <include file="/liquibase/changelog/changes/update-fatura-detay-table_3.xml"/>
 
+    <include file="/liquibase/changelog/changes/create-market_place_settings-table.xml"/>
+
+
 
 </databaseChangeLog>

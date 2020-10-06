@@ -68,6 +68,7 @@
     "label.kullanici.adi": "Kullanıcı Adı",
     "label.sifre": "Şifre",
     "label.email": "E-Posta",
+    "label.durum": "Durum",
     "label.aradiginiz.sayfa.bulunamadi": "Kaynak Bulunamadı",
     "label.aradiginiz.sayfa.bulunamadı.detay": "Erişmek istediğiniz kaynak bulunamadı.",
     "label.erisim.engellendi": "Erişim Engellendi",
@@ -135,6 +136,14 @@
     "label.tutar": "Tutar",
     "label.fatura.kalem": "Fatura Kalemleri",
 
+    "label.market.place.list": "Market Place Listesi",
+    "label.market.place": "Market Place",
+    "label.seller.id": "Seller ID",
+    "label.api.key": "Api Key",
+    "label.api.secret": "Api Secret",
+
+
+
 
 
 
@@ -146,5 +155,7 @@
     "menu.cari.yonetimi": "Cari Yönetimi",
     "menu.cari.sorgulama": "Cari Kartı Sorgulama",
     "menu.fatura.yonetimi": "Fatura Yönetimi",
-    "menu.fatura.sorgulama": "Fatura Sorgulama"
+    "menu.fatura.sorgulama": "Fatura Sorgulama",
+    "menu.pazaryeri.yonetimi": "Pazaryeri Yönetimi",
+    "menu.pazaryeri.conf": "Pazaryeri Ayarları"
 }

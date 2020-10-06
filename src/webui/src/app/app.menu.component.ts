@@ -60,6 +60,20 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
+                label: this.appStore.translate.instant('menu.pazaryeri.yonetimi'),
+                role: 'ROLE_ADMIN,ROLE_MODERATOR',
+                icon: 'fa fa-fw fa-bars',
+                badge: 1,
+                badgeStyleClass: 'green-badge',
+                items: [
+                    {
+                        label: this.appStore.translate.instant('menu.pazaryeri.conf'),
+                        icon: 'fa fa-fw fa-columns',
+                        routerLink: ['/marketPlace']
+                    }
+                ]
+            },
+            {
                 label: 'Menu', icon: 'fa fa-fw fa-bars', badge: 4, badgeStyleClass: 'green-badge', role: 'ROLE_ADMIN',
                 items: [
                     {label: 'Horizontal', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'horizontal'},
