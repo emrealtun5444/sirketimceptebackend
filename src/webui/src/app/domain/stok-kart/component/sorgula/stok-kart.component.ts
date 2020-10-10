@@ -8,6 +8,9 @@ import {StokKartService} from "../../service/stok-kart.service";
 import {LazyLoadEvent} from "primeng";
 import {StokKart} from "../../dto/stok-kart";
 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
 @Component({
     selector: 'app-stok-kart',
     templateUrl: './stok-kart.component.html',
@@ -16,6 +19,8 @@ import {StokKart} from "../../dto/stok-kart";
 export class StokKartComponent extends AbstractBaseComponent implements OnInit {
 
     sorguForm: FormGroup;
+
+    exportColumns: any[];
     cols: any[] = [
         {field: 'stokKodu', header: this.appStore.translate.instant('label.stok.kodu')},
         {field: 'urunAdi', header: this.appStore.translate.instant('label.urun.adi')},
@@ -36,6 +41,7 @@ export class StokKartComponent extends AbstractBaseComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading = false;
+        this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
         this.buildForms();
     }
 
@@ -74,5 +80,59 @@ export class StokKartComponent extends AbstractBaseComponent implements OnInit {
         };
     }
 
+    private prepareDataForAll(page: number): StokKartSorguKriterleri {
+        const formModel = this.sorguForm.value;
+        return {
+            stokKodu: formModel.stokKodu,
+            urunAdi: formModel.urunAdi,
+            stokAdedi: formModel.stokAdedi,
+            lazyLoadEvent: {
+                first: page,
+                rows: 1000
+            }
+        };
+    }
+
+   async exportExcel() {
+        var allList = await this.fetchAllData();
+        import("xlsx").then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(allList);
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "products");
+        });
+    }
+
+    exportPdf() {
+        const doc = new jsPDF('p','pt');
+        doc['autoTable'](this.exportColumns, this.resultList);
+        doc.save('stok-kartları.pdf');
+    }
+
+    saveAsExcelFile(buffer: any, fileName: string): void {
+        import("file-saver").then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data: Blob = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
+    }
+
+    async fetchAllData() {
+        var allList = [];
+        var page = 0;
+        while (true) {
+            let data = await this.stokKartService.sorgula(this.prepareDataForAll(page)).toPromise();
+            var resultList = data.data['resultList'];
+            if (resultList.length > 0) {
+                allList = allList.concat(resultList);
+                page+=1000;
+            } else {
+                return allList;
+            }
+        }
+    }
 
 }
