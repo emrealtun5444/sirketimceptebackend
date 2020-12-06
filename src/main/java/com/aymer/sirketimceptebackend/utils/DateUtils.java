@@ -1,6 +1,6 @@
 package com.aymer.sirketimceptebackend.utils;
 
-import com.aymer.sirketimceptebackend.exception.ServiceException;
+import com.aymer.sirketimceptebackend.common.exception.ServiceException;
 
 import java.sql.Timestamp;
 import java.text.DateFormatSymbols;

@@ -1,6 +1,6 @@
 package com.aymer.sirketimceptebackend.config;
 
-import com.aymer.sirketimceptebackend.model.abstructcommon.EntityAuditorAware;
+import com.aymer.sirketimceptebackend.common.model.abstructcommon.EntityAuditorAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;

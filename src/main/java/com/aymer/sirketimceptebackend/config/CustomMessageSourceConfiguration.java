@@ -1,6 +1,6 @@
 package com.aymer.sirketimceptebackend.config;
 
-import com.aymer.sirketimceptebackend.constants.IConstants;
+import com.aymer.sirketimceptebackend.common.constants.IConstants;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

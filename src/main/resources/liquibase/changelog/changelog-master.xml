@@ -15,6 +15,8 @@
     <include file="/liquibase/changelog/changes/create-kategori-table.xml"/>
     <include file="/liquibase/changelog/changes/create-il-table.xml"/>
     <include file="/liquibase/changelog/changes/create-ilce-table.xml"/>
+    <include file="/liquibase/changelog/changes/create-user_company-table.xml"/>
+
 
     <include file="/liquibase/changelog/changes/create-cari_kart-table.xml"/>
     <include file="/liquibase/changelog/changes/create-fatura-table.xml"/>

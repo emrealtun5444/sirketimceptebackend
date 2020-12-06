@@ -1,6 +1,6 @@
 package com.aymer.sirketimceptebackend.security.service;
 
-import com.aymer.sirketimceptebackend.model.common.User;
+import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;

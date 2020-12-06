@@ -1,7 +1,7 @@
 package com.aymer.sirketimceptebackend.config;
 
-import com.aymer.sirketimceptebackend.controller.common.dto.AppResponse;
-import com.aymer.sirketimceptebackend.exception.ServiceException;
+import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
+import com.aymer.sirketimceptebackend.common.exception.ServiceException;
 import com.aymer.sirketimceptebackend.utils.LocaleAwareMessageProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

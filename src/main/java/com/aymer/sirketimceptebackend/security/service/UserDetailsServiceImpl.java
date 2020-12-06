@@ -1,8 +1,8 @@
 package com.aymer.sirketimceptebackend.security.service;
 
 
-import com.aymer.sirketimceptebackend.model.common.User;
-import com.aymer.sirketimceptebackend.repository.UserRepository;
+import com.aymer.sirketimceptebackend.system.user.model.User;
+import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

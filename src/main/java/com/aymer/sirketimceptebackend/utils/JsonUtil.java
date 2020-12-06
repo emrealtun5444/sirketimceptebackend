@@ -1,9 +1,7 @@
 package com.aymer.sirketimceptebackend.utils;
 
-import com.aymer.sirketimceptebackend.exception.ServiceException;
-import com.aymer.sirketimceptebackend.listener.carikart.viewholder.FaturaKalemViewHolder;
+import com.aymer.sirketimceptebackend.common.exception.ServiceException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -11,13 +9,10 @@ import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.databind.type.CollectionType;
-import liquibase.pro.packaged.T;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class JsonUtil {
