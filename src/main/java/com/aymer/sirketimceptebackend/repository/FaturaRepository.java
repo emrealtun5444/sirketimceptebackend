@@ -30,12 +30,15 @@ public interface FaturaRepository extends JpaRepository<Fatura, Long>, JpaSpecif
                               @Param("durum") EDurum durum ,
                               @Param("faturaYonu") EOdemeYonu odemeYonu);
 
-    @Query("SELECT sum(f.toplamTutar) from Fatura f where f.durum = :durum and f.faturaYonu = :faturaYonu and f.faturaTarihi >= :faturaTarihi")
+    @Query("SELECT sum(f.toplamTutar) from Fatura f where f.durum = :durum and f.faturaYonu = :faturaYonu and f.faturaTarihi >= :faturaTarihi " +
+            "and exists(select 1 from FaturaDetay fd where fd.fatura = f)")
     BigDecimal amountOfSales(@Param("faturaTarihi") Date faturaTarihi,
                              @Param("durum") EDurum durum ,
                              @Param("faturaYonu") EOdemeYonu odemeYonu);
 
-    @Query("select new com.aymer.sirketimceptebackend.repository.specs.predicate.CaritipiCiro(c.cariTipi , sum(f.toplamTutar)) from Fatura f join f.cariKart c where f.durum = :durum and f.faturaYonu = :faturaYonu and f.faturaTarihi >= :faturaTarihi group by c.cariTipi")
+    @Query("select new com.aymer.sirketimceptebackend.repository.specs.predicate.CaritipiCiro(c.cariTipi , sum(f.toplamTutar)) from Fatura f join f.cariKart c where f.durum = :durum and f.faturaYonu = :faturaYonu and f.faturaTarihi >= :faturaTarihi " +
+            "and exists(select 1 from FaturaDetay fd where fd.fatura = f) " +
+            "group by c.cariTipi")
     List<CaritipiCiro> faturaKirilim(@Param("faturaTarihi") Date faturaTarihi,
                                      @Param("durum") EDurum durum ,
                                      @Param("faturaYonu") EOdemeYonu odemeYonu);
