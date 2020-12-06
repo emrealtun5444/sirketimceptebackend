@@ -37,40 +37,9 @@
             </div>
         </div>
 
-        <div class="ui-g-12">
-            <div class="card">
-                <p-table #dt dataKey="id" [columns]="cols" [value]="resultList" [lazy]="true"
-                         (onLazyLoad)="loadLazy($event)" [paginator]="true" [rowHover]="true" [responsive]="true"
-                         [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,50,100]"
-                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                         [rows]="20" [totalRecords]="totalRecords" [loading]="loading">
-                    <ng-template pTemplate="caption">
-                        {{'label.cari.kartı.listesi' | translate}}
-                    </ng-template>
-                    <ng-template pTemplate="header" let-columns>
-                        <tr>
-                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                                {{col.header}}
-                            </th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <tr [pSelectableRow]="rowData">
-                            <td *ngFor="let col of columns" [ngSwitch]="col.type">
-                                <div *ngSwitchCase="ColumnType.PARA">
-                                    <span class="ui-column-title">{{col.header}}</span>
-                                    {{rowData[col.field] | paraFormat}}
-                                </div>
-                                <div *ngSwitchDefault>
-                                    <span class="ui-column-title">{{col.header}}</span>
-                                    {{rowData[col.field]}}
-                                </div>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-        </div>
+        <app-common-lazy-dt #laztTable [cols]="cols" (loadLazyEvent)="loadLazy($event)"
+                            [loading]="loading" [data]="resultList"
+                            [totalRecords]="totalRecords"></app-common-lazy-dt>
 
     </div>
 </form>

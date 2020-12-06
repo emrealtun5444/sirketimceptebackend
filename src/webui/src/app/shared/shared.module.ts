@@ -59,6 +59,7 @@ import {DatatableInputValidatorComponent} from "./datatable-input-validator/data
 import {FileUploadComponent} from "./file-upload/file-upload.component";
 import {SelectService} from "./select/select.service";
 import {ParaGoruntuleComponent} from "./para-goruntule/para-goruntule.component";
+import {CommonLazyDatatableComponent} from "./lazy-datatable/common-lazy-datatable.component";
 
 @NgModule({
     imports: [
@@ -142,6 +143,7 @@ import {ParaGoruntuleComponent} from "./para-goruntule/para-goruntule.component"
         ParaComponent,
         ValidationMessageComponent,
         CommonDatatableComponent,
+        CommonLazyDatatableComponent,
         DatatableInputValidatorComponent,
         FileUploadComponent,
         ParaGoruntuleComponent
@@ -228,6 +230,7 @@ import {ParaGoruntuleComponent} from "./para-goruntule/para-goruntule.component"
         VirtualScrollerModule,
         ValidationMessageComponent,
         CommonDatatableComponent,
+        CommonLazyDatatableComponent,
         DatatableInputValidatorComponent,
         FileUploadComponent,
         ParaGoruntuleComponent
