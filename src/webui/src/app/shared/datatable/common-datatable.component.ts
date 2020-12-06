@@ -22,6 +22,7 @@ export class CommonDatatableComponent extends AbstractBaseComponent implements O
 
   @Input() loading;
   @Input() header: string;
+  @Input() title: string;
   @Input() emptyLabel;
   @Input() checkbox = false;
   @Input() export = true;
