@@ -1,7 +1,0 @@
-<div class="container" style="white-space: nowrap;">
-  {{para.value | paraFormat}}
-  <span [class]="appStore.para.getParaBirimiClass(para.paraBirimi)"
-        pTooltip="{{appStore.para.getParaBirimiLabel(para.paraBirimi)}}">
-      {{appStore.para.getParaBirimiClass(para.paraBirimi) === '' ? appStore.para.getParaBirimiLabel(para.paraBirimi): ''}}
-  </span>
-</div>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="admin" id="1">
+        <createTable tableName="finansal_hareket">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="cari_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_fh_cari_kart_id" references="cari_kart(id)"/>
+            </column>
+
+            <column name="odeme_yonu" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="odeme_tipi" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="tutar" type="currency"/>
+
+            <column name="kdv_orani" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="aciklama" type="VARCHAR(255)"/>
+
+            <column name="islem_tarihi" type="time">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="vade" type="time">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="banka_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_fh_banka_id" references="banka(id)"/>
+            </column>
+
+            <column name="sube_adi" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="borclu_adi" type="VARCHAR(255)"/>
+            <column name="borclu_adresi" type="VARCHAR(255)"/>
+            <column name="evrak_no" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="durum" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="sirket_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_fh_sirket_id" references="sirket(id)"/>
+            </column>
+
+            <column name="created_by" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(20)"/>
+            <column name="last_modified_date" type="timestamp"/>
+
+        </createTable>
+        <rollback>
+            <dropTable tableName="finansal_hareket"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

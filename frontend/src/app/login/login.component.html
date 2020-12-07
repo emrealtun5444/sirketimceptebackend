@@ -1,0 +1,49 @@
+<form [formGroup]="entityForm">
+    <p-toast></p-toast>
+    <div class="login-panel ui-fluid">
+        <div class="ui-g">
+            <div class="ui-g-12 logo-container">
+                <img src="/assets/layout/images/logo-dark.png" alt="logo-dark"/>
+                <h1>{{'label.please.login' | translate}}</h1>
+                <h2>{{'label.wellcome' | translate}}</h2>
+            </div>
+            <div class="ui-g-12">
+                <div class="input-wrapper">
+                    <input id="username" formControlName="username" type="text" autocomplete="off"
+                           placeholder="Username"
+                           class="ui-inputtext ui-widget">
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['username']"></app-validation-message>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="input-wrapper">
+                    <input id="password" formControlName="password" type="password" autocomplete="off"
+                           placeholder="Password"
+                           class="ui-inputtext ui-widget">
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['password']"></app-validation-message>
+                </div>
+            </div>
+            <div class="ui-g-12 chkbox-container" *ngIf="false">
+                <input type="checkbox" id="remember-me" class="ui-chkbox ui-chkbox-box">
+                <label for="remember-me">Remember Me</label>
+            </div>
+            <div class="ui-g-12 button-container">
+                <button type="button"
+                        (click)="onSubmit()"
+                        [disabled]="entityForm.invalid"
+                        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only green-btn raised-btn rounded-btn">
+                    <span class="ui-button-text ui-c">{{'btn.giris.yap' | translate}}</span>
+                </button>
+            </div>
+            <div class="ui-g-12 button-container">
+                <button type="button"
+                        (click)="kayitOl()"
+                        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only blue-btn raised-btn rounded-btn">
+                    <span class="ui-button-text ui-c">{{'btn.kayit.ol' | translate}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

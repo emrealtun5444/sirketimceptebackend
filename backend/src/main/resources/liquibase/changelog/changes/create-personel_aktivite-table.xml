@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="admin" id="1">
+        <createTable tableName="personel_aktivite">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="user_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_pa_user_id" references="kullanici(id)"/>
+            </column>
+
+            <column name="aktivite_tipi" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="cari_id" type="int">
+                <constraints foreignKeyName="fk_pa_cari_id" references="cari_kart(id)"/>
+            </column>
+
+            <column name="konu" type="VARCHAR(512)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="aciklama" type="VARCHAR(4000)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="aktivite_zamani" type="time">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="durum" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="sirket_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_pa_sirket_id" references="sirket(id)"/>
+            </column>
+
+            <column name="created_by" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(20)"/>
+            <column name="last_modified_date" type="timestamp"/>
+
+        </createTable>
+        <rollback>
+            <dropTable tableName="personel_aktivite"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

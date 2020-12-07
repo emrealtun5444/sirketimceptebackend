@@ -1,0 +1,971 @@
+id;il_id;aciklama;created_by;created_date
+1;1;Seyhan;admin;now
+2;1;Ceyhan;admin;now
+3;1;Feke;admin;now
+4;1;Karaisalı;admin;now
+5;1;Karataş;admin;now
+6;1;Kozan;admin;now
+7;1;Pozantı;admin;now
+8;1;Saimbeyli;admin;now
+9;1;Tufanbeyli;admin;now
+10;1;Yumurtalık;admin;now
+11;1;Yüreğir;admin;now
+12;1;Aladağ;admin;now
+13;1;İmamoğlu;admin;now
+14;1;Sarıçam;admin;now
+15;1;Çukurova;admin;now
+16;2;Adıyaman Merkez;admin;now
+17;2;Besni;admin;now
+18;2;Çelikhan;admin;now
+19;2;Gerger;admin;now
+20;2;Gölbaşı / Adıyaman;admin;now
+21;2;Kahta;admin;now
+22;2;Samsat;admin;now
+23;2;Sincik;admin;now
+24;2;Tut;admin;now
+25;3;Afyonkarahisar Merkez;admin;now
+26;3;Bolvadin;admin;now
+27;3;Çay;admin;now
+28;3;Dazkırı;admin;now
+29;3;Dinar;admin;now
+30;3;Emirdağ;admin;now
+31;3;İhsaniye;admin;now
+32;3;Sandıklı;admin;now
+33;3;Sinanpaşa;admin;now
+34;3;Sultandağı;admin;now
+35;3;Şuhut;admin;now
+36;3;Başmakçı;admin;now
+37;3;Bayat / Afyonkarahisar;admin;now
+38;3;İscehisar;admin;now
+39;3;Çobanlar;admin;now
+40;3;Evciler;admin;now
+41;3;Hocalar;admin;now
+42;3;Kızılören;admin;now
+43;4;Ağrı Merkez;admin;now
+44;4;Diyadin;admin;now
+45;4;Doğubayazıt;admin;now
+46;4;Eleşkirt;admin;now
+47;4;Hamur;admin;now
+48;4;Patnos;admin;now
+49;4;Taşlıçay;admin;now
+50;4;Tutak;admin;now
+51;5;Amasya Merkez;admin;now
+52;5;Göynücek;admin;now
+53;5;Gümüşhacıköy;admin;now
+54;5;Merzifon;admin;now
+55;5;Suluova;admin;now
+56;5;Taşova;admin;now
+57;5;Hamamözü;admin;now
+58;6;Altındağ;admin;now
+59;6;Ayaş;admin;now
+60;6;Bala;admin;now
+61;6;Beypazarı;admin;now
+62;6;Çamlıdere;admin;now
+63;6;Çankaya;admin;now
+64;6;Çubuk;admin;now
+65;6;Elmadağ;admin;now
+66;6;Güdül;admin;now
+67;6;Haymana;admin;now
+68;6;Kalecik;admin;now
+69;6;Kızılcahamam;admin;now
+70;6;Nallıhan;admin;now
+71;6;Polatlı;admin;now
+72;6;Şereflikoçhisar;admin;now
+73;6;Yenimahalle;admin;now
+74;6;Gölbaşı / Ankara;admin;now
+75;6;Keçiören;admin;now
+76;6;Mamak;admin;now
+77;6;Sincan;admin;now
+78;6;Kazan;admin;now
+79;6;Akyurt;admin;now
+80;6;Etimesgut;admin;now
+81;6;Evren;admin;now
+82;6;Pursaklar;admin;now
+83;7;Akseki;admin;now
+84;7;Alanya;admin;now
+85;7;Elmalı;admin;now
+86;7;Finike;admin;now
+87;7;Gazipaşa;admin;now
+88;7;Gündoğmuş;admin;now
+89;7;Kaş;admin;now
+90;7;Korkuteli;admin;now
+91;7;Kumluca;admin;now
+92;7;Manavgat;admin;now
+93;7;Serik;admin;now
+94;7;Demre;admin;now
+95;7;İbradı;admin;now
+96;7;Kemer / Antalya;admin;now
+97;7;Aksu / Antalya;admin;now
+98;7;Döşemealtı;admin;now
+99;7;Kepez;admin;now
+100;7;Konyaaltı;admin;now
+101;7;Muratpaşa;admin;now
+102;8;Ardanuç;admin;now
+103;8;Arhavi;admin;now
+104;8;Artvin Merkez;admin;now
+105;8;Borçka;admin;now
+106;8;Hopa;admin;now
+107;8;Şavşat;admin;now
+108;8;Yusufeli;admin;now
+109;8;Murgul;admin;now
+110;9;Bozdoğan;admin;now
+111;9;Çine;admin;now
+112;9;Germencik;admin;now
+113;9;Karacasu;admin;now
+114;9;Koçarlı;admin;now
+115;9;Kuşadası;admin;now
+116;9;Kuyucak;admin;now
+117;9;Nazilli;admin;now
+118;9;Söke;admin;now
+119;9;Sultanhisar;admin;now
+120;9;Yenipazar / Aydın;admin;now
+121;9;Buharkent;admin;now
+122;9;İncirliova;admin;now
+123;9;Karpuzlu;admin;now
+124;9;Köşk;admin;now
+125;9;Didim;admin;now
+126;9;Efeler;admin;now
+127;10;Ayvalık;admin;now
+128;10;Balya;admin;now
+129;10;Bandırma;admin;now
+130;10;Bigadiç;admin;now
+131;10;Burhaniye;admin;now
+132;10;Dursunbey;admin;now
+133;10;Edremit / Balıkesir;admin;now
+134;10;Erdek;admin;now
+135;10;Gönen / Balıkesir;admin;now
+136;10;Havran;admin;now
+137;10;İvrindi;admin;now
+138;10;Kepsut;admin;now
+139;10;Manyas;admin;now
+140;10;Savaştepe;admin;now
+141;10;Sındırgı;admin;now
+142;10;Susurluk;admin;now
+143;10;Marmara;admin;now
+144;10;Gömeç;admin;now
+145;10;Altıeylül;admin;now
+146;10;Karesi;admin;now
+147;11;Bilecik Merkez;admin;now
+148;11;Bozüyük;admin;now
+149;11;Gölpazarı;admin;now
+150;11;Osmaneli;admin;now
+151;11;Pazaryeri;admin;now
+152;11;Söğüt;admin;now
+153;11;Yenipazar / Bilecik;admin;now
+154;11;İnhisar;admin;now
+155;12;Bingöl Merkez;admin;now
+156;12;Genç;admin;now
+157;12;Karlıova;admin;now
+158;12;Kiğı;admin;now
+159;12;Solhan;admin;now
+160;12;Adaklı;admin;now
+161;12;Yayladere;admin;now
+162;12;Yedisu;admin;now
+163;13;Adilcevaz;admin;now
+164;13;Ahlat;admin;now
+165;13;Bitlis Merkez;admin;now
+166;13;Hizan;admin;now
+167;13;Mutki;admin;now
+168;13;Tatvan;admin;now
+169;13;Güroymak;admin;now
+170;14;Bolu Merkez;admin;now
+171;14;Gerede;admin;now
+172;14;Göynük;admin;now
+173;14;Kıbrıscık;admin;now
+174;14;Mengen;admin;now
+175;14;Mudurnu;admin;now
+176;14;Seben;admin;now
+177;14;Dörtdivan;admin;now
+178;14;Yeniçağa;admin;now
+179;15;Ağlasun;admin;now
+180;15;Bucak;admin;now
+181;15;Burdur Merkez;admin;now
+182;15;Gölhisar;admin;now
+183;15;Tefenni;admin;now
+184;15;Yeşilova;admin;now
+185;15;Karamanlı;admin;now
+186;15;Kemer / Burdur;admin;now
+187;15;Altınyayla / Burdur;admin;now
+188;15;Çavdır;admin;now
+189;15;Çeltikçi;admin;now
+190;16;Gemlik;admin;now
+191;16;İnegöl;admin;now
+192;16;İznik;admin;now
+193;16;Karacabey;admin;now
+194;16;Keles;admin;now
+195;16;Mudanya;admin;now
+196;16;Mustafakemalpaşa;admin;now
+197;16;Orhaneli;admin;now
+198;16;Orhangazi;admin;now
+199;16;Yenişehir / Bursa;admin;now
+200;16;Büyükorhan;admin;now
+201;16;Harmancık;admin;now
+202;16;Nilüfer;admin;now
+203;16;Osmangazi;admin;now
+204;16;Yıldırım;admin;now
+205;16;Gürsu;admin;now
+206;16;Kestel;admin;now
+207;17;Ayvacık / Çanakkale;admin;now
+208;17;Bayramiç;admin;now
+209;17;Biga;admin;now
+210;17;Bozcaada;admin;now
+211;17;Çan;admin;now
+212;17;Çanakkale Merkez;admin;now
+213;17;Eceabat;admin;now
+214;17;Ezine;admin;now
+215;17;Gelibolu;admin;now
+216;17;Gökçeada;admin;now
+217;17;Lapseki;admin;now
+218;17;Yenice / Çanakkale;admin;now
+219;18;Çankırı Merkez;admin;now
+220;18;Çerkeş;admin;now
+221;18;Eldivan;admin;now
+222;18;Ilgaz;admin;now
+223;18;Kurşunlu;admin;now
+224;18;Orta;admin;now
+225;18;Şabanözü;admin;now
+226;18;Yapraklı;admin;now
+227;18;Atkaracalar;admin;now
+228;18;Kızılırmak;admin;now
+229;18;Bayramören;admin;now
+230;18;Korgun;admin;now
+231;19;Alaca;admin;now
+232;19;Bayat / Çorum;admin;now
+233;19;Çorum Merkez;admin;now
+234;19;İskilip;admin;now
+235;19;Kargı;admin;now
+236;19;Mecitözü;admin;now
+237;19;Ortaköy / Çorum;admin;now
+238;19;Osmancık;admin;now
+239;19;Sungurlu;admin;now
+240;19;Boğazkale;admin;now
+241;19;Uğurludağ;admin;now
+242;19;Dodurga;admin;now
+243;19;Laçin;admin;now
+244;19;Oğuzlar;admin;now
+245;20;Acıpayam;admin;now
+246;20;Buldan;admin;now
+247;20;Çal;admin;now
+248;20;Çameli;admin;now
+249;20;Çardak;admin;now
+250;20;Çivril;admin;now
+251;20;Güney;admin;now
+252;20;Kale / Denizli;admin;now
+253;20;Sarayköy;admin;now
+254;20;Tavas;admin;now
+255;20;Babadağ;admin;now
+256;20;Bekilli;admin;now
+257;20;Honaz;admin;now
+258;20;Serinhisar;admin;now
+259;20;Pamukkale;admin;now
+260;20;Baklan;admin;now
+261;20;Beyağaç;admin;now
+262;20;Bozkurt / Denizli;admin;now
+263;20;Merkezefendi;admin;now
+264;21;Bismil;admin;now
+265;21;Çermik;admin;now
+266;21;Çınar;admin;now
+267;21;Çüngüş;admin;now
+268;21;Dicle;admin;now
+269;21;Ergani;admin;now
+270;21;Hani;admin;now
+271;21;Hazro;admin;now
+272;21;Kulp;admin;now
+273;21;Lice;admin;now
+274;21;Silvan;admin;now
+275;21;Eğil;admin;now
+276;21;Kocaköy;admin;now
+277;21;Bağlar;admin;now
+278;21;Kayapınar;admin;now
+279;21;Sur;admin;now
+280;21;Yenişehir / Diyarbakır;admin;now
+281;22;Edirne Merkez;admin;now
+282;22;Enez;admin;now
+283;22;Havsa;admin;now
+284;22;İpsala;admin;now
+285;22;Keşan;admin;now
+286;22;Lalapaşa;admin;now
+287;22;Meriç;admin;now
+288;22;Uzunköprü;admin;now
+289;22;Süloğlu;admin;now
+290;23;Ağın;admin;now
+291;23;Baskil;admin;now
+292;23;Elazığ Merkez;admin;now
+293;23;Karakoçan;admin;now
+294;23;Keban;admin;now
+295;23;Maden;admin;now
+296;23;Palu;admin;now
+297;23;Sivrice;admin;now
+298;23;Arıcak;admin;now
+299;23;Kovancılar;admin;now
+300;23;Alacakaya;admin;now
+301;24;Çayırlı;admin;now
+302;24;Erzincan Merkez;admin;now
+303;24;İliç;admin;now
+304;24;Kemah;admin;now
+305;24;Kemaliye;admin;now
+306;24;Refahiye;admin;now
+307;24;Tercan;admin;now
+308;24;Üzümlü;admin;now
+309;24;Otlukbeli;admin;now
+310;25;Aşkale;admin;now
+311;25;Çat;admin;now
+312;25;Hınıs;admin;now
+313;25;Horasan;admin;now
+314;25;İspir;admin;now
+315;25;Karayazı;admin;now
+316;25;Narman;admin;now
+317;25;Oltu;admin;now
+318;25;Olur;admin;now
+319;25;Pasinler;admin;now
+320;25;Şenkaya;admin;now
+321;25;Tekman;admin;now
+322;25;Tortum;admin;now
+323;25;Karaçoban;admin;now
+324;25;Uzundere;admin;now
+325;25;Pazaryolu;admin;now
+326;25;Aziziye;admin;now
+327;25;Köprüköy;admin;now
+328;25;Palandöken;admin;now
+329;25;Yakutiye;admin;now
+330;26;Çifteler;admin;now
+331;26;Mahmudiye;admin;now
+332;26;Mihalıççık;admin;now
+333;26;Sarıcakaya;admin;now
+334;26;Seyitgazi;admin;now
+335;26;Sivrihisar;admin;now
+336;26;Alpu;admin;now
+337;26;Beylikova;admin;now
+338;26;İnönü;admin;now
+339;26;Günyüzü;admin;now
+340;26;Han;admin;now
+341;26;Mihalgazi;admin;now
+342;26;Odunpazarı;admin;now
+343;26;Tepebaşı;admin;now
+344;27;Araban;admin;now
+345;27;İslahiye;admin;now
+346;27;Nizip;admin;now
+347;27;Oğuzeli;admin;now
+348;27;Yavuzeli;admin;now
+349;27;Şahinbey;admin;now
+350;27;Şehitkamil;admin;now
+351;27;Karkamış;admin;now
+352;27;Nurdağı;admin;now
+353;28;Alucra;admin;now
+354;28;Bulancak;admin;now
+355;28;Dereli;admin;now
+356;28;Espiye;admin;now
+357;28;Eynesil;admin;now
+358;28;Giresun Merkez;admin;now
+359;28;Görele;admin;now
+360;28;Keşap;admin;now
+361;28;Şebinkarahisar;admin;now
+362;28;Tirebolu;admin;now
+363;28;Piraziz;admin;now
+364;28;Yağlıdere;admin;now
+365;28;Çamoluk;admin;now
+366;28;Çanakçı;admin;now
+367;28;Doğankent;admin;now
+368;28;Güce;admin;now
+369;29;Gümüşhane Merkez;admin;now
+370;29;Kelkit;admin;now
+371;29;Şiran;admin;now
+372;29;Torul;admin;now
+373;29;Köse;admin;now
+374;29;Kürtün;admin;now
+375;30;Çukurca;admin;now
+376;30;Hakkari Merkez;admin;now
+377;30;Şemdinli;admin;now
+378;30;Yüksekova;admin;now
+379;31;Altınözü;admin;now
+380;31;Dörtyol;admin;now
+381;31;Hassa;admin;now
+382;31;İskenderun;admin;now
+383;31;Kırıkhan;admin;now
+384;31;Reyhanlı;admin;now
+385;31;Samandağ;admin;now
+386;31;Yayladağı;admin;now
+387;31;Erzin;admin;now
+388;31;Belen;admin;now
+389;31;Kumlu;admin;now
+390;31;Antakya;admin;now
+391;31;Arsuz;admin;now
+392;31;Defne;admin;now
+393;31;Payas;admin;now
+394;32;Atabey;admin;now
+395;32;Eğirdir;admin;now
+396;32;Gelendost;admin;now
+397;32;Isparta Merkez;admin;now
+398;32;Keçiborlu;admin;now
+399;32;Senirkent;admin;now
+400;32;Sütçüler;admin;now
+401;32;Şarkikaraağaç;admin;now
+402;32;Uluborlu;admin;now
+403;32;Yalvaç;admin;now
+404;32;Aksu / Isparta;admin;now
+405;32;Gönen / Isparta;admin;now
+406;32;Yenişarbademli;admin;now
+407;33;Anamur;admin;now
+408;33;Erdemli;admin;now
+409;33;Gülnar;admin;now
+410;33;Mut;admin;now
+411;33;Silifke;admin;now
+412;33;Tarsus;admin;now
+413;33;Aydıncık / Mersin;admin;now
+414;33;Bozyazı;admin;now
+415;33;Çamlıyayla;admin;now
+416;33;Akdeniz;admin;now
+417;33;Mezitli;admin;now
+418;33;Toroslar;admin;now
+419;33;Yenişehir / Mersin;admin;now
+420;34;Adalar;admin;now
+421;34;Bakırköy;admin;now
+422;34;Beşiktaş;admin;now
+423;34;Beykoz;admin;now
+424;34;Beyoğlu;admin;now
+425;34;Çatalca;admin;now
+426;34;Eyüp;admin;now
+427;34;Fatih;admin;now
+428;34;Gaziosmanpaşa;admin;now
+429;34;Kadıköy;admin;now
+430;34;Kartal;admin;now
+431;34;Sarıyer;admin;now
+432;34;Silivri;admin;now
+433;34;Şile;admin;now
+434;34;Şişli;admin;now
+435;34;Üsküdar;admin;now
+436;34;Zeytinburnu;admin;now
+437;34;Büyükçekmece;admin;now
+438;34;Kağıthane;admin;now
+439;34;Küçükçekmece;admin;now
+440;34;Pendik;admin;now
+441;34;Ümraniye;admin;now
+442;34;Bayrampaşa;admin;now
+443;34;Avcılar;admin;now
+444;34;Bağcılar;admin;now
+445;34;Bahçelievler;admin;now
+446;34;Güngören;admin;now
+447;34;Maltepe;admin;now
+448;34;Sultanbeyli;admin;now
+449;34;Tuzla;admin;now
+450;34;Esenler;admin;now
+451;34;Arnavutköy;admin;now
+452;34;Ataşehir;admin;now
+453;34;Başakşehir;admin;now
+454;34;Beylikdüzü;admin;now
+455;34;Çekmeköy;admin;now
+456;34;Esenyurt;admin;now
+457;34;Sancaktepe;admin;now
+458;34;Sultangazi;admin;now
+459;35;Aliağa;admin;now
+460;35;Bayındır;admin;now
+461;35;Bergama;admin;now
+462;35;Bornova;admin;now
+463;35;Çeşme;admin;now
+464;35;Dikili;admin;now
+465;35;Foça;admin;now
+466;35;Karaburun;admin;now
+467;35;Karşıyaka;admin;now
+468;35;Kemalpaşa / İzmir;admin;now
+469;35;Kınık;admin;now
+470;35;Kiraz;admin;now
+471;35;Menemen;admin;now
+472;35;Ödemiş;admin;now
+473;35;Seferihisar;admin;now
+474;35;Selçuk;admin;now
+475;35;Tire;admin;now
+476;35;Torbalı;admin;now
+477;35;Urla;admin;now
+478;35;Beydağ;admin;now
+479;35;Buca;admin;now
+480;35;Konak;admin;now
+481;35;Menderes;admin;now
+482;35;Balçova;admin;now
+483;35;Çiğli;admin;now
+484;35;Gaziemir;admin;now
+485;35;Narlıdere;admin;now
+486;35;Güzelbahçe;admin;now
+487;35;Bayraklı;admin;now
+488;35;Karabağlar;admin;now
+489;36;Arpaçay;admin;now
+490;36;Digor;admin;now
+491;36;Kağızman;admin;now
+492;36;Kars Merkez;admin;now
+493;36;Sarıkamış;admin;now
+494;36;Selim;admin;now
+495;36;Susuz;admin;now
+496;36;Akyaka;admin;now
+497;37;Abana;admin;now
+498;37;Araç;admin;now
+499;37;Azdavay;admin;now
+500;37;Bozkurt / Kastamonu;admin;now
+501;37;Cide;admin;now
+502;37;Çatalzeytin;admin;now
+503;37;Daday;admin;now
+504;37;Devrekani;admin;now
+505;37;İnebolu;admin;now
+506;37;Kastamonu Merkez;admin;now
+507;37;Küre;admin;now
+508;37;Taşköprü;admin;now
+509;37;Tosya;admin;now
+510;37;İhsangazi;admin;now
+511;37;Pınarbaşı / Kastamonu;admin;now
+512;37;Şenpazar;admin;now
+513;37;Ağlı;admin;now
+514;37;Doğanyurt;admin;now
+515;37;Hanönü;admin;now
+516;37;Seydiler;admin;now
+517;38;Bünyan;admin;now
+518;38;Develi;admin;now
+519;38;Felahiye;admin;now
+520;38;İncesu;admin;now
+521;38;Pınarbaşı / Kayseri;admin;now
+522;38;Sarıoğlan;admin;now
+523;38;Sarız;admin;now
+524;38;Tomarza;admin;now
+525;38;Yahyalı;admin;now
+526;38;Yeşilhisar;admin;now
+527;38;Akkışla;admin;now
+528;38;Talas;admin;now
+529;38;Kocasinan;admin;now
+530;38;Melikgazi;admin;now
+531;38;Hacılar;admin;now
+532;38;Özvatan;admin;now
+533;39;Babaeski;admin;now
+534;39;Demirköy;admin;now
+535;39;Kırklareli Merkez;admin;now
+536;39;Kofçaz;admin;now
+537;39;Lüleburgaz;admin;now
+538;39;Pehlivanköy;admin;now
+539;39;Pınarhisar;admin;now
+540;39;Vize;admin;now
+541;40;Çiçekdağı;admin;now
+542;40;Kaman;admin;now
+543;40;Kırşehir Merkez;admin;now
+544;40;Mucur;admin;now
+545;40;Akpınar;admin;now
+546;40;Akçakent;admin;now
+547;40;Boztepe;admin;now
+548;41;Gebze;admin;now
+549;41;Gölcük;admin;now
+550;41;Kandıra;admin;now
+551;41;Karamürsel;admin;now
+552;41;Körfez;admin;now
+553;41;Derince;admin;now
+554;41;Başiskele;admin;now
+555;41;Çayırova;admin;now
+556;41;Darıca;admin;now
+557;41;Dilovası;admin;now
+558;41;İzmit;admin;now
+559;41;Kartepe;admin;now
+560;42;Akşehir;admin;now
+561;42;Beyşehir;admin;now
+562;42;Bozkır;admin;now
+563;42;Cihanbeyli;admin;now
+564;42;Çumra;admin;now
+565;42;Doğanhisar;admin;now
+566;42;Ereğli / Konya;admin;now
+567;42;Hadim;admin;now
+568;42;Ilgın;admin;now
+569;42;Kadınhanı;admin;now
+570;42;Karapınar;admin;now
+571;42;Kulu;admin;now
+572;42;Sarayönü;admin;now
+573;42;Seydişehir;admin;now
+574;42;Yunak;admin;now
+575;42;Akören;admin;now
+576;42;Altınekin;admin;now
+577;42;Derebucak;admin;now
+578;42;Hüyük;admin;now
+579;42;Karatay;admin;now
+580;42;Meram;admin;now
+581;42;Selçuklu;admin;now
+582;42;Taşkent;admin;now
+583;42;Ahırlı;admin;now
+584;42;Çeltik;admin;now
+585;42;Derbent;admin;now
+586;42;Emirgazi;admin;now
+587;42;Güneysınır;admin;now
+588;42;Halkapınar;admin;now
+589;42;Tuzlukçu;admin;now
+590;42;Yalıhüyük;admin;now
+591;43;Altıntaş;admin;now
+592;43;Domaniç;admin;now
+593;43;Emet;admin;now
+594;43;Gediz;admin;now
+595;43;Kütahya Merkez;admin;now
+596;43;Simav;admin;now
+597;43;Tavşanlı;admin;now
+598;43;Aslanapa;admin;now
+599;43;Dumlupınar;admin;now
+600;43;Hisarcık;admin;now
+601;43;Şaphane;admin;now
+602;43;Çavdarhisar;admin;now
+603;43;Pazarlar;admin;now
+604;44;Akçadağ;admin;now
+605;44;Arapgir;admin;now
+606;44;Arguvan;admin;now
+607;44;Darende;admin;now
+608;44;Doğanşehir;admin;now
+609;44;Hekimhan;admin;now
+610;44;Pütürge;admin;now
+611;44;Yeşilyurt / Malatya;admin;now
+612;44;Battalgazi;admin;now
+613;44;Doğanyol;admin;now
+614;44;Kale / Malatya;admin;now
+615;44;Kuluncak;admin;now
+616;44;Yazıhan;admin;now
+617;45;Akhisar;admin;now
+618;45;Alaşehir;admin;now
+619;45;Demirci;admin;now
+620;45;Gördes;admin;now
+621;45;Kırkağaç;admin;now
+622;45;Kula;admin;now
+623;45;Salihli;admin;now
+624;45;Sarıgöl;admin;now
+625;45;Saruhanlı;admin;now
+626;45;Selendi;admin;now
+627;45;Soma;admin;now
+628;45;Turgutlu;admin;now
+629;45;Ahmetli;admin;now
+630;45;Gölmarmara;admin;now
+631;45;Köprübaşı / Manisa;admin;now
+632;45;Şehzadeler;admin;now
+633;45;Yunusemre;admin;now
+634;46;Afşin;admin;now
+635;46;Andırın;admin;now
+636;46;Elbistan;admin;now
+637;46;Göksun;admin;now
+638;46;Pazarcık;admin;now
+639;46;Türkoğlu;admin;now
+640;46;Çağlayancerit;admin;now
+641;46;Ekinözü;admin;now
+642;46;Nurhak;admin;now
+643;46;Dulkadiroğlu;admin;now
+644;46;Onikişubat;admin;now
+645;47;Derik;admin;now
+646;47;Kızıltepe;admin;now
+647;47;Mazıdağı;admin;now
+648;47;Midyat;admin;now
+649;47;Nusaybin;admin;now
+650;47;Ömerli;admin;now
+651;47;Savur;admin;now
+652;47;Dargeçit;admin;now
+653;47;Yeşilli;admin;now
+654;47;Artuklu;admin;now
+655;48;Bodrum;admin;now
+656;48;Datça;admin;now
+657;48;Fethiye;admin;now
+658;48;Köyceğiz;admin;now
+659;48;Marmaris;admin;now
+660;48;Milas;admin;now
+661;48;Ula;admin;now
+662;48;Yatağan;admin;now
+663;48;Dalaman;admin;now
+664;48;Ortaca;admin;now
+665;48;Kavaklıdere;admin;now
+666;48;Menteşe;admin;now
+667;48;Seydikemer;admin;now
+668;49;Bulanık;admin;now
+669;49;Malazgirt;admin;now
+670;49;Muş Merkez;admin;now
+671;49;Varto;admin;now
+672;49;Hasköy;admin;now
+673;49;Korkut;admin;now
+674;50;Avanos;admin;now
+675;50;Derinkuyu;admin;now
+676;50;Gülşehir;admin;now
+677;50;Hacıbektaş;admin;now
+678;50;Kozaklı;admin;now
+679;50;Nevşehir Merkez;admin;now
+680;50;Ürgüp;admin;now
+681;50;Acıgöl;admin;now
+682;51;Bor;admin;now
+683;51;Çamardı;admin;now
+684;51;Niğde Merkez;admin;now
+685;51;Ulukışla;admin;now
+686;51;Altunhisar;admin;now
+687;51;Çiftlik;admin;now
+688;52;Akkuş;admin;now
+689;52;Aybastı;admin;now
+690;52;Fatsa;admin;now
+691;52;Gölköy;admin;now
+692;52;Korgan;admin;now
+693;52;Kumru;admin;now
+694;52;Mesudiye;admin;now
+695;52;Perşembe;admin;now
+696;52;Ulubey / Ordu;admin;now
+697;52;Ünye;admin;now
+698;52;Gülyalı;admin;now
+699;52;Gürgentepe;admin;now
+700;52;Çamaş;admin;now
+701;52;Çatalpınar;admin;now
+702;52;Çaybaşı;admin;now
+703;52;İkizce;admin;now
+704;52;Kabadüz;admin;now
+705;52;Kabataş;admin;now
+706;52;Altınordu;admin;now
+707;53;Ardeşen;admin;now
+708;53;Çamlıhemşin;admin;now
+709;53;Çayeli;admin;now
+710;53;Fındıklı;admin;now
+711;53;İkizdere;admin;now
+712;53;Kalkandere;admin;now
+713;53;Pazar / Rize;admin;now
+714;53;Rize Merkez;admin;now
+715;53;Güneysu;admin;now
+716;53;Derepazarı;admin;now
+717;53;Hemşin;admin;now
+718;53;İyidere;admin;now
+719;54;Akyazı;admin;now
+720;54;Geyve;admin;now
+721;54;Hendek;admin;now
+722;54;Karasu;admin;now
+723;54;Kaynarca;admin;now
+724;54;Sapanca;admin;now
+725;54;Kocaali;admin;now
+726;54;Pamukova;admin;now
+727;54;Taraklı;admin;now
+728;54;Ferizli;admin;now
+729;54;Karapürçek;admin;now
+730;54;Söğütlü;admin;now
+731;54;Adapazarı;admin;now
+732;54;Arifiye;admin;now
+733;54;Erenler;admin;now
+734;54;Serdivan;admin;now
+735;55;Alaçam;admin;now
+736;55;Bafra;admin;now
+737;55;Çarşamba;admin;now
+738;55;Havza;admin;now
+739;55;Kavak;admin;now
+740;55;Ladik;admin;now
+741;55;Terme;admin;now
+742;55;Vezirköprü;admin;now
+743;55;Asarcık;admin;now
+744;55;43604;admin;now
+745;55;Salıpazarı;admin;now
+746;55;Tekkeköy;admin;now
+747;55;Ayvacık / Samsun;admin;now
+748;55;Yakakent;admin;now
+749;55;Atakum;admin;now
+750;55;Canik;admin;now
+751;55;İlkadım;admin;now
+752;56;Baykan;admin;now
+753;56;Eruh;admin;now
+754;56;Kurtalan;admin;now
+755;56;Pervari;admin;now
+756;56;Siirt Merkez;admin;now
+757;56;Şirvan;admin;now
+758;56;Tillo;admin;now
+759;57;Ayancık;admin;now
+760;57;Boyabat;admin;now
+761;57;Durağan;admin;now
+762;57;Erfelek;admin;now
+763;57;Gerze;admin;now
+764;57;Sinop Merkez;admin;now
+765;57;Türkeli;admin;now
+766;57;Dikmen;admin;now
+767;57;Saraydüzü;admin;now
+768;58;Divriği;admin;now
+769;58;Gemerek;admin;now
+770;58;Gürün;admin;now
+771;58;Hafik;admin;now
+772;58;İmranlı;admin;now
+773;58;Kangal;admin;now
+774;58;Koyulhisar;admin;now
+775;58;Sivas Merkez;admin;now
+776;58;Suşehri;admin;now
+777;58;Şarkışla;admin;now
+778;58;Yıldızeli;admin;now
+779;58;Zara;admin;now
+780;58;Akıncılar;admin;now
+781;58;Altınyayla / Sivas;admin;now
+782;58;Doğanşar;admin;now
+783;58;Gölova;admin;now
+784;58;Ulaş;admin;now
+785;59;Çerkezköy;admin;now
+786;59;Çorlu;admin;now
+787;59;Hayrabolu;admin;now
+788;59;Malkara;admin;now
+789;59;Muratlı;admin;now
+790;59;Saray / Tekirdağ;admin;now
+791;59;Şarköy;admin;now
+792;59;Marmaraereğlisi;admin;now
+793;59;Ergene;admin;now
+794;59;Kapaklı;admin;now
+795;59;Süleymanpaşa;admin;now
+796;60;Almus;admin;now
+797;60;Artova;admin;now
+798;60;Erbaa;admin;now
+799;60;Niksar;admin;now
+800;60;Reşadiye;admin;now
+801;60;Tokat Merkez;admin;now
+802;60;Turhal;admin;now
+803;60;Zile;admin;now
+804;60;Pazar / Tokat;admin;now
+805;60;Yeşilyurt / Tokat;admin;now
+806;60;Başçiftlik;admin;now
+807;60;Sulusaray;admin;now
+808;61;Akçaabat;admin;now
+809;61;Araklı;admin;now
+810;61;Arsin;admin;now
+811;61;Çaykara;admin;now
+812;61;Maçka;admin;now
+813;61;Of;admin;now
+814;61;Sürmene;admin;now
+815;61;Tonya;admin;now
+816;61;Vakfıkebir;admin;now
+817;61;Yomra;admin;now
+818;61;Beşikdüzü;admin;now
+819;61;Şalpazarı;admin;now
+820;61;Çarşıbaşı;admin;now
+821;61;Dernekpazarı;admin;now
+822;61;Düzköy;admin;now
+823;61;Hayrat;admin;now
+824;61;Köprübaşı / Trabzon;admin;now
+825;61;Ortahisar;admin;now
+826;62;Çemişgezek;admin;now
+827;62;Hozat;admin;now
+828;62;Mazgirt;admin;now
+829;62;Nazımiye;admin;now
+830;62;Ovacık / Tunceli;admin;now
+831;62;Pertek;admin;now
+832;62;Pülümür;admin;now
+833;62;Tunceli Merkez;admin;now
+834;63;Akçakale;admin;now
+835;63;Birecik;admin;now
+836;63;Bozova;admin;now
+837;63;Ceylanpınar;admin;now
+838;63;Halfeti;admin;now
+839;63;Hilvan;admin;now
+840;63;Siverek;admin;now
+841;63;Suruç;admin;now
+842;63;Viranşehir;admin;now
+843;63;Harran;admin;now
+844;63;Eyyübiye;admin;now
+845;63;Haliliye;admin;now
+846;63;Karaköprü;admin;now
+847;64;Banaz;admin;now
+848;64;Eşme;admin;now
+849;64;Karahallı;admin;now
+850;64;Sivaslı;admin;now
+851;64;Ulubey / Uşak;admin;now
+852;64;Uşak Merkez;admin;now
+853;65;Başkale;admin;now
+854;65;Çatak;admin;now
+855;65;Erciş;admin;now
+856;65;Gevaş;admin;now
+857;65;Gürpınar;admin;now
+858;65;Muradiye;admin;now
+859;65;Özalp;admin;now
+860;65;Bahçesaray;admin;now
+861;65;Çaldıran;admin;now
+862;65;Edremit / Van;admin;now
+863;65;Saray / Van;admin;now
+864;65;İpekyolu;admin;now
+865;65;Tuşba;admin;now
+866;66;Akdağmadeni;admin;now
+867;66;Boğazlıyan;admin;now
+868;66;Çayıralan;admin;now
+869;66;Çekerek;admin;now
+870;66;Sarıkaya;admin;now
+871;66;Sorgun;admin;now
+872;66;Şefaatli;admin;now
+873;66;Yerköy;admin;now
+874;66;Yozgat Merkez;admin;now
+875;66;Aydıncık / Yozgat;admin;now
+876;66;Çandır;admin;now
+877;66;Kadışehri;admin;now
+878;66;Saraykent;admin;now
+879;66;Yenifakılı;admin;now
+880;67;Çaycuma;admin;now
+881;67;Devrek;admin;now
+882;67;Ereğli / Zonguldak;admin;now
+883;67;Zonguldak Merkez;admin;now
+884;67;Alaplı;admin;now
+885;67;Gökçebey;admin;now
+886;67;Kilimli;admin;now
+887;67;Kozlu;admin;now
+888;68;Aksaray Merkez;admin;now
+889;68;Ortaköy / Aksaray;admin;now
+890;68;Ağaçören;admin;now
+891;68;Güzelyurt;admin;now
+892;68;Sarıyahşi;admin;now
+893;68;Eskil;admin;now
+894;68;Gülağaç;admin;now
+895;69;Bayburt Merkez;admin;now
+896;69;Aydıntepe;admin;now
+897;69;Demirözü;admin;now
+898;70;Ermenek;admin;now
+899;70;Karaman Merkez;admin;now
+900;70;Ayrancı;admin;now
+901;70;Kazımkarabekir;admin;now
+902;70;Başyayla;admin;now
+903;70;Sarıveliler;admin;now
+904;71;Delice;admin;now
+905;71;Keskin;admin;now
+906;71;Kırıkkale Merkez;admin;now
+907;71;Sulakyurt;admin;now
+908;71;Bahşili;admin;now
+909;71;Balışeyh;admin;now
+910;71;Çelebi;admin;now
+911;71;Karakeçili;admin;now
+912;71;Yahşihan;admin;now
+913;72;Batman Merkez;admin;now
+914;72;Beşiri;admin;now
+915;72;Gercüş;admin;now
+916;72;Kozluk;admin;now
+917;72;Sason;admin;now
+918;72;Hasankeyf;admin;now
+919;73;Beytüşşebap;admin;now
+920;73;Cizre;admin;now
+921;73;İdil;admin;now
+922;73;Silopi;admin;now
+923;73;Şırnak Merkez;admin;now
+924;73;Uludere;admin;now
+925;73;Güçlükonak;admin;now
+926;74;Bartın Merkez;admin;now
+927;74;Kurucaşile;admin;now
+928;74;Ulus;admin;now
+929;74;Amasra;admin;now
+930;75;Ardahan Merkez;admin;now
+931;75;Çıldır;admin;now
+932;75;Göle;admin;now
+933;75;Hanak;admin;now
+934;75;Posof;admin;now
+935;75;Damal;admin;now
+936;76;Aralık;admin;now
+937;76;Iğdır Merkez;admin;now
+938;76;Tuzluca;admin;now
+939;76;Karakoyunlu;admin;now
+940;77;Yalova Merkez;admin;now
+941;77;Altınova;admin;now
+942;77;Armutlu;admin;now
+943;77;Çınarcık;admin;now
+944;77;Çiftlikköy;admin;now
+945;77;Termal;admin;now
+946;78;Eflani;admin;now
+947;78;Eskipazar;admin;now
+948;78;Karabük Merkez;admin;now
+949;78;Ovacık / Karabük;admin;now
+950;78;Safranbolu;admin;now
+951;78;Yenice / Karabük;admin;now
+952;79;Kilis Merkez;admin;now
+953;79;Elbeyli;admin;now
+954;79;Musabeyli;admin;now
+955;79;Polateli;admin;now
+956;80;Bahçe;admin;now
+957;80;Kadirli;admin;now
+958;80;Osmaniye Merkez;admin;now
+959;80;Düziçi;admin;now
+960;80;Hasanbeyli;admin;now
+961;80;Sumbas;admin;now
+962;80;Toprakkale;admin;now
+963;81;Akçakoca;admin;now
+964;81;Düzce Merkez;admin;now
+965;81;Yığılca;admin;now
+966;81;Cumayeri;admin;now
+967;81;Gölyaka;admin;now
+968;81;Çilimli;admin;now
+969;81;Gümüşova;admin;now
+970;81;Kaynaşlı;admin;now

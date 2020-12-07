@@ -1,0 +1,60 @@
+<form [formGroup]="entityForm">
+    <p-toast></p-toast>
+    <div class="login-panel ui-fluid">
+        <div class="ui-g">
+            <div class="ui-g-12 logo-container">
+                <h1>{{'label.register' | translate}}</h1>
+            </div>
+            <div class="ui-g-12">
+                    <input id="name" formControlName="name" type="text" autocomplete="off"
+                           placeholder="{{'label.ad' | translate}}"
+                           class="ui-inputtext ui-widget">
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['name']"></app-validation-message>
+            </div>
+            <div class="ui-g-12">
+                    <input id="surname" formControlName="surname" type="text" autocomplete="off"
+                           placeholder="{{'label.soyad' | translate}}"
+                           class="ui-inputtext ui-widget">
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['surname']"></app-validation-message>
+            </div>
+            <div class="ui-g-12">
+                    <input id="email" formControlName="email" type="text" autocomplete="off"
+                           placeholder="{{'label.email' | translate}}"
+                           class="ui-inputtext ui-widget">
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['email']"></app-validation-message>
+            </div>
+            <div class="ui-g-12">
+                    <input id="username" formControlName="username" type="text" autocomplete="off"
+                           placeholder="{{'label.kullanici.adi' | translate}}"
+                           class="ui-inputtext ui-widget">
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['username']"></app-validation-message>
+            </div>
+            <div class="ui-g-12">
+                    <input id="password" formControlName="password" type="password" autocomplete="off"
+                           placeholder="{{'label.sifre' | translate}}"
+                           class="ui-inputtext ui-widget">
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['password']"></app-validation-message>
+            </div>
+            <div class="ui-g-12">
+                <button type="button"
+                        (click)="onSubmit()"
+                        [disabled]="entityForm.invalid"
+                        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only green-btn raised-btn rounded-btn">
+                    <span class="ui-button-text ui-c">{{'btn.kaydet' | translate}}</span>
+                </button>
+            </div>
+            <div class="ui-g-12 ui-md-12">
+                <button type="button"
+                        (click)="appStore.location.back()"
+                        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only pink-btn raised-btn rounded-btn">
+                    <span class="ui-button-text ui-c">{{'btn.geri.don' | translate}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

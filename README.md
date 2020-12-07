@@ -1,0 +1,1 @@
+Şirketim cepte app
