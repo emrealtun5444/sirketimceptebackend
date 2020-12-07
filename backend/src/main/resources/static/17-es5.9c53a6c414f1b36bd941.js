@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[17],{amrp:function(i){i.exports=JSON.parse('{"TR":"Turkish","EN":"English","AKTIF":"Aktif","PASIF":"Pasif","MANTIKSAL_SILINMIS":"Man\u0131t\u0131ksal Silinmi\u015f"}')}}]);
