@@ -19,7 +19,7 @@
     <properties>
         <java.version>11</java.version>
         <node.version>v14.15.1</node.version>
-        <npm.version>v6.14.8</npm.version>
+        <npm.version>6.14.8</npm.version>
     </properties>
     <packaging>pom</packaging>
 
