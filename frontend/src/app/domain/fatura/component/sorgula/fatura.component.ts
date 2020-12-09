@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {AbstractBaseComponent, ColumnType} from "../../../../shared/abstract-base-component";
+import {AbstractBaseComponent, ColumnType, Operations} from "../../../../shared/abstract-base-component";
 import {AppStore} from "../../../../shared/app.store";
 import {LazyLoadEvent} from "primeng";
 import {FaturaService} from "../../service/fatura.service";
@@ -18,6 +18,15 @@ import {ExcelService} from "../../../../shared/datatable/excel.service";
 export class FaturaComponent extends AbstractBaseComponent implements OnInit {
 
     sorguForm: FormGroup;
+    operations: Operations[] = [
+        {
+            id: 'goruntule',
+            route: '/detay',
+            tooltip: 'label.fatura.detay',
+            class: 'fa fa-search'
+        }
+    ];
+
     cols: any[] = [
         {type: ColumnType.DATE, field: 'faturaTarihi', header: this.appStore.translate.instant('label.fatura.tarihi')},
         {type: ColumnType.LINK, field: 'faturaNo', header: this.appStore.translate.instant('label.fatura.no')},

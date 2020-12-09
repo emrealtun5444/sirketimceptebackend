@@ -48,7 +48,7 @@
         </div>
 
         <app-common-lazy-dt #laztTable [cols]="cols" (loadLazyEvent)="loadLazy($event)"
-                            [loading]="loading" [data]="resultList"
+                            [loading]="loading" [data]="resultList" [operations]="operations"
                             [totalRecords]="totalRecords"></app-common-lazy-dt>
 
     </div>
