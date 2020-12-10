@@ -1,7 +1,7 @@
 <div class="topbar">
         <div class="topbar-main">
             <a href="#" id="menu-button" (click)="app.onMenuButtonClick($event)">
-                <span class="fa fa-bars"></span>
+                <span class="pi pi-bars"></span>
             </a>
 
             <a href="/">
@@ -13,39 +13,45 @@
             </div>
 
             <a href="#" id="user-display" (click)="app.onTopbarMenuButtonClick($event)">
-                <span class="username">{{app.appStore.user.name}} {{app.appStore.user.surname}}</span>
-                <span class="userrole">{{app.appStore.user.roles}}</span>
-                <img alt="main logo" src="assets/layout/images/avatar.png">
+                <span class="username">{{appStore.user.name}} {{appStore.user.surname}}</span>
+                <span class="userrole">{{appStore.user.roles}}</span>
+                <img alt="main logo" src="assets/layout/images/avatar_man.png">
             </a>
 
             <ul id="topbar-menu" class="fadeInDown animated" [ngClass]="{'topbar-menu-visible': app.topbarMenuActive}">
                 <li class="search-item">
                     <div>
                         <input type="text" pInputText placeholder="Search" />
-                        <span class="fa fa-search"></span>
+                        <span class="pi pi-search"></span>
                     </div>
                 </li>
                 <li #profile [ngClass]="{'menuitem-active':app.activeTopbarItem === profile}">
                     <a href="#" (click)="app.onTopbarItemClick($event, profile)">
-                        <i class="topbar-icon fa fa-fw fa-user"></i>
+                        <i class="topbar-icon pi pi-fw pi-user"></i>
                         <span class="topbar-item-name">PROFILE</span>
                     </a>
                     <ul>
                         <li role="menuitem">
                             <a href="#" [routerLink]="['/profile']">
-                                <i class="fa fa-fw fa-user"></i>
+                                <i class="pi pi-fw pi-user"></i>
                                 <span>Profile</span>
                             </a>
                         </li>
                         <li role="menuitem">
                             <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-cog"></i>
+                                <i class="pi pi-fw pi-lock"></i>
+                                <span>Privacy</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                <i class="pi pi-fw pi-cog"></i>
                                 <span>Settings</span>
                             </a>
                         </li>
                         <li role="menuitem">
-                            <a href="#" (click)="app.signOut()">
-                                <i class="fa fa-fw fa-sign-out"></i>
+                            <a href="#" (click)="signOut()">
+                                <i class="pi pi-fw pi-sign-out"></i>
                                 <span>Logout</span>
                             </a>
                         </li>
@@ -53,33 +59,33 @@
                 </li>
                 <li #settings [ngClass]="{'menuitem-active':app.activeTopbarItem === settings}">
                     <a href="#" (click)="app.onTopbarItemClick($event, settings)">
-                        <i class="topbar-icon fa fa-fw fa-cog"></i>
+                        <i class="topbar-icon pi pi-fw pi-cog"></i>
                         <span class="topbar-item-name">SETTINGS</span>
                     </a>
                     <ul>
                         <li role="menuitem">
                             <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-paint-brush"></i>
+                                <i class="pi pi-fw pi-palette"></i>
                                 <span>Change Theme</span>
                                 <span class="topbar-submenuitem-badge">4</span>
                             </a>
                         </li>
                         <li role="menuitem">
                             <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-star-o"></i>
+                                <i class="pi pi-fw pi-star"></i>
                                 <span>Favorites</span>
                             </a>
                         </li>
                         <li role="menuitem">
                             <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-lock"></i>
+                                <i class="pi pi-fw pi-lock"></i>
                                 <span>Lock Screen</span>
                                 <span class="topbar-submenuitem-badge">2</span>
                             </a>
                         </li>
                         <li role="menuitem">
                             <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-picture-o"></i>
+                                <i class="pi pi-fw pi-image"></i>
                                 <span>Wallpaper</span>
                             </a>
                         </li>
@@ -87,7 +93,7 @@
                 </li>
                 <li #messages [ngClass]="{'menuitem-active':app.activeTopbarItem === messages}">
                     <a href="#" (click)="app.onTopbarItemClick($event, messages)">
-                        <i class="topbar-icon material-icons animated swing fa fa-fw fa-envelope-o"></i>
+                        <i class="topbar-icon material-icons animated swing pi pi-fw pi-envelope"></i>
                         <span class="topbar-item-name">MESSAGES</span>
                         <span class="topbar-badge animated rubberBand">4</span>
                     </a>
@@ -126,32 +132,32 @@
                 </li>
                 <li #notifications [ngClass]="{'menuitem-active':app.activeTopbarItem === notifications}">
                     <a href="#" (click)="app.onTopbarItemClick($event, notifications)">
-                        <i class="topbar-icon fa fa-fw fa-bell-o"></i>
+                        <i class="topbar-icon pi pi-fw pi-bell"></i>
                         <span class="topbar-item-name">NOTIFICATIONS</span>
                         <span class="topbar-badge animated rubberBand">2</span>
                     </a>
                     <ul>
                         <li role="menuitem">
                             <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-tasks"></i>
+                                <i class="pi pi-fw pi-sliders-h"></i>
                                 <span>Pending tasks</span>
                             </a>
                         </li>
                         <li role="menuitem">
                             <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-calendar-check-o"></i>
+                                <i class="pi pi-fw pi-calendar"></i>
                                 <span>Meeting today</span>
                             </a>
                         </li>
                         <li role="menuitem">
                             <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-download"></i>
+                                <i class="pi pi-fw pi-download"></i>
                                 <span>Download</span>
                             </a>
                         </li>
                         <li role="menuitem">
                             <a href="#" (click)="app.onTopbarSubItemClick($event)">
-                                <i class="fa fa-fw fa-plane"></i>
+                                <i class="pi pi-fw pi-ticket"></i>
                                 <span>Book flight</span>
                             </a>
                         </li>

@@ -1,0 +1,238 @@
+<div class="p-grid dashboard">
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="p-grid card p-nogutter overview-box overview-box-1">
+            <div class="p-col-4 overview-box-icon">
+                <img src="../../../../assets/layout/images/icon-paper.png">
+            </div>
+            <div class="p-col-8">
+                <span class="overview-box-count">{{currentNumberOfSales}}</span>
+                <span class="overview-box-name">{{'label.yeni.satis' | translate}}</span>
+                <span class="overview-box-rate">+0%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="p-grid card p-nogutter overview-box overview-box-3">
+            <div class="p-col-4 overview-box-icon">
+                <img src="../../../../assets/layout/images/icon-location.png">
+            </div>
+            <div class="p-col-8">
+                <span class="overview-box-count">{{currentAmountOfSales | paraFormat}} TL</span>
+                <span class="overview-box-name">{{'label.guncel.ciro.gun' | translate}}</span>
+                <span class="overview-box-rate">0%</span>
+            </div>
+        </div>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="p-grid card p-nogutter overview-box overview-box-4">
+            <div class="p-col-4 overview-box-icon">
+                <img src="../../../../assets/layout/images/icon-orders.png">
+            </div>
+            <div class="p-col-8">
+                <span class="overview-box-count">{{monthlyNumberOfSales}}</span>
+                <span class="overview-box-name">{{'label.toplam.satis' | translate}}</span>
+                <span class="overview-box-rate">+0%</span>
+            </div>
+        </div>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="p-grid card p-nogutter overview-box overview-box-2">
+            <div class="p-col-4 overview-box-icon">
+                <img src="../../../../assets/layout/images/icon-mail.png">
+            </div>
+            <div class="p-col-8">
+                <span class="overview-box-count">{{monthlyAmountOfSales | paraFormat}} TL</span>
+                <span class="overview-box-name">{{'label.guncel.ciro.ay' | translate}}</span>
+                <span class="overview-box-rate">+0%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-lg-4 p-fluid activity-feed">
+        <p-panel header="{{'label.aylik.aktivite' | translate}}">
+            <div class="p-grid">
+                <div class="p-col-12 p-md-4">
+                    <span>{{'label.bayi' | translate}}</span>
+                    <div class="knob income">{{monthlyOtherSales | paraFormat}} TL</div>
+                </div>
+                <div class="p-col-12 p-md-4">
+                    <span>{{'label.perakende' | translate}}</span>
+                    <div class="knob tax">{{monthlyPerakendeSales | paraFormat}} TL</div>
+                </div>
+                <div class="p-col-12 p-md-4">
+                    <span>{{'label.eticaret' | translate}}</span>
+                    <div class="knob invoice">{{monthlyEticaretSales | paraFormat}} TL</div>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-4 p-fluid contact-form">
+        <p-panel header="{{'label.bize.sorun' | translate}}" [style]="{minHeight: '360px'}">
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <p-dropdown [options]="talepTipis" [(ngModel)]="selectedTalepTipi"></p-dropdown>
+                </div>
+                <div class="p-col-12">
+                    <input type="text" pInputText placeholder="{{'label.ad' | translate}}">
+                </div>
+                <div class="p-col-12">
+                    <input type="text" pInputText placeholder="{{'label.email' | translate}}">
+                </div>
+                <div class="p-col-12">
+                    <input type="text" pInputText placeholder="{{'label.konu' | translate}}">
+                </div>
+                <div class="p-col-12">
+                    <textarea rows="4" type="text" pInputTextarea
+                              placeholder="{{'label.mesaj' | translate}}"></textarea>
+                </div>
+                <div class="p-col-12">
+                    <button type="button" label="Send" icon="fa fa-send" pButton></button>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+
+    <div class="p-col-12 p-lg-4 contacts">
+        <p-panel header="{{'label.iletisim' | translate}}" [style]="{minHeight: '360px'}">
+            <ul>
+                <li class="clearfix">
+                    <img src="../../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
+                    <div class="contact-info">
+                        <span class="name">Yunus ALTUN</span>
+                        <span class="location">yunus@aymeryapi.com.tr</span>
+                    </div>
+                    <div class="contact-actions">
+                        <span class="connection-status online">online</span>
+                        <i class="pi pi-share-alt"></i>
+                        <i class="pi pi-comments"></i>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <img src="../../../../assets/layout/images/avatar_girl.png" library="verona-layout" width="45"/>
+                    <div class="contact-info">
+                        <span class="name">Elif TAŞDELEN</span>
+                        <span class="location">elif@aymeryapi.com.tr</span>
+                    </div>
+                    <div class="contact-actions">
+                        <span class="connection-status online">online</span>
+                        <i class="pi pi-share-alt"></i>
+                        <i class="pi pi-comments"></i>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <img src="../../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
+                    <div class="contact-info">
+                        <span class="name">Erhan ÜNAL</span>
+                        <span class="location">erhan@aymeryapi.com.tr</span>
+                    </div>
+                    <div class="contact-actions">
+                        <span class="connection-status online">online</span>
+                        <i class="pi pi-share-alt"></i>
+                        <i class="pi pi-comments"></i>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <img src="../../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
+                    <div class="contact-info">
+                        <span class="name">Celil GÜLAĞACI</span>
+                        <span class="location">celil@aymeryapi.com.tr</span>
+                    </div>
+                    <div class="contact-actions">
+                        <span class="connection-status online">online</span>
+                        <i class="pi pi-share-alt"></i>
+                        <i class="pi pi-comments"></i>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <img src="../../../../assets/layout/images/avatar_girl.png" library="verona-layout" width="45"/>
+                    <div class="contact-info">
+                        <span class="name">Serap SARAÇOĞLU</span>
+                        <span class="location">serap@aymeryapi.com.tr</span>
+                    </div>
+                    <div class="contact-actions">
+                        <span class="connection-status online">online</span>
+                        <i class="pi pi-share-alt"></i>
+                        <i class="pi pi-comments"></i>
+                    </div>
+                </li>
+            </ul>
+        </p-panel>
+    </div>
+
+    <div class="p-col-12 p-lg-4">
+        <div class="card timeline p-fluid">
+            <div class="p-grid">
+                <div class="p-col-3">
+                    <span class="event-time">just now</span>
+                    <i class="pi pi-map-marker" style="color:#f7cb00"></i>
+                </div>
+                <div class="p-col-9">
+                    <span class="event-owner" style="color:#f7cb00">Katherine May</span>
+                    <span class="event-text">Lorem ipsun dolor amet</span>
+                    <div class="event-content">
+                        <img src="../../../../assets/layout/images/dashboard/bridge.png" library="verona-layout" width="100"/>
+                    </div>
+                </div>
+
+                <div class="p-col-3">
+                    <span class="event-time">12h ago</span>
+                    <i class="pi pi-star" style="color:#985edb"></i>
+                </div>
+                <div class="p-col-9">
+                    <span class="event-owner" style="color:#985edb">Brandon Santos</span>
+                    <span class="event-text">Ab nobis, magnam sunt eum. Laudantium, repudiandae, similique!.</span>
+                </div>
+
+                <div class="p-col-3">
+                    <span class="event-time">15h ago</span>
+                    <i class="pi pi-comment" style="color:#9fd037"></i>
+                </div>
+                <div class="p-col-9">
+                    <span class="event-owner" style="color:#9fd037">Stephan Ward</span>
+                    <span class="event-text">Omnis veniam quibusdam ratione est repellat qui nam quisquam ab mollitia dolores ullam voluptates, similique, dignissimos.</span>
+                </div>
+
+                <div class="p-col-3">
+                    <span class="event-time">2d ago</span>
+                    <i class="pi pi-globe" style="color:#f7cb00"></i>
+                </div>
+                <div class="p-col-9">
+                    <span class="event-owner" style="color:#f7cb00">Jason Smith</span>
+                    <span class="event-text">Laudantium, repudiandae, similique!</span>
+                    <div class="event-content">
+                        <img src="../../../../assets/layout/images/dashboard/map.png">
+                    </div>
+                </div>
+
+                <div class="p-col-3">
+                    <span class="event-time">1w ago</span>
+                    <i class="pi pi-heart" style="color:#ff9c59"></i>
+                </div>
+                <div class="p-col-9">
+                    <span class="event-owner" style="color:#ff9c59">Kevin Cox</span>
+                    <span class="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
+                </div>
+
+                <div class="p-col-3">
+                    <span class="event-time">2w ago</span>
+                    <i class="pi pi-compass" style="color:#9fd037"></i>
+                </div>
+                <div class="p-col-9">
+                    <span class="event-owner" style="color:#9fd037">Walter White</span>
+                    <span class="event-text">I am the one who knocks!</span>
+                </div>
+                <div class="p-col-12">
+                    <button pButton type="button" icon="pi pi-refresh" label="Refresh"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-8">
+        <p-panel header="{{'label.takvim' | translate}}" [style]="{'height':'100%'}">
+            <p-fullCalendar [options]="fullcalendarOptions"></p-fullCalendar>
+        </p-panel>
+    </div>
+</div>

@@ -1,28 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import {AbstractBaseComponent, ColumnType} from "../../../../shared/abstract-base-component";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {AppStore} from "../../../../shared/app.store";
-import {CariKart} from "../../dto/cari-kart";
-import {CariKartService} from "../../service/cari-kart.service";
-import {LazyLoadEvent} from "primeng";
-import {CariKartSorguKriterleri} from "../../dto/cari-kart-sorgu-kriterleri";
+import {Component, OnInit} from '@angular/core';
+import {AbstractBaseComponent, ColumnType} from '../../../../shared/abstract-base-component';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {AppStore} from '../../../../shared/app.store';
+import {CariKart} from '../../dto/cari-kart';
+import {CariKartService} from '../../service/cari-kart.service';
+import {CariKartSorguKriterleri} from '../../dto/cari-kart-sorgu-kriterleri';
+import {LazyLoadEvent} from 'primeng/api';
 
 @Component({
-  selector: 'app-cari-kart',
-  templateUrl: './cari-kart.component.html',
-  styleUrls: ['./cari-kart.component.css']
+    selector: 'app-cari-kart',
+    templateUrl: './cari-kart.component.html',
+    styleUrls: ['./cari-kart.component.css']
 })
 export class CariKartComponent extends AbstractBaseComponent implements OnInit {
 
     sorguForm: FormGroup;
     cols: any[] = [
-        {type: ColumnType.STRING ,field: 'sorumluPersonel', header: this.appStore.translate.instant('label.sorumlu.personel')},
+        {type: ColumnType.STRING, field: 'sorumluPersonel', header: this.appStore.translate.instant('label.sorumlu.personel')},
         {type: ColumnType.STRING, field: 'cariTipi', header: this.appStore.translate.instant('label.cari.tipi')},
         {type: ColumnType.STRING, field: 'cariKodu', header: this.appStore.translate.instant('label.cari.kodu')},
         {type: ColumnType.STRING, field: 'cariAdi', header: this.appStore.translate.instant('label.cari.adi')},
-        {type: ColumnType.PARA, field: 'toplamBorc', header:  this.appStore.translate.instant('label.toplam.borc')},
-        {type: ColumnType.PARA, field: 'toplamAlacak', header:  this.appStore.translate.instant('label.toplam.alacak')},
-        {type: ColumnType.PARA, field: 'bakiye', header:  this.appStore.translate.instant('label.bakiye')},
+        {type: ColumnType.PARA, field: 'toplamBorc', header: this.appStore.translate.instant('label.toplam.borc')},
+        {type: ColumnType.PARA, field: 'toplamAlacak', header: this.appStore.translate.instant('label.toplam.alacak')},
+        {type: ColumnType.PARA, field: 'bakiye', header: this.appStore.translate.instant('label.bakiye')},
     ];
 
     totalRecords: number;

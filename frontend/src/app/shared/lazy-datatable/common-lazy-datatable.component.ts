@@ -1,11 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ConfirmType} from '../confirm-data';
 import {AbstractBaseComponent, Col, Operations} from '../abstract-base-component';
-import {Table} from "primeng/table";
-import {LazyLoadEvent, MenuItem} from "primeng";
-import {AppStore} from "../app.store";
-import {FilterUtils} from "primeng/utils";
-import {ExcelService} from "../datatable/excel.service";
+import {Table} from 'primeng/table';
+import {AppStore} from '../app.store';
+import {ExcelService} from '../datatable/excel.service';
+import {LazyLoadEvent, MenuItem} from 'primeng/api';
 
 @Component({
     selector: 'app-common-lazy-dt',
@@ -14,7 +13,6 @@ import {ExcelService} from "../datatable/excel.service";
 })
 export class CommonLazyDatatableComponent extends AbstractBaseComponent implements OnInit {
 
-    showFilter: false;
     items: MenuItem[];
     columnOptions: Col[] = [];
     columns: Col[] = [];
@@ -32,7 +30,7 @@ export class CommonLazyDatatableComponent extends AbstractBaseComponent implemen
     @Input() selected: number[] = [];
     @Input() cols: Col[];
     @Input() that;
-    @Input() class = 'ui-g-12';
+    @Input() class = 'p-col-12';
     @Input() footer = false;
 
 
@@ -130,27 +128,6 @@ export class CommonLazyDatatableComponent extends AbstractBaseComponent implemen
         }
         if (this.data) {
             this.data = this.data;
-        }
-        FilterUtils['dateTimeFilterCustom'] = (value, filter): boolean => {
-            if (filter === undefined || filter === null) {
-                return true;
-            }
-            if (value === undefined || value === null) {
-                return false;
-            }
-            let valueDate = new Date(value);
-            valueDate.setHours(0, 0, 0, 0);
-            return filter == valueDate.getTime();
-        }
-
-        FilterUtils['paraFilterCustom'] = (value, filter): boolean => {
-            if (filter === undefined || filter === null) {
-                return true;
-            }
-            if (value === undefined || value === null) {
-                return false;
-            }
-            return value.toString().includes(filter);
         }
         this.initDataTable();
     }

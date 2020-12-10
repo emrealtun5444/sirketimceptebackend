@@ -4,7 +4,8 @@
     background: radial-gradient(circle at 50% 100%, #6d6d7e, #3b3b48);
     padding-top: 85px;
     border-top: 10px solid #e0f6b1;
-    
+    height: 100vh;
+
     .login-panel {
         @include border-radius(3px);
         background-color: #f5f8f9;
@@ -14,16 +15,16 @@
         text-align: center;
         padding: 50px 180px;
         box-sizing: border-box;
-        
-        .ui-g-12 {
+
+        .p-col-12 {
             padding: 16px 0;
         }
-        
+
         .logo-container {
             img {
                 width: 100px;
             }
-            
+
             h1 {
                 font-size: 20px;
                 font-weight: bold;
@@ -31,7 +32,7 @@
                 margin-top: 25px;
                 margin-bottom: 0;
             }
-            
+
             h2 {
                 font-size: 13px;
                 margin-top: 5px;
@@ -39,14 +40,14 @@
                 color: #afafc0;
             }
         }
-        
+
         input {
             font-size: 16px;
         }
-        
+
         .chkbox-container {
             text-align: left;
-            
+
             label {
                 color: #afafc0;
                 margin-left: 4px;
@@ -60,7 +61,7 @@
 @media (max-width: 640px) {
     .login-body {
         padding-top: 80px;
-        
+
         .login-panel {
             width: 100%;
             padding: 50px;

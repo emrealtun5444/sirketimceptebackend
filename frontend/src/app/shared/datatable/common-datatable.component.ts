@@ -2,10 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angula
 import {ConfirmType} from '../confirm-data';
 import {ExcelService} from './excel.service';
 import {AbstractBaseComponent, Col, Operations} from '../abstract-base-component';
-import {Table} from "primeng/table";
-import {MenuItem} from "primeng";
-import {AppStore} from "../app.store";
-import {FilterUtils} from "primeng/utils";
+import {Table} from 'primeng/table';
+import {AppStore} from '../app.store';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-common-dt',
@@ -31,7 +30,7 @@ export class CommonDatatableComponent extends AbstractBaseComponent implements O
   @Input() selected: number[] = [];
   @Input() cols: Col[];
   @Input() that;
-  @Input() class = 'ui-g-12';
+  @Input() class = 'p-col-12';
   @Input() footer = false;
 
   @Input() operations: Operations[];
@@ -128,27 +127,27 @@ export class CommonDatatableComponent extends AbstractBaseComponent implements O
     if (this.data) {
       this.data = this.data;
     }
-    FilterUtils['dateTimeFilterCustom'] = (value, filter): boolean => {
-      if (filter === undefined || filter === null) {
-        return true;
-      }
-      if (value === undefined || value === null) {
-        return false;
-      }
-      let valueDate = new Date(value);
-      valueDate.setHours(0, 0, 0, 0);
-      return filter == valueDate.getTime();
-    }
-
-    FilterUtils['paraFilterCustom'] = (value, filter): boolean => {
-      if (filter === undefined || filter === null) {
-        return true;
-      }
-      if (value === undefined || value === null) {
-        return false;
-      }
-      return value.toString().includes(filter);
-    }
+    // FilterUtils['dateTimeFilterCustom'] = (value, filter): boolean => {
+    //   if (filter === undefined || filter === null) {
+    //     return true;
+    //   }
+    //   if (value === undefined || value === null) {
+    //     return false;
+    //   }
+    //   let valueDate = new Date(value);
+    //   valueDate.setHours(0, 0, 0, 0);
+    //   return filter == valueDate.getTime();
+    // }
+    //
+    // FilterUtils['paraFilterCustom'] = (value, filter): boolean => {
+    //   if (filter === undefined || filter === null) {
+    //     return true;
+    //   }
+    //   if (value === undefined || value === null) {
+    //     return false;
+    //   }
+    //   return value.toString().includes(filter);
+    // }
     this.initDataTable();
   }
 

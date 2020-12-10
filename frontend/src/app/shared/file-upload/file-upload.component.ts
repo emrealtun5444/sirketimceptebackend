@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {SelectItem} from 'primeng/api';
-import {FileUpload} from 'primeng/primeng';
 import {AbstractComponent} from "../abstract-component";
 import {BelgeTipi} from "../constants";
 import {AppStore} from "../app.store";
 import {FileUtils} from "../file-utils";
+import {FileUpload} from 'primeng/fileupload';
 
 @Component({
   selector: 'app-file-upload',

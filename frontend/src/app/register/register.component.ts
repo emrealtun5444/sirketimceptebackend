@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AppStore} from "../shared/app.store";
-import {AuthService} from "../shared/service/auth.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {TokenStorageService} from "../shared/service/token-storage.service";
-import {CustomValidator} from "../shared/validation/custom-validator";
-import {AbstractBaseComponent} from "../shared/abstract-base-component";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AppStore} from '../shared/app.store';
+import {AuthService} from '../shared/service/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {TokenStorageService} from '../shared/service/token-storage.service';
+import {CustomValidator} from '../shared/validation/custom-validator';
+import {AbstractBaseComponent} from '../shared/abstract-base-component';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +18,6 @@ export class RegisterComponent extends AbstractBaseComponent implements OnInit, 
 
     constructor(appStore: AppStore,
                 private authService: AuthService,
-                private renderer: Renderer2,
                 private router: Router,
                 private route: ActivatedRoute,
                 private tokenStorage: TokenStorageService,
@@ -42,7 +41,6 @@ export class RegisterComponent extends AbstractBaseComponent implements OnInit, 
     }
 
     private setup() {
-        this.renderer.addClass(document.body, "login-body");
     }
 
     onSubmit() {
@@ -58,7 +56,6 @@ export class RegisterComponent extends AbstractBaseComponent implements OnInit, 
     }
 
     ngOnDestroy(): void {
-        this.renderer.removeClass(document.body, "login-body");
     }
 
 

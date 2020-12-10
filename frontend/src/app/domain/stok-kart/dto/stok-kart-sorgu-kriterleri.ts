@@ -1,4 +1,4 @@
-import {LazyLoadEvent} from "primeng";
+import {LazyLoadEvent} from 'primeng/api';
 
 export interface StokKartSorguKriterleri {
 

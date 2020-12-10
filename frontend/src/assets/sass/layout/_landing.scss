@@ -6,15 +6,15 @@
             padding: 16px 0;
             height: 480px;
             overflow: hidden;
-            
+
             > div {
                 width: 960px;
                 margin: 0 auto;
             }
-                        
+
             .header-top {
                 height: 83px;
-                
+
                 #menu-button {
                     background-color: #62626c;
                     width: 60px;
@@ -28,12 +28,12 @@
                     color: #ffffff;
                     @include transition(background-color .3s);
                     @include border-radius(50%);
-                    
+
                     span {
                         font-size: 28px;
                         line-height: inherit;
                     }
-                    
+
                     &:hover {
                         background-color: #e96d66;
                     }
@@ -44,22 +44,22 @@
                     }
 
                 }
-                
+
                 img {
                     width: 80px;
                     margin-left: 30px;
                 }
-                
+
                 ul {
                     list-style-type: none;
                     float: right;
                     margin: 20px 0 0 0;
                     padding: 0;
-                    
+
                     li {
                         float: left;
                         padding-right: 12px;
-                        
+
                         a {
                             font-size: 15px;
                             color: #afafc0;
@@ -67,7 +67,7 @@
                             padding: 8px;
                             border-bottom: 2px solid transparent;
                             @include transition(border-bottom-color .3s);
-                            
+
                             &:hover {
                                 border-color: #afafc0;
                             }
@@ -75,18 +75,18 @@
                     }
                 }
             }
-            
+
             .header-content {
                 text-align: center;
                 height: 438px;
                 position: relative;
-                
+
                 h1 {
                     color: #f5f8f9;
                     font-size: 22px;
                     margin: 40px 0 12px 0;
-                } 
-                
+                }
+
                 h2 {
                     display: inline-block;
                     color: #afafc0;
@@ -95,7 +95,7 @@
                     margin: 0 0 24px 0;
                     padding-top: 6px;
                 }
-                
+
                 a {
                     display: inline-block;
                     border: solid 1px #dce2e7;
@@ -104,26 +104,26 @@
                     margin-bottom: 50px;
                     @include border-radius(15px);
                     @include transition(background-color .3s);
-                    
+
                     &:hover {
                         background-color: #dce2e7;
                         color: #6d6d7e;
                     }
                 }
-                
+
                 .introduction-image {
                     position: absolute;
                     bottom: 0;
                     text-align: center;
                     width: 100%;
-                    
+
                     img {
                         width: 600px;
                     }
                 }
             }
         }
-        
+
         #introduction {
             height: 400px;
             background-size: cover;
@@ -132,7 +132,7 @@
             text-align: center;
             padding-top: 100px;
             border-top: 10px solid #1b6bad;
-            
+
             h2 {
                 border-bottom: 4px solid #ffffff;
                 display: inline-block;
@@ -140,24 +140,24 @@
                 margin-bottom: 5px;
                 font-weight: 300;
             }
-            
+
             h1 {
                 font-weight: 700;
                 margin-top: 10px;
                 margin-bottom: 40px;
             }
-            
+
             button {
                 padding: 6px 12px;
                 width: 125px;
             }
         }
-        
+
         #features {
             background-color: #f5f8f9;
             padding: 50px 0;
             text-align: center;
-            
+
             h1 {
                 color: #6a6a7d;
                 font-size: 22px;
@@ -165,26 +165,26 @@
                 display: inline-block;
                 padding-bottom: 5px;
             }
-            
+
             > div {
                 width: 960px;
                 margin: 0 auto;
-                
-                .ui-g-12 {
+
+                .p-col-12 {
                     padding-top: 40px;
                 }
-                
+
                 img {
                     height: 63px;
                 }
-                
+
                 h3 {
                     margin: 12px 0 6px 0;
                 	color: #525262;
                     font-size: 13px;
                     font-weight: bold;
                 }
-                
+
                 p {
                     color: #6a6a7d;
                     font-size: 13px;
@@ -192,23 +192,23 @@
                 }
             }
         }
-        
+
         #statistics {
             background-color: #525262;
             padding: 20px 0;
-            
+
             > div {
                 width: 960px;
                 margin: 0 auto;
                 text-align: center;
-                
+
                 h2 {
                     color: #ffffff;
                     font-size: 20px;
                     margin-top: 0;
                 }
-                
-                .ui-g-12 {
+
+                .p-col-12 {
                     padding-left: 26px;
                     padding-right: 26px;
 
@@ -218,7 +218,7 @@
                         font-weight: bold;
                         margin: 0 0 10px 0;
                     }
-                    
+
                     p {
                         color: #afafc0;
                         margin-top: 5px;
@@ -227,17 +227,17 @@
                 }
             }
         }
-        
+
         #pricing {
             background-color: #eff4f7;
             padding: 40px 0;
             text-align: center;
-            
+
             > div {
                 width: 960px;
                 margin: 0 auto;
                 text-align: center;
-            
+
                 h1 {
                     color: #6a6a7d;
                     font-size: 22px;
@@ -246,9 +246,9 @@
                     padding-bottom: 5px;
                     margin: 0 0 40px 0;
                 }
-                
-                .ui-g-12 {
-                    
+
+                .p-col-12 {
+
                     .price-type {
                         background-color: #f5f8f9;
                         border: solid 1px #dce2e7;
@@ -257,52 +257,56 @@
                         color: #6a6a7d;
                         box-sizing: border-box;
                         @include border-radius(3px);
-                        
+
                         h3 {
                             font-size: 18px;
                             margin: 0 0 5px 0;
                         }
-                        
+
                         .price-for {
                             color: #afafc0;
                             font-weight: bold;
                         }
-                        
+
                         .currency {
                             color: #afafc0;
                             position: relative;
                             top: -16px;
                         }
-                        
+
                         .price {
                             display: inline-block;;
                             font-size: 36px;
                         	color: #2d353c;
                             margin-bottom: 30px;
                         }
-                        
+
                         .term {
                             color: #afafc0;
                         }
-                        
+
                         ul {
                             list-style-type: none;
                             padding:0;
                             margin: 20px 0 0 0;
                             min-height: 175px;
-                            
+
                             li {
                                 padding-top: 6px;
                             }
                         }
-                        
+
                         button {
                             width: 100%;
+
+                            .p-button-text {
+                                width: 100%;
+                            }
                         }
-                        
+
                         &.price-type-popular {
                             padding-top: 10px;
-                            
+
                             .popular-title {
                                 background-color: #6a6a7d;
                                 color: #f5f8f9;
@@ -318,11 +322,11 @@
                 }
             }
         }
-        
+
         #video {
             background-color: #f5f8f9;
             padding: 40px 0;
-            
+
             h1 {
                 color: #6a6a7d;
                 font-size: 22px;
@@ -331,53 +335,55 @@
                 padding-bottom: 5px;
                 margin: 0 0 40px 0;
             }
-            
+
             > div {
                 width: 960px;
                 margin: 0 auto;
                 text-align: center;
             }
         }
-        
+
         #footer {
             background-color: #3b3b48;
             padding: 40px 0;
-            
+
             > div {
                 width: 960px;
                 margin: 0 auto;
-                
+
                 img {
                     width: 60px;
                     vertical-align: middle;
                 }
-                
+
                 .appname {
                     font-size: 36px;
                     color: #f5f8f9;
                     vertical-align: middle;
                     margin: 10px;
                 }
-                                
+
                 .social {
                     float: right;
                     padding-top: 15px;
-                    
+
                     a {
+                        color: #f5f8f9;
+
                         i {
                             color: #f5f8f9;
                             font-size: 30px;
                             margin-left: 30px;
                             @include transition(color .3s);
                         }
-                        
+
                         &:hover {
                             i {
                                 color: #c4c6c7;
                             }
                         }
                     }
-                    
+
                 }
             }
         }
@@ -390,7 +396,7 @@
             #header {
                 > div {
                     width: 100%;
-                    
+
                     ul {
                         display: none;
                         float: none;
@@ -428,58 +434,58 @@
                         }
                     }
                 }
-                
+
                 .header-top {
                     #menu-button {
                         display: block;
                     }
-                    
+
                     .logo {
                         width: 60px;
                     }
                 }
-            }  
-            
+            }
+
             #introduction, #features, #statistics, #pricing, #video, #footer > div {
                 width: 100%;
                 padding-right: 30px;
                 padding-left: 30px;
                 box-sizing: border-box;
-                
+
                 > div {
                     width: 100%;
                 }
-            } 
-                        
+            }
+
             #pricing {
-                .ui-g-12 {
+                .p-col-12 {
                     margin-bottom: 30px;
                 }
             }
-                    
-            #video {           
+
+            #video {
                 iframe {
                     width: 300px;
                     height: 169px;
                 }
             }
-            
-            #footer {           
-                > div {                    
+
+            #footer {
+                > div {
                     .logo {
                         width: 40px;
                     }
-                    
+
                     .appname {
                         font-weight: bold;
                         margin-left: 10px;
                         font-size: 24px;
                     }
-                    
+
                     .social {
                         width: auto;
                         padding-top: 22px;
-                        
+
                         i {
                             font-size: 16px;
                             margin-left: 16px;
@@ -496,15 +502,15 @@
         .landing-wrapper {
             #header {
                 .header-content {
-                    .introduction-image {  
+                    .introduction-image {
                         bottom: 40px;
-                                          
+
                        img {
                            width: 320px;
                        }
                    }
                 }
-            
+
             &.menu-active {
                 > div {
                     ul {
@@ -512,7 +518,7 @@
                     }
                 }
             }
-                 
+
             }
         }
     }

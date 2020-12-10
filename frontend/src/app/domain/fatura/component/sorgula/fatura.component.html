@@ -1,55 +1,44 @@
 <form [formGroup]="sorguForm">
 
-    <div class="ui-g ui-fluid">
-
-        <div class="ui-g-12">
-            <div class="card card-w-title">
-                <h1>{{'menu.fatura.sorgulama' | translate}}</h1>
-
-                <div class="ui-g form-group">
-                    <div class="ui-g-12 ui-md-3">
-                        <div class="ui-inputgroup">
-                            <span class="ui-inputgroup-addon"><i class="fa fa-address-card-o"></i></span>
-                            <span class="ui-float-label">
-                             <input id="cariKodu" formControlName="cariKodu" type="text" pInputText
-                                    style="border-left:0">
+    <div class="card">
+        <h3>{{'menu.fatura.sorgulama' | translate}}</h3>
+        <br/>
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-3">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-shopping-cart"></i></span>
+                    <span class="p-float-label">
+                             <input id="cariKodu" formControlName="cariKodu" type="text" pInputText>
                             <label for="cariKodu">{{'label.cari.kodu' | translate}}</label>
                         </span>
-                        </div>
-                    </div>
-
-                    <div class="ui-g-12 ui-md-3">
-                        <div class="ui-inputgroup">
-                            <span class="ui-inputgroup-addon"><i class="fa fa-newspaper-o"></i></span>
-                            <span class="ui-float-label">
-                             <input id="cariAdi" formControlName="cariAdi" type="text" pInputText style="border-left:0">
-                            <label for="cariAdi">{{'label.cari.adi' | translate}}</label>
-                        </span>
-                        </div>
-                    </div>
-                    <div class="ui-g-12 ui-md-3">
-                        <div class="ui-inputgroup">
-                            <span class="ui-inputgroup-addon"><i class="fa fa-newspaper-o"></i></span>
-                            <span class="ui-float-label">
-                                <p-calendar id="faturaTarihi" showButtonBar="true" formControlName="faturaTarihi"
-                                            selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
-                                <label for="faturaTarihi">{{'label.fatura.tarihi' | translate}}</label>
-                           </span>
-                        </div>
-                    </div>
-
-                    <div class="ui-g-12 ui-md-3">
-                        <button pButton type="button" label="{{'btn.sorgula' | translate}}"
-                                (click)="sorgula()"></button>
-                    </div>
-
                 </div>
             </div>
+
+            <div class="p-col-12 p-md-3">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-tags"></i></span>
+                    <span class="p-float-label">
+                             <input id="cariAdi" formControlName="cariAdi" type="text" pInputText>
+                            <label for="cariAdi">{{'label.cari.adi' | translate}}</label>
+                        </span>
+                </div>
+            </div>
+
+            <div class="p-field p-col-12 p-md-3">
+                <p-calendar id="faturaTarihi" showButtonBar="true" formControlName="faturaTarihi"
+                            placeholder="{{'label.fatura.tarihi' | translate}}"
+                            [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+            </div>
+
+
+            <div class="p-col-12 p-md-3">
+                <button pButton type="button" label="{{'btn.sorgula' | translate}}"
+                        (click)="sorgula()"></button>
+            </div>
         </div>
-
-        <app-common-lazy-dt #laztTable [cols]="cols" (loadLazyEvent)="loadLazy($event)"
-                            [loading]="loading" [data]="resultList" [operations]="operations"
-                            [totalRecords]="totalRecords"></app-common-lazy-dt>
-
     </div>
+
+    <app-common-lazy-dt #laztTable [cols]="cols" (loadLazyEvent)="loadLazy($event)"
+                        [loading]="loading" [data]="resultList" [operations]="operations"
+                        [totalRecords]="totalRecords"></app-common-lazy-dt>
 </form>

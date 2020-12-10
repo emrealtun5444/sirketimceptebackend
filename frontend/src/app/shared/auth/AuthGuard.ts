@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
-import {TokenStorageService} from "../service/token-storage.service";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {TokenStorageService} from '../service/token-storage.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
         if (this.tokenStorage.getToken()) {
             if (route.data.role) {
                 if (this.hasRole(route.data.role)) return true;
-                this.router.navigate(['/accessDenied'], {queryParams: {returnUrl: state.url}});
+                this.router.navigate(['/access'], {queryParams: {returnUrl: state.url}});
             }
             return true;
         }
@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
     }
 
     hasRole(authLink): boolean {
-        let roles = authLink.split(",");
+        let roles = authLink.split(',');
         for (var val of roles) {
             let hasRole = this.tokenStorage.hasRole(val);
             if (hasRole) return true;

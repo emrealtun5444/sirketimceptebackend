@@ -1,0 +1,41 @@
+<form [formGroup]="entityForm">
+    <p-toast></p-toast>
+    <div class="login-body">
+        <div class="login-panel p-fluid">
+            <div class="p-grid">
+                <div class="p-col-12 logo-container">
+                    <img src="assets/layout/images/logo-dark.png" alt="logo-dark"/>
+                    <h1>{{'label.please.login' | translate}}</h1>
+                    <h2>{{'label.wellcome' | translate}}</h2>
+                </div>
+                <div class="p-col-12">
+                    <div class="input-wrapper">
+                        <input type="text" autocomplete="off" placeholder="Username" formControlName="username" pInputText>
+                        <app-validation-message
+                            [validationControl]="entityForm.controls['username']"></app-validation-message>
+                    </div>
+                </div>
+                <div class="p-col-12">
+                    <div class="input-wrapper">
+                        <input type="password" autocomplete="off" formControlName="password" placeholder="Password" pInputText>
+                        <app-validation-message
+                            [validationControl]="entityForm.controls['password']"></app-validation-message>
+                    </div>
+                </div>
+<!--                <div class="p-col-12 chkbox-container">-->
+<!--                    <div class="p-field-checkbox">-->
+<!--                        <p-checkbox [binary]="true"></p-checkbox>-->
+<!--                        <label> {{'label.remember.me' | translate}} </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="p-col-12">
+                    <button type="button" pButton label="{{'btn.giris.yap' | translate}}" [disabled]="!entityForm.valid" (click)="onSubmit()" class="p-button-success p-button-rounded p-button-raised"></button>
+                </div>
+                <div class="p-col-12">
+                    <button type="button" pButton label="{{'btn.kayit.ol' | translate}}"  (click)="kayitOl()" class="p-button-success p-button-rounded p-button-raised"></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

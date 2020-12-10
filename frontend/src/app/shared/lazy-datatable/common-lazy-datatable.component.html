@@ -15,6 +15,7 @@
     <p-table #dt
              *ngIf="!renderEmptyLabel()"
              id="dt_common"
+             styleClass="p-datatable-striped p-datatable-sm"
              dataKey="id"
              [lazy]="true"
              (onLazyLoad)="loadLazy($event)"
@@ -49,22 +50,19 @@
                                        [min]="0"
                                        [(max)]="data.length"
                                        [(ngModel)]="secilecekKayitSayisi"></p-spinner>
-                            <button pButton type="button" icon="fa fa-check" class="ui-button-primary"
+                            <button pButton type="button" icon="pi pi-check" class="ui-button-primary"
                                     (click)="kayitSec()"></button>
-                            <button pButton type="button" icon="far fa-trash-alt" class="ui-button-secondary"
+                            <button pButton type="button" icon="far pi-trash-alt" class="ui-button-secondary"
                                     (click)="kayitTemizle()"></button>
                         </div>
                     </div>
 
                     <div *ngIf="title" style="display:table-cell; text-align:left; vertical-align:middle;">
-                        {{ title | translate}}
+                        <h5 class="p-m-0"> {{ title | translate}}</h5>
                     </div>
 
                     <div style="display:table-cell;  text-align: right; vertical-align: middle;">
                         <div style="display: inline-flex;">
-                            <p-toggleButton [(ngModel)]="showFilter" offIcon="fa fa-filter" onIcon="fa fa-filter"
-                                            onLabel=""
-                                            offLabel=""></p-toggleButton>
                             <p-multiSelect [options]="columnOptions"
                                            [(ngModel)]="columns"
                                            optionLabel="label"
@@ -111,54 +109,6 @@
                     {{'label.islem' | translate}}
                 </th>
             </tr>
-            <tr [ngStyle]="{'display':showFilter ? 'table-row': 'none'}">
-                <th *ngIf="checkbox || radio" class="app-table-select-col app-table-overlay"></th>
-
-                <th *ngFor="let col of columns" [ngSwitch]="col.type" [hidden]="isHidden(col.field)">
-                    <div *ngSwitchCase="ColumnType.ENUM">
-                        <input pInputText type="text"
-                               (input)="dt.filter($event.target.value, col.field + '_ack', 'contains')">
-                    </div>
-                    <div *ngSwitchCase="ColumnType.TRANSLATE">
-                        <input pInputText type="text"
-                               (input)="dt.filter($event.target.value, col.field + '_trns', 'contains')">
-                    </div>
-                    <div *ngSwitchCase="ColumnType.DATE_TIME">
-                        <p-calendar
-                            (onSelect)="dt.filter($event ? $event.getTime() : null, col.field, 'dateTimeFilterCustom')"
-                            [monthNavigator]="true"
-                            [yearNavigator]="true"
-                            readonlyInput="true"
-                            [locale]="appStore.tr" yearRange="1960:2030"
-                            (onClearClick)="dt.filter(null, col.field, 'contains')"
-                            [dateFormat]="appStore.dateFormat" [showButtonBar]="true"></p-calendar>
-                    </div>
-                    <div *ngSwitchCase="ColumnType.DATE">
-                        <p-calendar (onSelect)="dt.filter($event ? $event.getTime() : null, col.field, 'contains')"
-                                    [monthNavigator]="true" [yearNavigator]="true"
-                                    [locale]="appStore.tr" yearRange="1960:2030"
-                                    readonlyInput="true"
-                                    (onClearClick)="dt.filter(null, col.field, 'contains')"
-                                    [dateFormat]="appStore.dateFormat" [showButtonBar]="true"></p-calendar>
-                    </div>
-                    <div *ngSwitchCase="ColumnType.NUMBER">
-                        <input #a pInputText pKeyFilter="num"
-                               (input)="dt.filter($event.target.value, col.field, 'contains')">
-                    </div>
-                    <div *ngSwitchCase="ColumnType.PARA">
-                        <input #a pInputText pKeyFilter="money" (input)="paraFilter($event.target.value, col.field,dt)">
-                    </div>
-                    <div *ngSwitchCase="ColumnType.PARA_OBJECT">
-                        <input #a pInputText pKeyFilter="money"
-                               (input)="paraObjectFilter($event.target.value, col.field,dt)">
-                    </div>
-                    <div *ngSwitchDefault>
-                        <input pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
-                    </div>
-                </th>
-
-                <th *ngIf="islemler" class="app-table-overlay app-table-islemler"></th>
-            </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
@@ -177,7 +127,7 @@
                 <td id="col_{{col.field}}" *ngFor="let col of columns" [ngSwitch]="col.type"
                     [hidden]="isHidden(col.field)"
                     [ngClass]="{'app-table-number': col.type == ColumnType.NUMBER || col.type == ColumnType.DECIMAL || col.type == ColumnType.PARA || col.type == ColumnType.PARA_OBJECT, 'app-table-date' : col.type === ColumnType.DATE || col.type === ColumnType.DATE_TIME}">
-                    <span class="ui-column-title">{{col.label}}</span>
+
                     <span *ngSwitchCase="ColumnType.ENUM" [className]="call(col.classFn, rowData, col.field)"
                           [pTooltip]="call(col.toolTip, rowData, col.field)">
             {{rowData[col.field + '_ack']}}
@@ -222,42 +172,18 @@
                 </td>
 
                 <td id="col_islemler" *ngIf="islemler" class="app-table-islemler app-table-overlay">
-                    <a *ngIf="goruntule" id="{{'a_goruntule_' + index.toString()}}"
-                       [routerLink]="rowData.id + '/goruntule'"
-                       pTooltip="{{'label.goruntule' | translate}}" tooltipPosition="left">
-                        <span class="fa fa-search"></span>
-                    </a>
-                    <a *ngIf="guncelle" id="{{'a_guncelle_' + index.toString()}}"
-                       [routerLink]="rowData.id + '/guncelle'"
-                       pTooltip="{{'label.guncelle' | translate}}" tooltipPosition="left">
-                        <span class="fa fa-pencil-alt"></span>
-                    </a>
-                    <a *ngIf="sil" id="{{'a_sil_' + index.toString()}}" [routerLink]="" (click)="silConfirm(rowData.id)"
-                       pTooltip="{{'label.sil' | translate}}" tooltipPosition="left">
-                        <span class="fa fa-trash-alt"></span>
-                    </a>
-                    <a *ngIf="silObject" id="{{'a_sil_obj_' + index.toString()}}" [routerLink]=""
-                       (click)="silObjectConfirm(rowData)"
-                       pTooltip="{{'label.sil' | translate}}" tooltipPosition="left">
-                        <span class="fa fa-trash-alt"></span>
-                    </a>
-                    <a *ngIf="tarihce" id="{{'a_tarihce_' + index.toString()}}" [routerLink]="rowData.id + '/tarihce'"
-                       pTooltip="{{'label.tarihce' | translate}}" tooltipPosition="left">
-                        <span class="fa fa-history"></span>
-                    </a>
-
                     <ng-template ngFor let-opt [ngForOf]="operations">
-                        <a [id]="opt.id + index.toString()" (click)="call(opt.event, rowData)" class="cursor-pointer"
-                           *ngIf="!opt.route && (!opt.rendered || call(opt.rendered, rowData))"
-                           pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left">
-                            <span [class]="opt.class"></span>
-                        </a>
-                        <a [id]="opt.id + index.toString()"
-                           [routerLink]="(opt.routeBase ? opt.routeBase: '') + rowData.id + opt.route"
-                           *ngIf="opt.route && (!opt.rendered || call(opt.rendered, rowData))"
-                           pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left">
-                            <span [class]="opt.class"></span>
-                        </a>
+                        <button  [id]="opt.id + index.toString()"
+                                 *ngIf="!opt.route && (!opt.rendered || call(opt.rendered, rowData))" pButton pRipple
+                                 [icon]="opt.class" pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left"
+                                 (click)="call(opt.event, rowData)">
+                        </button>
+
+                        <button  [id]="opt.id + index.toString()"
+                                 *ngIf="opt.route && (!opt.rendered || call(opt.rendered, rowData))" pButton pRipple
+                                 [icon]="opt.class" pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left"
+                                 [routerLink]="(opt.routeBase ? opt.routeBase: '') + rowData.id + opt.route">
+                        </button>
                     </ng-template>
 
                 </td>

@@ -1,6 +1,10 @@
-$primaryColor:#2ab1be;
-$highlightTextColor:#ffffff;
-$buttonTextColor:#ffffff;
-$inputFocusBgColor:#42bac5;
+$primaryColor: #2ab1be;
+$primaryLightColor: scale-color($primaryColor, $lightness: 60%) !default;
+$primaryDarkColor: scale-color($primaryColor, $lightness: -10%) !default;
+$primaryDarkerColor: scale-color($primaryColor, $lightness: -20%) !default;
+$primaryTextColor: #ffffff;
+
+$highlightBg: $primaryColor;
+$highlightTextColor: $primaryTextColor;
 
 @import '../sass/theme/_theme';

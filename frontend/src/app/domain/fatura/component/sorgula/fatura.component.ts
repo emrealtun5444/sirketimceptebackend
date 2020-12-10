@@ -1,14 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {AbstractBaseComponent, ColumnType, Operations} from "../../../../shared/abstract-base-component";
-import {AppStore} from "../../../../shared/app.store";
-import {LazyLoadEvent} from "primeng";
-import {FaturaService} from "../../service/fatura.service";
-import {FaturaSorguKriterleri} from "../../dto/fatura-sorgu-kriterleri";
-import {Fatura} from "../../dto/fatura";
-import {CommonLazyDatatableComponent} from "../../../../shared/lazy-datatable/common-lazy-datatable.component";
-import {StokKartSorguKriterleri} from "../../../stok-kart/dto/stok-kart-sorgu-kriterleri";
-import {ExcelService} from "../../../../shared/datatable/excel.service";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {AbstractBaseComponent, ColumnType, Operations} from '../../../../shared/abstract-base-component';
+import {AppStore} from '../../../../shared/app.store';
+import {FaturaService} from '../../service/fatura.service';
+import {FaturaSorguKriterleri} from '../../dto/fatura-sorgu-kriterleri';
+import {Fatura} from '../../dto/fatura';
+import {LazyLoadEvent} from 'primeng/api';
 
 @Component({
     selector: 'app-fatura',
@@ -23,7 +20,7 @@ export class FaturaComponent extends AbstractBaseComponent implements OnInit {
             id: 'goruntule',
             route: '/detay',
             tooltip: 'label.fatura.detay',
-            class: 'fa fa-search'
+            class: 'pi pi-search'
         }
     ];
 

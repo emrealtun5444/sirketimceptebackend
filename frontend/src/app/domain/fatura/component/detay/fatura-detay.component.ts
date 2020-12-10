@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup} from "@angular/forms";
-import {AbstractBaseComponent, ColumnType} from "../../../../shared/abstract-base-component";
-import {CariKart} from "../../../cari-kart/dto/cari-kart";
-import {AppStore} from "../../../../shared/app.store";
-import {FaturaService} from "../../service/fatura.service";
-import {FaturaDetay} from "../../dto/fatura-detay";
-import {FaturaKalem} from "../../dto/fatura-kalem";
-import {Fatura} from "../../dto/fatura";
-import {ActivatedRoute, Params} from "@angular/router";
+import {FormGroup} from '@angular/forms';
+import {AbstractBaseComponent, ColumnType} from '../../../../shared/abstract-base-component';
+import {CariKart} from '../../../cari-kart/dto/cari-kart';
+import {AppStore} from '../../../../shared/app.store';
+import {FaturaService} from '../../service/fatura.service';
+import {FaturaDetay} from '../../dto/fatura-detay';
+import {FaturaKalem} from '../../dto/fatura-kalem';
+import {Fatura} from '../../dto/fatura';
+import {ActivatedRoute, Params} from '@angular/router';
 import { Location } from '@angular/common';
 
 
@@ -64,7 +64,11 @@ export class FaturaDetayComponent extends AbstractBaseComponent implements OnIni
         this.cariKart = data['cariKart'];
         this.fatura = data['fatura'];
         this.faturaDetayList = data['faturaDetayList'];
-        this.faturaKalemList = data['faturaKalemList'];
+        this.faturaKalemList = data['faturaKalemList'].filter(value => value.satirAciklama !== null && value.satirAciklama !== '' && value.satirTipi !== 'A');
     }
+
+  print() {
+    window.print();
+  }
 
 }

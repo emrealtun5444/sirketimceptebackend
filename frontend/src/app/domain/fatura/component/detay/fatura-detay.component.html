@@ -1,103 +1,85 @@
-<div class="ui-g dashboard">
-    <div class="ui-g-12 ui-md-6" *ngIf="cariKart">
-        <div class="card card-w-title">
-            <h1>{{'label.cari.bilgileri' | translate}}</h1>
+<button pButton label="Print" type="button" icon="pi pi-print" (click)="print()"
+        style="display:block;margin-bottom: 20px; margin-left: 6px;"></button>
+<div class="p-grid" *ngIf="fatura && cariKart">
+    <div class="p-col">
+        <div class="card">
+            <div id="invoice-content">
+                <div class="invoice-content-wrapper">
+                    <div class="invoice-header">
+                        <div class="invoice-company">
+                            <img id="invoice-logo" class="logo-image" src="assets/layout/images/aymer-yapi.jpg"
+                                 alt="verona-layout"/>
+                            <div class="company-name">Aymer Yapı Bilişim San. Tic. Ltd. Şti.</div>
+                            <div>Doğanbey, Rüzgarlı Cd. No:33,</div>
+                            <div>06050 Altındağ / Ankara</div>
+                        </div>
+                        <div>
+                            <div class="invoice-title">{{'label.fatura' | translate}}</div>
+                            <div class="invoice-details">
+                                <div class="invoice-label">{{'label.fatura.tarihi' | translate}}</div>
+                                <div class="invoice-value">{{fatura.faturaTarihi | dateFormat}}</div>
 
-            <div class="ui-g form-group">
-                <div class="ui-g-12 ui-md-2">
-                    <label style="font-weight: bold"> {{'label.cari.tipi' | translate}}</label>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    {{cariKart.cariTipi}}
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <label style="font-weight: bold">{{'label.cari.kodu' | translate}}</label>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    {{cariKart.cariKodu}}
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <label style="font-weight: bold">{{'label.cari.adi' | translate}}</label>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    {{cariKart.cariAdi}}
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <label style="font-weight: bold">{{'label.cari.adresi' | translate}}</label>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    {{cariKart.cariAdres}}
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <label style="font-weight: bold">{{'label.cari.tel' | translate}}</label>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    {{cariKart.cariTel}}
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <label style="font-weight: bold">{{'label.cari.mail' | translate}}</label>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    {{cariKart.cariMail}}
+                                <div class="invoice-label">{{'label.fatura.no' | translate}} #</div>
+                                <div class="invoice-value">{{fatura.faturaNo}}</div>
+
+                                <div class="invoice-label">{{'label.cari.kodu' | translate}}</div>
+                                <div class="invoice-value">{{fatura.cariKodu}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-to">
+                        <div class="bill-to">{{'label.fatura.edilen' | translate}}</div>
+                        <div class="invoice-to-info">
+                            <div>{{cariKart.cariAdi}} </div>
+                            <div>{{cariKart.cariAdres}}</div>
+                        </div>
+                    </div>
+                    <div class="invoice-items">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>{{'label.urun.adi' | translate}}</th>
+                                <th>{{'label.stok.kodu' | translate}}</th>
+                                <th>{{'label.miktar' | translate}}</th>
+                                <th>{{'label.birim.fiyati' | translate}}</th>
+                                <th>{{'label.tutar' | translate}}</th>
+                                <th>{{'label.iskonto' | translate}}</th>
+                                <th>{{'label.kdv.tutari' | translate}}</th>
+                                <th>{{'label.toplam.tutar' | translate}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let fd of faturaDetayList">
+                                <td>{{fd.urunAdi}}</td>
+                                <td>{{fd.stokKodu}}</td>
+                                <td>{{fd.miktar}}</td>
+                                <td>{{fd.birimFiyati | paraFormat}}</td>
+                                <td>{{fd.tutar | paraFormat}}</td>
+                                <td>{{fd.iskonto | paraFormat}}</td>
+                                <td>{{fd.kdvTutari | paraFormat}}</td>
+                                <td>{{fd.toplamTutar | paraFormat}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="invoice-summary">
+                        <div class="invoice-notes">
+                            <b>NOT</b>
+                            <div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="invoice-details" *ngFor="let fkRow of faturaKalemList" [ngSwitch]="fkRow.satirTipi">
+                                <div class="invoice-label">{{fkRow.satirAciklama}}</div>
+                                <div class="invoice-value" *ngSwitchCase="'K'">{{fkRow.tutar | paraFormat}} (% {{fkRow.kdvOrani}})</div>
+                                <div class="invoice-value" *ngSwitchDefault>{{fkRow.tutar | paraFormat}}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-6" *ngIf="fatura">
-        <div class="card card-w-title">
-            <h1>{{'label.fatura.bilgileri' | translate}}</h1>
-
-            <div class="ui-g form-group">
-                <div class="ui-g-12 ui-md-2">
-                    <label style="font-weight: bold">{{'label.fatura.no' | translate}}</label>
-                </div>
-                <div class="ui-g-12 ui-md-10">
-                    {{fatura.faturaNo}}
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <label style="font-weight: bold">{{'label.fatura.tarihi' | translate}}</label>
-                </div>
-                <div class="ui-g-12 ui-md-10">
-                    {{fatura.faturaTarihi | dateFormat}}
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <label style="font-weight: bold">{{'label.fatura.yonu' | translate}}</label>
-                </div>
-                <div class="ui-g-12 ui-md-10">
-                    {{fatura.faturaYonu}}
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-12" *ngIf="faturaDetayList">
-        <app-common-dt [data]="faturaDetayList" [cols]="fatDetCols"></app-common-dt>
-    </div>
-
-    <div class="ui-g-12 ui-lg-8 contacts"></div>
-
-    <div class="ui-g-12 ui-lg-4 contacts" *ngIf="faturaKalemList">
-        <p-panel header="{{'label.fatura.kalem' | translate}}">
-            <ul>
-                <li class="clearfix" *ngFor="let fkRow of faturaKalemList" [ngSwitch]="fkRow.satirTipi">
-                    <div class="contact-info" style="font-weight: bold;">
-                        <span class="name">{{fkRow.satirAciklama}}</span>
-                    </div>
-                    <div class="contact-detail" *ngSwitchCase="'K'">
-                        <span class="name">{{fkRow.tutar | paraFormat}} (% {{fkRow.kdvOrani}})</span>
-                    </div>
-                    <div class="contact-detail" *ngSwitchDefault>
-                        <span class="name">{{fkRow.tutar | paraFormat}}</span>
-                    </div>
-                </li>
-            </ul>
-        </p-panel>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-        <button pButton type="button" label="{{'btn.geri.don' | translate}}"
-                (click)="this.location.back();"></button>
     </div>
 </div>
+<button pButton type="button" label="{{'btn.geri.don' | translate}}"
+        (click)="this.location.back();"></button>
