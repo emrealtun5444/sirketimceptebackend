@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AbstractService} from "../../../shared/abstract-service";
-import {AppResponse} from "../../../shared/app-response";
+import {AbstractService} from "../../../../shared/abstract-service";
+import {AppResponse} from "../../../../shared/app-response";
 
 
 @Injectable({

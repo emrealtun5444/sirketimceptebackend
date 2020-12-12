@@ -31,6 +31,6 @@ public class SignupRequest {
     private Set<String> role;
 
     @NotNull
-    @Size(min = 6, max = 40)
+    @Size(min = 2, max = 40)
     private String password;
 }

@@ -83,6 +83,7 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {ToolbarModule} from 'primeng/toolbar';
 import {InputNumberModule} from 'primeng/inputnumber';
+import { CompanyComponent } from './company/company.component';
 
 @NgModule({
     imports: [
@@ -169,7 +170,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
         CommonLazyDatatableComponent,
         DatatableInputValidatorComponent,
         FileUploadComponent,
-        ParaGoruntuleComponent
+        ParaGoruntuleComponent,
+        CompanyComponent
     ],
     exports: [
         DateFormatPipe,
@@ -257,6 +259,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
         FileUploadComponent,
         ParaGoruntuleComponent,
         InputNumberModule,
+        CompanyComponent,
     ]
 })
 export class SharedModule {

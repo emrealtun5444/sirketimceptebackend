@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AppStore} from "../../../../shared/app.store";
+import {AppStore} from "../../../../../shared/app.store";
 import {User} from "../../dto/user";
 import {UserService} from "../../service/user.service";
-import {AbstractBaseComponent} from "../../../../shared/abstract-base-component";
+import {AbstractBaseComponent} from "../../../../../shared/abstract-base-component";
 
 @Component({
   selector: 'app-profile',

@@ -1,0 +1,7 @@
+<p-dropdown [options]="companies"
+            *ngIf="renderCombo()"
+            optionLabel="label" optionValue="value"
+            [(ngModel)]="selectedItem"
+            (onChange)="onChangeCompany($event)"
+></p-dropdown>
+

@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.system.sirket.model;
 
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.Auditable;
+import com.aymer.sirketimceptebackend.common.model.abstructcommon.Idendifier;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "sirket")
-public class Sirket extends Auditable<String> implements Serializable {
+public class Sirket extends Auditable<String> implements Serializable, Idendifier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,4 +48,8 @@ public class Sirket extends Auditable<String> implements Serializable {
     private EDurum durum;
 
 
+    @Override
+    public String getAciklama() {
+        return sirketAdi;
+    }
 }

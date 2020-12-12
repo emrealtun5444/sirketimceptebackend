@@ -25,7 +25,7 @@ public class ReferenceMapper {
     }
 
     public <T extends Idendifier> T resolve(SelectItem selectItem, @TargetType Class<T> entityClass) {
-        return selectItem != null && selectItem.getId() != null ? entityManager.find( entityClass, selectItem.getId() ) : null;
+        return selectItem != null && selectItem.getValue() != null ? entityManager.find( entityClass, selectItem.getValue() ) : null;
     }
 
     public SelectItem toComboItem(Idendifier entity) {

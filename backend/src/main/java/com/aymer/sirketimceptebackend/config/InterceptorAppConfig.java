@@ -1,5 +1,6 @@
 package com.aymer.sirketimceptebackend.config;
 
+import com.aymer.sirketimceptebackend.common.interceptor.CompanyInterceptor;
 import com.aymer.sirketimceptebackend.common.interceptor.LocaleInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,8 +18,12 @@ public class InterceptorAppConfig extends WebMvcConfigurerAdapter {
     @Autowired
     private LocaleInterceptor localeInterceptor;
 
+    @Autowired
+    private CompanyInterceptor companyInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeInterceptor);
+        registry.addInterceptor(companyInterceptor);
     }
 }

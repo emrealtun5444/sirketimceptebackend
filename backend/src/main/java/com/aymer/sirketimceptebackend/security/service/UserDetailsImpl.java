@@ -1,18 +1,22 @@
 package com.aymer.sirketimceptebackend.security.service;
 
+import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Builder
 @Getter
 @Setter
 public class UserDetailsImpl implements UserDetails {
@@ -33,8 +37,11 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
+    private List<Sirket> companyList;
+
+
     public UserDetailsImpl(Long id, String name, String surname, String username, String email, String password,
-                           Collection<? extends GrantedAuthority> authorities) {
+                           Collection<? extends GrantedAuthority> authorities, List<Sirket> companyList) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -42,21 +49,23 @@ public class UserDetailsImpl implements UserDetails {
         this.email = email;
         this.password = password;
         this.authorities = authorities;
+        this.companyList = companyList;
     }
 
     public static UserDetailsImpl build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-                .collect(Collectors.toList());
+            .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+            .collect(Collectors.toList());
 
         return new UserDetailsImpl(
-                user.getId(),
-                user.getName(),
-                user.getSurname(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getPassword(),
-                authorities);
+            user.getId(),
+            user.getName(),
+            user.getSurname(),
+            user.getUsername(),
+            user.getEmail(),
+            user.getPassword(),
+            authorities,
+            new ArrayList<>(user.getCompanies()));
     }
 
     @Override

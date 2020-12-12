@@ -4,43 +4,71 @@
         <div class="login-panel p-fluid">
             <div class="p-grid">
                 <div class="ui-g-12 logo-container">
+                    <img src="assets/layout/images/logo_1.png" style="width: 150px" alt="Şirketim Cepte"/>
                     <h1>{{'label.register' | translate}}</h1>
+                    <h2>{{'label.wellcome' | translate}}</h2>
                 </div>
-                <div class="p-col-12">
-                    <input id="name" formControlName="name" type="text" autocomplete="off" pInputText
-                           placeholder="{{'label.ad' | translate}}">
+                <div class="p-col-12 p-md-6">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                        <span class="p-float-label">
+                            <input id="name" formControlName="name" type="text" autocomplete="off" pInputText>
+                            <label for="name">{{'label.ad' | translate}}</label>
+                        </span>
+                    </div>
                     <app-validation-message
                         [validationControl]="entityForm.controls['name']"></app-validation-message>
                 </div>
-                <div class="p-col-12">
-                    <input id="surname" formControlName="surname" type="text" autocomplete="off" pInputText
-                           placeholder="{{'label.soyad' | translate}}">
+                <div class="p-col-12 p-md-6">
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input id="surname" formControlName="surname" type="text" autocomplete="off" pInputText>
+                            <label for="surname">{{'label.soyad' | translate}}</label>
+                        </span>
+                    </div>
                     <app-validation-message
                         [validationControl]="entityForm.controls['surname']"></app-validation-message>
                 </div>
-                <div class="p-col-12">
-                    <input id="email" formControlName="email" type="text" autocomplete="off" pInputText
-                           placeholder="{{'label.email' | translate}}">
-                    <app-validation-message
-                        [validationControl]="entityForm.controls['email']"></app-validation-message>
-                </div>
-                <div class="p-col-12">
-                    <input id="username" formControlName="username" type="text" autocomplete="off" pInputText
-                           placeholder="{{'label.kullanici.adi' | translate}}">
+                <div class="p-col-12 p-md-6">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                        <span class="p-float-label">
+                            <input id="username" formControlName="username" type="text" autocomplete="off" pInputText>
+                            <label for="username">{{'label.kullanici.adi' | translate}}</label>
+                        </span>
+                    </div>
                     <app-validation-message
                         [validationControl]="entityForm.controls['username']"></app-validation-message>
                 </div>
-                <div class="ui-g-12">
-                    <input id="password" formControlName="password" type="password" autocomplete="off" pPassword
-                           placeholder="{{'label.sifre' | translate}}">
+                <div class="p-col-12 p-md-6">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                        <span class="p-float-label">
+                            <input id="password" formControlName="password" type="password" autocomplete="off" pPassword>
+                            <label for="password">{{'label.sifre' | translate}}</label>
+                        </span>
+                    </div>
                     <app-validation-message
                         [validationControl]="entityForm.controls['password']"></app-validation-message>
                 </div>
                 <div class="p-col-12">
-                    <button type="button" pButton label="{{'btn.kaydet' | translate}}" [disabled]="!entityForm.valid" (click)="onSubmit()" class="p-button-success p-button-rounded p-button-raised"></button>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">@</span>
+                        <span class="p-float-label">
+                            <input id="email" formControlName="email" type="text" autocomplete="off" pInputText>
+                            <label for="email">{{'label.email' | translate}}</label>
+                        </span>
+                    </div>
+                    <app-validation-message
+                        [validationControl]="entityForm.controls['email']"></app-validation-message>
                 </div>
                 <div class="p-col-12">
-                    <button type="button" pButton label="{{'btn.geri.don' | translate}}" (click)="appStore.location.back()" class="p-button-success p-button-rounded p-button-raised"></button>
+                    <button type="button" pButton label="{{'btn.kaydet' | translate}}" [disabled]="!entityForm.valid"
+                            (click)="onSubmit()" class="p-button-raised"></button>
+                </div>
+                <div class="p-col-12">
+                    <button type="button" pButton label="{{'btn.geri.don' | translate}}"
+                            (click)="appStore.location.back()" class="p-button-raised p-button-warning"></button>
                 </div>
             </div>
         </div>

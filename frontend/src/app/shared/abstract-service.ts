@@ -1,5 +1,5 @@
-import {Server} from "./constants";
+import {environment} from '../../environments/environment';
 
 export abstract class AbstractService {
-    readonly BASE_URL = Server.URL;
+  readonly BASE_URL = environment.URL;
 }

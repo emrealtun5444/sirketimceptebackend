@@ -10,6 +10,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SelectItem implements Serializable {
-    private Long id;
-    private String aciklama;
+    private Long value;
+    private String label;
 }

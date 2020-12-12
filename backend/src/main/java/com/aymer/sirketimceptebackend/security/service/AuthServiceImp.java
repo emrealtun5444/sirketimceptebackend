@@ -1,17 +1,19 @@
 package com.aymer.sirketimceptebackend.security.service;
 
+import com.aymer.sirketimceptebackend.common.exception.ServiceException;
+import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItem;
+import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItemMapper;
+import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.security.dto.JwtResponse;
 import com.aymer.sirketimceptebackend.security.dto.LoginRequest;
 import com.aymer.sirketimceptebackend.security.dto.SignupRequest;
-import com.aymer.sirketimceptebackend.security.mapper.AuthMapper;
-import com.aymer.sirketimceptebackend.common.exception.ServiceException;
-import com.aymer.sirketimceptebackend.system.role.model.Role;
-import com.aymer.sirketimceptebackend.system.user.model.User;
-import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
-import com.aymer.sirketimceptebackend.system.role.model.ERole;
-import com.aymer.sirketimceptebackend.system.role.repository.RoleRepository;
-import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
 import com.aymer.sirketimceptebackend.security.jwt.JwtUtils;
+import com.aymer.sirketimceptebackend.security.mapper.AuthMapper;
+import com.aymer.sirketimceptebackend.system.role.model.ERole;
+import com.aymer.sirketimceptebackend.system.role.model.Role;
+import com.aymer.sirketimceptebackend.system.role.repository.RoleRepository;
+import com.aymer.sirketimceptebackend.system.user.model.User;
+import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -59,7 +61,7 @@ public class AuthServiceImp implements AuthService {
         Authentication authentication = null;
         try {
             authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         } catch (BadCredentialsException ex) {
             throw new ServiceException("error.invalid.username.pasword");
         }
@@ -69,7 +71,14 @@ public class AuthServiceImp implements AuthService {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
-        return new JwtResponse(userDetails.getName(), userDetails.getSurname(), jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles);
+        List<SelectItem> companies = SelectItemMapper.toComboItems(userDetails.getCompanyList());
+        return JwtResponse.builder()
+            .name(userDetails.getName())
+            .surname(userDetails.getSurname())
+            .token(jwt).id(userDetails.getId())
+            .username(userDetails.getUsername())
+            .email(userDetails.getEmail())
+            .roles(roles).companies(companies).build();
     }
 
     @Override
@@ -79,26 +88,26 @@ public class AuthServiceImp implements AuthService {
         Set<Role> roles = new HashSet<>();
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
 
                         break;
                     case "mod":
                         Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
 
                         break;
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(userRole);
                 }
             });

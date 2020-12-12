@@ -37,7 +37,7 @@ import {AuthGuard} from './shared/auth/AuthGuard';
                     },
                     {
                         path: 'profile',
-                        loadChildren: () => import('src/app/domain/user/user.module').then(m => m.UserModule),
+                        loadChildren: () => import('src/app/domain/settings/user/user.module').then(m => m.UserModule),
                     },
                     {
                         path: 'marketPlace',

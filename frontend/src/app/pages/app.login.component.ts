@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractBaseComponent} from '../shared/abstract-base-component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AppStore} from '../shared/app.store';
@@ -12,54 +12,63 @@ import {CustomValidator} from '../shared/validation/custom-validator';
   templateUrl: './app.login.component.html',
 })
 export class AppLoginComponent extends AbstractBaseComponent implements OnInit, OnDestroy {
-    entityForm: FormGroup;
+  entityForm: FormGroup;
 
-    errorMessage = '';
-    roles: string[] = [];
-    returnUrl: string;
+  errorMessage = '';
+  returnUrl: string;
 
-    constructor(appStore: AppStore,
-                private authService: AuthService,
-                private router: Router,
-                private route: ActivatedRoute,
-                private tokenStorage: TokenStorageService,
-                private formBuilder: FormBuilder) {
-        super(appStore);
+  constructor(appStore: AppStore,
+              private authService: AuthService,
+              private router: Router,
+              private route: ActivatedRoute,
+              public tokenStorage: TokenStorageService,
+              private formBuilder: FormBuilder) {
+    super(appStore);
+  }
+
+  private buildForms() {
+    this.entityForm = this.formBuilder.group({
+      username: [null, Validators.compose([CustomValidator.required])],
+      password: [null, Validators.compose([CustomValidator.required])]
+    });
+  }
+
+  ngOnInit() {
+    this.setup();
+    this.buildForms();
+  }
+
+  private setup() {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
+  onSubmit() {
+    this.subscribeToResponse(this.authService.login(this.entityForm.value), this.loginSuccess, undefined);
+  }
+
+  kayitOl() {
+    this.router.navigate(['/register']);
+  }
+
+  private loginSuccess(data: any) {
+    this.tokenStorage.saveToken(data.token);
+    this.tokenStorage.saveUser(data);
+    const comp = this.tokenStorage.getCompanies();
+    if (comp.length === 1) {
+      this.navigateToDashboard(comp[0].value);
     }
+  }
 
-    private buildForms() {
-        this.entityForm = this.formBuilder.group({
-            username: [null, Validators.compose([CustomValidator.required])],
-            password: [null, Validators.compose([CustomValidator.required])]
-        });
-    }
+  onSelectCompany(selectedItem) {
+    this.navigateToDashboard(selectedItem.value);
+  }
 
-    ngOnInit() {
-        this.setup();
-        this.buildForms();
-    }
+  navigateToDashboard(entity) {
+    this.tokenStorage.saveSelectedCompany(entity);
+    this.router.navigate([this.returnUrl]);
+  }
 
-    private setup() {
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    }
+  ngOnDestroy(): void {
 
-    onSubmit() {
-        this.subscribeToResponse(this.authService.login(this.entityForm.value), this.loginSuccess, undefined);
-    }
-
-    kayitOl() {
-        this.router.navigate(['/register']);
-    }
-
-    private loginSuccess(data: any) {
-        this.tokenStorage.saveToken(data.token);
-        this.tokenStorage.saveUser(data);
-        this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate([this.returnUrl]);
-    }
-
-
-    ngOnDestroy(): void {
-
-    }
+  }
 }
