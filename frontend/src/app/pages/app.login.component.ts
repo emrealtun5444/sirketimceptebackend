@@ -51,12 +51,20 @@ export class AppLoginComponent extends AbstractBaseComponent implements OnInit, 
   }
 
   private loginSuccess(data: any) {
-    this.tokenStorage.saveToken(data.token);
-    this.tokenStorage.saveUser(data);
-    const comp = this.tokenStorage.getCompanies();
-    if (comp.length === 1) {
-      this.navigateToDashboard(comp[0].value);
+    const comp = data.companies;
+    if (comp.length === 0) {
+      this.appStore.addMessage({
+        severity: 'error',
+        summary: this.appStore.translate.instant('error.register.process.not.completed')
+      }, true);
+    } else {
+      this.tokenStorage.saveToken(data.token);
+      this.tokenStorage.saveUser(data);
+      if (comp.length === 1) {
+        this.navigateToDashboard(comp[0].value);
+      }
     }
+
   }
 
   onSelectCompany(selectedItem) {

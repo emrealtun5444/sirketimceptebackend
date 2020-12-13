@@ -38,6 +38,7 @@
   "error.validation.digit.only": "Sadece sayı girişi yapılabilir.",
   "error.validation.sistem.kodu": "Belirtilen sistem kodu başka bir ek bilgi tipi için kullanılmıştır.",
   "error.validation.date.range": "Başlangıç ve bitiş tarihi boş bırakılamaz.",
+  "error.register.process.not.completed": "Kullanıcı kaydınız aktif değildir. Sistem yöneticisi ile iletişime geçiniz",
   "##############################################################################################": "SUCCESS",
   "success.kullanici.olusturuldu": "Kullanıcı kaydınız başarıile oluşturulmuştur.",
   "success.sifre.degistirildi": "Şifreniz başarı ile güncellenmiştir.",

@@ -44,7 +44,7 @@ export class ChangePasswordComponent extends AbstractBaseComponent implements On
 
   private registerSuccess(data: any) {
     this.appStore.addMessage({
-      severity: 'success',
+      severity: 'info',
       summary: this.appStore.translate.instant('success.sifre.degistirildi')
     }, true);
     this.onClose();

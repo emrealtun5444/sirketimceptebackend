@@ -26,6 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.HashSet;
 import java.util.List;
@@ -92,12 +93,13 @@ public class AuthServiceImp implements AuthService {
     public UserDto registerUser(SignupRequest signUpRequest) {
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
-        strRoles.forEach(role -> {
-            Role adminRole = roleRepository.findByName(role)
-                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(adminRole);
-        });
-
+        if (!CollectionUtils.isEmpty(strRoles)) {
+            strRoles.forEach(role -> {
+                Role adminRole = roleRepository.findByName(role)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                roles.add(adminRole);
+            });
+        }
         // Create new user's account
         User user = AuthMapper.INSTANCE.signupRequestToUser(signUpRequest);
         return userService.registerUser(user, signUpRequest.getPassword(), roles);
