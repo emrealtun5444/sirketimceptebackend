@@ -17,6 +17,10 @@ public class AppResponse<T> {
         this.data = data;
     }
 
+    public AppResponse() {
+        this.status = 200;
+    }
+
     public AppResponse(Integer status, String errorMessage) {
         this.status = status;
         this.errorMessage = errorMessage;

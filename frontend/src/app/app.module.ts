@@ -47,54 +47,54 @@ import {DashboardService} from './domain/dashboard/service/dashboard.service';
 registerLocaleData(localeTr);
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        FormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        AppCodeModule,
-        SharedModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useClass: WebpackTranslateLoader
-            }
-        })
-    ],
-    declarations: [
-        AppComponent,
-        AppMainComponent,
-        AppConfigComponent,
-        AppMenuComponent,
-        AppMenuitemComponent,
-        AppTopBarComponent,
-        AppFooterComponent,
-        DashboardDemoComponent,
-        AppLoginComponent,
-        AppInvoiceComponent,
-        AppHelpComponent,
-        AppNotfoundComponent,
-        AppErrorComponent,
-        AppAccessdeniedComponent,
-        LogoutComponent,
-        RegisterComponent
-    ],
-    providers: [
-        {
-            provide: APP_INITIALIZER,
-            useFactory: translateInitializerFactory,
-            deps: [TranslateService, Injector],
-            multi: true
-        },
-        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-        {provide: LOCALE_ID, useValue: 'tr'},
-        {provide: LocationStrategy, useClass: HashLocationStrategy},
-        authInterceptorProviders,
-        MenuService, AppStore, AuthService, AuthGuard, MessageService,
-        ConfirmationService, DashboardService
-    ],
-    bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    AppCodeModule,
+    SharedModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: WebpackTranslateLoader
+      }
+    })
+  ],
+  declarations: [
+    AppComponent,
+    AppMainComponent,
+    AppConfigComponent,
+    AppMenuComponent,
+    AppMenuitemComponent,
+    AppTopBarComponent,
+    AppFooterComponent,
+    DashboardDemoComponent,
+    AppLoginComponent,
+    AppInvoiceComponent,
+    AppHelpComponent,
+    AppNotfoundComponent,
+    AppErrorComponent,
+    AppAccessdeniedComponent,
+    LogoutComponent,
+    RegisterComponent
+  ],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: translateInitializerFactory,
+      deps: [TranslateService, Injector],
+      multi: true
+    },
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: LOCALE_ID, useValue: 'tr'},
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    authInterceptorProviders,
+    MenuService, AppStore, AuthService, AuthGuard, MessageService,
+    ConfirmationService, DashboardService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

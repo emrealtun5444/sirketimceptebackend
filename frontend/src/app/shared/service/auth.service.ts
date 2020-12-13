@@ -35,4 +35,12 @@ export class AuthService extends AbstractService {
             password: user.password
         }, httpOptions);
     }
+
+  changePassword(data): Observable<AppResponse> {
+    return this.http.post<AppResponse>(`${this.SERVICE_PATH}/changepassword`, {
+      existPassword: data.old_password,
+      newPassword: data.new_password,
+      repeatPassword: data.new_password_again,
+    });
+  }
 }

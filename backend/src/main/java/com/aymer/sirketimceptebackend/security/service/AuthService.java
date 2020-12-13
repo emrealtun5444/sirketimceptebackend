@@ -1,9 +1,11 @@
 package com.aymer.sirketimceptebackend.security.service;
 
 
+import com.aymer.sirketimceptebackend.security.dto.ChangePasswordInput;
 import com.aymer.sirketimceptebackend.security.dto.JwtResponse;
 import com.aymer.sirketimceptebackend.security.dto.LoginRequest;
 import com.aymer.sirketimceptebackend.security.dto.SignupRequest;
+import com.aymer.sirketimceptebackend.system.user.dto.UserDto;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 
 /**
@@ -15,6 +17,8 @@ public interface AuthService {
 
     JwtResponse authenticateUser(LoginRequest loginRequest);
 
-    User registerUser(SignupRequest signUpRequest);
+    UserDto registerUser(SignupRequest signUpRequest);
+
+    void changePassword(ChangePasswordInput input);
 
 }

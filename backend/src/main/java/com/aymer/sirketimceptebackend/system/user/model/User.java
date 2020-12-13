@@ -8,6 +8,7 @@ import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -71,5 +72,36 @@ public class User extends Auditable<String> implements Serializable, Idendifier 
     @Override
     public String getAciklama() {
         return name + " " + surname;
+    }
+
+
+    public void prepareUserRegister(String password, Set<Role> roleList) {
+        this.setPassword(password);
+        this.setRoles(roleList);
+        this.setDurum(EDurum.AKTIF);
+    }
+
+    public String getNameSurname() {
+        return (name == null ? "" : name) + (surname == null ? "" : " " + surname);
+    }
+
+    public String getRoleNames() {
+        if(CollectionUtils.isEmpty(roles)) return null;
+        StringBuilder roleNames = new StringBuilder();
+        roles.forEach(role -> {
+            roleNames.append(role.getName());
+            roleNames.append(", ");
+        });
+        return roleNames.substring(0, roleNames.lastIndexOf(","));
+    }
+
+    public String getCompanyNames() {
+        if(CollectionUtils.isEmpty(companies)) return null;
+        StringBuilder companyNames = new StringBuilder();
+        companies.forEach(company -> {
+            companyNames.append(company.getSirketAdi());
+            companyNames.append(", ");
+        });
+        return companyNames.substring(0, companyNames.lastIndexOf(","));
     }
 }

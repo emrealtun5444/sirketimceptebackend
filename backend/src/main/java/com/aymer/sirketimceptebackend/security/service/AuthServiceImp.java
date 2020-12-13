@@ -4,6 +4,7 @@ import com.aymer.sirketimceptebackend.common.exception.ServiceException;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItem;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItemMapper;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.security.dto.ChangePasswordInput;
 import com.aymer.sirketimceptebackend.security.dto.JwtResponse;
 import com.aymer.sirketimceptebackend.security.dto.LoginRequest;
 import com.aymer.sirketimceptebackend.security.dto.SignupRequest;
@@ -12,8 +13,11 @@ import com.aymer.sirketimceptebackend.security.mapper.AuthMapper;
 import com.aymer.sirketimceptebackend.system.role.model.ERole;
 import com.aymer.sirketimceptebackend.system.role.model.Role;
 import com.aymer.sirketimceptebackend.system.role.repository.RoleRepository;
+import com.aymer.sirketimceptebackend.system.user.dto.UserDto;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
+import com.aymer.sirketimceptebackend.system.user.service.UserService;
+import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -38,22 +42,24 @@ import java.util.stream.Collectors;
 @Service
 public class AuthServiceImp implements AuthService {
 
+    private AuthenticationManager authenticationManager;
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
+    private PasswordEncoder encoder;
+    private JwtUtils jwtUtils;
+    private SessionUtils sessionUtils;
+    private UserService userService;
 
     @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    PasswordEncoder encoder;
-
-    @Autowired
-    JwtUtils jwtUtils;
-
+    public AuthServiceImp(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder, JwtUtils jwtUtils, SessionUtils sessionUtils, UserService userService) {
+        this.authenticationManager = authenticationManager;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.encoder = encoder;
+        this.jwtUtils = jwtUtils;
+        this.sessionUtils = sessionUtils;
+        this.userService = userService;
+    }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -83,42 +89,34 @@ public class AuthServiceImp implements AuthService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public User registerUser(SignupRequest signUpRequest) {
+    public UserDto registerUser(SignupRequest signUpRequest) {
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+        strRoles.forEach(role -> {
+            Role adminRole = roleRepository.findByName(role)
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
-
-                        break;
-                    case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
-
-                        break;
-                    default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                }
-            });
-        }
+            roles.add(adminRole);
+        });
 
         // Create new user's account
         User user = AuthMapper.INSTANCE.signupRequestToUser(signUpRequest);
-        user.setPassword(encoder.encode(signUpRequest.getPassword()));
-        user.setRoles(roles);
-        user.setDurum(EDurum.AKTIF);
-        return userRepository.save(user);
+        return userService.registerUser(user, signUpRequest.getPassword(), roles);
     }
 
+    @Override
+    public void changePassword(ChangePasswordInput input) {
+        if (!input.getNewPassword().equals(input.getRepeatPassword())) {
+            throw new ServiceException("error.new.password.mismatch");
+        }
+        UserDetailsImpl userDetails = sessionUtils.getUserDetails();
+        try {
+            authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                    userDetails.getUsername(), input.getExistPassword()));
+        } catch (BadCredentialsException ex) {
+            throw new ServiceException("error.exist.password");
+        }
+
+        userService.changePassword(userDetails.getId(), input.getNewPassword());
+    }
 }

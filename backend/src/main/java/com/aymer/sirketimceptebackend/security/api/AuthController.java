@@ -1,13 +1,14 @@
 package com.aymer.sirketimceptebackend.security.api;
 
 import com.aymer.sirketimceptebackend.common.api.BaseController;
+import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
+import com.aymer.sirketimceptebackend.common.exception.ServiceException;
+import com.aymer.sirketimceptebackend.security.dto.ChangePasswordInput;
 import com.aymer.sirketimceptebackend.security.dto.JwtResponse;
 import com.aymer.sirketimceptebackend.security.dto.LoginRequest;
 import com.aymer.sirketimceptebackend.security.dto.SignupRequest;
-import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
-import com.aymer.sirketimceptebackend.common.exception.ServiceException;
-import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
 import com.aymer.sirketimceptebackend.security.service.AuthService;
+import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
 import com.aymer.sirketimceptebackend.utils.LocaleAwareMessageProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,5 +50,11 @@ public class AuthController {
         authService.registerUser(signUpRequest);
 
         return ResponseEntity.ok(new AppResponse(HttpStatus.OK.value(), messageProvider.getMessage("success.register")));
+    }
+
+    @PostMapping("/changepassword")
+    public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordInput input) {
+        authService.changePassword(input);
+        return ResponseEntity.ok(new AppResponse());
     }
 }
