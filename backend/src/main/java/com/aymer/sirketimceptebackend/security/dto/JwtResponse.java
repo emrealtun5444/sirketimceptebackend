@@ -18,6 +18,6 @@ public class JwtResponse {
     private String surname;
     private String username;
     private String email;
-    private List<String> roles;
+    private List<String> authorizations;
     private List<SelectItem> companies;
 }

@@ -3,14 +3,12 @@ package com.aymer.sirketimceptebackend.security.service;
 import com.aymer.sirketimceptebackend.common.exception.ServiceException;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItem;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItemMapper;
-import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.security.dto.ChangePasswordInput;
 import com.aymer.sirketimceptebackend.security.dto.JwtResponse;
 import com.aymer.sirketimceptebackend.security.dto.LoginRequest;
 import com.aymer.sirketimceptebackend.security.dto.SignupRequest;
 import com.aymer.sirketimceptebackend.security.jwt.JwtUtils;
 import com.aymer.sirketimceptebackend.security.mapper.AuthMapper;
-import com.aymer.sirketimceptebackend.system.role.model.ERole;
 import com.aymer.sirketimceptebackend.system.role.model.Role;
 import com.aymer.sirketimceptebackend.system.role.repository.RoleRepository;
 import com.aymer.sirketimceptebackend.system.user.dto.UserDto;
@@ -76,7 +74,7 @@ public class AuthServiceImp implements AuthService {
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
+        List<String> authorizations = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
         List<SelectItem> companies = SelectItemMapper.toComboItems(userDetails.getCompanyList());
         return JwtResponse.builder()
             .name(userDetails.getName())
@@ -84,7 +82,9 @@ public class AuthServiceImp implements AuthService {
             .token(jwt).id(userDetails.getId())
             .username(userDetails.getUsername())
             .email(userDetails.getEmail())
-            .roles(roles).companies(companies).build();
+            .authorizations(authorizations)
+            .companies(companies)
+            .build();
     }
 
     @Override

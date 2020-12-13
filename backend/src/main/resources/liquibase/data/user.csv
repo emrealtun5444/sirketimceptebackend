@@ -1,2 +1,2 @@
 id;name;surname;username;email;password;durum;created_by;created_date
-1;Sistem;Yöneticisi;admin;emre@aymeryapi.com.tr;e10adc3949ba59abbe56e057f20f883e;AKTIF;admin;now
+1;Sistem;Yöneticisi;admin;emre@aymeryapi.com.tr;$2a$10$cgF2YSk1Kg24d1eREES1Iues.a.gJuEvZ7dHQe9p0/OYOKKdda8ye;AKTIF;admin;now

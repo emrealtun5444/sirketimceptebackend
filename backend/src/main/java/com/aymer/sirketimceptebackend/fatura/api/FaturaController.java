@@ -51,7 +51,7 @@ public class FaturaController {
     }
 
     @PostMapping("/sorgula")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('FATURA_MENU')")
     AppResponse<Map> sorgula(@Valid @RequestBody FaturaSorguKriteri faturaSorguKriteri) {
         int pageNum = faturaSorguKriteri.getLazyLoadEvent().getFirst() / faturaSorguKriteri.getLazyLoadEvent().getRows();
         int rows = faturaSorguKriteri.getLazyLoadEvent().getRows();
@@ -64,7 +64,7 @@ public class FaturaController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('FATURA_MENU')")
     AppResponse<Map> faturaById(@Valid @PathVariable(name = "id") Long faturaId) {
         Map<String, Object> pageObject = new HashMap<String, Object>();
 

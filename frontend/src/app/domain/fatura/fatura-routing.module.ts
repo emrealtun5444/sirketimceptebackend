@@ -11,7 +11,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {
             id: 'fatura_sorgula',
-            role: 'ROLE_ADMIN,ROLE_MODERATOR'
+            authorization: 'FATURA_MENU'
         }
     },
     {
@@ -20,7 +20,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {
             id: 'fatura_detay',
-            role: 'ROLE_ADMIN,ROLE_MODERATOR'
+            authorization: 'FATURA_MENU'
         }
     },
 ];

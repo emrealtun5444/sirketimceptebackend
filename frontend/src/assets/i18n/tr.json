@@ -152,6 +152,11 @@
   "label.new.password": "Yeni Şifre",
   "label.new.password.again": "Yeni Şifre Tekrar",
   "##############################################################################################": "MENUS",
+  "menu.system.yonetimi": "Sistem Yönetimi",
+  "menu.sirket.ayarlari": "Şirket Ayarları",
+  "menu.kullanici.ayarlari": "Kullanıcı Ayarları",
+  "menu.role.ayarlari": "Kullanıcı Ayarları",
+
   "menu.stok.yonetimi": "Stok Yönetimi",
   "menu.stok.sorgulama": "Stok Kartı Sorgulama",
   "menu.cari.yonetimi": "Cari Yönetimi",

@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.tokenStorage.getToken()) {
             if (route.data.role) {
-                if (this.hasRole(route.data.role)) return true;
+                if (this.hasAuthorization(route.data.authorization)) return true;
                 this.router.navigate(['/access'], {queryParams: {returnUrl: state.url}});
             }
             return true;
@@ -22,11 +22,11 @@ export class AuthGuard implements CanActivate {
         return false;
     }
 
-    hasRole(authLink): boolean {
-        let roles = authLink.split(',');
-        for (var val of roles) {
-            let hasRole = this.tokenStorage.hasRole(val);
-            if (hasRole) return true;
+    hasAuthorization(authLink): boolean {
+        const authorizations = authLink.split(',');
+        for (const val of authorizations) {
+            const hasAuthorization = this.tokenStorage.hasAuthorization(val);
+            if (hasAuthorization) return true;
         }
         return false;
     }

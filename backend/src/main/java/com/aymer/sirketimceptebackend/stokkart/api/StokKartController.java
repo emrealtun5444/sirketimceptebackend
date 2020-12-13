@@ -42,7 +42,7 @@ public class StokKartController {
     }
 
     @PostMapping("/sorgula")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('STOK_MENU')")
     AppResponse<Map> sorgula(@Valid @RequestBody StokKartSorguKriteri stokKartSorguKriteri) {
         int pageNum = stokKartSorguKriteri.getLazyLoadEvent().getFirst() / stokKartSorguKriteri.getLazyLoadEvent().getRows();
         int rows = stokKartSorguKriteri.getLazyLoadEvent().getRows();
@@ -55,7 +55,7 @@ public class StokKartController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('STOK_MENU')")
     public ResponseEntity<?> stokKartById(@Valid @PathVariable(name = "id") Long stokKartId) {
         Optional<StokKart> stokKart = stokKartRepository.findById(stokKartId);
         StokKartDto stokKartDto = stokKartMapper.stokkartToDto(stokKart.get());
@@ -63,6 +63,7 @@ public class StokKartController {
     }
 
     @GetMapping("/stokKarts")
+    @PreAuthorize("hasAuthority('STOK_MENU')")
     public ResponseEntity<?> allStokKarts() {
         List<StokKart> stokKarts = stokKartRepository.findAll();
         return ResponseEntity.ok(new AppResponse(stokKartMapper.stokkartToDtoList(stokKarts)));

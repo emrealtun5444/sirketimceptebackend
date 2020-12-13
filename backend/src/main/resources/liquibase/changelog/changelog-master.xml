@@ -16,6 +16,7 @@
     <include file="/liquibase/changelog/changes/create-il-table.xml"/>
     <include file="/liquibase/changelog/changes/create-ilce-table.xml"/>
     <include file="/liquibase/changelog/changes/create-user_company-table.xml"/>
+    <include file="/liquibase/changelog/changes/create-role_authorization-table.xml"/>
 
 
     <include file="/liquibase/changelog/changes/create-cari_kart-table.xml"/>
@@ -39,7 +40,5 @@
     <include file="/liquibase/changelog/changes/update-fatura-detay-table_3.xml"/>
 
     <include file="/liquibase/changelog/changes/create-market_place_settings-table.xml"/>
-
-
 
 </databaseChangeLog>

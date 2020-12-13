@@ -19,7 +19,7 @@ export class AppMenuComponent implements OnInit {
       {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
       {
         label: this.appStore.translate.instant('menu.stok.yonetimi'),
-        role: 'ROLE_ADMIN,ROLE_MODERATOR',
+        authorization: 'STOK_MENU',
         icon: 'fa fa-fw fa-bars',
         badge: 1,
         badgeStyleClass: 'green-badge',
@@ -33,7 +33,7 @@ export class AppMenuComponent implements OnInit {
       },
       {
         label: this.appStore.translate.instant('menu.cari.yonetimi'),
-        role: 'ROLE_ADMIN,ROLE_MODERATOR',
+        authorization: 'CARI_MENU',
         icon: 'fa fa-fw fa-bars',
         badge: 1,
         badgeStyleClass: 'green-badge',
@@ -47,7 +47,7 @@ export class AppMenuComponent implements OnInit {
       },
       {
         label: this.appStore.translate.instant('menu.fatura.yonetimi'),
-        role: 'ROLE_ADMIN,ROLE_MODERATOR',
+        authorization: 'FATURA_MENU',
         icon: 'fa fa-fw fa-bars',
         badge: 1,
         badgeStyleClass: 'green-badge',
@@ -61,7 +61,7 @@ export class AppMenuComponent implements OnInit {
       },
       {
         label: this.appStore.translate.instant('menu.pazaryeri.yonetimi'),
-        role: 'ROLE_ADMIN,ROLE_MODERATOR',
+        authorization: 'PAZARYERI_MENU',
         icon: 'fa fa-fw fa-bars',
         badge: 1,
         badgeStyleClass: 'green-badge',
@@ -75,7 +75,7 @@ export class AppMenuComponent implements OnInit {
       },
       {
         label: 'Pages', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages'],
-        role: 'ROLE_ADMIN',
+        authorization: 'SYSTEM_MENU',
         items: [
           {label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
           {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']},

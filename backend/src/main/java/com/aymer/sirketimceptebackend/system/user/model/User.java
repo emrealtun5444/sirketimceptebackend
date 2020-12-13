@@ -5,6 +5,7 @@ import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.Auditable;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.Idendifier;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,8 +21,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
+@Data
 @Table(name = "kullanici",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
@@ -74,6 +75,9 @@ public class User extends Auditable<String> implements Serializable, Idendifier 
         return name + " " + surname;
     }
 
+    public User() {
+        this.setDurum(EDurum.AKTIF);
+    }
 
     public void prepareUserRegister(String password, Set<Role> roleList) {
         this.setPassword(password);

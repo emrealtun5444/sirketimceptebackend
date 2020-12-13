@@ -174,11 +174,11 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
   }
 
   renderItem(item): boolean {
-    if (item.role) {
-      const roles = item.role.split(',');
-      for (const val of roles) {
-        const hasRole = this.tokenStorage.hasRole(val);
-        if (hasRole) {
+    if (item.authorization) {
+      const authorizations = item.authorization.split(',');
+      for (const val of authorizations) {
+        const hasAuthorization = this.tokenStorage.hasAuthorization(val);
+        if (hasAuthorization) {
           return true;
         }
       }

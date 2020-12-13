@@ -28,7 +28,7 @@ public abstract class UserMapper {
     public abstract List<RoleDto> roleToRoleDtoList(List<Role> roleList);
 
     protected List<String> getRoleName(Set<Role> roleList) {
-        return roleList.stream().map(role -> role.getName().name()).collect(Collectors.toList());
+        return roleList.stream().map(role -> role.getName()).collect(Collectors.toList());
     }
 
 }

@@ -10,7 +10,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {
             id: 'market_place_sorgula',
-            role: 'ROLE_ADMIN,ROLE_MODERATOR'
+          authorization: 'ENTEGRASYON_AYAR'
         }
     }
 ];

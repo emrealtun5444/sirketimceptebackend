@@ -10,7 +10,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {
             id: 'cari_kart_sorgula',
-            role: 'ROLE_ADMIN,ROLE_MODERATOR'
+          authorization: 'CARI_MENU'
         }
     }
 ];

@@ -39,7 +39,7 @@ public class MarketPlaceController {
 
 
     @GetMapping("/loadMarketPlace/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('PAZARYERI_MENU')")
     public ResponseEntity<?> loadMarketPlace(@Valid @PathVariable(name = "id") Long marketPlaceConfId) {
         Optional<MarketPlaceSettings> marketPlaceSettings = marketPlaceRepository.findById(marketPlaceConfId);
         MarketPlaceConfDto marketPlaceConfDto = marketPlaceMapper.marketPlaceConfToDto(marketPlaceSettings.get());
@@ -47,7 +47,7 @@ public class MarketPlaceController {
     }
 
     @GetMapping("/loadMarketPlaces")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('PAZARYERI_MENU')")
     public ResponseEntity<?> loadMarketPlaces() {
         List<MarketPlaceSettings> marketPlaceSettings = marketPlaceRepository.findAll();
         return ResponseEntity.ok(new AppResponse(marketPlaceMapper.marketPlaceConfToDtoList(marketPlaceSettings)));

@@ -32,35 +32,35 @@ public class DashboardController {
     }
 
     @GetMapping("/currentNumberOfSales")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('FATURA_MENU')")
     public AppResponse<Long> currentNumberOfSales() {
         Long currentNumberOfSales = dashboardService.currentNumberOfSales();
         return new AppResponse<Long>(currentNumberOfSales);
     }
 
     @GetMapping("/monthlyNumberOfSales")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('FATURA_MENU')")
     public AppResponse<Long> monthlyNumberOfSales() {
         Long monthlyNumberOfSales = dashboardService.monthlyNumberOfSales();
         return new AppResponse<Long>(monthlyNumberOfSales);
     }
 
     @GetMapping("/currentAmountOfSales")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('FATURA_MENU')")
     public AppResponse<BigDecimal> currentAmountOfSales() {
         BigDecimal currentAmountOfSales = dashboardService.currentAmountOfSales();
         return new AppResponse<BigDecimal>(currentAmountOfSales);
     }
 
     @GetMapping("/monthlyAmountOfSales")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('FATURA_MENU')")
     public AppResponse<BigDecimal> monthlyAmountOfSales() {
         BigDecimal monthlyAmountOfSales = dashboardService.monthlyAmountOfSales();
         return new AppResponse<BigDecimal>(monthlyAmountOfSales);
     }
 
     @GetMapping("/faturaKirilim")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('FATURA_MENU')")
     public AppResponse<Map> faturaKirilim() {
         Map<ECariTipi, BigDecimal> pageObject = dashboardService.faturaKirilim();
         return new AppResponse<Map>(pageObject);

@@ -44,7 +44,7 @@ public class CariKartController {
     }
 
     @PostMapping("/sorgula")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('CARI_MENU')")
     AppResponse<Map> sorgula(@Valid @RequestBody CariKartSorguKriteri cariKartSorguKriteri) {
         int pageNum = cariKartSorguKriteri.getLazyLoadEvent().getFirst() / cariKartSorguKriteri.getLazyLoadEvent().getRows();
         int rows = cariKartSorguKriteri.getLazyLoadEvent().getRows();
@@ -57,7 +57,7 @@ public class CariKartController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('CARI_MENU')")
     public ResponseEntity<?> stokKartById(@Valid @PathVariable(name = "id") Long cariKartId) {
         Optional<CariKart> cariKart = cariKartRepository.findById(cariKartId);
         CariKartDto cariKartDto = cariKartMapper.carikartToDto(cariKart.get());
@@ -65,7 +65,7 @@ public class CariKartController {
     }
 
     @GetMapping("/cariKarts")
-    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('CARI_MENU')")
     public ResponseEntity<?> allCariKarts() {
         List<CariKart> cariKarts = cariKartRepository.findAll();
         return ResponseEntity.ok(new AppResponse(cariKartMapper.carikartToDtoList(cariKarts)));

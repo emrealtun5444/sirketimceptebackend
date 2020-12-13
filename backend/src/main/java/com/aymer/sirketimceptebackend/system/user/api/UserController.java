@@ -39,7 +39,6 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> userById(@Valid @PathVariable(name = "id") Long userId) {
         Optional<User> user = userRepository.getUserWithRoles(userId);
         UserDto userDto = userMapper.userToUserDto(user.get());

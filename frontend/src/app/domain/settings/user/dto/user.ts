@@ -6,6 +6,6 @@ export class User {
   surname: string;
   username: string;
   email: string;
-  roles: string[];
+  authorizations: string[];
   companies: SelectItem[];
 }

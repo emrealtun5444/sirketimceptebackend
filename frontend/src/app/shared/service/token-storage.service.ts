@@ -47,9 +47,9 @@ export class TokenStorageService {
     return this.getUser().companies;
   }
 
-  public hasRole(role: string): boolean {
-    let roles = this.getUser().roles;
-    return roles.some(x => x === role);
+  public hasAuthorization(role: string): boolean {
+    const authorizations = this.getUser().authorizations;
+    return authorizations.some(x => x === role);
   }
 
   public isAuthenticated(): boolean {
