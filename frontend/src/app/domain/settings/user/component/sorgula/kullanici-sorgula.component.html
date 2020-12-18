@@ -4,4 +4,5 @@
     </div>
 </form>
 
+<p-confirmDialog key="delete" header="{{'label.onay.sil' | translate}}" acceptLabel="{{'label.evet' | translate}}" rejectLabel="{{'label.hayir' | translate}}" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 <app-user-form *ngIf="showUserForm" [display]="showUserForm" [userId]="selectedUserId" (displayChange)="onChangeShowUserFormClose($event)">  </app-user-form>

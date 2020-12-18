@@ -76,11 +76,10 @@ public class UserController {
         return new AppResponse<List<SelectItem>>(service.listCompanies());
     }
 
-    @PutMapping("/changepassword")
+    @PutMapping("/changepassword/{id}")
     @PreAuthorize("hasAuthority('USER_MENU')")
-    public AppResponse changePassword(@RequestBody String newPassword) {
-        UserDetailsImpl userDetails = sessionUtils.getUserDetails();
-        service.changePassword(userDetails.getId(), newPassword);
+    public AppResponse changePassword(@PathVariable Long id, @RequestBody String newPassword) {
+        service.changePassword(id, newPassword);
         return new AppResponse();
     }
 

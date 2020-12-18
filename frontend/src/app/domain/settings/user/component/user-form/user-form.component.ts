@@ -1,6 +1,5 @@
-import {Component, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { EventEmitter } from '@angular/core';
 import {AbstractBaseComponent} from "../../../../../shared/abstract-base-component";
 import {AppStore} from "../../../../../shared/app.store";
 import {UserService} from "../../service/user.service";
@@ -65,6 +64,7 @@ export class UserFormComponent extends AbstractBaseComponent implements OnInit, 
 
   confirm(event: Event) {
     this.confirmationService.confirm({
+      key: 'update',
       message: this.appStore.translate.instant('info.sure.continue.process'),
       accept: () => {
         this.onSubmit();
@@ -93,7 +93,7 @@ export class UserFormComponent extends AbstractBaseComponent implements OnInit, 
   }
 
   changePaswordAction() {
-    this.subscribeToResponse(this.userService.changepassword(this.newPaword), data => {
+    this.subscribeToResponse(this.userService.changepassword(this.userId, this.newPaword), data => {
       this.showChangePasword = false;
       this.appStore.addMessage({
         severity: 'info',

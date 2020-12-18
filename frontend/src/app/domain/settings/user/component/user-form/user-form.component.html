@@ -57,14 +57,14 @@
             <div class="p-col-12 p-md-6">
                 <p-multiSelect id="roles" [options]="roles" formControlName="roles"
                                defaultLabel="{{'label.roles' | translate}}" optionValue="value" optionLabel="label"
-                               display="chip"></p-multiSelect>
+                               ></p-multiSelect>
                 <app-validation-message
                         [validationControl]="entityForm.controls['roles']"></app-validation-message>
             </div>
             <div class="p-field p-col-12 p-md-6">
                 <p-multiSelect id="companies" [options]="companies" formControlName="companies"
                                defaultLabel="{{'label.companies' | translate}}" optionValue="value" optionLabel="label"
-                               display="chip"></p-multiSelect>
+                               ></p-multiSelect>
                 <app-validation-message
                         [validationControl]="entityForm.controls['companies']"></app-validation-message>
             </div>
@@ -76,7 +76,7 @@
                       class="p-button-raised"></p-button>
         </ng-template>
 
-        <p-confirmDialog header="{{'label.onay' | translate}}" acceptLabel="{{'label.evet' | translate}}" rejectLabel="{{'label.hayir' | translate}}" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+        <p-confirmDialog key="update" header="{{(userId ? 'label.onay.guncelle' : 'label.onay.kaydet') | translate}}" acceptLabel="{{'label.evet' | translate}}" rejectLabel="{{'label.hayir' | translate}}" icon="pi pi-exclamation-triangle"></p-confirmDialog>
 
     </p-dialog>
 </form>
