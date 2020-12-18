@@ -20,5 +20,28 @@ export class UserService extends AbstractService {
         return this.http.get<AppResponse>(`${this.SERVICE_PATH}/${userId}`);
     }
 
+    all(): Observable<AppResponse> {
+        return this.http.get<AppResponse>(`${this.SERVICE_PATH}`);
+    }
+
+    roles(): Observable<AppResponse> {
+        return this.http.get<AppResponse>(`${this.SERVICE_PATH}/roles`);
+    }
+
+    companies(): Observable<AppResponse> {
+        return this.http.get<AppResponse>(`${this.SERVICE_PATH}/companies`);
+    }
+
+    changepassword(newPasword: string): Observable<AppResponse> {
+        return this.http.put<AppResponse>(`${this.SERVICE_PATH}/changepassword` , newPasword);
+    }
+
+    add(data): Observable<AppResponse> {
+        return this.http.post<AppResponse>(`${this.SERVICE_PATH}` , data);
+    }
+
+    update(userId: number, data): Observable<AppResponse> {
+        return this.http.put<AppResponse>(`${this.SERVICE_PATH}/${userId}` ,data);
+    }
 
 }

@@ -1,0 +1,7 @@
+<form [formGroup]="sorguForm" *ngIf="sorguForm">
+    <div class="ui-g ui-fluid">
+        <app-common-dt [that]="this" (addEvent)="onAddNewUser()" [title]="'menu.kullanici.ayarlari'" [data]="resultList" [cols]="cols" [add]="true" [operations]="operations"></app-common-dt>
+    </div>
+</form>
+
+<app-user-form *ngIf="showUserForm" [display]="showUserForm" [userId]="selectedUserId" (displayChange)="onChangeShowUserFormClose($event)">  </app-user-form>

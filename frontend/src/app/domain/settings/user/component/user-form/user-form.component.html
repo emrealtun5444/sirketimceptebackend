@@ -1,0 +1,102 @@
+<form [formGroup]="entityForm" *ngIf="entityForm">
+    <p-dialog [contentStyle]="{'overflow':'visible'}"
+              header="{{(userId ? 'label.user.update' : 'label.user.add') | translate}}" [(visible)]="display"
+              [style]="{width: '50vw'}"
+              (onHide)="onClose()" [baseZIndex]="10000">
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-6">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input id="name" formControlName="name" type="text" autocomplete="off"
+                           placeholder="{{'label.ad' | translate}}" pInputText>
+                </div>
+                <app-validation-message
+                        [validationControl]="entityForm.controls['name']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <div class="p-inputgroup">
+                    <input id="surname" formControlName="surname" type="text" autocomplete="off"
+                           placeholder="{{'label.soyad' | translate}}" pInputText>
+                </div>
+                <app-validation-message
+                        [validationControl]="entityForm.controls['surname']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                    <input id="username" formControlName="username" type="text" autocomplete="off"
+                           placeholder="{{'label.kullanici.adi' | translate}}" pInputText>
+                </div>
+                <app-validation-message
+                        [validationControl]="entityForm.controls['username']"></app-validation-message>
+            </div>
+
+            <div class="p-col-12 p-md-6" *ngIf="userId">
+                <button pButton pRipple type="button" label="{{'label.change.password' | translate}}" (click)="showChangePasword = true; newPaword = null"
+                        class="p-button-outlined p-button-help"></button>
+            </div>
+            <div class="p-col-12 p-md-6" *ngIf="!userId">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                    <input id="password" formControlName="passwordInput" type="password" autocomplete="off"
+                           placeholder="{{'label.sifre' | translate}}" pPassword>
+                </div>
+                <app-validation-message
+                        [validationControl]="entityForm.controls['passwordInput']"></app-validation-message>
+            </div>
+            <div class="p-col-12">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">@</span>
+                    <input id="email" formControlName="email" type="text" autocomplete="off"
+                           placeholder="{{'label.email' | translate}}" pInputText>
+                </div>
+                <app-validation-message
+                        [validationControl]="entityForm.controls['email']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <p-multiSelect id="roles" [options]="roles" formControlName="roles"
+                               defaultLabel="{{'label.roles' | translate}}" optionValue="value" optionLabel="label"
+                               display="chip"></p-multiSelect>
+                <app-validation-message
+                        [validationControl]="entityForm.controls['roles']"></app-validation-message>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <p-multiSelect id="companies" [options]="companies" formControlName="companies"
+                               defaultLabel="{{'label.companies' | translate}}" optionValue="value" optionLabel="label"
+                               display="chip"></p-multiSelect>
+                <app-validation-message
+                        [validationControl]="entityForm.controls['companies']"></app-validation-message>
+            </div>
+        </div>
+
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" [disabled]="!entityForm.valid" (click)="confirm($event)"
+                      label="{{(userId ? 'btn.guncelle' : 'btn.kaydet') | translate}}"
+                      class="p-button-raised"></p-button>
+        </ng-template>
+
+        <p-confirmDialog header="{{'label.onay' | translate}}" acceptLabel="{{'label.evet' | translate}}" rejectLabel="{{'label.hayir' | translate}}" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+    </p-dialog>
+</form>
+
+<p-dialog [contentStyle]="{'overflow':'visible'}" header="{{'label.change.password' | translate}}"
+          [style]="{width: '20vw'}"
+          [(visible)]="showChangePasword" [baseZIndex]="10000">
+    <div class="p-grid p-fluid">
+        <div class="p-col-12 p-md-12">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                <input id="new_password"  [(ngModel)]="newPaword" type="password" autocomplete="off"
+                       placeholder="{{'label.new.password' | translate}}" pPassword>
+            </div>
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" [disabled]="!newPaword" (click)="changePaswordAction()"
+                  label="{{'btn.guncelle' | translate}}" class="p-button-raised"></p-button>
+    </ng-template>
+
+</p-dialog>

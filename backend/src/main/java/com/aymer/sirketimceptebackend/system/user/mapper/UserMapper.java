@@ -1,34 +1,24 @@
 package com.aymer.sirketimceptebackend.system.user.mapper;
 
-import com.aymer.sirketimceptebackend.system.user.dto.RoleDto;
-import com.aymer.sirketimceptebackend.system.user.dto.UserDto;
-import com.aymer.sirketimceptebackend.system.role.model.Role;
+
+import com.aymer.sirketimceptebackend.common.model.abstructcommon.ReferenceMapper;
+import com.aymer.sirketimceptebackend.system.user.dto.UserInput;
+import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.Mappings;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-/**
- * User: ealtun
- * Date: 12.04.2020
- * Time: 11:03
- */
-@Mapper(componentModel = "spring")
-public abstract class UserMapper {
-
-    @Mapping(target = "roles", expression = "java(getRoleName(user.getRoles()))")
-    public abstract UserDto userToUserDto(User user);
-
-    @Mapping(target = "name", source = "name")
-    public abstract RoleDto roleToRoleDto(Role role);
-
-    public abstract List<RoleDto> roleToRoleDtoList(List<Role> roleList);
-
-    protected List<String> getRoleName(Set<Role> roleList) {
-        return roleList.stream().map(role -> role.getName()).collect(Collectors.toList());
-    }
-
+@Mapper(componentModel = "spring", uses = {ReferenceMapper.class})
+public interface UserMapper {
+    UserInput toInput(User user);
+    @Mappings({
+            @Mapping(target = "id", ignore = true)
+    })
+    void updateFromInput(UserInput userInput, @MappingTarget User user);
+    UserListItem toListItem(User user);
+    List<UserListItem> toListItems(List<User> users);
 }

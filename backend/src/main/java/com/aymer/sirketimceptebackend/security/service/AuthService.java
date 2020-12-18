@@ -5,8 +5,7 @@ import com.aymer.sirketimceptebackend.security.dto.ChangePasswordInput;
 import com.aymer.sirketimceptebackend.security.dto.JwtResponse;
 import com.aymer.sirketimceptebackend.security.dto.LoginRequest;
 import com.aymer.sirketimceptebackend.security.dto.SignupRequest;
-import com.aymer.sirketimceptebackend.system.user.dto.UserDto;
-import com.aymer.sirketimceptebackend.system.user.model.User;
+import com.aymer.sirketimceptebackend.system.user.dto.UserInput;
 
 /**
  * User: ealtun
@@ -17,7 +16,7 @@ public interface AuthService {
 
     JwtResponse authenticateUser(LoginRequest loginRequest);
 
-    UserDto registerUser(SignupRequest signUpRequest);
+    UserInput registerUser(SignupRequest signUpRequest);
 
     void changePassword(ChangePasswordInput input);
 

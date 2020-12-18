@@ -18,6 +18,21 @@ export class AppMenuComponent implements OnInit {
     this.model = [
       {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
       {
+        label: this.appStore.translate.instant('menu.system.yonetimi'),
+        authorization: 'SYSTEM_MENU',
+        icon: 'fa fa-fw fa-bars',
+        badge: 1,
+        badgeStyleClass: 'green-badge',
+        items: [
+          {
+            label: this.appStore.translate.instant('menu.kullanici.ayarlari'),
+            icon: 'fa fa-fw fa-columns',
+            authorization: 'USER_MENU',
+            routerLink: ['/user']
+          }
+        ]
+      },
+      {
         label: this.appStore.translate.instant('menu.stok.yonetimi'),
         authorization: 'STOK_MENU',
         icon: 'fa fa-fw fa-bars',

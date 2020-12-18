@@ -16,7 +16,7 @@
              *ngIf="!renderEmptyLabel()"
              id="dt_common"
              dataKey="id"
-             styleClass="p-datatable-striped p-datatable-sm"
+             styleClass="p-datatable-sm"
              [class]="header ? '' : class"
              [responsive]="true"
              [paginator]="true"
@@ -59,6 +59,7 @@
 
                     <div style="display:table-cell;  text-align: right; vertical-align: middle;">
                         <div style="display: inline-flex;">
+                            <button pButton pRipple *ngIf="add" label="{{ 'btn.ekle' | translate}}" icon="pi pi-plus" class="p-mr-2 p-d-inline-block" (click)="addAction()"></button>
                             <p-toggleButton [(ngModel)]="showFilter" offIcon="pi pi-filter" onIcon="pi pi-filter"
                                             onLabel=""
                                             offLabel=""></p-toggleButton>
@@ -223,12 +224,14 @@
                 <td id="col_islemler" *ngIf="islemler" class="app-table-islemler app-table-overlay">
                     <ng-template ngFor let-opt [ngForOf]="operations">
                         <button  [id]="opt.id + index.toString()"
+                                 class="p-mr-2 p-button-info"
                                  *ngIf="!opt.route && (!opt.rendered || call(opt.rendered, rowData))" pButton pRipple
                                  [icon]="opt.class" pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left"
                                  (click)="call(opt.event, rowData)">
                         </button>
 
                         <button  [id]="opt.id + index.toString()"
+                                 class="p-mr-2 p-button-info"
                                  *ngIf="opt.route && (!opt.rendered || call(opt.rendered, rowData))" pButton pRipple
                                  [icon]="opt.class" pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left"
                                  [routerLink]="(opt.routeBase ? opt.routeBase: '') + rowData.id + opt.route">

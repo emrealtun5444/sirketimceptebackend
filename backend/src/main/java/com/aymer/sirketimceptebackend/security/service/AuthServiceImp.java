@@ -11,7 +11,7 @@ import com.aymer.sirketimceptebackend.security.jwt.JwtUtils;
 import com.aymer.sirketimceptebackend.security.mapper.AuthMapper;
 import com.aymer.sirketimceptebackend.system.role.model.Role;
 import com.aymer.sirketimceptebackend.system.role.repository.RoleRepository;
-import com.aymer.sirketimceptebackend.system.user.dto.UserDto;
+import com.aymer.sirketimceptebackend.system.user.dto.UserInput;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
 import com.aymer.sirketimceptebackend.system.user.service.UserService;
@@ -90,7 +90,7 @@ public class AuthServiceImp implements AuthService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public UserDto registerUser(SignupRequest signUpRequest) {
+    public UserInput registerUser(SignupRequest signUpRequest) {
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
         if (!CollectionUtils.isEmpty(strRoles)) {
