@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.tokenStorage.getToken()) {
-            if (route.data.role) {
+            if (route.data.authorization) {
                 if (this.hasAuthorization(route.data.authorization)) return true;
                 this.router.navigate(['/access'], {queryParams: {returnUrl: state.url}});
             }

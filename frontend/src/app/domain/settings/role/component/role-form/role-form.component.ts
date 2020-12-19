@@ -48,8 +48,8 @@ export class RoleFormComponent extends AbstractBaseComponent implements OnInit, 
   private expandRecursive(node: TreeNode, selectedItems: string[]) {
     if (selectedItems.includes(node.data)) {
       this.selectedNodes.push(node);
+      node.expanded = true;
     }
-    node.expanded = true;
     if (node.children) {
       node.children.forEach(childNode => {
         this.expandRecursive(childNode, selectedItems);
