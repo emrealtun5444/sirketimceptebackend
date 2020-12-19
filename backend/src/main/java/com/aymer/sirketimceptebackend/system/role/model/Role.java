@@ -24,9 +24,9 @@ public class Role extends Auditable<String> implements Serializable, Idendifier 
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Authorization.class)
-    @CollectionTable(name = "ROLE_AUTHORIZATION",
-        joinColumns = @JoinColumn(name = "ROLE_ID"))
-    @Column(name = "AUTHORIZATION")
+    @CollectionTable(name = "role_authorization",
+        joinColumns = @JoinColumn(name = "role_id"))
+    @Column(name = "authorization_name")
     private List<Authorization> authorizations;
 
     @Override

@@ -1,0 +1,8 @@
+<form [formGroup]="sorguForm" *ngIf="sorguForm">
+    <div class="ui-g ui-fluid">
+        <app-common-dt [that]="this" (addEvent)="onAddNewRole()" [title]="'menu.role.ayarlari'" [data]="resultList" [cols]="cols" [add]="true" [operations]="operations"></app-common-dt>
+    </div>
+</form>
+
+<p-confirmDialog key="delete" header="{{'label.onay.sil' | translate}}" acceptLabel="{{'label.evet' | translate}}" rejectLabel="{{'label.hayir' | translate}}" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<app-role-form *ngIf="showRoleForm" [display]="showRoleForm" [roleId]="selectedRoleId" (displayChange)="onChangeShowRoleFormClose($event)">  </app-role-form>

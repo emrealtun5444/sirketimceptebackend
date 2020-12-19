@@ -96,7 +96,7 @@ export class KullaniciSorgulaComponent extends AbstractBaseComponent implements 
   deleteUser(row) {
     this.subscribeToResponseBase(this.userService.delete(row.id), data => {
       this.appStore.addMessage({
-        severity: 'info',
+        severity: 'success',
         summary: this.appStore.translate.instant('success.kullanici.silindi')
       }, true);
       this.sorgula();

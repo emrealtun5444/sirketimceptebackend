@@ -9,7 +9,7 @@
     <changeSet author="admin" id="1">
         <createTable tableName="role_authorization">
             <column name="role_id" type="INT" />
-            <column name="authorization" type="VARCHAR(50)"/>
+            <column name="authorization_name" type="VARCHAR(50)"/>
         </createTable>
         <rollback>
             <dropTable tableName="role_authorization"/>

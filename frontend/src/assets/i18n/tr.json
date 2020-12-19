@@ -43,6 +43,11 @@
   "success.kullanici.olusturuldu": "Kullanıcı kaydı başarıile oluşturulmuştur.",
   "success.kullanici.guncellendi": "Kullanıcı kaydı başarıile güncellenmiştir.",
   "success.kullanici.silindi": "Kullanıcı kaydı başarıile silinmiştir.",
+
+  "success.role.olusturuldu": "Rol kaydı başarıile oluşturulmuştur.",
+  "success.role.guncellendi": "Rol kaydı başarıile güncellenmiştir.",
+  "success.role.silindi": "Rol kaydı başarıile silinmiştir.",
+
   "success.sifre.degistirildi": "Şifreniz başarı ile güncellenmiştir.",
   "##############################################################################################": "INFO",
   "info.sure.continue.process": "İşleme devam etmek istediğinizden emin misiniz ?",
@@ -172,11 +177,16 @@
   "label.user.add": "Kullanıcı Tanımlama",
   "label.user.update": "Kullanıcı Güncelleme",
 
+  "label.role.add": "Rol Tanımlama",
+  "label.role.update": "Rol Güncelleme",
+  "label.role.adi": "Rol Adı",
+  "label.authorization": "Yetkiler",
+
   "##############################################################################################": "MENUS",
   "menu.system.yonetimi": "Sistem Yönetimi",
   "menu.sirket.ayarlari": "Şirket Ayarları",
   "menu.kullanici.ayarlari": "Kullanıcı Ayarları",
-  "menu.role.ayarlari": "Kullanıcı Ayarları",
+  "menu.role.ayarlari": "Role Ayarları",
 
   "menu.stok.yonetimi": "Stok Yönetimi",
   "menu.stok.sorgulama": "Stok Kartı Sorgulama",

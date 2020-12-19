@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.system.role.service;
 
 import com.aymer.sirketimceptebackend.system.role.dto.RoleInput;
+import com.aymer.sirketimceptebackend.system.role.dto.TreeNode;
 import com.aymer.sirketimceptebackend.system.role.model.Authorization;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface RoleService {
     RoleInput getRole(Long id);
 
     List<Authorization> getAuthorizations();
+
+     List<TreeNode<String>> getTreeOfAuthorizations();
 }

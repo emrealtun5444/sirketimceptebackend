@@ -1,0 +1,41 @@
+<form [formGroup]="entityForm" *ngIf="entityForm">
+    <p-dialog [contentStyle]="{'overflow':'visible'}"
+              header="{{(roleId ? 'label.role.update' : 'label.role.add') | translate}}" [(visible)]="display"
+              [style]="{width: '35vw'}"
+              (onHide)="onClose()" [baseZIndex]="10000">
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input id="name" formControlName="name" type="text" autocomplete="off"
+                           placeholder="{{'label.role.adi' | translate}}" pInputText>
+                </div>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['name']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-12">
+                <h5>{{'label.authorization' | translate}}</h5>
+
+                <p-tree [value]="allAuthorizations" selectionMode="checkbox"
+                        [virtualScroll]="true" [virtualNodeHeight]="50" scrollHeight="300px"
+                        [filter]="true" filterMode="strict" [(selection)]="selectedNodes">
+                    <ng-template let-node pTemplate="default">
+                        <b>{{node.label | translate}}</b>
+                    </ng-template>
+                </p-tree>
+            </div>
+        </div>
+
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" [disabled]="!entityForm.valid" (click)="confirm($event)"
+                      label="{{(roleId ? 'btn.guncelle' : 'btn.kaydet') | translate}}"
+                      class="p-button-raised"></p-button>
+        </ng-template>
+
+        <p-confirmDialog key="update" header="{{(roleId ? 'label.onay.guncelle' : 'label.onay.kaydet') | translate}}"
+                         acceptLabel="{{'label.evet' | translate}}" rejectLabel="{{'label.hayir' | translate}}"
+                         icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+    </p-dialog>
+</form>

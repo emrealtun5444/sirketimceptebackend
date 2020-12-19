@@ -29,7 +29,13 @@ export class AppMenuComponent implements OnInit {
             icon: 'fa fa-fw fa-columns',
             authorization: 'USER_MENU',
             routerLink: ['/user']
-          }
+          },
+          {
+            label: this.appStore.translate.instant('menu.role.ayarlari'),
+            icon: 'fa fa-fw fa-columns',
+            authorization: 'ROLE_MENU',
+            routerLink: ['/role']
+          },
         ]
       },
       {

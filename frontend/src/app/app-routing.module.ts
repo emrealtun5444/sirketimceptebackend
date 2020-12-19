@@ -13,48 +13,52 @@ import {RegisterComponent} from './register/register.component';
 import {AuthGuard} from './shared/auth/AuthGuard';
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot([
-            {
-                path: '', component: AppMainComponent,
-                children: [
-                    {
-                        path: '', component: DashboardDemoComponent, canActivate: [AuthGuard],
-                    },
-                    {path: 'pages/invoice', component: AppInvoiceComponent},
-                    {path: 'pages/help', component: AppHelpComponent},
-                    {
-                        path: 'stokKart',
-                        loadChildren: () => import('src/app/domain/stok-kart/stok-kart.module').then(m => m.StokKartModule),
-                    },
-                    {
-                        path: 'cariKart',
-                        loadChildren: () => import('src/app/domain/cari-kart/cari-kart.module').then(m => m.CariKartModule),
-                    },
-                    {
-                        path: 'fatura',
-                        loadChildren: () => import('src/app/domain/fatura/fatura.module').then(m => m.FaturaModule),
-                    },
-                    {
-                        path: 'user',
-                        loadChildren: () => import('src/app/domain/settings/user/user.module').then(m => m.UserModule),
-                    },
-                    {
-                        path: 'marketPlace',
-                        loadChildren: () => import('src/app/domain/market-place/market-place.module').then(m => m.MarketPlaceModule),
-                    }
-                ]
-            },
-            {path: 'logout', component: LogoutComponent},
-            {path: 'register', component: RegisterComponent},
-            {path: 'error', component: AppErrorComponent},
-            {path: 'access', component: AppAccessdeniedComponent},
-            {path: 'notfound', component: AppNotfoundComponent},
-            {path: 'login', component: AppLoginComponent},
-            {path: '**', redirectTo: '/notfound'},
-        ], {scrollPositionRestoration: 'enabled', relativeLinkResolution: 'legacy'})
-    ],
-    exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot([
+      {
+        path: '', component: AppMainComponent,
+        children: [
+          {
+            path: '', component: DashboardDemoComponent, canActivate: [AuthGuard],
+          },
+          {path: 'pages/invoice', component: AppInvoiceComponent},
+          {path: 'pages/help', component: AppHelpComponent},
+          {
+            path: 'stokKart',
+            loadChildren: () => import('src/app/domain/stok-kart/stok-kart.module').then(m => m.StokKartModule),
+          },
+          {
+            path: 'cariKart',
+            loadChildren: () => import('src/app/domain/cari-kart/cari-kart.module').then(m => m.CariKartModule),
+          },
+          {
+            path: 'fatura',
+            loadChildren: () => import('src/app/domain/fatura/fatura.module').then(m => m.FaturaModule),
+          },
+          {
+            path: 'user',
+            loadChildren: () => import('src/app/domain/settings/user/user.module').then(m => m.UserModule),
+          },
+          {
+            path: 'role',
+            loadChildren: () => import('src/app/domain/settings/role/role.module').then(m => m.RoleModule),
+          },
+          {
+            path: 'marketPlace',
+            loadChildren: () => import('src/app/domain/market-place/market-place.module').then(m => m.MarketPlaceModule),
+          }
+        ]
+      },
+      {path: 'logout', component: LogoutComponent},
+      {path: 'register', component: RegisterComponent},
+      {path: 'error', component: AppErrorComponent},
+      {path: 'access', component: AppAccessdeniedComponent},
+      {path: 'notfound', component: AppNotfoundComponent},
+      {path: 'login', component: AppLoginComponent},
+      {path: '**', redirectTo: '/notfound'},
+    ], {scrollPositionRestoration: 'enabled', relativeLinkResolution: 'legacy'})
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

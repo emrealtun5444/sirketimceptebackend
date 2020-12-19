@@ -76,7 +76,7 @@ export class UserFormComponent extends AbstractBaseComponent implements OnInit, 
     if (this.userId) {
       this.subscribeToResponse(this.userService.update(this.userId, this.entityForm.value), data => {
         this.appStore.addMessage({
-          severity: 'info',
+          severity: 'success',
           summary: this.appStore.translate.instant('success.kullanici.guncellendi')
         }, true);
         this.onClose();
@@ -84,7 +84,7 @@ export class UserFormComponent extends AbstractBaseComponent implements OnInit, 
     } else {
       this.subscribeToResponse(this.userService.add(this.entityForm.value), data => {
         this.appStore.addMessage({
-          severity: 'info',
+          severity: 'success',
           summary: this.appStore.translate.instant('success.kullanici.olusturuldu')
         }, true);
         this.onClose();

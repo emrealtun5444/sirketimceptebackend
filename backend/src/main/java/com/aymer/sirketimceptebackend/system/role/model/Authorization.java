@@ -2,10 +2,12 @@ package com.aymer.sirketimceptebackend.system.role.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public enum Authorization implements Serializable {
     //System
@@ -30,4 +32,5 @@ public enum Authorization implements Serializable {
 
     private String label;
     private Authorization parent;
+
 }
