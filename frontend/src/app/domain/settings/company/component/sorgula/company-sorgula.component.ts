@@ -38,6 +38,8 @@ export class CompanySorgulaComponent extends AbstractBaseComponent implements On
     {type: ColumnType.STRING, field: 'name', header: this.appStore.translate.instant('label.company.name')},
     {type: ColumnType.STRING, field: 'address', header: this.appStore.translate.instant('label.company.address')},
     {type: ColumnType.STRING, field: 'telephone', header: this.appStore.translate.instant('label.company.telephone')},
+    {type: ColumnType.STRING, field: 'authorizedPerson', header: this.appStore.translate.instant('label.company.authorizedPerson')},
+    {type: ColumnType.STRING, field: 'authorizedPersonTelephone', header: this.appStore.translate.instant('label.company.authorizedPersonTelephone')},
     {type: ColumnType.STRING, field: 'taxOffice', header: this.appStore.translate.instant('label.company.taxOffice')},
     {type: ColumnType.STRING, field: 'taxNumber', header: this.appStore.translate.instant('label.company.taxNumber')},
     {type: ColumnType.STRING, field: 'email', header: this.appStore.translate.instant('label.company.email')},
