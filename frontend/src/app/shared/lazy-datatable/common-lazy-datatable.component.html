@@ -15,7 +15,7 @@
     <p-table #dt
              *ngIf="!renderEmptyLabel()"
              id="dt_common"
-             styleClass="p-datatable-sm"
+             styleClass="p-datatable-sm p-datatable-striped"
              dataKey="id"
              [lazy]="true"
              (onLazyLoad)="loadLazy($event)"
@@ -128,6 +128,8 @@
                 <td id="col_{{col.field}}" *ngFor="let col of columns" [ngSwitch]="col.type"
                     [hidden]="isHidden(col.field)"
                     [ngClass]="{'app-table-number': col.type == ColumnType.NUMBER || col.type == ColumnType.DECIMAL || col.type == ColumnType.PARA || col.type == ColumnType.PARA_OBJECT, 'app-table-date' : col.type === ColumnType.DATE || col.type === ColumnType.DATE_TIME}">
+
+                    <span class="p-column-title">{{col.label}}</span>
 
                     <span *ngSwitchCase="ColumnType.ENUM" [className]="call(col.classFn, rowData, col.field)"
                           [pTooltip]="call(col.toolTip, rowData, col.field)">

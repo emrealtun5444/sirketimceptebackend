@@ -16,7 +16,7 @@
              *ngIf="!renderEmptyLabel()"
              id="dt_common"
              dataKey="id"
-             styleClass="p-datatable-sm"
+             styleClass="p-datatable-sm p-datatable-striped"
              [class]="header ? '' : class"
              [responsive]="true"
              [paginator]="true"
@@ -59,7 +59,8 @@
 
                     <div style="display:table-cell;  text-align: right; vertical-align: middle;">
                         <div style="display: inline-flex;">
-                            <button pButton pRipple *ngIf="add" label="{{ 'btn.ekle' | translate}}" icon="pi pi-plus" class="p-mr-2 p-d-inline-block" (click)="addAction()"></button>
+                            <button pButton pRipple *ngIf="add" label="{{ 'btn.ekle' | translate}}" icon="pi pi-plus"
+                                    class="p-mr-2 p-d-inline-block" (click)="addAction()"></button>
                             <p-toggleButton [(ngModel)]="showFilter" offIcon="pi pi-filter" onIcon="pi pi-filter"
                                             onLabel=""
                                             offLabel=""></p-toggleButton>
@@ -176,8 +177,7 @@
                     [hidden]="isHidden(col.field)"
                     [ngClass]="{'app-table-number': col.type == ColumnType.NUMBER || col.type == ColumnType.DECIMAL || col.type == ColumnType.PARA || col.type == ColumnType.PARA_OBJECT, 'app-table-date' : col.type === ColumnType.DATE || col.type === ColumnType.DATE_TIME}">
 
-
-
+                    <span class="p-column-title">{{col.label}}</span>
                     <span *ngSwitchCase="ColumnType.ENUM" [className]="call(col.classFn, rowData, col.field)"
                           [pTooltip]="call(col.toolTip, rowData, col.field)">
             {{rowData[col.field + '_ack']}}
@@ -223,18 +223,18 @@
 
                 <td id="col_islemler" *ngIf="islemler" class="app-table-islemler app-table-overlay">
                     <ng-template ngFor let-opt [ngForOf]="operations">
-                        <button  [id]="opt.id + index.toString()"
-                                 class="p-mr-2 p-button-info"
-                                 *ngIf="!opt.route && (!opt.rendered || call(opt.rendered, rowData))" pButton pRipple
-                                 [icon]="opt.class" pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left"
-                                 (click)="call(opt.event, rowData)">
+                        <button [id]="opt.id + index.toString()"
+                                class="p-mr-2 p-button-info"
+                                *ngIf="!opt.route && (!opt.rendered || call(opt.rendered, rowData))" pButton pRipple
+                                [icon]="opt.class" pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left"
+                                (click)="call(opt.event, rowData)">
                         </button>
 
-                        <button  [id]="opt.id + index.toString()"
-                                 class="p-mr-2 p-button-info"
-                                 *ngIf="opt.route && (!opt.rendered || call(opt.rendered, rowData))" pButton pRipple
-                                 [icon]="opt.class" pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left"
-                                 [routerLink]="(opt.routeBase ? opt.routeBase: '') + rowData.id + opt.route">
+                        <button [id]="opt.id + index.toString()"
+                                class="p-mr-2 p-button-info"
+                                *ngIf="opt.route && (!opt.rendered || call(opt.rendered, rowData))" pButton pRipple
+                                [icon]="opt.class" pTooltip="{{opt.tooltip | translate}}" tooltipPosition="left"
+                                [routerLink]="(opt.routeBase ? opt.routeBase: '') + rowData.id + opt.route">
                         </button>
                     </ng-template>
 
