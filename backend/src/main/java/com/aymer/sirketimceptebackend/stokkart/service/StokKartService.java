@@ -15,5 +15,7 @@ public interface StokKartService {
 
     void syncStokKart(StokKartViewHolder stokKartDto);
 
+    StokKart saveStokKart(StokKart stokKart);
+
     public Page<StokKart> findStokKartByCriteria(StokKartSorguKriteri stokKartSorguKriteri, int page, int rows);
 }

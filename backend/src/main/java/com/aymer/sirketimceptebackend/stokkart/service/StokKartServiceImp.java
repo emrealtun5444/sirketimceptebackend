@@ -61,7 +61,12 @@ public class StokKartServiceImp implements StokKartService {
                     .sirket(sirket.get())
                     .build();
         }
-        stokKartRepository.save(stokKart);
+        this.saveStokKart(stokKart);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public StokKart saveStokKart(StokKart stokKart) {
+        return stokKartRepository.save(stokKart);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)

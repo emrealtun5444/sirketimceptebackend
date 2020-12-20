@@ -9,6 +9,7 @@ import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.fatura.model.Fatura;
 import com.aymer.sirketimceptebackend.fatura.model.FaturaDetay;
 import com.aymer.sirketimceptebackend.stokkart.model.StokKart;
+import com.aymer.sirketimceptebackend.stokkart.service.StokKartService;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.tahsilat.model.EKdvOrani;
@@ -53,6 +54,10 @@ public class CariFaturaVisitor implements CariKartVisitor {
     @Value("${link.entegrasyon.url}")
     private String linkEntegrasyonUrl;
 
+    @Autowired
+    private StokKartService stokKartService;
+
+
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -93,7 +98,7 @@ public class CariFaturaVisitor implements CariKartVisitor {
 
     private void saveFatura(CariKart cariKart, FaturaViewHolder faturaViewHolder) {
         Fatura fatura = createFatura(cariKart, faturaViewHolder);
-        Set<FaturaDetay> faturaDetaySet = createFaturaDetays(faturaViewHolder.getFaturaDetayList(), fatura);
+        List<FaturaDetay> faturaDetaySet = createFaturaDetays(faturaViewHolder.getFaturaDetayList(), fatura);
         fatura.setFaturaDetays(faturaDetaySet);
         faturaRepository.save(fatura);
     }
@@ -105,8 +110,8 @@ public class CariFaturaVisitor implements CariKartVisitor {
         return fatura;
     }
 
-    private Set<FaturaDetay> createFaturaDetays(List<FaturaDetayViewHolder> faturaDetayViewHolders, Fatura fatura) {
-        Set<FaturaDetay> faturaDetaySet = new HashSet<>();
+    private List<FaturaDetay> createFaturaDetays(List<FaturaDetayViewHolder> faturaDetayViewHolders, Fatura fatura) {
+        List<FaturaDetay> faturaDetaySet = new ArrayList<>();
         if (!CollectionUtils.isEmpty(faturaDetayViewHolders)) {
             faturaDetayViewHolders.forEach(faturaDetayViewHolder -> {
                 StokKart stokKart = getStokKart(fatura.getSirket(), faturaDetayViewHolder.getStokKodu());
@@ -136,7 +141,7 @@ public class CariFaturaVisitor implements CariKartVisitor {
                     .sirket(company)
                     .build();
 
-                stokKart = stokKartRepository.save(stokKart);
+                stokKart = stokKartService.saveStokKart(stokKart);
             }
         }
         return stokKart;

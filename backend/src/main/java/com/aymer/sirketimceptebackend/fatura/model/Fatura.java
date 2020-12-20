@@ -15,9 +15,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * User: ealtun
@@ -92,6 +90,6 @@ public class Fatura extends Auditable<String> implements Serializable {
     private Sirket sirket;
 
     @OneToMany(mappedBy = "fatura", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Set<FaturaDetay> faturaDetays = new HashSet<>();
+    private List<FaturaDetay> faturaDetays = new ArrayList<>();
 
 }
