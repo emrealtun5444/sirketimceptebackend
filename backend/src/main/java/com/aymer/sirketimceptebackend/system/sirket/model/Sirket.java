@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -18,38 +20,49 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 @Table(name = "sirket")
 public class Sirket extends Auditable<String> implements Serializable, Idendifier {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
     @NotNull
-    @Column(name = "sirket_adi")
-    private String sirketAdi;
-
-    @Column(name = "sirket_logo")
-    private String sirketLogo;
-
-    @Column(name = "adress", length = 1024)
-    private String adres;
-
+    private String name;
+    @Column(length = 1000)
+    private String address;
     @NotNull
-    @Column(name = "eposta")
-    private String eposta;
-
+    private String telephone;
+    private String taxOffice;
+    private String taxNumber;
+    @NotNull
+    private String authorizedPerson;
+    @NotNull
+    private String authorizedPersonTelephone;
+    @Size(max = 50)
+    @Email
+    private String email;
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
-
+    @ManyToOne
+    private Sirket operation;
 
     @Override
     public String getAciklama() {
-        return sirketAdi;
+        return name;
+    }
+
+    public Sirket() {
+        durum = EDurum.AKTIF;
+    }
+
+    public Type getType() {
+        return operation == null ? Type.Operation : Type.Branch;
+    }
+
+    public String getParentOperationName() {
+        return operation == null ? null : operation.name;
+    }
+
+    public enum Type {
+        Operation, Branch
     }
 }

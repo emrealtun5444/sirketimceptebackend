@@ -36,6 +36,12 @@ export class AppMenuComponent implements OnInit {
             authorization: 'ROLE_MENU',
             routerLink: ['/role']
           },
+          {
+            label: this.appStore.translate.instant('menu.company.ayarlari'),
+            icon: 'fa fa-fw fa-columns',
+            authorization: 'COMPANY_MENU',
+            routerLink: ['/company']
+          },
         ]
       },
       {

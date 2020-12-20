@@ -1,0 +1,80 @@
+<form [formGroup]="entityForm" *ngIf="entityForm">
+    <p-dialog [contentStyle]="{'overflow':'visible'}"
+              header="{{(companyId ? 'label.company.update' : 'label.company.add') | translate}}" [(visible)]="display"
+              [style]="{width: '50vw'}"
+              (onHide)="onClose()" [baseZIndex]="10000">
+
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-6 p-lg-6">
+                <input id="name" formControlName="name" type="text" autocomplete="off"
+                       placeholder="{{'label.company.name' | translate}}" pInputText>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['name']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-6">
+                <p-inputMask id="telephone" formControlName="telephone"
+                             mask="(999) 999-9999"
+                             placeholder="{{'label.company.telephone' | translate}}"></p-inputMask>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['telephone']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <input id="taxOffice" formControlName="taxOffice" type="text" autocomplete="off"
+                       placeholder="{{'label.company.taxOffice' | translate}}" pInputText>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['taxOffice']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+
+                <input id="taxNumber" formControlName="taxNumber" type="text" autocomplete="off"
+                       placeholder="{{'label.company.taxNumber' | translate}}" pInputText>
+
+                <app-validation-message
+                    [validationControl]="entityForm.controls['taxNumber']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <input id="authorizedPerson" formControlName="authorizedPerson" type="text" autocomplete="off"
+                       placeholder="{{'label.company.authorizedPerson' | translate}}" pInputText>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['authorizedPerson']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <p-inputMask id="authorizedPersonTelephone" formControlName="authorizedPersonTelephone"
+                             mask="(999) 999-9999"
+                             placeholder="{{'label.company.authorizedPersonTelephone' | translate}}"></p-inputMask>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['authorizedPersonTelephone']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+                    <input id="email" formControlName="email" type="text" autocomplete="off"
+                           placeholder="{{'label.company.email' | translate}}" pInputText>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['email']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+                    <p-dropdown id="operation" formControlName="operation"
+                                [options]="operations" placeholder="{{'label.company.operation' | translate}}"
+                                optionValue="value" optionLabel="label" [showClear]="true"></p-dropdown>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['operation']"></app-validation-message>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <textarea id="address" formControlName="address" type="text" autocomplete="off"
+                          placeholder="{{'label.company.address' | translate}}" pInputTextarea></textarea>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['address']"></app-validation-message>
+            </div>
+        </div>
+
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" [disabled]="!entityForm.valid" (click)="confirm($event)"
+                      label="{{(companyId ? 'btn.guncelle' : 'btn.kaydet') | translate}}"
+                      class="p-button-raised"></p-button>
+        </ng-template>
+
+        <p-confirmDialog key="update" header="{{(companyId ? 'label.onay.guncelle' : 'label.onay.kaydet') | translate}}"
+                         acceptLabel="{{'label.evet' | translate}}" rejectLabel="{{'label.hayir' | translate}}"
+                         icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+    </p-dialog>
+</form>

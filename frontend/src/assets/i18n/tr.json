@@ -48,6 +48,10 @@
   "success.role.guncellendi": "Rol kaydı başarıile güncellenmiştir.",
   "success.role.silindi": "Rol kaydı başarıile silinmiştir.",
 
+  "success.company.olusturuldu": "Şirket kaydı başarıile oluşturulmuştur.",
+  "success.company.guncellendi": "Şirket kaydı başarıile güncellenmiştir.",
+  "success.company.silindi": "Şirket kaydı başarıile silinmiştir.",
+
   "success.sifre.degistirildi": "Şifreniz başarı ile güncellenmiştir.",
   "##############################################################################################": "INFO",
   "info.sure.continue.process": "İşleme devam etmek istediğinizden emin misiniz ?",
@@ -182,9 +186,23 @@
   "label.role.adi": "Rol Adı",
   "label.authorization": "Yetkiler",
 
+  "label.company.add": "Şirket Tanımlama",
+  "label.company.update": "Şirket Güncelleme",
+  "label.company.name": "Şirket Adı",
+  "label.company.address": "Adres",
+  "label.company.telephone": "Telefon",
+  "label.company.taxOffice": "Vergi Dairesi",
+  "label.company.taxNumber": "Vergi Numarası",
+  "label.company.email": "E-Mail",
+  "label.company.authorizedPerson": "Yetkili",
+  "label.company.authorizedPersonTelephone": "Yetkili Telefon",
+  "label.company.parentOperationName": "İşletme Adı",
+  "label.company.operation": "İşletme",
+  "label.company.type": "İşletme Tipi",
+
   "##############################################################################################": "MENUS",
   "menu.system.yonetimi": "Sistem Yönetimi",
-  "menu.sirket.ayarlari": "Şirket Ayarları",
+  "menu.company.ayarlari": "Şirket Ayarları",
   "menu.kullanici.ayarlari": "Kullanıcı Ayarları",
   "menu.role.ayarlari": "Role Ayarları",
 

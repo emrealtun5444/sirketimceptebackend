@@ -1,3 +1,3 @@
-id;sirket_adi;eposta;durum;created_by;created_date
-1;Aymer Yapı Bilişim San. Tic. Ltd. Şti.;aymer@aymeryapi.com.tr;AKTIF;admin;now
-2;Kare Ankara Banyo Sistemleri.;info@karebanyo.com;AKTIF;admin;now
+id;name;telephone;authorized_person;authorized_person_telephone;email;durum;operation_id;created_by;created_date
+1;Aymer Yapı;3123118395;Yunus ALTUN;5323225552;yunus@aymeryapi.com.tr;AKTIF;null;admin;now
+2;Kare Banyo;3123118395;Yunus ALTUN;5323225552;yunus@karebanyo.com;AKTIF;null;admin;now

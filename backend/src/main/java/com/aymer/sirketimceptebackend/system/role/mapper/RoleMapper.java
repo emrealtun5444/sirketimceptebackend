@@ -12,8 +12,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface RoleMapper {
     RoleInput toInput(Role role);
-
+    @Mappings({
+        @Mapping(target = "id", ignore = true)
+    })
     void updateFromInput(RoleInput roleInput, @MappingTarget Role role);
-
     List<RoleInput> toInputs(List<Role> roles);
 }

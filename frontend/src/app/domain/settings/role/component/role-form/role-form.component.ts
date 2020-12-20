@@ -64,6 +64,7 @@ export class RoleFormComponent extends AbstractBaseComponent implements OnInit, 
   }
 
   confirm(event: Event) {
+    if (!this.entityForm.valid) return;
     this.confirmationService.confirm({
       key: 'update',
       message: this.appStore.translate.instant('info.sure.continue.process'),

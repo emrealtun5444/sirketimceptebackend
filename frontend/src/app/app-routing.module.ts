@@ -44,6 +44,10 @@ import {AuthGuard} from './shared/auth/AuthGuard';
             loadChildren: () => import('src/app/domain/settings/role/role.module').then(m => m.RoleModule),
           },
           {
+            path: 'company',
+            loadChildren: () => import('src/app/domain/settings/company/company.module').then(m => m.CompanyModule),
+          },
+          {
             path: 'marketPlace',
             loadChildren: () => import('src/app/domain/market-place/market-place.module').then(m => m.MarketPlaceModule),
           }

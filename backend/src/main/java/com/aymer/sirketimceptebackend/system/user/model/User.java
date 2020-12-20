@@ -103,7 +103,7 @@ public class User extends Auditable<String> implements Serializable, Idendifier 
         if(CollectionUtils.isEmpty(companies)) return null;
         StringBuilder companyNames = new StringBuilder();
         companies.forEach(company -> {
-            companyNames.append(company.getSirketAdi());
+            companyNames.append(company.getName());
             companyNames.append(", ");
         });
         return companyNames.substring(0, companyNames.lastIndexOf(","));
