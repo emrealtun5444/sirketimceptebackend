@@ -84,6 +84,15 @@ public class CariFaturaVisitor implements CariKartVisitor {
                 }
             }
         });
+
+        // sistemdeki faturalar geziliyor.
+        faturaList = faturaRepository.findAllByCariKartAndFaturaTarihiGreaterThanEqual(cariKart, DateUtils.firstDayOfYear());
+        Map<String, FaturaViewHolder> faturaViewHolderMap = cariKartViewHolder.getFaturaList().stream().collect(Collectors.toMap(FaturaViewHolder::getFaturaNo , faturaViewHolder -> faturaViewHolder));
+        faturaList.forEach(fatura -> {
+            if (!faturaViewHolderMap.containsKey(fatura.getFaturaNo())) {
+                faturaRepository.delete(fatura);
+            }
+        });
     }
 
     private boolean faturaAyniMi(FaturaViewHolder faturaViewHolder , Fatura fatura) {

@@ -50,7 +50,8 @@
     </div>
 
     <div class="p-col-12 p-lg-4 p-fluid activity-feed">
-        <p-panel header="{{'label.aylik.aktivite' | translate}}">
+        <div class="card">
+            <h5>{{'label.aylik.aktivite' | translate}}</h5>
             <div class="p-grid">
                 <div class="p-col-12 p-md-4">
                     <span>{{'label.bayi' | translate}}</span>
@@ -65,11 +66,12 @@
                     <div class="knob invoice">{{monthlyEticaretSales | paraFormat}} TL</div>
                 </div>
             </div>
-        </p-panel>
+        </div>
     </div>
 
     <div class="p-col-12 p-md-6 p-lg-4 p-fluid contact-form">
-        <p-panel header="{{'label.bize.sorun' | translate}}" [style]="{minHeight: '360px'}">
+        <div class="card">
+            <h5>{{'label.bize.sorun' | translate}}</h5>
             <div class="p-grid">
                 <div class="p-col-12">
                     <p-dropdown [options]="talepTipis" [(ngModel)]="selectedTalepTipi"></p-dropdown>
@@ -91,11 +93,12 @@
                     <button type="button" label="Send" icon="fa fa-send" pButton></button>
                 </div>
             </div>
-        </p-panel>
+        </div>
     </div>
 
     <div class="p-col-12 p-lg-4 contacts">
-        <p-panel header="{{'label.iletisim' | translate}}" [style]="{minHeight: '360px'}">
+        <div class="card">
+            <h5>{{'label.iletisim' | translate}}</h5>
             <ul>
                 <li class="clearfix">
                     <img src="../../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
@@ -158,7 +161,7 @@
                     </div>
                 </li>
             </ul>
-        </p-panel>
+        </div>
     </div>
 
     <div class="p-col-12 p-lg-4">
@@ -172,7 +175,8 @@
                     <span class="event-owner" style="color:#f7cb00">Katherine May</span>
                     <span class="event-text">Lorem ipsun dolor amet</span>
                     <div class="event-content">
-                        <img src="../../../../assets/layout/images/dashboard/bridge.png" library="verona-layout" width="100"/>
+                        <img src="../../../../assets/layout/images/dashboard/bridge.png" library="verona-layout"
+                             width="100"/>
                     </div>
                 </div>
 
@@ -212,7 +216,8 @@
                 </div>
                 <div class="p-col-9">
                     <span class="event-owner" style="color:#ff9c59">Kevin Cox</span>
-                    <span class="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
+                    <span
+                        class="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
                 </div>
 
                 <div class="p-col-3">
@@ -231,8 +236,8 @@
     </div>
 
     <div class="p-col-12 p-md-8">
-        <p-panel header="{{'label.takvim' | translate}}" [style]="{'height':'100%'}">
+        <div class="card">
             <p-fullCalendar [options]="fullcalendarOptions"></p-fullCalendar>
-        </p-panel>
+        </div>
     </div>
 </div>
