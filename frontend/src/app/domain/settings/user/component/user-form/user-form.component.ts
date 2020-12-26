@@ -20,6 +20,7 @@ export class UserFormComponent extends AbstractBaseComponent implements OnInit, 
   entityForm: FormGroup;
   roles: SelectItem[] = [];
   companies: SelectItem[] = [];
+  notifications: any[] = [];
   showChangePasword = false;
   newPaword: string;
 
@@ -48,6 +49,11 @@ export class UserFormComponent extends AbstractBaseComponent implements OnInit, 
     this.subscribeToResponse(this.userService.companies(), data => {
       this.companies = data;
     }, undefined);
+    this.subscribeToResponse(this.userService.notifications(), data => {
+      data.forEach(row => {
+        this.notifications.push({label: this.appStore.translate.instant('label.' + data), value: row});
+      });
+    }, undefined);
   }
 
   private buildForms(userData) {
@@ -58,7 +64,8 @@ export class UserFormComponent extends AbstractBaseComponent implements OnInit, 
       username: [userData ? userData.username : null, Validators.compose([CustomValidator.required])],
       passwordInput: [userData ? userData.passwordInput : null, !userData ? Validators.compose([CustomValidator.required]) : null],
       roles: [userData ? userData.roles : null, Validators.compose([CustomValidator.required])],
-      companies: [userData ? userData.companies : null, Validators.compose([CustomValidator.required])]
+      companies: [userData ? userData.companies : null, Validators.compose([CustomValidator.required])],
+      notifications: [userData ? userData.notifications : null, Validators.compose([CustomValidator.required])],
     });
   }
 

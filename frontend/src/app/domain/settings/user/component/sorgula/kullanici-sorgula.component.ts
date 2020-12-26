@@ -39,6 +39,7 @@ export class KullaniciSorgulaComponent extends AbstractBaseComponent implements 
     {type: ColumnType.STRING, field: 'email', header: this.appStore.translate.instant('label.email')},
     {type: ColumnType.STRING, field: 'roleNames', header: this.appStore.translate.instant('label.roles')},
     {type: ColumnType.STRING, field: 'companyNames', header: this.appStore.translate.instant('label.companies')},
+    {type: ColumnType.STRING, field: 'notificationNames', header: this.appStore.translate.instant('label.notifications')},
   ];
 
 

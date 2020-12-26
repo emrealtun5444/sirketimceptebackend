@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.system.user.service;
 
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItem;
+import com.aymer.sirketimceptebackend.system.mail.model.Notification;
 import com.aymer.sirketimceptebackend.system.role.model.Role;
 import com.aymer.sirketimceptebackend.system.user.dto.UserInput;
 import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
@@ -23,6 +24,8 @@ public interface UserService {
     List<SelectItem> listRoles();
 
     List<SelectItem> listCompanies();
+
+    List<Notification> listNotifications();
 
     UserInput registerUser(User user, String password, Set<Role> roles);
 

@@ -4,6 +4,7 @@ import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItem;
 import com.aymer.sirketimceptebackend.security.service.UserDetailsImpl;
+import com.aymer.sirketimceptebackend.system.mail.model.Notification;
 import com.aymer.sirketimceptebackend.system.user.dto.UserInput;
 import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
 import com.aymer.sirketimceptebackend.system.user.service.UserService;
@@ -74,6 +75,12 @@ public class UserController {
     @PreAuthorize("hasAuthority('USER_MENU')")
     AppResponse<List<SelectItem>> listCompanies() {
         return new AppResponse<List<SelectItem>>(service.listCompanies());
+    }
+
+    @GetMapping("/notifications")
+    @PreAuthorize("hasAuthority('USER_MENU')")
+    AppResponse<List<Notification>> listNotifications() {
+        return new AppResponse<List<Notification>>(service.listNotifications());
     }
 
     @PutMapping("/changepassword/{id}")

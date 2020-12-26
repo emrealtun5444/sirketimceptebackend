@@ -32,6 +32,10 @@ export class UserService extends AbstractService {
     return this.http.get<AppResponse>(`${this.SERVICE_PATH}/companies`);
   }
 
+  notifications(): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/notifications`);
+  }
+
   changepassword(userId: number, newPasword: string): Observable<AppResponse> {
     return this.http.put<AppResponse>(`${this.SERVICE_PATH}/changepassword/${userId}`, newPasword);
   }

@@ -105,6 +105,7 @@
   "label.email": "E-Posta",
   "label.roles": "Roller",
   "label.companies": "Şirketler",
+  "label.notifications": "Bildirim Tipleri",
   "label.durum": "Durum",
   "label.aradiginiz.sayfa.bulunamadi": "Kaynak Bulunamadı",
   "label.aradiginiz.sayfa.bulunamadı.detay": "Erişmek istediğiniz kaynak bulunamadı.",
@@ -218,6 +219,7 @@
   "label.siparis.yonu.alinan": "Alınan Sipariş",
   "label.siparis.yonu.verilen": "Verilen Sipariş",
 
+  "label.WAITING_ORDER": "Bekleyen Siparişler Bildirimi",
 
   "##############################################################################################": "MENUS",
   "menu.system.yonetimi": "Sistem Yönetimi",

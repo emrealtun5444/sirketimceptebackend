@@ -10,4 +10,5 @@ public class UserListItem {
     private String email;
     private String roleNames;
     private String companyNames;
+    private String notificationNames;
 }

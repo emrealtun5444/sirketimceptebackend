@@ -45,7 +45,7 @@
                 <app-validation-message
                         [validationControl]="entityForm.controls['passwordInput']"></app-validation-message>
             </div>
-            <div class="p-col-12">
+            <div class="p-col-12 p-md-6">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon">@</span>
                     <input id="email" formControlName="email" type="text" autocomplete="off"
@@ -67,6 +67,13 @@
                                ></p-multiSelect>
                 <app-validation-message
                         [validationControl]="entityForm.controls['companies']"></app-validation-message>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <p-multiSelect id="notifications" [options]="notifications" formControlName="notifications"
+                               defaultLabel="{{'label.notifications' | translate}}" optionValue="value" optionLabel="label"
+                ></p-multiSelect>
+                <app-validation-message
+                        [validationControl]="entityForm.controls['notifications']"></app-validation-message>
             </div>
         </div>
 

@@ -3,6 +3,7 @@ package com.aymer.sirketimceptebackend.system.user.service;
 import com.aymer.sirketimceptebackend.common.exception.ServiceException;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItem;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItemMapper;
+import com.aymer.sirketimceptebackend.system.mail.model.Notification;
 import com.aymer.sirketimceptebackend.system.role.model.Role;
 import com.aymer.sirketimceptebackend.system.role.repository.RoleRepository;
 import com.aymer.sirketimceptebackend.system.sirket.repository.SirketRepository;
@@ -11,14 +12,13 @@ import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
 import com.aymer.sirketimceptebackend.system.user.mapper.UserMapper;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
+import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class DefaultUserService implements UserService {
@@ -104,5 +104,10 @@ public class DefaultUserService implements UserService {
     @Override
     public List<SelectItem> listCompanies() {
         return SelectItemMapper.toComboItems(companyRepository.findAll());
+    }
+
+    @Override
+    public List<Notification> listNotifications() {
+        return Arrays.asList(Notification.values());
     }
 }

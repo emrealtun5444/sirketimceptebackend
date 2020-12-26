@@ -1,5 +1,7 @@
 package com.aymer.sirketimceptebackend.system.user.model;
 
+import com.aymer.sirketimceptebackend.system.mail.model.Notification;
+import com.aymer.sirketimceptebackend.system.role.model.Authorization;
 import com.aymer.sirketimceptebackend.system.role.model.Role;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.Auditable;
@@ -17,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -69,6 +72,13 @@ public class User extends Auditable<String> implements Serializable, Idendifier 
         inverseJoinColumns = @JoinColumn(name = "sirket_id"))
     private Set<Sirket> companies = new HashSet<>();
 
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Notification.class)
+    @CollectionTable(name = "user_notification",
+        joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "notification_type")
+    private List<Notification> notifications;
+
 
     @Override
     public String getAciklama() {
@@ -107,5 +117,15 @@ public class User extends Auditable<String> implements Serializable, Idendifier 
             companyNames.append(", ");
         });
         return companyNames.substring(0, companyNames.lastIndexOf(","));
+    }
+
+    public String getNotificationNames() {
+        if(CollectionUtils.isEmpty(notifications)) return null;
+        StringBuilder notifyNames = new StringBuilder();
+        notifications.forEach(notfy -> {
+            notifyNames.append(notfy.name());
+            notifyNames.append(", ");
+        });
+        return notifyNames.substring(0, notifyNames.lastIndexOf(","));
     }
 }
