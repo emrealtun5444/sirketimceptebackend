@@ -65,7 +65,7 @@ export class UserFormComponent extends AbstractBaseComponent implements OnInit, 
       passwordInput: [userData ? userData.passwordInput : null, !userData ? Validators.compose([CustomValidator.required]) : null],
       roles: [userData ? userData.roles : null, Validators.compose([CustomValidator.required])],
       companies: [userData ? userData.companies : null, Validators.compose([CustomValidator.required])],
-      notifications: [userData ? userData.notifications : null, Validators.compose([CustomValidator.required])],
+      notifications: [userData ? userData.notifications : null, Validators.compose([])],
     });
   }
 
