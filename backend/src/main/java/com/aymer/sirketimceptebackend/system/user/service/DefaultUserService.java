@@ -92,7 +92,7 @@ public class DefaultUserService implements UserService {
 
     @Override
     public UserInput getUser(Long id) {
-        return userMapper.toInput(userRepository.findById(id)
+        return userMapper.toInput(userRepository.getFetchedUser(id)
                 .orElseThrow(() -> new ServiceException("No user entity found with id: " + id)));
     }
 

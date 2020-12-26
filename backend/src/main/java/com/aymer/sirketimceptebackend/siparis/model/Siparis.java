@@ -87,4 +87,6 @@ public class Siparis extends Auditable<String> implements Serializable {
         return this.getMiktar() - this.getTeslimMiktari();
     }
 
+
+
 }

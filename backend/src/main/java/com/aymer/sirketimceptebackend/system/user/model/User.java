@@ -66,7 +66,7 @@ public class User extends Auditable<String> implements Serializable, Idendifier 
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "kullanici_sirket",
         joinColumns = @JoinColumn(name = "kullanici_id"),
         inverseJoinColumns = @JoinColumn(name = "sirket_id"))

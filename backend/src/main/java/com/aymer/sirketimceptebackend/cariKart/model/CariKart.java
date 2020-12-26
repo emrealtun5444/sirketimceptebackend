@@ -81,4 +81,21 @@ public class CariKart extends Auditable<String> implements Serializable {
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        CariKart cariKart = (CariKart) o;
+
+        return cariKodu.equals(cariKart.cariKodu);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + cariKodu.hashCode();
+        return result;
+    }
 }

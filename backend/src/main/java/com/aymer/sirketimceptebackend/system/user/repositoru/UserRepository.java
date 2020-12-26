@@ -16,8 +16,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	Boolean existsByEmail(String email);
 
-	@Query("select u from User u join fetch u.roles where u.id = :userId")
-	Optional<User> getUserWithRoles(@Param("userId") Long userId);
+	@Query("select u from User u left join fetch u.roles left join fetch u.companies where u.id = :userId")
+	Optional<User> getFetchedUser(@Param("userId") Long userId);
 
     @Query("select count(distinct u.id) from User u join u.companies c where u.id = :userId and c.id = :companyId")
     Long countByIdAndCompaniesIn(@Param("userId") Long id, @Param("companyId") Long companyId);
