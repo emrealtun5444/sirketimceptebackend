@@ -1,15 +1,15 @@
 package com.aymer.sirketimceptebackend.fatura.api;
 
 import com.aymer.sirketimceptebackend.cariKart.mapper.CariKartMapper;
+import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
+import com.aymer.sirketimceptebackend.cariKart.repository.CariKartRepository;
 import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
 import com.aymer.sirketimceptebackend.fatura.dto.FaturaKalemDto;
 import com.aymer.sirketimceptebackend.fatura.dto.FaturaSorguKriteri;
 import com.aymer.sirketimceptebackend.fatura.mapper.FaturaMapper;
-import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.fatura.model.Fatura;
 import com.aymer.sirketimceptebackend.fatura.model.FaturaDetay;
-import com.aymer.sirketimceptebackend.cariKart.repository.CariKartRepository;
 import com.aymer.sirketimceptebackend.fatura.repository.FaturaDetayRepository;
 import com.aymer.sirketimceptebackend.fatura.repository.FaturaRepository;
 import com.aymer.sirketimceptebackend.fatura.service.FaturaService;
@@ -89,9 +89,9 @@ public class FaturaController {
 
         // carikart çekiliyor.
         Optional<CariKart> cariKart = cariKartRepository.findById(fatura.get().getCariKart().getId());
-       if (cariKart.isPresent()) {
-           pageObject.put("cariKart", cariKartMapper.carikartToDto(cariKart.get()));
-       }
+        if (cariKart.isPresent()) {
+            pageObject.put("cariKart", cariKartMapper.carikartToDto(cariKart.get()));
+        }
         return new AppResponse<Map>(pageObject);
     }
 
