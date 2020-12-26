@@ -40,6 +40,7 @@ public class CariKartViewHolder implements Serializable, ItemElement {
 
     // fatura detayları
     private List<FaturaViewHolder> faturaList;
+    private List<SiparisViewHolder> siparisList;
 
     @Override
     public void accept(CariKartVisitor visitor) {

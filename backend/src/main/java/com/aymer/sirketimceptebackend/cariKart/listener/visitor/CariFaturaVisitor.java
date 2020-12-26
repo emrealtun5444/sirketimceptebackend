@@ -123,7 +123,7 @@ public class CariFaturaVisitor implements CariKartVisitor {
         List<FaturaDetay> faturaDetaySet = new ArrayList<>();
         if (!CollectionUtils.isEmpty(faturaDetayViewHolders)) {
             faturaDetayViewHolders.forEach(faturaDetayViewHolder -> {
-                StokKart stokKart = getStokKart(fatura.getSirket(), faturaDetayViewHolder.getStokKodu());
+                StokKart stokKart = stokKartService.getStokKart(fatura.getSirket(), faturaDetayViewHolder.getStokKodu());
                 EKdvOrani kdvOrani = getKdvOrani(faturaDetayViewHolder);
                 FaturaDetay faturaDetay = FaturaDetay.builder().cariKart(fatura.getCariKart()).fatura(fatura).durum(EDurum.AKTIF).stokKart(stokKart).kdvOrani(kdvOrani).build();
                 faturaMapper.updateFaturaDetay(faturaDetayViewHolder,faturaDetay);
@@ -131,29 +131,6 @@ public class CariFaturaVisitor implements CariKartVisitor {
             });
         }
         return faturaDetaySet;
-    }
-
-    private StokKart getStokKart(Sirket company, String stokKodu) {
-        StokKart stokKart = stokKartRepository.findByStokKodu(stokKodu);
-        if (stokKart == null) {
-            RestTemplate restTemplate = new RestTemplate();
-            StokKartViewHolder stokKartViewHolder = restTemplate.getForObject(linkEntegrasyonUrl+ "stokKart/" + stokKodu, StokKartViewHolder.class);
-            if (stokKartViewHolder != null) {
-                stokKart = StokKart.builder()
-                    .stokKodu(stokKartViewHolder.getStokKodu())
-                    .urunAdi(stokKartViewHolder.getAciklama())
-                    .urunFiyat(stokKartViewHolder.getBirimFiyati())
-                    .stokAdedi(stokKartViewHolder.getMiktar())
-                    .durum(EDurum.AKTIF)
-                    .kdvOrani(EKdvOrani.KDV_ORANI_18)
-                    .paraBirimi(EParaBirimi.TRY)
-                    .sirket(company)
-                    .build();
-
-                stokKart = stokKartService.saveStokKart(stokKart);
-            }
-        }
-        return stokKart;
     }
 
     private EKdvOrani getKdvOrani(FaturaDetayViewHolder faturaDetayViewHolder) {
@@ -168,6 +145,5 @@ public class CariFaturaVisitor implements CariKartVisitor {
         }
         return kdvOrani;
     }
-
 
 }

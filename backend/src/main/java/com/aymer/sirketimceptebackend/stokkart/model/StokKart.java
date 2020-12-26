@@ -85,9 +85,10 @@ public class StokKart extends Auditable<String> implements Serializable {
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
 
-    public void updateStokAndPrice(Long stokAdedi, BigDecimal urunFiyati) {
+    public void updateStokAndPrice(String aciklama, Long stokAdedi, BigDecimal urunFiyati) {
         this.setStokAdedi(stokAdedi);
         this.setUrunFiyat(urunFiyati);
+        this.setUrunAdi(aciklama);
     }
 
 }

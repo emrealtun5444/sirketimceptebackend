@@ -1,8 +1,6 @@
 package com.aymer.sirketimceptebackend.stokkart.listener;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,9 +10,11 @@ import java.math.BigDecimal;
  * Date: 14.06.2020
  * Time: 09:27
  */
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class StokKartViewHolder implements Serializable {
 
     private Long id;
@@ -28,15 +28,6 @@ public class StokKartViewHolder implements Serializable {
     private Long miktar;
 
     private Long sirketId;
-
-    public StokKartViewHolder(Long id, String stokKodu, String aciklama, BigDecimal birimFiyati, Long miktar) {
-        this.id = id;
-        this.stokKodu = stokKodu;
-        this.aciklama = aciklama;
-        this.birimFiyati = birimFiyati;
-        this.miktar = miktar;
-        this.sirketId = 1L;
-    }
 
     @Override
     public String toString() {

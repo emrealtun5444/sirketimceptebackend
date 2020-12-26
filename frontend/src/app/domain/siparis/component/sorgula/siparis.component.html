@@ -1,15 +1,15 @@
 <form [formGroup]="sorguForm">
 
     <div class="card">
-        <h3>{{'menu.fatura.sorgulama' | translate}}</h3>
+        <h3>{{'menu.siparis.sorgulama' | translate}}</h3>
         <br/>
         <div class="p-grid p-fluid">
             <div class="p-field p-col-12 p-md-4">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-shopping-cart"></i></span>
                     <span class="p-float-label">
-                             <input id="faturaNo" formControlName="faturaNo" type="text" pInputText>
-                            <label for="faturaNo">{{'label.fatura.no' | translate}}</label>
+                             <input id="siparisNo" formControlName="siparisNo" type="text" pInputText>
+                            <label for="siparisNo">{{'label.siparis.no' | translate}}</label>
                         </span>
                 </div>
             </div>
@@ -35,22 +35,37 @@
             </div>
 
             <div class="p-field p-col-12 p-md-4">
-                <p-calendar id="faturaTarihi" showButtonBar="true" formControlName="faturaTarihi"
-                            placeholder="{{'label.fatura.tarihi' | translate}}"
+                <p-calendar id="islemTarihi" showButtonBar="true" formControlName="islemTarihi"
+                            placeholder="{{'label.islem.tarihi' | translate}}"
                             [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
             </div>
-
             <div class="p-field p-col-12 p-md-4">
-
+                <span class="p-float-label">
+                     <p-dropdown id="siparisDurumu" formControlName="siparisDurumu"
+                                 [options]="siparisDurumuList"
+                                 optionValue="value" optionLabel="label"
+                                 ></p-dropdown>
+                    <label for="siparisDurumu">{{'label.siparis.durumu' | translate}}</label>
+                </span>
             </div>
+            <div class="p-field p-col-12 p-md-4">
+                <span class="p-float-label">
+                  <p-dropdown id="siparisYonu" formControlName="siparisYonu"
+                              [options]="siparisYonuList"
+                              optionValue="value" optionLabel="label"></p-dropdown>
+                  <label for="siparisDurumu">{{'label.siparis.yonu' | translate}}</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-4"></div>
+            <div class="p-field p-col-12 p-md-4"></div>
             <div class="p-field p-col-12 p-md-4">
                 <button pButton type="button" label="{{'btn.sorgula' | translate}}"
                         (click)="sorgula()"></button>
             </div>
         </div>
     </div>
-
     <app-common-lazy-dt #laztTable [cols]="cols" (loadLazyEvent)="loadLazy($event)"
                         [loading]="loading" [data]="resultList" [operations]="operations"
+                        [hiddenColumn]="hiddenColumn" [that]="this"
                         [totalRecords]="totalRecords"></app-common-lazy-dt>
 </form>

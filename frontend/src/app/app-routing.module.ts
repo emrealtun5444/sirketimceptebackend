@@ -36,6 +36,10 @@ import {AuthGuard} from './shared/auth/AuthGuard';
             loadChildren: () => import('src/app/domain/fatura/fatura.module').then(m => m.FaturaModule),
           },
           {
+            path: 'siparis',
+            loadChildren: () => import('src/app/domain/siparis/siparis.module').then(m => m.SiparisModule),
+          },
+          {
             path: 'user',
             loadChildren: () => import('src/app/domain/settings/user/user.module').then(m => m.UserModule),
           },

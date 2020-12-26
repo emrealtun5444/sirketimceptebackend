@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="admin" id="1">
+        <createTable tableName="siparis">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="cari_kart_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_siparis_cari_kart_id" references="cari_kart(id)"/>
+            </column>
+            <column name="islem_tarihi" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="siparis_yonu" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="siparis_no" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stok_kart_id" type="int">
+                <constraints foreignKeyName="fk_siparis_stokkart_id" references="stok_kart(id)"/>
+            </column>
+            <column name="miktar" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birim_fiyati" type="currency"/>
+            <column name="tutari" type="currency"/>
+            <column name="iskonto" type="currency"/>
+            <column name="kdv_tutari" type="currency"/>
+            <column name="fatura_no" type="VARCHAR(128)"/>
+
+            <column name="teslim_miktari" type="int"/>
+            <column name="siparis_durumu" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="teslim_tarihi" type="timestamp"/>
+
+            <column name="durum" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="sirket_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_siparis_sirket_id" references="sirket(id)"/>
+            </column>
+
+            <column name="created_by" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(20)"/>
+            <column name="last_modified_date" type="timestamp"/>
+
+        </createTable>
+        <rollback>
+            <dropTable tableName="siparis"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

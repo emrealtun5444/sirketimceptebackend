@@ -87,6 +87,20 @@ export class AppMenuComponent implements OnInit {
         ]
       },
       {
+        label: this.appStore.translate.instant('menu.siparis.yonetimi'),
+        authorization: 'SIPARIS_MENU',
+        icon: 'fa fa-fw fa-bars',
+        badge: 1,
+        badgeStyleClass: 'green-badge',
+        items: [
+          {
+            label: this.appStore.translate.instant('menu.siparis.sorgulama'),
+            icon: 'fa fa-fw fa-columns',
+            routerLink: ['/siparis']
+          }
+        ]
+      },
+      {
         label: this.appStore.translate.instant('menu.pazaryeri.yonetimi'),
         authorization: 'PAZARYERI_MENU',
         icon: 'fa fa-fw fa-bars',

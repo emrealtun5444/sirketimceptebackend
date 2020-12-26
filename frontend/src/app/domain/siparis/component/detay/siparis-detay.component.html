@@ -1,0 +1,103 @@
+<button pButton label="Print" type="button" icon="pi pi-print" (click)="print()"
+        style="display:block;margin-bottom: 20px; margin-left: 6px;"></button>
+<div class="p-grid" *ngIf="cariKart">
+    <div class="p-col">
+        <div class="card">
+            <div id="invoice-content">
+                <div class="invoice-content-wrapper">
+                    <div class="invoice-header">
+                        <div class="invoice-company">
+                            <img id="invoice-logo" class="logo-image" src="assets/layout/images/aymer-yapi.jpg"
+                                 alt="verona-layout"/>
+                            <div class="company-name">Aymer Yapı Bilişim San. Tic. Ltd. Şti.</div>
+                            <div>Doğanbey, Rüzgarlı Cd. No:33,</div>
+                            <div>06050 Altındağ / Ankara</div>
+                        </div>
+                        <div>
+                            <div class="invoice-title">{{'label.fatura' | translate}}</div>
+                            <div class="invoice-details">
+                                <div class="invoice-label">{{'label.islem.tarihi' | translate}}</div>
+                                <div class="invoice-value">{{siparis.islemTarihi | dateFormat}}</div>
+
+                                <div class="invoice-label">{{'label.siparis.no' | translate}} #</div>
+                                <div class="invoice-value">{{siparis.siparisNo}}</div>
+
+                                <div class="invoice-label">{{'label.fatura.no' | translate}}</div>
+                                <div class="invoice-value">{{siparis.faturaNo}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-to">
+                        <div class="bill-to">{{'label.siparis.veren' | translate}}</div>
+                        <div class="invoice-to-info">
+                            <div>{{cariKart.cariAdi}} </div>
+                            <div>{{cariKart.cariAdres}}</div>
+                        </div>
+                    </div>
+                    <div class="invoice-items">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>{{'label.siparis.no' | translate}}</th>
+                                <th>{{'label.islem.tarihi' | translate}}</th>
+                                <th>{{'label.stok.kodu' | translate}}</th>
+                                <th>{{'label.urun.adi' | translate}}</th>
+                                <th>{{'label.cari.kodu' | translate}}</th>
+                                <th>{{'label.cari.adi' | translate}}</th>
+                                <th>{{'label.miktar' | translate}}</th>
+                                <th>{{'label.teslim.miktari' | translate}}</th>
+                                <th>{{'label.kalan.miktari' | translate}}</th>
+                                <th>{{'label.stok.miktari' | translate}}</th>
+                                <th>{{'label.teslim.tarihi' | translate}}</th>
+
+                                <th>{{'label.birim.fiyati' | translate}}</th>
+                                <th>{{'label.tutar' | translate}}</th>
+                                <th>{{'label.iskonto' | translate}}</th>
+                                <th>{{'label.kdv.tutari' | translate}}</th>
+                                <th>{{'label.fatura.no' | translate}}</th>
+                                <th>{{'label.siparis.durumu' | translate}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let sd of siparisDetayList">
+                                <td>{{sd.siparisNo}}</td>
+                                <td>{{sd.islemTarihi | dateFormat }}</td>
+                                <td>{{sd.malKodu}}</td>
+                                <td>{{sd.urunAdi}}</td>
+                                <td>{{sd.cariKodu}}</td>
+                                <td>{{sd.cariAdi}}</td>
+                                <td>{{sd.miktar}}</td>
+                                <td>{{sd.teslimMiktari}}</td>
+                                <td>{{sd.kalanMiktar}}</td>
+                                <td>{{sd.stokMiktari}}</td>
+                                <td>{{sd.teslimTarihi | dateFormat }}</td>
+
+                                <td>{{sd.birimFiyati | paraFormat }}</td>
+                                <td>{{sd.tutari | paraFormat }}</td>
+                                <td>{{sd.iskonto | paraFormat }}</td>
+                                <td>{{sd.kdvTutari | paraFormat }}</td>
+                                <td>{{sd.faturaNo}}</td>
+                                <td>{{sd.siparisDurumu}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="invoice-summary">
+                        <div class="invoice-notes">
+                            <b>NOT</b>
+                            <div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="invoice-details">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button pButton type="button" label="{{'btn.geri.don' | translate}}"
+        (click)="this.location.back();"></button>

@@ -22,6 +22,10 @@ public class FaturaSpesification implements Specification<Fatura> {
 
         Join<Fatura, CariKart> cariJoin = root.join("cariKart",JoinType.INNER);
 
+        if (faturaSorguKriteri.getFaturaNo() != null) {
+            predicates.add(cb.like(cb.upper(root.get("faturaNo")), "%" + faturaSorguKriteri.getFaturaNo().toUpperCase(LocaleContextHolder.getLocale()) + "%"));
+        }
+
         if (faturaSorguKriteri.getCariKodu() != null) {
             predicates.add(cb.like(cb.upper(cariJoin.get("cariKodu")), "%" + faturaSorguKriteri.getCariKodu().toUpperCase(LocaleContextHolder.getLocale()) + "%"));
         }

@@ -14,6 +14,7 @@ import com.aymer.sirketimceptebackend.common.repository.specs.SearchCriteria;
 import com.aymer.sirketimceptebackend.common.repository.specs.SearchOperation;
 import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +22,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
@@ -38,9 +41,12 @@ public class StokKartServiceImp implements StokKartService {
     @Autowired
     private SirketRepository sirketRepository;
 
+    @Value("${link.entegrasyon.url}")
+    private String linkEntegrasyonUrl;
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void syncStokKart(StokKartViewHolder stokKartDto) {
+    public StokKart syncStokKart(StokKartViewHolder stokKartDto) {
         StokKart stokKart = null;
         Optional<Sirket> sirket = sirketRepository.findById(stokKartDto.getSirketId());
 
@@ -48,20 +54,35 @@ public class StokKartServiceImp implements StokKartService {
         boolean haveStokKart = stokKartRepository.existsByStokKodu(stokKartDto.getStokKodu());
         if (haveStokKart) {
             stokKart = stokKartRepository.findByStokKodu(stokKartDto.getStokKodu());
-            stokKart.updateStokAndPrice(stokKartDto.getMiktar(),stokKartDto.getBirimFiyati());
+            stokKart.updateStokAndPrice(stokKartDto.getAciklama(), stokKartDto.getMiktar(), stokKartDto.getBirimFiyati());
         } else {
             stokKart = StokKart.builder()
-                    .stokKodu(stokKartDto.getStokKodu())
-                    .urunAdi(stokKartDto.getAciklama())
-                    .urunFiyat(stokKartDto.getBirimFiyati())
-                    .stokAdedi(stokKartDto.getMiktar())
-                    .durum(EDurum.AKTIF)
-                    .kdvOrani(EKdvOrani.KDV_ORANI_18)
-                    .paraBirimi(EParaBirimi.TRY)
-                    .sirket(sirket.get())
-                    .build();
+                .stokKodu(stokKartDto.getStokKodu())
+                .urunAdi(stokKartDto.getAciklama())
+                .urunFiyat(stokKartDto.getBirimFiyati())
+                .stokAdedi(stokKartDto.getMiktar())
+                .durum(EDurum.AKTIF)
+                .kdvOrani(EKdvOrani.KDV_ORANI_18)
+                .paraBirimi(EParaBirimi.TRY)
+                .sirket(sirket.get())
+                .build();
         }
-        this.saveStokKart(stokKart);
+        return this.saveStokKart(stokKart);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public StokKart getStokKart(Sirket sirket, String stokKodu) {
+        StokKart stokKart = stokKartRepository.findByStokKodu(stokKodu);
+        if (stokKart == null) {
+            RestTemplate restTemplate = new RestTemplate();
+            StokKartViewHolder stokKartViewHolder = restTemplate.getForObject(linkEntegrasyonUrl + "stokKart/" + stokKodu, StokKartViewHolder.class);
+            if (stokKartViewHolder == null) {
+                stokKartViewHolder = StokKartViewHolder.builder().stokKodu(stokKodu).birimFiyati(BigDecimal.ONE).miktar(0L).aciklama("Dummy").build();
+            }
+            stokKartViewHolder.setSirketId(sirket.getId());
+            return this.syncStokKart(stokKartViewHolder);
+        }
+        return stokKart;
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)

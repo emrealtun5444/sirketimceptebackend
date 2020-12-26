@@ -4,6 +4,7 @@ package com.aymer.sirketimceptebackend.stokkart.service;
 import com.aymer.sirketimceptebackend.stokkart.dto.StokKartSorguKriteri;
 import com.aymer.sirketimceptebackend.stokkart.listener.StokKartViewHolder;
 import com.aymer.sirketimceptebackend.stokkart.model.StokKart;
+import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import org.springframework.data.domain.Page;
 
 /**
@@ -13,7 +14,9 @@ import org.springframework.data.domain.Page;
  */
 public interface StokKartService {
 
-    void syncStokKart(StokKartViewHolder stokKartDto);
+    StokKart syncStokKart(StokKartViewHolder stokKartDto);
+
+    StokKart getStokKart(Sirket sirket, String stokKodu);
 
     StokKart saveStokKart(StokKart stokKart);
 

@@ -25,6 +25,9 @@ public enum Authorization implements Serializable {
     // Fatura
     FATURA_MENU("menu.fatura.yonetimi", null),
 
+    // Siparis
+    SIPARIS_MENU("menu.siparis.yonetimi", null),
+
     // Marketplace
     PAZARYERI_MENU("menu.pazaryeri.yonetimi", null),
     ENTEGRASYON_AYAR("menu.pazaryeri.conf", PAZARYERI_MENU);

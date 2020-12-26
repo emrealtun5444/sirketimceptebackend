@@ -75,6 +75,7 @@
   "btn.filter.columns": "Kolonları Filtrele",
   "label.islem": "İşlem",
   "label.select": "Seçiniz",
+  "label.select.all": "Hepsi",
   "label.onay.kaydet": "Kaydet Onay",
   "label.onay.guncelle": "Güncelle Onay",
   "label.onay.sil": "Sil Onay",
@@ -200,6 +201,24 @@
   "label.company.operation": "İşletme",
   "label.company.type": "İşletme Tipi",
 
+  "label.siparis.veren": "Sipariş Veren",
+  "label.siparis.no": "Sipariş No",
+  "label.teslim.miktari": "Teslim Miktarı",
+  "label.teslim.tarihi": "Teslim Tarihi",
+  "label.kalan.miktari": "Kalan Miktar",
+  "label.stok.miktari": "Stok Miktari",
+  "label.siparis.durumu": "Sipariş Durumu",
+  "label.siparis.yonu": "Sipariş Yönü",
+  "label.siparis.detay": "Sipariş Detay",
+
+  "label.siparis.durum.acik": "Açık",
+  "label.siparis.durum.kismen.teslim": "Kısmen Teslim Edildi",
+  "label.siparis.durum.tamamlandi": "Tamamlandı",
+
+  "label.siparis.yonu.alinan": "Alınan Sipariş",
+  "label.siparis.yonu.verilen": "Verilen Sipariş",
+
+
   "##############################################################################################": "MENUS",
   "menu.system.yonetimi": "Sistem Yönetimi",
   "menu.company.ayarlari": "Şirket Ayarları",
@@ -212,6 +231,8 @@
   "menu.cari.sorgulama": "Cari Kartı Sorgulama",
   "menu.fatura.yonetimi": "Fatura Yönetimi",
   "menu.fatura.sorgulama": "Fatura Sorgulama",
+  "menu.siparis.yonetimi": "Sipariş Yönetimi",
+  "menu.siparis.sorgulama": "Sipariş Sorgulama",
   "menu.pazaryeri.yonetimi": "Pazaryeri Yönetimi",
   "menu.pazaryeri.conf": "Entegrasyon Ayarları",
   "menu.company.conf": "Şirket Ayarları",

@@ -1,6 +1,8 @@
-package com.aymer.sirketimceptebackend.fatura.dto;
+package com.aymer.sirketimceptebackend.siparis.dto;
 
 import com.aymer.sirketimceptebackend.common.api.dto.LazyLoadEvent;
+import com.aymer.sirketimceptebackend.siparis.model.SiparisDurumu;
+import com.aymer.sirketimceptebackend.siparis.model.SiparisYonu;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,13 +15,15 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FaturaSorguKriteri implements Serializable {
+public class SiparisSorguKriteri implements Serializable {
 
-    private String faturaNo;
+    private String siparisNo;
     private String cariKodu;
     private String cariAdi;
-    private Date faturaBaslangicTarihi;
-    private Date faturaBitisTarihi;
+    private SiparisDurumu siparisDurumu;
+    private SiparisYonu siparisYonu;
+    private Date baslangicTarihi;
+    private Date bitisTarihi;
 
     @Valid
     @NotNull
