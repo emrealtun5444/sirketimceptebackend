@@ -2,13 +2,13 @@ package com.aymer.sirketimceptebackend.system.mail.service;
 
 import com.aymer.sirketimceptebackend.system.mail.model.Notification;
 import com.aymer.sirketimceptebackend.system.mail.repository.NotificationRepository;
+import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,8 +23,8 @@ public class NotificationServiceImp implements NotificationService {
     private NotificationRepository notificationRepository;
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    public Set<User> findTargetListByNotificationType(Notification notification) {
-        return notificationRepository.findAllByNotification(notification);
+    public Set<User> findTargetList(Sirket sirket, Notification notification) {
+        return notificationRepository.findTargetList(sirket, notification);
     }
 
 }

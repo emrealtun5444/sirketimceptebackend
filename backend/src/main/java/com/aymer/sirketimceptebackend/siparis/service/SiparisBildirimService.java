@@ -7,6 +7,8 @@ import com.aymer.sirketimceptebackend.siparis.repository.SiparisRepository;
 import com.aymer.sirketimceptebackend.system.mail.model.Notification;
 import com.aymer.sirketimceptebackend.system.mail.service.MailService;
 import com.aymer.sirketimceptebackend.system.mail.service.NotificationService;
+import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
+import com.aymer.sirketimceptebackend.system.sirket.repository.SirketRepository;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.utils.DateUtils;
 import com.aymer.sirketimceptebackend.utils.EmailIcerikUtils;
@@ -38,37 +40,28 @@ public class SiparisBildirimService implements Tasklet {
     @Autowired
     private NotificationService notificationService;
 
+    @Autowired
+    private SirketRepository sirketRepository;
+
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        // bildirim yapılacak kullanıcılar tespit ediliyor.
-        final Set<User> targetUsers = notificationService.findTargetListByNotificationType(Notification.WAITING_ORDER);
-        String subject = LabelFactory.getLabel("subject.bekleyen.siparis.listesi", new Object[]{DateUtils.formatDateForHat(new Date())});
+        String subject = LabelFactory.getLabel("subject.bekleyen.siparis.listesi");
+        String text = LabelFactory.getLabel("text.bekleyen.siparis.listesi", new Object[]{DateUtils.formatDateForHat(new Date())});
 
-        // siparis listesini cari kart bazında gruplarız.
-        final Map<CariKart, List<Siparis>> siparisMap = getSiparisMap();
-        targetUsers.forEach(user -> {
-            // mail içeriği alınıyor.
-            String content = prepareMailContent(user, siparisMap);
-
-            Map<String, Object> templateModel = new LinkedHashMap<>();
-            templateModel.put("recipientName", user.getAciklama());
-            templateModel.put("text", "deneme");
-            templateModel.put("senderName", user.getAciklama());
-            mailService.htmlMailGonder(user.getEmail(), subject, templateModel);
-        });
-
-        Map<String, Object> templateModel = new LinkedHashMap<>();
-        templateModel.put("recipientName", "Emre ALTUN");
-        templateModel.put("text", "deneme");
-        templateModel.put("senderName", "aymer");
-        mailService.htmlMailGonder("emre@aymeryapi.com.tr", subject, templateModel);
-
-
+        List<Sirket> sirketList = sirketRepository.findAll();
+        for (Sirket sirket : sirketList) {
+            // hedef kitle tespit ediliyor
+            final Set<User> targetUsers = notificationService.findTargetList(sirket, Notification.WAITING_ORDER);
+            String content = prepareMailContent(sirket);
+            targetUsers.forEach(user -> {
+                mailService.htmlMailGonder(user.getEmail(), subject, EmailIcerikUtils.generateTemplateModel(user,sirket,text,content));
+            });
+        }
         return RepeatStatus.FINISHED;
     }
 
-
-    private String prepareMailContent(User user, Map<CariKart, List<Siparis>> siparisMap) {
-        EmailIcerikUtils.Builder mailIcerigi = EmailIcerikUtils.createBuilder().add(EmailIcerikUtils.createParagraf(LabelFactory.getLabel("label.sayin", new Object[]{user.getAciklama()})));
+    private String prepareMailContent(Sirket sirket) {
+        final Map<CariKart, List<Siparis>> siparisMap = getSiparisMap(sirket);
+        EmailIcerikUtils.Builder mailIcerigi =  EmailIcerikUtils.createBuilder();
 
         for (Map.Entry<CariKart, List<Siparis>> entry : siparisMap.entrySet()) {
             mailIcerigi.add(EmailIcerikUtils.createParagraf(entry.getKey().getCariKodu() + " - " + entry.getKey().getCariAdi()));
@@ -106,9 +99,9 @@ public class SiparisBildirimService implements Tasklet {
         return mailIcerigi.build();
     }
 
-    private Map<CariKart, List<Siparis>> getSiparisMap() {
+    private Map<CariKart, List<Siparis>> getSiparisMap(Sirket sirket) {
         // tamamlanmamış tüm siparişler tespit ediliyor.
-        List<Siparis> siparisList = siparisRepository.findAllBySiparisDurumuNot(SiparisDurumu.TAMAMLANDI);
+        List<Siparis> siparisList = siparisRepository.findAllBySiparisDurumuNotAndSirket(SiparisDurumu.TAMAMLANDI, sirket);
         // siparis listesini cari kart bazında gruplarız.
         return siparisList.stream().collect(Collectors.groupingBy(Siparis::getCariKart));
     }

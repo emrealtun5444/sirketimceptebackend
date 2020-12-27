@@ -2,9 +2,9 @@ package com.aymer.sirketimceptebackend.system.mail.service;
 
 
 import com.aymer.sirketimceptebackend.system.mail.model.Notification;
+import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,5 +13,5 @@ import java.util.Set;
  * Time: 16:10
  */
 public interface NotificationService {
-    Set<User> findTargetListByNotificationType(Notification notification);
+    Set<User> findTargetList(Sirket sirket, Notification notification);
 }

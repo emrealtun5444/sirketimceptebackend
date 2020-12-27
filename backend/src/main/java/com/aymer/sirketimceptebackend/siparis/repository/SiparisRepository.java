@@ -3,6 +3,7 @@ package com.aymer.sirketimceptebackend.siparis.repository;
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.siparis.model.Siparis;
 import com.aymer.sirketimceptebackend.siparis.model.SiparisDurumu;
+import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,6 @@ public interface SiparisRepository extends JpaRepository<Siparis, Long>, JpaSpec
 
     List<Siparis> findAllBySiparisNo(String siparisNo);
 
-    List<Siparis> findAllBySiparisDurumuNot(SiparisDurumu siparisDurumu);
+    List<Siparis> findAllBySiparisDurumuNotAndSirket(SiparisDurumu siparisDurumu, Sirket sirket);
 
 }

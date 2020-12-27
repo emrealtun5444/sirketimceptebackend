@@ -1,6 +1,24 @@
 package com.aymer.sirketimceptebackend.utils;
 
+import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
+import com.aymer.sirketimceptebackend.system.user.model.User;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class EmailIcerikUtils {
+
+    public static Map<String, Object> generateTemplateModel(User user, Sirket sirket, String text, String content) {
+        Map<String, Object> templateModel = new LinkedHashMap<>();
+        templateModel.put("recipientName", user.getAciklama());
+        templateModel.put("senderName", sirket.getName());
+        templateModel.put("senderAdress", sirket.getAddress());
+        templateModel.put("senderMail", sirket.getAddress());
+
+        templateModel.put("text", text);
+        templateModel.put("content", content);
+        return templateModel;
+    }
 
     public static Builder createBuilder() {
         return new Builder();
@@ -27,45 +45,16 @@ public class EmailIcerikUtils {
 
         private Builder() {
             icerik = new StringBuilder();
-            initialize();
         }
 
-        private void initialize() {
-            icerik.append("<html>\n");
-            icerik.append("<head>\n");
-            icerik.append("    <style>\n");
-            icerik.append("        table {\n");
-            icerik.append("            font-family: Arial, Verdana, sans-serif;\n");
-            icerik.append("            font-size: 12px;\n");
-            icerik.append("            border-collapse: collapse;\n");
-            icerik.append("            width: 100%;\n");
-            icerik.append("        }\n");
-            icerik.append("\n");
-            icerik.append("        td, th {\n");
-            icerik.append("            border: 1px solid #ddd;\n");
-            icerik.append("            text-align: left;\n");
-            icerik.append("            padding: 8px;\n");
-            icerik.append("        }\n");
-            icerik.append("\n");
-            icerik.append("        tr:nth-child(even) {background-color: #f2f2f2;}\n");
-            icerik.append("    </style>\n");
-            icerik.append("</head>\n");
-            icerik.append("<body>\n");
-        }
-        
         public String build() {
-            end();
             return icerik.toString();
         }
 
-        private void end() {
-            icerik.append("</body></html>");
-        }
-
         public Builder add(Buildable buildable) {
-            icerik.append("<br/>");
+            icerik.append("<p>");
             icerik.append(buildable.build());
-            icerik.append("<br/>");
+            icerik.append("<p/>");
             return this;
         }
     }
@@ -133,7 +122,6 @@ public class EmailIcerikUtils {
 
         private void initialize() {
             icerik.append("<table>");
-            icerik.append("<tr>");
         }
 
         public String build() {
@@ -142,12 +130,11 @@ public class EmailIcerikUtils {
         }
 
         private void end() {
-            icerik.append("</tr>");
             icerik.append("</table>");
         }
 
         public TableBuilder addRow(RowBuilder rowBuilder) {
-            if(rowBuilder.cellCount != kolonSayisi) {
+            if (rowBuilder.cellCount != kolonSayisi) {
                 throw new IllegalArgumentException("kolon sayıları her satırda aynı değil");
             }
             icerik.append(rowBuilder.build());
@@ -165,7 +152,7 @@ public class EmailIcerikUtils {
         }
 
         private void initialize() {
-            icerik.append("<th>");
+            icerik.append("<tr>");
         }
 
         private String build() {
@@ -174,11 +161,11 @@ public class EmailIcerikUtils {
         }
 
         private void end() {
-            icerik.append("</th>");
+            icerik.append("</tr>");
         }
 
         public RowBuilder addCell(String cell) {
-            cellCount ++;
+            cellCount++;
             icerik.append("<td>");
             icerik.append(cell);
             icerik.append("</td>");
