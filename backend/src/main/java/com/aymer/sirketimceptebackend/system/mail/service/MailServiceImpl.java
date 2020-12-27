@@ -2,22 +2,29 @@ package com.aymer.sirketimceptebackend.system.mail.service;
 
 import com.aymer.sirketimceptebackend.system.mail.dto.MailAttachment;
 import com.aymer.sirketimceptebackend.system.mail.dto.MimeMessageWrapper;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
+import java.util.Map;
 
 @Service("mailService")
 public class MailServiceImpl implements MailService {
@@ -40,8 +47,27 @@ public class MailServiceImpl implements MailService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MailServiceImpl.class);
 
     @Autowired
+    private FreeMarkerConfigurer freemarkerConfigurer;
+
+    @Autowired
     private JavaMailSender mailSender;
 
+    @Value("classpath:/mail-templates/mail-logo.png")
+    private Resource resourceFile;
+
+    @Override
+    public void htmlMailGonder(String to, String subject, Map<String, Object> templateModel)  {
+        Template freemarkerTemplate = null;
+        try {
+            freemarkerTemplate = freemarkerConfigurer.getConfiguration().getTemplate("template-freemarker.ftl");
+            String htmlBody = FreeMarkerTemplateUtils.processTemplateIntoString(freemarkerTemplate, templateModel);
+            htmlMailGonder(to, subject, htmlBody);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (TemplateException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void htmlMailGonder(String to, String subject, String msg) {
         MimeMessageWrapper mimeMessageWrapper = createMimeMessage(null, to, subject, msg, "", null, true);
@@ -123,6 +149,7 @@ public class MailServiceImpl implements MailService {
             messageHelper.setText(msg, html);
             messageHelper.setFrom(from);
             messageHelper.setReplyTo(DEFAULT_REPLAYTO_ADDRESS);
+            messageHelper.addInline("attachment.png", resourceFile);
         } catch (MessagingException exc) {
             LOGGER.error(exc.toString(), exc);
         }
@@ -154,6 +181,7 @@ public class MailServiceImpl implements MailService {
             messageHelper.setSubject(subject);
             messageHelper.setText(msg);
             messageHelper.setFrom(from);
+            messageHelper.addInline("attachment.png", resourceFile);
             messageHelper.setReplyTo(DEFAULT_REPLAYTO_ADDRESS);
         } catch (MessagingException exc) {
             LOGGER.error(exc.toString(), exc);

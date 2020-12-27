@@ -18,10 +18,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -51,8 +48,19 @@ public class SiparisBildirimService implements Tasklet {
         targetUsers.forEach(user -> {
             // mail içeriği alınıyor.
             String content = prepareMailContent(user, siparisMap);
-            mailService.mailGonder(user.getEmail(), subject, content);
+
+            Map<String, Object> templateModel = new LinkedHashMap<>();
+            templateModel.put("recipientName", user.getAciklama());
+            templateModel.put("text", "deneme");
+            templateModel.put("senderName", user.getAciklama());
+            mailService.htmlMailGonder(user.getEmail(), subject, templateModel);
         });
+
+        Map<String, Object> templateModel = new LinkedHashMap<>();
+        templateModel.put("recipientName", "Emre ALTUN");
+        templateModel.put("text", "deneme");
+        templateModel.put("senderName", "aymer");
+        mailService.htmlMailGonder("emre@aymeryapi.com.tr", subject, templateModel);
 
 
         return RepeatStatus.FINISHED;
@@ -60,7 +68,7 @@ public class SiparisBildirimService implements Tasklet {
 
 
     private String prepareMailContent(User user, Map<CariKart, List<Siparis>> siparisMap) {
-        EmailIcerikUtils.Builder mailIcerigi = EmailIcerikUtils.createBuilder().add(EmailIcerikUtils.createParagraf(LabelFactory.getLabel("label.sayin")));
+        EmailIcerikUtils.Builder mailIcerigi = EmailIcerikUtils.createBuilder().add(EmailIcerikUtils.createParagraf(LabelFactory.getLabel("label.sayin", new Object[]{user.getAciklama()})));
 
         for (Map.Entry<CariKart, List<Siparis>> entry : siparisMap.entrySet()) {
             mailIcerigi.add(EmailIcerikUtils.createParagraf(entry.getKey().getCariKodu() + " - " + entry.getKey().getCariAdi()));
@@ -77,6 +85,7 @@ public class SiparisBildirimService implements Tasklet {
                     .addCell(LabelFactory.getLabel("label.stok.miktari"))
                     .addCell(LabelFactory.getLabel("label.siparis.durumu"))
             );
+
             for (Siparis siparis : entry.getValue()) {
                 tableBuilder.addRow(
                     EmailIcerikUtils.createRowBuilder()

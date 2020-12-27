@@ -8,7 +8,7 @@ public class LabelFactory {
 
     static {
         messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasenames("lang/res");
+        messageSource.setBasenames("bundles/res");
     }
 
     public static String getLabel(String key) {
