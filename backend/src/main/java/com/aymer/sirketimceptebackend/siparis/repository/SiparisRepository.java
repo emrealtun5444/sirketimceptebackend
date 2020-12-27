@@ -22,6 +22,6 @@ public interface SiparisRepository extends JpaRepository<Siparis, Long>, JpaSpec
 
     List<Siparis> findAllBySiparisNo(String siparisNo);
 
-    List<Siparis> findAllBySiparisDurumuNotAndSirket(SiparisDurumu siparisDurumu, Sirket sirket);
+    List<Siparis> findAllBySiparisDurumuNotAndSirketOrderByIslemTarihiDesc(SiparisDurumu siparisDurumu, Sirket sirket);
 
 }

@@ -51,9 +51,11 @@ public class SiparisBildirimService implements Tasklet {
         for (Sirket sirket : sirketList) {
             // hedef kitle tespit ediliyor
             final Set<User> targetUsers = notificationService.findTargetList(sirket, Notification.WAITING_ORDER);
+            if (targetUsers.size() == 0) continue;
+
             String content = prepareMailContent(sirket);
             targetUsers.forEach(user -> {
-                mailService.htmlMailGonder(user.getEmail(), subject, EmailIcerikUtils.generateTemplateModel(user,sirket,text,content));
+                mailService.htmlMailGonder(user.getEmail(), subject, EmailIcerikUtils.generateTemplateModel(user, sirket, text, content));
             });
         }
         return RepeatStatus.FINISHED;
@@ -61,10 +63,10 @@ public class SiparisBildirimService implements Tasklet {
 
     private String prepareMailContent(Sirket sirket) {
         final Map<CariKart, List<Siparis>> siparisMap = getSiparisMap(sirket);
-        EmailIcerikUtils.Builder mailIcerigi =  EmailIcerikUtils.createBuilder();
+        EmailIcerikUtils.Builder mailIcerigi = EmailIcerikUtils.createBuilder();
 
         for (Map.Entry<CariKart, List<Siparis>> entry : siparisMap.entrySet()) {
-            mailIcerigi.add(EmailIcerikUtils.createParagraf(entry.getKey().getCariKodu() + " - " + entry.getKey().getCariAdi()));
+            mailIcerigi.add(EmailIcerikUtils.createParagraf("<strong>" + entry.getKey().getCariKodu() + " - " + entry.getKey().getCariAdi() + "</strong>"));
 
             EmailIcerikUtils.TableBuilder tableBuilder = EmailIcerikUtils.createTableBuilder(
                 EmailIcerikUtils.createRowBuilder()
@@ -101,7 +103,7 @@ public class SiparisBildirimService implements Tasklet {
 
     private Map<CariKart, List<Siparis>> getSiparisMap(Sirket sirket) {
         // tamamlanmamış tüm siparişler tespit ediliyor.
-        List<Siparis> siparisList = siparisRepository.findAllBySiparisDurumuNotAndSirket(SiparisDurumu.TAMAMLANDI, sirket);
+        List<Siparis> siparisList = siparisRepository.findAllBySiparisDurumuNotAndSirketOrderByIslemTarihiDesc(SiparisDurumu.TAMAMLANDI, sirket);
         // siparis listesini cari kart bazında gruplarız.
         return siparisList.stream().collect(Collectors.groupingBy(Siparis::getCariKart));
     }

@@ -22,7 +22,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableBatchProcessing
-public class BatchConfig extends DefaultBatchConfigurer {
+public class BatchConfig {
 
     @Autowired
     private JobBuilderFactory jobs;
@@ -32,12 +32,6 @@ public class BatchConfig extends DefaultBatchConfigurer {
 
     @Autowired
     private ApplicationContext context;
-
-    @Override
-    public void setDataSource(DataSource dataSource) {
-        // override to do not set datasource even if a datasource exist.
-        // initialize will use a Map based JobRepository (instead of database)
-    }
 
     @Bean
     public Step siparisBildirimStep(){

@@ -12,8 +12,8 @@ public class EmailIcerikUtils {
         Map<String, Object> templateModel = new LinkedHashMap<>();
         templateModel.put("recipientName", user.getAciklama());
         templateModel.put("senderName", sirket.getName());
-        templateModel.put("senderAdress", sirket.getAddress());
-        templateModel.put("senderMail", sirket.getAddress());
+        templateModel.put("senderAdress", sirket.getAddress() != null ? sirket.getAddress() : "");
+        templateModel.put("senderMail", sirket.getAddress() != null ? sirket.getAddress() : "");
 
         templateModel.put("text", text);
         templateModel.put("content", content);
@@ -36,8 +36,16 @@ public class EmailIcerikUtils {
         return new TableBuilder(baslik);
     }
 
+    public static TableBuilder createTableBuilder(String style, RowBuilder baslik) {
+        return new TableBuilder(style, baslik);
+    }
+
     public static RowBuilder createRowBuilder() {
         return new RowBuilder();
+    }
+
+    public static RowBuilder createRowBuilder(String style) {
+        return new RowBuilder(style);
     }
 
     public static class Builder {
@@ -112,6 +120,7 @@ public class EmailIcerikUtils {
     public static class TableBuilder implements Buildable {
         private final StringBuilder icerik;
         private final int kolonSayisi;
+        private String style = "style=\"border:1px solid black;border-collapse:collapse;\"";
 
         private TableBuilder(RowBuilder baslik) {
             icerik = new StringBuilder();
@@ -120,8 +129,14 @@ public class EmailIcerikUtils {
             addRow(baslik);
         }
 
+        private TableBuilder(String style, RowBuilder baslik) {
+            this(baslik);
+            this.style = style;
+        }
+
+
         private void initialize() {
-            icerik.append("<table>");
+            icerik.append("<table ").append(style).append(">");
         }
 
         public String build() {
@@ -145,14 +160,20 @@ public class EmailIcerikUtils {
     public static class RowBuilder {
         private final StringBuilder icerik;
         private int cellCount;
+        private String style = "";
 
         private RowBuilder() {
             icerik = new StringBuilder();
             initialize();
         }
 
+        private RowBuilder(String style) {
+           this();
+           this.style = style;
+        }
+
         private void initialize() {
-            icerik.append("<tr>");
+            icerik.append("<tr ").append(style).append(">");
         }
 
         private String build() {
