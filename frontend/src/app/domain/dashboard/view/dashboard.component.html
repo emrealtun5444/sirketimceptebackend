@@ -166,71 +166,20 @@
 
     <div class="p-col-12 p-lg-4">
         <div class="card timeline p-fluid">
-            <div class="p-grid">
+            <div class="p-grid" *ngFor="let sp of siparisList">
                 <div class="p-col-3">
-                    <span class="event-time">just now</span>
-                    <i class="pi pi-map-marker" style="color:#f7cb00"></i>
+                    <span class="event-time">{{sp.islemTarihi | dateFormat}}</span>
+                    <i class="pi pi-shopping-cart" style="color:#985edb"></i>
                 </div>
                 <div class="p-col-9">
-                    <span class="event-owner" style="color:#f7cb00">Katherine May</span>
-                    <span class="event-text">Lorem ipsun dolor amet</span>
-                    <div class="event-content">
-                        <img src="../../../../assets/layout/images/dashboard/bridge.png" library="verona-layout"
-                             width="100"/>
-                    </div>
+                    <span class="event-owner" style="color:#985edb">{{sp.cariKodu}} - {{sp.cariAdi}}</span>
+                    <span class="event-text"><strong> {{'label.stok.kodu' | translate}}: </strong> {{sp.malKodu}} </span>
+                    <span class="event-text"><strong> {{'label.urun.adi' | translate}}: </strong> {{sp.urunAdi}} </span>
+                    <span class="event-owner"><strong> {{'label.miktar' | translate}}: </strong> {{sp.teslimMiktari}} / {{sp.miktar}} </span>
                 </div>
-
-                <div class="p-col-3">
-                    <span class="event-time">12h ago</span>
-                    <i class="pi pi-star" style="color:#985edb"></i>
-                </div>
-                <div class="p-col-9">
-                    <span class="event-owner" style="color:#985edb">Brandon Santos</span>
-                    <span class="event-text">Ab nobis, magnam sunt eum. Laudantium, repudiandae, similique!.</span>
-                </div>
-
-                <div class="p-col-3">
-                    <span class="event-time">15h ago</span>
-                    <i class="pi pi-comment" style="color:#9fd037"></i>
-                </div>
-                <div class="p-col-9">
-                    <span class="event-owner" style="color:#9fd037">Stephan Ward</span>
-                    <span class="event-text">Omnis veniam quibusdam ratione est repellat qui nam quisquam ab mollitia dolores ullam voluptates, similique, dignissimos.</span>
-                </div>
-
-                <div class="p-col-3">
-                    <span class="event-time">2d ago</span>
-                    <i class="pi pi-globe" style="color:#f7cb00"></i>
-                </div>
-                <div class="p-col-9">
-                    <span class="event-owner" style="color:#f7cb00">Jason Smith</span>
-                    <span class="event-text">Laudantium, repudiandae, similique!</span>
-                    <div class="event-content">
-                        <img src="../../../../assets/layout/images/dashboard/map.png">
-                    </div>
-                </div>
-
-                <div class="p-col-3">
-                    <span class="event-time">1w ago</span>
-                    <i class="pi pi-heart" style="color:#ff9c59"></i>
-                </div>
-                <div class="p-col-9">
-                    <span class="event-owner" style="color:#ff9c59">Kevin Cox</span>
-                    <span
-                        class="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
-                </div>
-
-                <div class="p-col-3">
-                    <span class="event-time">2w ago</span>
-                    <i class="pi pi-compass" style="color:#9fd037"></i>
-                </div>
-                <div class="p-col-9">
-                    <span class="event-owner" style="color:#9fd037">Walter White</span>
-                    <span class="event-text">I am the one who knocks!</span>
-                </div>
-                <div class="p-col-12">
-                    <button pButton type="button" icon="pi pi-refresh" label="Refresh"></button>
-                </div>
+            </div>
+            <div class="p-col-12">
+                <button pButton type="button" (click)="getSiparisList()" icon="pi pi-refresh" label="Refresh"></button>
             </div>
         </div>
     </div>
