@@ -1,10 +1,11 @@
 package com.aymer.sirketimceptebackend.dashboard.service;
 
-import com.aymer.sirketimceptebackend.cariKart.model.ECariTipi;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
-import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
+import com.aymer.sirketimceptebackend.dashboard.dto.SorumluPersonelCiroDto;
+import com.aymer.sirketimceptebackend.dashboard.mapper.DashboardMapper;
+import com.aymer.sirketimceptebackend.fatura.dto.SorumluPersonelCiro;
 import com.aymer.sirketimceptebackend.fatura.repository.FaturaRepository;
-import com.aymer.sirketimceptebackend.fatura.dto.CaritipiCiro;
+import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
 import com.aymer.sirketimceptebackend.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: ealtun
@@ -26,6 +25,8 @@ public class DashboardServiceImp implements DashboardService {
 
     @Autowired
     private FaturaRepository faturaRepository;
+    @Autowired
+    private DashboardMapper dashboardMapper;
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -53,18 +54,9 @@ public class DashboardServiceImp implements DashboardService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public Map<ECariTipi, BigDecimal> faturaKirilim() {
-        Map<ECariTipi, BigDecimal> map = new HashMap<>();
-        List<CaritipiCiro> caritipiCiroList = faturaRepository.faturaKirilim(DateUtils.firstDayOfMounth(), EDurum.AKTIF, EOdemeYonu.BORC);
-        caritipiCiroList.forEach(caritipiCiro -> {
-            ECariTipi eCariTipi = ECariTipi.BAGLANTILI_CALISAN;
-            if (caritipiCiro.getCariTipi().equals(ECariTipi.ETICARET) || caritipiCiro.getCariTipi().equals(ECariTipi.PERAKENDE)) {
-                eCariTipi = caritipiCiro.getCariTipi();
-            }
-            BigDecimal currentTutar = map.get(eCariTipi) != null ? map.get(eCariTipi) : BigDecimal.ZERO;
-            map.put(eCariTipi, caritipiCiro.getTutar().add(currentTutar));
-        });
-        return map;
+    public List<SorumluPersonelCiroDto> faturaKirilim() {
+        List<SorumluPersonelCiro> sorumluPersonelCiroList = faturaRepository.faturaKirilim(DateUtils.firstDayOfMounth(), EDurum.AKTIF, EOdemeYonu.BORC);
+        return dashboardMapper.toDtoList(sorumluPersonelCiroList);
     }
 
 }

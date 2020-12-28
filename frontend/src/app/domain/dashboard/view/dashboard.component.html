@@ -53,17 +53,9 @@
         <div class="card">
             <h5>{{'label.aylik.aktivite' | translate}}</h5>
             <div class="p-grid">
-                <div class="p-col-12 p-md-4">
-                    <span>{{'label.bayi' | translate}}</span>
-                    <div class="knob income">{{monthlyOtherSales | paraFormat}} TL</div>
-                </div>
-                <div class="p-col-12 p-md-4">
-                    <span>{{'label.perakende' | translate}}</span>
-                    <div class="knob tax">{{monthlyPerakendeSales | paraFormat}} TL</div>
-                </div>
-                <div class="p-col-12 p-md-4">
-                    <span>{{'label.eticaret' | translate}}</span>
-                    <div class="knob invoice">{{monthlyEticaretSales | paraFormat}} TL</div>
+                <div class="p-col-12 p-md-4" *ngFor="let pd of personelCiroDagilim">
+                    <span> {{pd.nameSurname}} </span>
+                    <div class="knob income"> {{pd.tutar | paraFormat}}</div>
                 </div>
             </div>
         </div>
@@ -100,64 +92,15 @@
         <div class="card">
             <h5>{{'label.iletisim' | translate}}</h5>
             <ul>
-                <li class="clearfix">
+                <li class="clearfix" *ngFor="let us of userList">
                     <img src="../../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
                     <div class="contact-info">
-                        <span class="name">Yunus ALTUN</span>
-                        <span class="location">yunus@aymeryapi.com.tr</span>
+                        <span class="name">{{us.nameSurname}}</span>
+                        <span class="location">{{us.email}}</span>
                     </div>
                     <div class="contact-actions">
                         <span class="connection-status online">online</span>
-                        <i class="pi pi-share-alt"></i>
-                        <i class="pi pi-comments"></i>
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <img src="../../../../assets/layout/images/avatar_girl.png" library="verona-layout" width="45"/>
-                    <div class="contact-info">
-                        <span class="name">Elif TAŞDELEN</span>
-                        <span class="location">elif@aymeryapi.com.tr</span>
-                    </div>
-                    <div class="contact-actions">
-                        <span class="connection-status online">online</span>
-                        <i class="pi pi-share-alt"></i>
-                        <i class="pi pi-comments"></i>
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <img src="../../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
-                    <div class="contact-info">
-                        <span class="name">Erhan ÜNAL</span>
-                        <span class="location">erhan@aymeryapi.com.tr</span>
-                    </div>
-                    <div class="contact-actions">
-                        <span class="connection-status online">online</span>
-                        <i class="pi pi-share-alt"></i>
-                        <i class="pi pi-comments"></i>
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <img src="../../../../assets/layout/images/avatar_man.png" library="verona-layout" width="45"/>
-                    <div class="contact-info">
-                        <span class="name">Celil GÜLAĞACI</span>
-                        <span class="location">celil@aymeryapi.com.tr</span>
-                    </div>
-                    <div class="contact-actions">
-                        <span class="connection-status online">online</span>
-                        <i class="pi pi-share-alt"></i>
-                        <i class="pi pi-comments"></i>
-                    </div>
-                </li>
-                <li class="clearfix">
-                    <img src="../../../../assets/layout/images/avatar_girl.png" library="verona-layout" width="45"/>
-                    <div class="contact-info">
-                        <span class="name">Serap SARAÇOĞLU</span>
-                        <span class="location">serap@aymeryapi.com.tr</span>
-                    </div>
-                    <div class="contact-actions">
-                        <span class="connection-status online">online</span>
-                        <i class="pi pi-share-alt"></i>
-                        <i class="pi pi-comments"></i>
+                        <a href="mailto: {{us.email}}"> <i class="pi pi-envelope"></i></a>.
                     </div>
                 </li>
             </ul>

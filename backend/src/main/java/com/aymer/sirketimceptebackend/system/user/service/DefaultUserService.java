@@ -12,6 +12,7 @@ import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
 import com.aymer.sirketimceptebackend.system.user.mapper.UserMapper;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
+import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,15 +28,16 @@ public class DefaultUserService implements UserService {
     private final RoleRepository roleRepository;
     private final SirketRepository companyRepository;
     private final PasswordEncoder encoder;
+    private final SessionUtils sessionUtils;
 
     @Autowired
-    public DefaultUserService(UserRepository userRepository, UserMapper userMapper,
-                              RoleRepository roleRepository, SirketRepository companyRepository) {
+    public DefaultUserService(UserRepository userRepository, UserMapper userMapper, RoleRepository roleRepository, SirketRepository companyRepository, PasswordEncoder encoder, SessionUtils sessionUtils) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.roleRepository = roleRepository;
         this.companyRepository = companyRepository;
-        this.encoder = new BCryptPasswordEncoder();
+        this.encoder = encoder;
+        this.sessionUtils = sessionUtils;
     }
 
     @Override
@@ -66,6 +68,11 @@ public class DefaultUserService implements UserService {
     @Override
     public List<UserListItem> listUsers() {
         return userMapper.toListItems(userRepository.findAll());
+    }
+
+    @Override
+    public List<UserListItem> grantedUsers() {
+        return userMapper.toListItems(userRepository.findUserListByCompany(sessionUtils.getSelectedCompany()));
     }
 
     @Override

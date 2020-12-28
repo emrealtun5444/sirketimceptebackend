@@ -11,6 +11,7 @@ export class DashboardService extends AbstractService {
 
   readonly SERVICE_PATH = `${this.BASE_URL}/dashboard`;
   readonly SIPARIS_SERVICE_PATH = `${this.BASE_URL}/siparis`;
+  readonly USER_SERVICE_PATH = `${this.BASE_URL}/user`;
 
   constructor(private http: HttpClient) {
     super();
@@ -32,12 +33,17 @@ export class DashboardService extends AbstractService {
     return this.http.get<AppResponse>(`${this.SERVICE_PATH}/monthlyAmountOfSales`);
   }
 
-  faturaKirilim(): Observable<AppResponse> {
-    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/faturaKirilim`);
+  onPersonelCiroDagilim(): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/personelCiroDagilim`);
   }
 
   siparisSorgula(sorguKriteri: SiparisSorguKriterleri): Observable<AppResponse> {
     return this.http.post<AppResponse>(`${this.SIPARIS_SERVICE_PATH}/sorgula`, sorguKriteri);
   }
+
+  allUsers(): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.USER_SERVICE_PATH}/grantedUsers`);
+  }
+
 }
 

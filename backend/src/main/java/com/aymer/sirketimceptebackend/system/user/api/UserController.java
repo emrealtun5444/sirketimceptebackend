@@ -40,6 +40,12 @@ public class UserController {
         return new AppResponse<List<UserListItem>>(service.listUsers());
     }
 
+    @GetMapping("/grantedUsers")
+    @PreAuthorize("hasAuthority('USER_MENU')")
+    AppResponse<List<UserListItem>> grantedUsers() {
+        return new AppResponse<List<UserListItem>>(service.grantedUsers());
+    }
+
     @PostMapping
     @PreAuthorize("hasAuthority('USER_MENU')")
     AppResponse<UserListItem> add(@RequestBody UserInput input) {

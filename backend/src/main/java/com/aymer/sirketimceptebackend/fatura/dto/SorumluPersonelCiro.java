@@ -1,6 +1,8 @@
 package com.aymer.sirketimceptebackend.fatura.dto;
 
 import com.aymer.sirketimceptebackend.cariKart.model.ECariTipi;
+import com.aymer.sirketimceptebackend.system.user.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -11,13 +13,10 @@ import java.math.BigDecimal;
  * Time: 11:31
  */
 @Getter
-public class CaritipiCiro {
+@AllArgsConstructor
+public class SorumluPersonelCiro {
 
-    private ECariTipi cariTipi;
+    private User user;
     private BigDecimal tutar;
 
-    public CaritipiCiro(ECariTipi cariTipi, BigDecimal tutar) {
-        this.cariTipi = cariTipi;
-        this.tutar = tutar;
-    }
 }

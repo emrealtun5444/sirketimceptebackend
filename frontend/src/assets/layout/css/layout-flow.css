@@ -345,7 +345,7 @@
   border-radius: 2px;
 }
 .dashboard .contacts ul li .contact-actions .connection-status.online {
-  background-color: #9fd037;
+  background-color: #03A9F4;
 }
 .dashboard .contacts ul li .contact-actions .connection-status.offline {
   background-color: #f18983;

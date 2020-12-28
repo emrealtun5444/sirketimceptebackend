@@ -2,7 +2,7 @@ package com.aymer.sirketimceptebackend.fatura.repository;
 
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
-import com.aymer.sirketimceptebackend.fatura.dto.CaritipiCiro;
+import com.aymer.sirketimceptebackend.fatura.dto.SorumluPersonelCiro;
 import com.aymer.sirketimceptebackend.fatura.model.Fatura;
 import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -38,11 +38,11 @@ public interface FaturaRepository extends JpaRepository<Fatura, Long>, JpaSpecif
                              @Param("durum") EDurum durum,
                              @Param("faturaYonu") EOdemeYonu odemeYonu);
 
-    @Query("select new com.aymer.sirketimceptebackend.fatura.dto.CaritipiCiro(c.cariTipi , sum(f.toplamTutar)) from Fatura f join f.cariKart c where f.durum = :durum and f.faturaYonu = :faturaYonu and f.faturaTarihi >= :faturaTarihi " +
+    @Query("select new com.aymer.sirketimceptebackend.fatura.dto.SorumluPersonelCiro(c.sorumluPersonel , sum(f.toplamTutar)) from Fatura f join f.cariKart c where f.durum = :durum and f.faturaYonu = :faturaYonu and f.faturaTarihi >= :faturaTarihi " +
         "and exists(select 1 from FaturaDetay fd where fd.fatura = f) " +
-        "group by c.cariTipi")
-    List<CaritipiCiro> faturaKirilim(@Param("faturaTarihi") Date faturaTarihi,
-                                     @Param("durum") EDurum durum,
-                                     @Param("faturaYonu") EOdemeYonu odemeYonu);
+        "group by c.sorumluPersonel")
+    List<SorumluPersonelCiro> faturaKirilim(@Param("faturaTarihi") Date faturaTarihi,
+                                            @Param("durum") EDurum durum,
+                                            @Param("faturaYonu") EOdemeYonu odemeYonu);
 
 }

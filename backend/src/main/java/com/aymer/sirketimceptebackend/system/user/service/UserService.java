@@ -13,6 +13,8 @@ import java.util.Set;
 public interface UserService {
     List<UserListItem> listUsers();
 
+    List<UserListItem> grantedUsers();
+
     UserListItem addUser(UserInput input);
 
     UserListItem updateUser(Long id, UserInput input);
