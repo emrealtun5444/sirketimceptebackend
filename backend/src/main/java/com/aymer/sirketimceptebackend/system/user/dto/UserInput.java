@@ -19,6 +19,7 @@ public class UserInput implements Serializable {
     private String username;
     private String email;
     private String passwordInput;
+    private String code;
     private Set<Long> roles;
     private Set<Long> companies;
     private List<Notification> notifications;

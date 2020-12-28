@@ -2,11 +2,8 @@ package com.aymer.sirketimceptebackend.dashboard.api;
 
 import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
-import com.aymer.sirketimceptebackend.cariKart.model.ECariTipi;
 import com.aymer.sirketimceptebackend.dashboard.dto.SorumluPersonelCiroDto;
 import com.aymer.sirketimceptebackend.dashboard.service.DashboardService;
-import com.aymer.sirketimceptebackend.fatura.dto.SorumluPersonelCiro;
-import com.aymer.sirketimceptebackend.system.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: ealtun
@@ -66,7 +62,7 @@ public class DashboardController {
     @GetMapping("/personelCiroDagilim")
     @PreAuthorize("hasAuthority('FATURA_MENU')")
     public AppResponse<List<SorumluPersonelCiroDto>> personelCiroDagilim() {
-        List<SorumluPersonelCiroDto> pageObject = dashboardService.faturaKirilim();
+        List<SorumluPersonelCiroDto> pageObject = dashboardService.personelCiroDagilim();
         return new AppResponse<List<SorumluPersonelCiroDto>>(pageObject);
     }
 

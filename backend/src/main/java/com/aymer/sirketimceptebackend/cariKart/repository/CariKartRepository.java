@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.cariKart.repository;
 
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
+import com.aymer.sirketimceptebackend.cariKart.model.ECariTipi;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +18,7 @@ import java.util.List;
 @Repository
 public interface CariKartRepository extends JpaRepository<CariKart, Long>, JpaSpecificationExecutor<CariKart> {
 
-    List<CariKart> findCariKartByDurumAndSirket(EDurum durum, Sirket sirket);
+    List<CariKart> findCariKartByDurumAndSirketAndCariTipi(EDurum durum, Sirket sirket, ECariTipi cariTipi);
 
     Boolean existsByCariKodu(String cariKodu);
 

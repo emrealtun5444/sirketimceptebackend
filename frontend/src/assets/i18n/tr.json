@@ -101,6 +101,7 @@
   "label.soyad": "Soyad",
   "label.ad.soyad": "Soyad",
   "label.kullanici.adi": "Kullanıcı Adı",
+  "label.kullanici.code": "Özel Kod",
   "label.sifre": "Şifre",
   "label.email": "E-Posta",
   "label.roles": "Roller",

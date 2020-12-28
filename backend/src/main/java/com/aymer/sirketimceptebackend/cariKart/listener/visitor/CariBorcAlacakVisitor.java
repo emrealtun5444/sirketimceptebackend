@@ -10,6 +10,7 @@ import com.aymer.sirketimceptebackend.cariKart.repository.CariKartRepository;
 import com.aymer.sirketimceptebackend.system.sirket.repository.SirketRepository;
 import com.aymer.sirketimceptebackend.system.user.repositoru.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +48,8 @@ public class CariBorcAlacakVisitor implements CariKartVisitor {
             cariKart = CariKart.builder().durum(EDurum.AKTIF).sirket(sirket.get()).build();
         }
         // sorumlu personel bulunur.
-        Optional<User> sorumluPersonel = userRepository.findByUsername(cariKartViewHolder.getOzelKod());
+        String ozelCode = cariKartViewHolder.getOzelKod() != null ? cariKartViewHolder.getOzelKod().toUpperCase(LocaleContextHolder.getLocale()) : null;
+        Optional<User> sorumluPersonel = userRepository.findByCode(ozelCode);
         if (sorumluPersonel.isPresent()) {
             cariKart.setSorumluPersonel(sorumluPersonel.get());
         } else {

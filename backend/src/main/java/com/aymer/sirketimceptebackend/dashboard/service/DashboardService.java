@@ -32,5 +32,5 @@ public interface DashboardService {
     BigDecimal monthlyAmountOfSales();
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    List<SorumluPersonelCiroDto> faturaKirilim();
+    List<SorumluPersonelCiroDto> personelCiroDagilim();
 }

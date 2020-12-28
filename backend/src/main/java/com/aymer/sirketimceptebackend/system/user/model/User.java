@@ -55,6 +55,9 @@ public class User extends Auditable<String> implements Serializable, Idendifier 
     @Size(max = 120)
     private String password;
 
+    @Size(max = 120)
+    private String code;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)

@@ -75,6 +75,15 @@
                 <app-validation-message
                         [validationControl]="entityForm.controls['notifications']"></app-validation-message>
             </div>
+            <div class="p-col-12 p-md-6">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                    <input id="code" formControlName="code" type="text" autocomplete="off"
+                           placeholder="{{'label.kullanici.code' | translate}}" pInputText>
+                </div>
+                <app-validation-message
+                    [validationControl]="entityForm.controls['code']"></app-validation-message>
+            </div>
         </div>
 
         <ng-template pTemplate="footer">

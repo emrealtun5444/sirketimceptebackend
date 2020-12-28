@@ -54,8 +54,8 @@ public class DashboardServiceImp implements DashboardService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public List<SorumluPersonelCiroDto> faturaKirilim() {
-        List<SorumluPersonelCiro> sorumluPersonelCiroList = faturaRepository.faturaKirilim(DateUtils.firstDayOfMounth(), EDurum.AKTIF, EOdemeYonu.BORC);
+    public List<SorumluPersonelCiroDto> personelCiroDagilim() {
+        List<SorumluPersonelCiro> sorumluPersonelCiroList = faturaRepository.personelCiroDagilim(DateUtils.firstDayOfMounth(), EDurum.AKTIF, EOdemeYonu.BORC);
         return dashboardMapper.toDtoList(sorumluPersonelCiroList);
     }
 

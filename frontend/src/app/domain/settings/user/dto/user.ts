@@ -5,6 +5,7 @@ export class User {
   name: string;
   surname: string;
   username: string;
+  code: string;
   email: string;
   authorizations: string[];
   companies: SelectItem[];

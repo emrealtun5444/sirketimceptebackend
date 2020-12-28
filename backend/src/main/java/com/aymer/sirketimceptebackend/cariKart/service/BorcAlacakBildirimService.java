@@ -3,6 +3,7 @@ package com.aymer.sirketimceptebackend.cariKart.service;
 import com.aymer.sirketimceptebackend.cariKart.dto.CariKartDto;
 import com.aymer.sirketimceptebackend.cariKart.mapper.CariKartMapper;
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
+import com.aymer.sirketimceptebackend.cariKart.model.ECariTipi;
 import com.aymer.sirketimceptebackend.cariKart.repository.CariKartRepository;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.system.mail.model.Notification;
@@ -75,24 +76,24 @@ public class BorcAlacakBildirimService implements Tasklet {
             mailIcerigi.add(EmailIcerikUtils.createParagraf("<strong>" + groupingValue + "</strong>"));
 
             EmailIcerikUtils.TableBuilder tableBuilder = EmailIcerikUtils.createTableBuilder(
-                    EmailIcerikUtils.createRowBuilder()
-                            .addCell(LabelFactory.getLabel("label.cari.kodu"))
-                            .addCell(LabelFactory.getLabel("label.cari.adi"))
-                            .addCell(LabelFactory.getLabel("label.toplam.borc"))
-                            .addCell(LabelFactory.getLabel("label.toplam.alacak"))
-                            .addCell(LabelFactory.getLabel("label.bakiye"))
+                EmailIcerikUtils.createRowBuilder()
+                    .addCell(LabelFactory.getLabel("label.cari.kodu"))
+                    .addCell(LabelFactory.getLabel("label.cari.adi"))
+                    .addCell(LabelFactory.getLabel("label.toplam.borc"))
+                    .addCell(LabelFactory.getLabel("label.toplam.alacak"))
+                    .addCell(LabelFactory.getLabel("label.bakiye"))
             );
 
             List<CariKartDto> cariKartDtoList = cariKartMapper.carikartToDtoList(entry.getValue());
             cariKartDtoList.sort(Comparator.comparing(CariKartDto::getBakiye));
             for (CariKartDto cariKart : cariKartDtoList) {
                 tableBuilder.addRow(
-                        EmailIcerikUtils.createRowBuilder()
-                                .addCell(cariKart.getCariKodu())
-                                .addCell(cariKart.getCariAdi())
-                                .addCell(MoneyUtils.currencyFormat(cariKart.getToplamBorc()))
-                                .addCell(MoneyUtils.currencyFormat(cariKart.getToplamAlacak()))
-                                .addCell(MoneyUtils.currencyFormat(cariKart.getBakiye()))
+                    EmailIcerikUtils.createRowBuilder()
+                        .addCell(cariKart.getCariKodu())
+                        .addCell(cariKart.getCariAdi())
+                        .addCell(MoneyUtils.currencyFormat(cariKart.getToplamBorc()))
+                        .addCell(MoneyUtils.currencyFormat(cariKart.getToplamAlacak()))
+                        .addCell(MoneyUtils.currencyFormat(cariKart.getBakiye()))
                 );
             }
             mailIcerigi.add(tableBuilder);
@@ -103,23 +104,23 @@ public class BorcAlacakBildirimService implements Tasklet {
 
     private Map<User, List<CariKart>> getCariKarts(Sirket sirket) {
         // tamamlanmamış tüm siparişler tespit ediliyor.
-        List<CariKart> cariKarts = cariKartRepository.findCariKartByDurumAndSirket(EDurum.AKTIF, sirket);
+        List<CariKart> cariKarts = cariKartRepository.findCariKartByDurumAndSirketAndCariTipi(EDurum.AKTIF, sirket, ECariTipi.BAGLANTILI_CALISAN);
         // siparis listesini cari kart bazında gruplarız.
         return cariKarts.stream().collect(
-                Collectors.toMap(
-                        CariKart::getSorumluPersonel,
-                        x -> {
-                            List<CariKart> list = new ArrayList<>();
-                            list.add(x);
-                            return list;
-                        },
-                        (left, right) -> {
-                            left.addAll(right);
-                            return left;
-                        },
-                        HashMap::new
+            Collectors.toMap(
+                CariKart::getSorumluPersonel,
+                x -> {
+                    List<CariKart> list = new ArrayList<>();
+                    list.add(x);
+                    return list;
+                },
+                (left, right) -> {
+                    left.addAll(right);
+                    return left;
+                },
+                HashMap::new
 
-                )
+            )
         );
     }
 }
