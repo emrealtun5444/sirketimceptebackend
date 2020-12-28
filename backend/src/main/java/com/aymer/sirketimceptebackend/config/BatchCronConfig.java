@@ -33,7 +33,7 @@ public class BatchCronConfig {
                 .addString("JobID", String.valueOf(System.currentTimeMillis()))
                 .toJobParameters();
 
-        Job job = context.getBean("siparisBildirimJob", Job.class);
+        Job job = context.getBean("sirketBildirimJob", Job.class);
         JobExecution jobExecution = jobLauncher.run(job, params);
     }
 

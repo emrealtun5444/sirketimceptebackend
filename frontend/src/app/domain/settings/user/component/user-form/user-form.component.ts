@@ -51,7 +51,7 @@ export class UserFormComponent extends AbstractBaseComponent implements OnInit, 
     }, undefined);
     this.subscribeToResponse(this.userService.notifications(), data => {
       data.forEach(row => {
-        this.notifications.push({label: this.appStore.translate.instant('label.' + data), value: row});
+        this.notifications.push({label: this.appStore.translate.instant('label.' + row), value: row});
       });
     }, undefined);
   }

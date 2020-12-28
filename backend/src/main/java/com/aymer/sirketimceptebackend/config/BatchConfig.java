@@ -41,11 +41,20 @@ public class BatchConfig {
                 .build();
     }
 
-    @Bean(name = "siparisBildirimJob")
-    public Job siparisBildirimJob(){
-        return jobs.get("siparisBildirimJob")
+    @Bean
+    public Step borcAlacakBildirimStep(){
+        Tasklet service = context.getBean("borcAlacakBildirimService", Tasklet.class);
+        return steps.get("borcAlacakBildirimStep")
+                .tasklet(service)
+                .build();
+    }
+
+    @Bean(name = "sirketBildirimJob")
+    public Job sirketBildirimJob(){
+        return jobs.get("sirketBildirimJob")
                 .incrementer(new RunIdIncrementer())
                 .start(siparisBildirimStep())
+                .next(borcAlacakBildirimStep())
                 .build();
     }
 

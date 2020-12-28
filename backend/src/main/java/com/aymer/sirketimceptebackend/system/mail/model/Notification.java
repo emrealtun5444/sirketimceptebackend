@@ -11,7 +11,8 @@ import java.io.Serializable;
 @Getter
 public enum Notification implements Serializable {
     // order
-    WAITING_ORDER("notify.waiting.order");
+    WAITING_ORDER("notify.waiting.order"),
+    BORC_ALACAK_ACCOUNT("notify.waiting.order");
 
     private String label;
 
