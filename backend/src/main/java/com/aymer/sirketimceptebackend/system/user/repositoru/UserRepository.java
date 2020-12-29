@@ -16,7 +16,7 @@ import java.util.Set;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select u from User u where u.code like %:code%")
-	Optional<User> findByCode(String code);
+	Optional<User> findByCode(@Param("code") String code);
 
 	Optional<User> findByUsername(String username);
 
