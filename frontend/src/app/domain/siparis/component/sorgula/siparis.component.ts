@@ -26,6 +26,7 @@ export class SiparisComponent extends AbstractBaseComponent implements OnInit {
     },
     {
       id: 'fatura',
+      event: this.faturaGit,
       rendered: this.faturaRendered,
       tooltip: 'label.fatura.detay',
       class: 'pi pi-book'
