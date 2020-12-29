@@ -6,7 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import {AbstractBaseComponent} from '../../../shared/abstract-base-component';
 import {AppStore} from '../../../shared/app.store';
 import {DashboardService} from '../service/dashboard.service';
-import {CariTipi, SiparisDurumu, SiparisYonu} from '../../../shared/constants';
+import {SiparisDurumu, SiparisYonu} from '../../../shared/constants';
 import {Siparis} from "../../siparis/dto/siparis";
 import {SiparisSorguKriterleri} from "../../siparis/dto/siparis-sorgu-kriterleri";
 import {UserSorguSonucu} from "../../settings/user/dto/user-sorgu-sonucu";
@@ -19,6 +19,8 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
 
     talepTipis: SelectItem[];
     siparisList: Siparis[] = [];
+    totalSiparis: number;
+
     userList: UserSorguSonucu[] = [];
     selectedTalepTipi: any;
     fullcalendarOptions: any;
@@ -28,10 +30,11 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
     monthlyNumberOfSales: number;
     currentAmountOfSales: number;
     monthlyAmountOfSales: number;
+    yearlyAmountOfSales: number = 0;
 
     // aylık aktivite
     personelCiroDagilim: PersonelCiroDagilim[] = [];
-
+    donemCiroDagilim: any;
 
     constructor(public appStore: AppStore,
                 private dashboardService: DashboardService) {
@@ -45,25 +48,28 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
         this.subscribeToResponseBase(this.dashboardService.currentAmountOfSales(), this.onCurrentAmountOfSales, undefined);
         this.subscribeToResponseBase(this.dashboardService.monthlyAmountOfSales(), this.onMonthlyAmountOfSales, undefined);
         this.subscribeToResponseBase(this.dashboardService.onPersonelCiroDagilim(), this.onPersonelCiroDagilim, undefined);
+        this.subscribeToResponseBase(this.dashboardService.onDonemCiroDagilim(), this.onDonemCiroDagilim, undefined);
         this.subscribeToResponseBase(this.dashboardService.allUsers(), data => {
             this.userList = data;
         }, undefined);
-        this.getSiparisList();
+        this.getSiparisList(0);
     }
 
-    getSiparisList() {
-        this.subscribeToResponseBase(this.dashboardService.siparisSorgula(this.prepareData()), data => {
+    getSiparisList(page) {
+        this.subscribeToResponseBase(this.dashboardService.siparisSorgula(this.prepareData(page)), data => {
             this.siparisList = data['resultList'];
+            this.totalSiparis = data['totalRecords'];
         }, undefined);
     }
 
-    private prepareData(): SiparisSorguKriterleri {
-        let event = {first: 0, rows: 10};
+
+    private prepareData(page): SiparisSorguKriterleri {
+        let event = {first: page * 5, rows: 5};
         return {
             siparisNo: null,
             cariKodu: null,
             cariAdi: null,
-            siparisDurumu: SiparisDurumu.ACIK,
+            siparisDurumu: null,
             siparisYonu: SiparisYonu.ALINAN_SIPARIS,
             baslangicTarihi: null,
             bitisTarihi: null,
@@ -107,4 +113,29 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
     private onPersonelCiroDagilim(data) {
         this.personelCiroDagilim = data;
     }
+
+    private onDonemCiroDagilim(data) {
+        data.forEach(row  => {
+           this.yearlyAmountOfSales+= row.tutar;
+        });
+        data.sort((a, b) => a.ay < b.ay ? -1 : a.ay > b.ay ? 1 : 0);
+        const labels = data.map(x => x.ay);
+        const values = data.map(x => x.tutar);
+        this.donemCiroDagilim = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Toplam Ciro',
+                    backgroundColor: '#42A5F5',
+                    borderColor: '#1E88E5',
+                    data: values
+                }
+            ]
+        }
+    }
+
+    onPageChange(event) {
+        this.getSiparisList(event.page);
+    }
+
 }

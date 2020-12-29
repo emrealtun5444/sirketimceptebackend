@@ -2,6 +2,7 @@ package com.aymer.sirketimceptebackend.fatura.repository;
 
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.dashboard.dto.DonemCiroDto;
 import com.aymer.sirketimceptebackend.fatura.dto.SorumluPersonelCiro;
 import com.aymer.sirketimceptebackend.fatura.model.Fatura;
 import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
@@ -44,5 +45,17 @@ public interface FaturaRepository extends JpaRepository<Fatura, Long>, JpaSpecif
     List<SorumluPersonelCiro> personelCiroDagilim(@Param("faturaTarihi") Date faturaTarihi,
                                                   @Param("durum") EDurum durum,
                                                   @Param("faturaYonu") EOdemeYonu odemeYonu);
+
+    @Query("select new com.aymer.sirketimceptebackend.dashboard.dto.DonemCiroDto(MONTH(f.faturaTarihi) , sum(f.toplamTutar)) " +
+            "from Fatura f " +
+            "join f.cariKart c " +
+            "where f.durum = :durum " +
+            "and f.faturaYonu = :faturaYonu " +
+            "and f.faturaTarihi >= :faturaTarihi " +
+            "and exists(select 1 from FaturaDetay fd where fd.fatura = f) " +
+            "group by MONTH(f.faturaTarihi)")
+    List<DonemCiroDto> donemCiroDagilim(@Param("faturaTarihi") Date faturaTarihi,
+                                        @Param("durum") EDurum durum,
+                                        @Param("faturaYonu") EOdemeYonu odemeYonu);
 
 }

@@ -88,6 +88,7 @@ import {ChangePasswordComponent} from './change-password/change-password.compone
 import {ConfirmPopupModule} from "primeng/confirmpopup";
 import {ConfirmationService} from "primeng/api";
 import {TimelineModule} from "primeng/timeline";
+import {GMapModule} from "primeng/gmap";
 
 @NgModule({
   imports: [
@@ -161,7 +162,8 @@ import {TimelineModule} from "primeng/timeline";
     VirtualScrollerModule,
     InputNumberModule,
     ConfirmPopupModule,
-    TimelineModule
+    TimelineModule,
+    GMapModule
   ],
   providers: [SelectService, ConfirmationService],
   declarations: [
@@ -269,7 +271,8 @@ import {TimelineModule} from "primeng/timeline";
     ConfirmPopupModule,
     CompanyComponent,
     ChangePasswordComponent,
-    TimelineModule
+    TimelineModule,
+    GMapModule
   ]
 })
 export class SharedModule {

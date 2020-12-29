@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.dashboard.service;
 
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.dashboard.dto.DonemCiroDto;
 import com.aymer.sirketimceptebackend.dashboard.dto.SorumluPersonelCiroDto;
 import com.aymer.sirketimceptebackend.dashboard.mapper.DashboardMapper;
 import com.aymer.sirketimceptebackend.fatura.dto.SorumluPersonelCiro;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,6 +59,12 @@ public class DashboardServiceImp implements DashboardService {
     public List<SorumluPersonelCiroDto> personelCiroDagilim() {
         List<SorumluPersonelCiro> sorumluPersonelCiroList = faturaRepository.personelCiroDagilim(DateUtils.firstDayOfMounth(), EDurum.AKTIF, EOdemeYonu.BORC);
         return dashboardMapper.toDtoList(sorumluPersonelCiroList);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public List<DonemCiroDto> donemeGoreCiroDagilimi() {
+        return faturaRepository.donemCiroDagilim(DateUtils.firstDayOfYear(), EDurum.AKTIF, EOdemeYonu.BORC);
     }
 
 }
