@@ -53,7 +53,7 @@ public class CariSiparisVisitor implements CariKartVisitor {
         CariKart cariKart = cariKartRepository.findByCariKodu(cariKartViewHolder.getHesapKodu());
         final List<Siparis> oldSiparisList = siparisRepository.findAllByCariKart(cariKart);
         // siparis kayitlarini sileriz.
-        siparisRepository.deleteInBatch(oldSiparisList);
+        siparisRepository.deleteAll(oldSiparisList);
         // siparis üzerinde giziniriz
         List<Siparis> siparisList = new ArrayList<>();
         cariKartViewHolder.getSiparisList().forEach(siparisViewHolder -> {
