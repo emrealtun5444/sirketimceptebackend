@@ -47,8 +47,6 @@ public class CariSiparisVisitor implements CariKartVisitor {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void visit(CariKartViewHolder cariKartViewHolder) {
-        if (CollectionUtils.isEmpty(cariKartViewHolder.getSiparisList())) return;
-
         // cariKart bulunur
         CariKart cariKart = cariKartRepository.findByCariKodu(cariKartViewHolder.getHesapKodu());
         final List<Siparis> oldSiparisList = siparisRepository.findAllByCariKart(cariKart);
@@ -56,11 +54,12 @@ public class CariSiparisVisitor implements CariKartVisitor {
         siparisRepository.deleteAll(oldSiparisList);
         // siparis üzerinde giziniriz
         List<Siparis> siparisList = new ArrayList<>();
-        cariKartViewHolder.getSiparisList().forEach(siparisViewHolder -> {
-            siparisList.add(saveSiparis(cariKart, siparisViewHolder));
-        });
-
-        siparisRepository.saveAll(siparisList);
+        if (!CollectionUtils.isEmpty(cariKartViewHolder.getSiparisList())) {
+            cariKartViewHolder.getSiparisList().forEach(siparisViewHolder -> {
+                siparisList.add(saveSiparis(cariKart, siparisViewHolder));
+            });
+            siparisRepository.saveAll(siparisList);
+        }
     }
 
     private Siparis saveSiparis(CariKart cariKart, SiparisViewHolder siparisViewHolder) {
