@@ -37,6 +37,10 @@ export class DashboardService extends AbstractService {
     return this.http.get<AppResponse>(`${this.SERVICE_PATH}/personelCiroDagilim`);
   }
 
+  onDonemCiroDagilim(): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/donemCiroDagilimi`);
+  }
+
   siparisSorgula(sorguKriteri: SiparisSorguKriterleri): Observable<AppResponse> {
     return this.http.post<AppResponse>(`${this.SIPARIS_SERVICE_PATH}/sorgula`, sorguKriteri);
   }

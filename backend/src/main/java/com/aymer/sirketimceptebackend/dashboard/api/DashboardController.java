@@ -2,16 +2,16 @@ package com.aymer.sirketimceptebackend.dashboard.api;
 
 import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
+import com.aymer.sirketimceptebackend.dashboard.dto.DonemCiroDto;
 import com.aymer.sirketimceptebackend.dashboard.dto.SorumluPersonelCiroDto;
 import com.aymer.sirketimceptebackend.dashboard.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -66,5 +66,11 @@ public class DashboardController {
         return new AppResponse<List<SorumluPersonelCiroDto>>(pageObject);
     }
 
+    @GetMapping("/donemCiroDagilimi")
+    @PreAuthorize("hasAuthority('FATURA_MENU')")
+    public AppResponse<List<DonemCiroDto>> donemeGoreCiroDagilimi() {
+        List<DonemCiroDto> pageObject = dashboardService.donemeGoreCiroDagilimi();
+        return new AppResponse<List<DonemCiroDto>>(pageObject);
+    }
 
 }
