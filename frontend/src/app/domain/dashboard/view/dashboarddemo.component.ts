@@ -64,7 +64,7 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
 
 
     private prepareData(page): SiparisSorguKriterleri {
-        let event = {first: page * 5, rows: 5};
+        let event = {first: page * 4, rows: 4};
         return {
             siparisNo: null,
             cariKodu: null,
