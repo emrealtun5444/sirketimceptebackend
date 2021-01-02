@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping("/grantedUsers")
-    @PreAuthorize("hasAuthority('USER_MENU')")
+    @PreAuthorize("hasAuthority('ROOT_AUTHORIZATION')")
     AppResponse<List<UserListItem>> grantedUsers() {
         return new AppResponse<List<UserListItem>>(service.grantedUsers());
     }

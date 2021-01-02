@@ -20,25 +20,25 @@ export class AppMenuComponent implements OnInit {
       {
         label: this.appStore.translate.instant('menu.system.yonetimi'),
         authorization: 'SYSTEM_MENU',
-        icon: 'fa fa-fw fa-bars',
+        icon: 'pi pi-fw pi-briefcase',
         badge: 1,
-        badgeStyleClass: 'green-badge',
+        badgeStyleClass: 'blue-badge',
         items: [
           {
             label: this.appStore.translate.instant('menu.kullanici.ayarlari'),
-            icon: 'fa fa-fw fa-columns',
+            icon: 'pi pi-fw pi-bars',
             authorization: 'USER_MENU',
             routerLink: ['/user']
           },
           {
             label: this.appStore.translate.instant('menu.role.ayarlari'),
-            icon: 'fa fa-fw fa-columns',
+            icon: 'pi pi-fw pi-bars',
             authorization: 'ROLE_MENU',
             routerLink: ['/role']
           },
           {
             label: this.appStore.translate.instant('menu.company.ayarlari'),
-            icon: 'fa fa-fw fa-columns',
+            icon: 'pi pi-fw pi-bars',
             authorization: 'COMPANY_MENU',
             routerLink: ['/company']
           },
@@ -47,13 +47,13 @@ export class AppMenuComponent implements OnInit {
       {
         label: this.appStore.translate.instant('menu.stok.yonetimi'),
         authorization: 'STOK_MENU',
-        icon: 'fa fa-fw fa-bars',
+        icon: 'pi pi-fw pi-th-large',
         badge: 1,
-        badgeStyleClass: 'green-badge',
+        badgeStyleClass: 'blue-badge',
         items: [
           {
             label: this.appStore.translate.instant('menu.stok.sorgulama'),
-            icon: 'fa fa-fw fa-columns',
+            icon: 'pi pi-fw pi-bars',
             routerLink: ['/stokKart']
           }
         ]
@@ -61,13 +61,13 @@ export class AppMenuComponent implements OnInit {
       {
         label: this.appStore.translate.instant('menu.cari.yonetimi'),
         authorization: 'CARI_MENU',
-        icon: 'fa fa-fw fa-bars',
+        icon: 'pi pi-fw pi-id-card',
         badge: 1,
-        badgeStyleClass: 'green-badge',
+        badgeStyleClass: 'blue-badge',
         items: [
           {
             label: this.appStore.translate.instant('menu.cari.sorgulama'),
-            icon: 'fa fa-fw fa-columns',
+            icon: 'pi pi-fw pi-bars',
             routerLink: ['/cariKart']
           }
         ]
@@ -75,13 +75,13 @@ export class AppMenuComponent implements OnInit {
       {
         label: this.appStore.translate.instant('menu.fatura.yonetimi'),
         authorization: 'FATURA_MENU',
-        icon: 'fa fa-fw fa-bars',
+        icon: 'pi pi-fw pi-money-bill',
         badge: 1,
-        badgeStyleClass: 'green-badge',
+        badgeStyleClass: 'blue-badge',
         items: [
           {
             label: this.appStore.translate.instant('menu.fatura.sorgulama'),
-            icon: 'fa fa-fw fa-columns',
+            icon: 'pi pi-fw pi-bars',
             routerLink: ['/fatura']
           }
         ]
@@ -89,27 +89,42 @@ export class AppMenuComponent implements OnInit {
       {
         label: this.appStore.translate.instant('menu.siparis.yonetimi'),
         authorization: 'SIPARIS_MENU',
-        icon: 'fa fa-fw fa-bars',
+        icon: 'pi pi-fw pi-shopping-cart',
         badge: 1,
-        badgeStyleClass: 'green-badge',
+        badgeStyleClass: 'blue-badge',
         items: [
           {
             label: this.appStore.translate.instant('menu.siparis.sorgulama'),
-            icon: 'fa fa-fw fa-columns',
+            icon: 'pi pi-fw pi-bars',
             routerLink: ['/siparis']
+          }
+        ]
+      },
+      {
+        label: this.appStore.translate.instant('menu.rapor.yonetimi'),
+        authorization: 'REPORT_MENU',
+        icon: 'pi pi-fw pi-chart-bar',
+        badge: 1,
+        badgeStyleClass: 'blue-badge',
+        items: [
+          {
+            label: this.appStore.translate.instant('menu.rapor.performans'),
+            icon: 'pi pi-fw pi-bars',
+            authorization: 'PERFORMANS_REPORT_MENU',
+            routerLink: ['/report/performans']
           }
         ]
       },
       {
         label: this.appStore.translate.instant('menu.pazaryeri.yonetimi'),
         authorization: 'PAZARYERI_MENU',
-        icon: 'fa fa-fw fa-bars',
+        icon: 'pi pi-fw pi-slack',
         badge: 1,
-        badgeStyleClass: 'green-badge',
+        badgeStyleClass: 'blue-badge',
         items: [
           {
             label: this.appStore.translate.instant('menu.pazaryeri.conf'),
-            icon: 'fa fa-fw fa-columns',
+            icon: 'pi pi-fw pi-bars',
             routerLink: ['/marketPlace']
           }
         ]

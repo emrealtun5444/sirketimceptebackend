@@ -228,11 +228,26 @@
   "label.WAITING_ORDER": "Bekleyen Siparişler Bildirimi",
   "label.BORC_ALACAK_ACCOUNT": "Borç/Alacak Bildirimi",
 
+  "label.aylik.durum": "Aylık Genel Durum",
+  "label.yillik.durum": "Yıllık Genel Durum",
+  "label.aylik.ciro": "Aylık Ciro",
+  "label.aylik.hedef": "Aylık Hedef",
+  "label.aylik.siparis": "Aylık Sipariş",
+  "label.aylik.tahsilat": "Aylık Tahsilat",
+  "label.yillik.ciro": "Yıllık Ciro",
+  "label.yillik.hedef": "Yıllık Hedef",
+  "label.yillik.siparis": "Yıllık Sipariş",
+  "label.yillik.tahsilat": "Yıllık Tahsilat",
+
+
   "##############################################################################################": "MENUS",
+  "root.authorization": "Temel Yetki",
   "menu.system.yonetimi": "Sistem Yönetimi",
   "menu.company.ayarlari": "Şirket Ayarları",
   "menu.kullanici.ayarlari": "Kullanıcı Ayarları",
   "menu.role.ayarlari": "Role Ayarları",
+  "menu.rapor.yonetimi": "Raporlar",
+  "menu.rapor.performans": "Performans Raporları",
 
   "menu.stok.yonetimi": "Stok Yönetimi",
   "menu.stok.sorgulama": "Stok Kartı Sorgulama",

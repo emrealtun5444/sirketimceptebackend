@@ -13,6 +13,7 @@ import com.aymer.sirketimceptebackend.utils.LocaleAwareMessageProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -53,6 +54,7 @@ public class AuthController {
     }
 
     @PostMapping("/changepassword")
+    @PreAuthorize("hasAuthority('ROOT_AUTHORIZATION')")
     public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordInput input) {
         authService.changePassword(input);
         return ResponseEntity.ok(new AppResponse());

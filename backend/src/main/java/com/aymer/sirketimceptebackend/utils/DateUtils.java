@@ -147,8 +147,8 @@ public class DateUtils {
         return formatDate(date, "yyyy/MM");
     }
 
-    public static String getDonem(Date date) {
-        return formatDate(date, "MM.yyyy");
+    public static Integer getDonem(Date date) {
+        return Integer.valueOf(formatDate(date, "MM"));
     }
 
     public static String getYearFromDate(Date date) {

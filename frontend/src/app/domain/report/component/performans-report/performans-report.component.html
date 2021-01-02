@@ -1,0 +1,126 @@
+<h3>{{'menu.rapor.performans' | translate}}</h3>
+<div class="p-grid">
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <p-accordion>
+            <p-accordionTab header="{{'label.aylik.durum' | translate}}" [selected]="true">
+                <div class="p-grid dashboard">
+                    <div class="p-col-12 p-md-6 p-lg-3">
+                        <div class="p-grid card p-nogutter overview-box overview-box-1">
+                            <div class="p-col-4 overview-box-icon">
+                                <img src="../../../../../assets/layout/images/icon-paper.png">
+                            </div>
+                            <div class="p-col-8">
+                                <span class="overview-box-count">{{ozetPerformans.aylikCiro.tutar | paraFormat}}</span>
+                                <span class="overview-box-name">{{'label.aylik.ciro' | translate}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-6 p-lg-3">
+                        <div class="p-grid card p-nogutter overview-box overview-box-3">
+                            <div class="p-col-4 overview-box-icon">
+                                <img src="../../../../../assets/layout/images/icon-location.png">
+                            </div>
+                            <div class="p-col-8">
+                                <span class="overview-box-count">{{ozetPerformans.aylikHedef.hedefTutari | paraFormat}}</span>
+                                <span class="overview-box-name">{{'label.aylik.hedef' | translate}}</span>
+                                <span class="overview-box-rate"> {{ozetPerformans.aylikHedef.gerceklesmeOrani | paraFormat}}
+                                    % </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-3">
+                        <div class="p-grid card p-nogutter overview-box overview-box-4">
+                            <div class="p-col-4 overview-box-icon">
+                                <img src="../../../../../assets/layout/images/icon-orders.png">
+                            </div>
+                            <div class="p-col-8">
+                    <span class="overview-box-count">{{ozetPerformans.aylikSiparis.teslimAdet}}
+                        / {{ozetPerformans.aylikSiparis.toplamAdet}}</span>
+                                <span class="overview-box-name">{{'label.aylik.siparis' | translate}}</span>
+                                <span class="overview-box-rate"> {{ozetPerformans.aylikSiparis.teslimOran | paraFormat}}
+                                    % </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-3">
+                        <div class="p-grid card p-nogutter overview-box overview-box-2">
+                            <div class="p-col-4 overview-box-icon">
+                                <img src="../../../../../assets/layout/images/icon-mail.png">
+                            </div>
+                            <div class="p-col-8">
+                                <span class="overview-box-count">{{ozetPerformans.aylikTahsilat.tutar | paraFormat}} TL</span>
+                                <span class="overview-box-name">{{'label.aylik.tahsilat' | translate}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab header="{{'label.yillik.durum' | translate}}">
+                <div class="p-grid dashboard">
+                    <div class="p-col-12 p-md-6 p-lg-3">
+                        <div class="p-grid card p-nogutter overview-box overview-box-1">
+                            <div class="p-col-4 overview-box-icon">
+                                <img src="../../../../../assets/layout/images/icon-paper.png">
+                            </div>
+                            <div class="p-col-8">
+                                <span class="overview-box-count">{{ozetPerformans.yillikCiro.tutar | paraFormat}}</span>
+                                <span class="overview-box-name">{{'label.yillik.ciro' | translate}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-6 p-lg-3">
+                        <div class="p-grid card p-nogutter overview-box overview-box-3">
+                            <div class="p-col-4 overview-box-icon">
+                                <img src="../../../../../assets/layout/images/icon-location.png">
+                            </div>
+                            <div class="p-col-8">
+                                <span class="overview-box-count">{{ozetPerformans.yillikHedef.hedefTutari | paraFormat}}</span>
+                                <span class="overview-box-name">{{'label.yillik.hedef' | translate}}</span>
+                                <span class="overview-box-rate"> {{ozetPerformans.yillikHedef.gerceklesmeOrani | paraFormat}}
+                                    % </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-3">
+                        <div class="p-grid card p-nogutter overview-box overview-box-4">
+                            <div class="p-col-4 overview-box-icon">
+                                <img src="../../../../../assets/layout/images/icon-orders.png">
+                            </div>
+                            <div class="p-col-8">
+                    <span class="overview-box-count">{{ozetPerformans.yillikSiparis.teslimAdet}}
+                        / {{ozetPerformans.yillikSiparis.toplamAdet}}</span>
+                                <span class="overview-box-name">{{'label.yillik.siparis' | translate}}</span>
+                                <span class="overview-box-rate"> {{ozetPerformans.yillikSiparis.teslimOran | paraFormat}}
+                                    % </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-3">
+                        <div class="p-grid card p-nogutter overview-box overview-box-2">
+                            <div class="p-col-4 overview-box-icon">
+                                <img src="../../../../../assets/layout/images/icon-mail.png">
+                            </div>
+                            <div class="p-col-8">
+                                <span class="overview-box-count">{{ozetPerformans.yillikTahsilat.tutar | paraFormat}} TL</span>
+                                <span class="overview-box-name">{{'label.yillik.tahsilat' | translate}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+
+    </div>
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <p-tabView [(activeIndex)]="activeIndex">
+            <p-tabPanel header="{{st.nameSurname}}" *ngFor="let st of staffs">
+                <p>{{st.email}}</p>
+
+            </p-tabPanel>
+        </p-tabView>
+
+    </div>
+</div>
+
