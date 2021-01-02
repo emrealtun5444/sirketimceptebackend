@@ -1,22 +1,19 @@
 package com.aymer.sirketimceptebackend.report.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class CiroDto {
 
-    private Donem donem;
+    private Integer donem;
     private BigDecimal tutar;
 
     public CiroDto(BigDecimal tutar) {
-        this.donem = Donem.TUMU;
         this.tutar = tutar;
     }
 }

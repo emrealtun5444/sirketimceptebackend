@@ -2,16 +2,17 @@ package com.aymer.sirketimceptebackend.dashboard.api;
 
 import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
-import com.aymer.sirketimceptebackend.dashboard.dto.DonemCiroDto;
 import com.aymer.sirketimceptebackend.dashboard.dto.SorumluPersonelCiroDto;
 import com.aymer.sirketimceptebackend.dashboard.service.DashboardService;
+import com.aymer.sirketimceptebackend.report.dto.CiroDto;
+import com.aymer.sirketimceptebackend.report.dto.HedefDto;
+import com.aymer.sirketimceptebackend.report.service.ReportService;
+import com.aymer.sirketimceptebackend.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,10 +26,12 @@ import java.util.List;
 public class DashboardController {
 
     private DashboardService dashboardService;
+    private ReportService reportService;
 
     @Autowired
-    public DashboardController(DashboardService dashboardService) {
+    public DashboardController(DashboardService dashboardService, ReportService reportService) {
         this.dashboardService = dashboardService;
+        this.reportService = reportService;
     }
 
     @GetMapping("/currentNumberOfSales")
@@ -68,9 +71,9 @@ public class DashboardController {
 
     @GetMapping("/donemCiroDagilimi")
     @PreAuthorize("hasAuthority('FATURA_MENU')")
-    public AppResponse<List<DonemCiroDto>> donemeGoreCiroDagilimi() {
-        List<DonemCiroDto> pageObject = dashboardService.donemeGoreCiroDagilimi();
-        return new AppResponse<List<DonemCiroDto>>(pageObject);
+    public AppResponse<List<HedefDto>> donemeGoreCiroDagilimi() {
+        List<HedefDto> pageObject = reportService.donemeGoreCiroDagilimi(null, DateUtils.getYearFromDate(DateUtils.getToday()));
+        return new AppResponse<List<HedefDto>>(pageObject);
     }
 
 }

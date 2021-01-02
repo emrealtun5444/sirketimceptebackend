@@ -8,9 +8,12 @@ import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface UserService {
+    Optional<User> findByUsername(String username);
+
     List<UserListItem> listUsers();
 
     List<UserListItem> grantedUsers();

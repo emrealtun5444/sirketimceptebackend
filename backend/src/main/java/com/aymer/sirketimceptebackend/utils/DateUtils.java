@@ -151,9 +151,9 @@ public class DateUtils {
         return Integer.valueOf(formatDate(date, "MM"));
     }
 
-    public static String getYearFromDate(Date date) {
+    public static Integer getYearFromDate(Date date) {
         SimpleDateFormat simpleDateformat = new SimpleDateFormat("yyyy");
-        return simpleDateformat.format(date);
+        return Integer.valueOf(simpleDateformat.format(date));
     }
 
     public static int getHourOfDate(Date date) {
@@ -336,9 +336,8 @@ public class DateUtils {
         Date firstDayOfMonth = calendar.getTime();
 
 
-        return getDate(formatDate(firstDayOfMonth,DEFAULT_DATE_FORMAT),DEFAULT_DATE_FORMAT);
+        return getDate(formatDate(firstDayOfMonth, DEFAULT_DATE_FORMAT), DEFAULT_DATE_FORMAT);
     }
-
 
 
 }

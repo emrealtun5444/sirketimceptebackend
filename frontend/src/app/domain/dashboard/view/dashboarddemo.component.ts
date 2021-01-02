@@ -118,8 +118,8 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
         data.forEach(row  => {
            this.yearlyAmountOfSales+= row.tutar;
         });
-        data.sort((a, b) => a.ay < b.ay ? -1 : a.ay > b.ay ? 1 : 0);
-        const labels = data.map(x => x.ay);
+        data.sort((a, b) => a.donem < b.donem ? -1 : a.donem > b.donem ? 1 : 0);
+        const labels = data.map(x => x.donem);
         const values = data.map(x => x.tutar);
         this.donemCiroDagilim = {
             labels: labels,

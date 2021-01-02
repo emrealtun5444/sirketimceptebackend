@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 public class SiparisDto {
-    private Donem donem;
+    private Integer donem;
     private Long toplamAdet;
     private Long teslimAdet;
     private Long kalanAdet;
@@ -20,7 +20,6 @@ public class SiparisDto {
     private BigDecimal toplamTutar;
 
     public SiparisDto(Long toplamAdet, Long teslimAdet, Long kalanAdet, Long teslimOran, BigDecimal toplamTutar) {
-        this.donem = Donem.TUMU;
         this.toplamAdet = toplamAdet;
         this.teslimAdet = teslimAdet;
         this.kalanAdet = kalanAdet;

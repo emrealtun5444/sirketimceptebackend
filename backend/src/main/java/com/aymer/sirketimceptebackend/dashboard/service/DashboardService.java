@@ -1,18 +1,13 @@
 package com.aymer.sirketimceptebackend.dashboard.service;
 
 
-import com.aymer.sirketimceptebackend.cariKart.model.ECariTipi;
-import com.aymer.sirketimceptebackend.dashboard.dto.DonemCiroDto;
 import com.aymer.sirketimceptebackend.dashboard.dto.SorumluPersonelCiroDto;
-import com.aymer.sirketimceptebackend.fatura.dto.SorumluPersonelCiro;
-import com.aymer.sirketimceptebackend.system.user.model.User;
+import com.aymer.sirketimceptebackend.report.dto.CiroDto;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: ealtun
@@ -35,7 +30,4 @@ public interface DashboardService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     List<SorumluPersonelCiroDto> personelCiroDagilim();
-
-    @Transactional(propagation = Propagation.SUPPORTS)
-    List<DonemCiroDto> donemeGoreCiroDagilimi();
 }

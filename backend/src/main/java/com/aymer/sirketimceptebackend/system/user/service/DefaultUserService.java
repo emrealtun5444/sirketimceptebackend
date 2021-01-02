@@ -41,6 +41,11 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
     public boolean hasAutherationForCompany(Long userId, Long companyId) {
         return userRepository.countByIdAndCompaniesIn(userId, companyId) > 0;
     }

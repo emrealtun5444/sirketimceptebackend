@@ -2,9 +2,10 @@ package com.aymer.sirketimceptebackend.report.api;
 
 import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
-import com.aymer.sirketimceptebackend.report.dto.PerformansOzetDto;
+import com.aymer.sirketimceptebackend.report.dto.*;
 import com.aymer.sirketimceptebackend.report.service.ReportService;
 import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
+import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.system.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * User: ealtun
@@ -33,19 +35,43 @@ public class ReportController {
         this.userService = userService;
     }
 
-    @GetMapping("/loadPerformansOzet/{yil}")
+    @GetMapping("/loadPerformansOzet/{year}")
     @PreAuthorize("hasAuthority('PERFORMANS_REPORT_MENU')")
-    public ResponseEntity<?> loadPerformansReportOzet(@Valid @PathVariable(name = "yil") Integer yil) {
+    public ResponseEntity<?> loadPerformansReportOzet(@Valid @PathVariable(name = "year") Integer yil) {
         PerformansOzetDto performansOzetDto = reportService.preparePerformansOzet(yil);
         return ResponseEntity.ok(new AppResponse(performansOzetDto));
     }
 
-    @GetMapping("/loadPerformansReportData/{donem}/{userName}")
+    @GetMapping("/loadCiroDagilim/{year}/{userName}")
     @PreAuthorize("hasAuthority('PERFORMANS_REPORT_MENU')")
-    public ResponseEntity<?> loadPerformansReportData(@Valid @PathVariable(name = "donem") String donem, @PathVariable(name = "userName") String userName) {
+    public ResponseEntity<?> loadCiroDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName) {
+        User user = getUser(userName);
+        List<HedefDto> ciroDtoList = reportService.donemeGoreCiroDagilimi(user, year);
+        return ResponseEntity.ok(new AppResponse(ciroDtoList));
+    }
 
+    @GetMapping("/loadTahsilatDagilim/{year}/{userName}")
+    @PreAuthorize("hasAuthority('PERFORMANS_REPORT_MENU')")
+    public ResponseEntity<?> loadTahsilatDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName) {
+        User user = getUser(userName);
+        List<TahsilatDto> tahsilatDtos = reportService.donemeGoreTahsilatDagilimi(user, year);
+        return ResponseEntity.ok(new AppResponse(tahsilatDtos));
+    }
 
-        return ResponseEntity.ok(new AppResponse(null));
+    @GetMapping("/loadSiparisDagilim/{year}/{userName}")
+    @PreAuthorize("hasAuthority('PERFORMANS_REPORT_MENU')")
+    public ResponseEntity<?> loadSiparisDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName) {
+        User user = getUser(userName);
+        List<SiparisDto> siparisDtoList = reportService.donemeGoreSiparisDagilimi(user, year);
+        return ResponseEntity.ok(new AppResponse(siparisDtoList));
+    }
+
+    @GetMapping("/loadMarkaDagilim/{year}/{userName}")
+    @PreAuthorize("hasAuthority('PERFORMANS_REPORT_MENU')")
+    public ResponseEntity<?> loadMarkaDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName) {
+        User user = getUser(userName);
+        List<MarkaDagilimDto> markaDagilimDtos = reportService.donemeGoreMarkaDagilimi(user, year);
+        return ResponseEntity.ok(new AppResponse(markaDagilimDtos));
     }
 
     @GetMapping("/staffs")
@@ -53,6 +79,16 @@ public class ReportController {
     public ResponseEntity<?> loadStaffs() {
         List<UserListItem> userListItems = userService.grantedUsers();
         return ResponseEntity.ok(new AppResponse(userListItems));
+    }
+
+    private User getUser(@PathVariable(name = "userName") String userName) {
+        User user = null;
+        if (!userName.equalsIgnoreCase("all")) {
+            Optional<User> userOptional = userService.findByUsername(userName);
+            if (userOptional.isPresent())
+                user = userOptional.get();
+        }
+        return user;
     }
 
 }
