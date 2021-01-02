@@ -34,7 +34,7 @@ export class PerformansReportComponent extends AbstractBaseComponent implements 
 
   private buildForms() {
     this.reportForm = this.formBuilder.group({
-      year: [(new Date()).getFullYear() -1, Validators.compose([CustomValidator.required])]
+      year: [(new Date()).getFullYear(), Validators.compose([CustomValidator.required])]
     });
   }
 
