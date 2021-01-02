@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractBaseComponent} from "../../../../shared/abstract-base-component";
-import {AppStore} from "../../../../shared/app.store";
+import {AbstractBaseComponent} from "../../../../../shared/abstract-base-component";
+import {AppStore} from "../../../../../shared/app.store";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ReportService} from "../../service/report.service";
-import {CustomValidator} from "../../../../shared/validation/custom-validator";
-import {PerformansOzetDto} from "../../dto/performans-ozet-dto";
-import {UserSorguSonucu} from "../../../settings/user/dto/user-sorgu-sonucu";
+import {ReportService} from "../../../service/report.service";
+import {CustomValidator} from "../../../../../shared/validation/custom-validator";
+import {PerformansOzetDto} from "../../../dto/performans-ozet-dto";
+import {UserSorguSonucu} from "../../../../settings/user/dto/user-sorgu-sonucu";
 
 @Component({
   selector: 'app-performans-report',
@@ -34,7 +34,7 @@ export class PerformansReportComponent extends AbstractBaseComponent implements 
 
   private buildForms() {
     this.reportForm = this.formBuilder.group({
-      year: [(new Date()).getFullYear(), Validators.compose([CustomValidator.required])]
+      year: [(new Date()).getFullYear() -1, Validators.compose([CustomValidator.required])]
     });
   }
 

@@ -1,0 +1,26 @@
+<div class="card">
+    <h5>{{'label.ciro.dagilim' | translate}}</h5>
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12">
+            <p-chart type="line" [data]="ciroDagilim"></p-chart>
+        </div>
+        <div class="p-col-12 p-md-12">
+            <p-panel header="{{'label.ozet' | translate}}">
+                <div class="p-grid ">
+                    <div class="p-col-12 p-md-3">
+                        <strong>    {{'label.toplam.ciro' | translate}}:  </strong>
+                    </div>
+                    <div class="p-col-12 p-md-3">
+                        <span class="overview-box-rate"> {{totalCiro | paraFormat}}</span>
+                    </div>
+                    <div class="p-col-12 p-md-3">
+                        <strong>    {{'label.toplam.hedef' | translate}}:  </strong>
+                    </div>
+                    <div class="p-col-12 p-md-3">
+                        <span class="overview-box-rate"> {{totalHedef | paraFormat}}</span>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

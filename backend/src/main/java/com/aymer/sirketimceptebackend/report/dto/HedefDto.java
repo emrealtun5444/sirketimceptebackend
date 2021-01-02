@@ -16,7 +16,7 @@ public class HedefDto {
     private BigDecimal gerceklesenHedefTutari;
     private BigDecimal gerceklesmeOrani;
 
-    public HedefDto(Integer donem, BigDecimal hedefTutari, BigDecimal gerceklesenHedefTutari) {
+    public HedefDto(Integer donem,  BigDecimal gerceklesenHedefTutari) {
         this.donem = donem;
         this.hedefTutari = hedefTutari;
         this.gerceklesenHedefTutari = gerceklesenHedefTutari;

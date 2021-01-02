@@ -43,6 +43,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 
 import localeTr from '@angular/common/locales/tr';
 import {DashboardService} from './domain/dashboard/service/dashboard.service';
+import {ReportModule} from "./domain/report/report.module";
 
 registerLocaleData(localeTr);
 
@@ -55,6 +56,7 @@ registerLocaleData(localeTr);
     BrowserAnimationsModule,
     AppCodeModule,
     SharedModule,
+    ReportModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

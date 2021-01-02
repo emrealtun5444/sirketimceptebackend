@@ -1,0 +1,20 @@
+<div class="card">
+    <h5>{{'label.tahsilat.dagilim' | translate}}</h5>
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12">
+            <p-chart type="bar" [data]="tahsilatDagilim"></p-chart>
+        </div>
+        <div class="p-col-12 p-md-12">
+            <p-panel header="{{'label.ozet' | translate}}">
+                <div class="p-grid ">
+                    <div class="p-col-12 p-md-3">
+                        <strong>    {{'label.toplam.tutar' | translate}}: </strong>
+                    </div>
+                    <div class="p-col-12 p-md-3">
+                        <span class="overview-box-rate"> {{toplamTutar | paraFormat}}</span>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+</div>

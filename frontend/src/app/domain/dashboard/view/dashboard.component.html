@@ -62,29 +62,7 @@
     </div>
 
     <div class="p-col-12 p-lg-4 p-fluid activity-feed">
-        <div class="card">
-            <h5>{{'label.yillik.aktivite' | translate}}</h5>
-            <div class="p-grid">
-                <div class="p-col-12 p-md-12">
-                    <p-chart type="bar" [data]="donemCiroDagilim"></p-chart>
-                </div>
-                <div class="p-col-12 p-md-12">
-                    <p-panel header="{{'label.ozet' | translate}}">
-                        <div class="p-grid ">
-                            <div class="p-col-12 p-md-3">
-                                <strong>    {{'label.toplam.ciro' | translate}}:  </strong>
-                            </div>
-                            <div class="p-col-12 p-md-3">
-                                <span class="overview-box-rate"> {{yearlyAmountOfSales | paraFormat}}</span>
-                            </div>
-                            <div class="p-col-12 p-md-3">
-                                 ({{'label.kdv.dahil' | translate}})
-                            </div>
-                        </div>
-                    </p-panel>
-                </div>
-            </div>
-        </div>
+        <app-ciro-dagilim></app-ciro-dagilim>
     </div>
 
     <div class="p-col-12 p-lg-4">

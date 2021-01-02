@@ -80,8 +80,12 @@ public class ReportServiceImp implements ReportService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-        public List<HedefDto> donemeGoreCiroDagilimi(User staff, Integer year) {
-        return reportRepository.donemCiroDagilim(year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), staff);
+    public List<HedefDto> donemeGoreCiroDagilimi(User staff, Integer year) {
+        BigDecimal totalHedef = reportRepository.totalHedefTutar(EDurum.AKTIF, sessionUtils.getSelectedCompany(), staff);
+        BigDecimal aylikHedefTutari = totalHedef.divide(BigDecimal.valueOf(12), 2, RoundingMode.HALF_UP);
+        List<HedefDto> hedefDtos = reportRepository.donemCiroDagilim(year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), staff);
+        hedefDtos.stream().forEach(hedefDto -> hedefDto.setHedefTutari(aylikHedefTutari));
+        return hedefDtos;
     }
 
     @Override

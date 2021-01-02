@@ -48,7 +48,6 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
         this.subscribeToResponseBase(this.dashboardService.currentAmountOfSales(), this.onCurrentAmountOfSales, undefined);
         this.subscribeToResponseBase(this.dashboardService.monthlyAmountOfSales(), this.onMonthlyAmountOfSales, undefined);
         this.subscribeToResponseBase(this.dashboardService.onPersonelCiroDagilim(), this.onPersonelCiroDagilim, undefined);
-        this.subscribeToResponseBase(this.dashboardService.onDonemCiroDagilim(), this.onDonemCiroDagilim, undefined);
         this.subscribeToResponseBase(this.dashboardService.allUsers(), data => {
             this.userList = data;
         }, undefined);
@@ -112,26 +111,6 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
 
     private onPersonelCiroDagilim(data) {
         this.personelCiroDagilim = data;
-    }
-
-    private onDonemCiroDagilim(data) {
-        data.forEach(row  => {
-           this.yearlyAmountOfSales+= row.tutar;
-        });
-        data.sort((a, b) => a.donem < b.donem ? -1 : a.donem > b.donem ? 1 : 0);
-        const labels = data.map(x => x.donem);
-        const values = data.map(x => x.tutar);
-        this.donemCiroDagilim = {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Toplam Ciro',
-                    backgroundColor: '#42A5F5',
-                    borderColor: '#1E88E5',
-                    data: values
-                }
-            ]
-        }
     }
 
     onPageChange(event) {

@@ -20,5 +20,21 @@ export class ReportService extends AbstractService {
   loadPerformansOzet(year: number): Observable<AppResponse> {
     return this.http.get<AppResponse>(`${this.SERVICE_PATH}/loadPerformansOzet/${year}`);
   }
+
+  onDonemCiroDagilim(year: number, userName: string): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/loadCiroDagilim/${year}/${userName}`);
+  }
+
+  onDonemSiparisDagilim(year: number, userName: string): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/loadSiparisDagilim/${year}/${userName}`);
+  }
+
+  onDonemTahsilatDagilim(year: number, userName: string): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/loadTahsilatDagilim/${year}/${userName}`);
+  }
+
+  onDonemCiroMarkaDagilim(year: number, userName: string): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/loadMarkaDagilim/${year}/${userName}`);
+  }
 }
 

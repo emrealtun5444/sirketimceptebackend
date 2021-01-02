@@ -62,7 +62,7 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
                                         @Param("siparisYonu") SiparisYonu siparisYonu,
                                         @Param("sirket") Sirket sirket);
 
-    @Query("select sum(COALESCE(c.yillikHedef,0)) " +
+    @Query("select COALESCE(sum(COALESCE(c.yillikHedef,0)),0) " +
         "from CariKart c " +
         "where c.sirket = :sirket " +
         "and c.durum = :durum " +
@@ -71,7 +71,7 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
                                @Param("sirket") Sirket sirket,
                                @Param("staff") User staff);
 
-    @Query("select new com.aymer.sirketimceptebackend.report.dto.HedefDto(MONTH(f.faturaTarihi) , sum(COALESCE(c.yillikHedef,0) / 12) , sum(fd.toplamTutar)) " +
+    @Query("select new com.aymer.sirketimceptebackend.report.dto.HedefDto(MONTH(f.faturaTarihi) , sum(fd.toplamTutar)) " +
         "from Fatura f " +
         "join f.cariKart c " +
         "join f.faturaDetays fd " +
