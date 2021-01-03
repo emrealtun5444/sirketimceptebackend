@@ -1,6 +1,5 @@
 package com.aymer.sirketimceptebackend.cariKart.service;
 
-import com.aymer.sirketimceptebackend.cariKart.dto.CariKartDto;
 import com.aymer.sirketimceptebackend.cariKart.mapper.CariKartMapper;
 import com.aymer.sirketimceptebackend.report.dto.HedefCariDto;
 import com.aymer.sirketimceptebackend.report.service.ReportService;
@@ -60,15 +59,17 @@ public class BorcAlacakBildirimService implements Tasklet {
             if (targetUsers.size() == 0) continue;
 
             targetUsers.forEach(user -> {
-                String content = prepareMailContent(user, sirket);
-                mailService.htmlMailGonder(user.getEmail(), subject, EmailIcerikUtils.generateTemplateModel(user, sirket, text, content));
+                List<HedefCariDto> hedefCariDtos = reportService.donemeGoreHedefCariDagilimi(user, DateUtils.getYearFromDate(DateUtils.getToday()), sirket);
+                if (!hedefCariDtos.isEmpty()) {
+                    String content = prepareMailContent(hedefCariDtos, user, sirket);
+                    mailService.htmlMailGonder(user.getEmail(), subject, EmailIcerikUtils.generateTemplateModel(user, sirket, text, content));
+                }
             });
         }
         return RepeatStatus.FINISHED;
     }
 
-    private String prepareMailContent(User user, Sirket sirket) {
-        List<HedefCariDto> hedefCariDtos = reportService.donemeGoreHedefCariDagilimi(user, DateUtils.getYearFromDate(DateUtils.getToday()), sirket);
+    private String prepareMailContent(List<HedefCariDto> hedefCariDtos, User user, Sirket sirket) {
         EmailIcerikUtils.Builder mailIcerigi = EmailIcerikUtils.createBuilder();
 
         String groupingValue = user != null ? user.getAciklama() : LabelFactory.getLabel("label.other");
