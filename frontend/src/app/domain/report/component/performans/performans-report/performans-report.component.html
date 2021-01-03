@@ -116,9 +116,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="p-col-12 p-md-12 p-lg-12">
-                            <app-performans-item  [year]="reportForm.value.year"></app-performans-item>
-                        </div>
                     </div>
                 </ng-template>
             </p-accordionTab>
@@ -130,6 +127,11 @@
             <p-tabPanel header="{{st.nameSurname}}" *ngFor="let st of staffs">
                 <ng-template pTemplate="content">
                     <app-performans-item [userName]="st.username" [year]="reportForm.value.year"></app-performans-item>
+                </ng-template>
+            </p-tabPanel>
+            <p-tabPanel header="{{'label.select.all' | translate}}">
+                <ng-template pTemplate="content">
+                    <app-performans-item  [year]="reportForm.value.year"></app-performans-item>
                 </ng-template>
             </p-tabPanel>
         </p-tabView>
