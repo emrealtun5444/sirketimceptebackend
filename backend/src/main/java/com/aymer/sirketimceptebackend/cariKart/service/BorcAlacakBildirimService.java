@@ -2,10 +2,8 @@ package com.aymer.sirketimceptebackend.cariKart.service;
 
 import com.aymer.sirketimceptebackend.cariKart.dto.CariKartDto;
 import com.aymer.sirketimceptebackend.cariKart.mapper.CariKartMapper;
-import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
-import com.aymer.sirketimceptebackend.cariKart.model.ECariTipi;
-import com.aymer.sirketimceptebackend.cariKart.repository.CariKartRepository;
-import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.report.dto.HedefCariDto;
+import com.aymer.sirketimceptebackend.report.service.ReportService;
 import com.aymer.sirketimceptebackend.system.mail.model.Notification;
 import com.aymer.sirketimceptebackend.system.mail.service.MailService;
 import com.aymer.sirketimceptebackend.system.mail.service.NotificationService;
@@ -23,8 +21,10 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
  * User: ealtun
@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 public class BorcAlacakBildirimService implements Tasklet {
 
     @Autowired
-    private CariKartRepository cariKartRepository;
+    private ReportService reportService;
 
     @Autowired
     private MailService mailService;
@@ -59,68 +59,49 @@ public class BorcAlacakBildirimService implements Tasklet {
             final Set<User> targetUsers = notificationService.findTargetList(sirket, Notification.BORC_ALACAK_ACCOUNT);
             if (targetUsers.size() == 0) continue;
 
-            String content = prepareMailContent(sirket);
             targetUsers.forEach(user -> {
+                String content = prepareMailContent(user, sirket);
                 mailService.htmlMailGonder(user.getEmail(), subject, EmailIcerikUtils.generateTemplateModel(user, sirket, text, content));
             });
         }
         return RepeatStatus.FINISHED;
     }
 
-    private String prepareMailContent(Sirket sirket) {
-        final Map<User, List<CariKart>> cariKartMap = getCariKarts(sirket);
+    private String prepareMailContent(User user, Sirket sirket) {
+        List<HedefCariDto> hedefCariDtos = reportService.donemeGoreHedefCariDagilimi(user, DateUtils.getYearFromDate(DateUtils.getToday()), sirket);
         EmailIcerikUtils.Builder mailIcerigi = EmailIcerikUtils.createBuilder();
 
-        for (Map.Entry<User, List<CariKart>> entry : cariKartMap.entrySet()) {
-            String groupingValue = entry.getKey() != null ? entry.getKey().getAciklama() : LabelFactory.getLabel("label.other");
-            mailIcerigi.add(EmailIcerikUtils.createParagraf("<strong>" + groupingValue + "</strong>"));
+        String groupingValue = user != null ? user.getAciklama() : LabelFactory.getLabel("label.other");
+        mailIcerigi.add(EmailIcerikUtils.createParagraf("<strong>" + groupingValue + "</strong>"));
 
-            EmailIcerikUtils.TableBuilder tableBuilder = EmailIcerikUtils.createTableBuilder(
+        EmailIcerikUtils.TableBuilder tableBuilder = EmailIcerikUtils.createTableBuilder(
+            EmailIcerikUtils.createRowBuilder()
+                .addCell(LabelFactory.getLabel("label.cari.kodu"))
+                .addCell(LabelFactory.getLabel("label.cari.adi"))
+                .addCell(LabelFactory.getLabel("label.toplam.borc"))
+                .addCell(LabelFactory.getLabel("label.toplam.alacak"))
+                .addCell(LabelFactory.getLabel("label.bakiye"))
+                .addCell(LabelFactory.getLabel("label.toplam.ciro"))
+                .addCell(LabelFactory.getLabel("label.yillik.hedef"))
+                .addCell(LabelFactory.getLabel("label.gerceklesme.orani"))
+        );
+
+        hedefCariDtos.sort(Comparator.comparing(HedefCariDto::getBakiye));
+        for (HedefCariDto entry : hedefCariDtos) {
+            tableBuilder.addRow(
                 EmailIcerikUtils.createRowBuilder()
-                    .addCell(LabelFactory.getLabel("label.cari.kodu"))
-                    .addCell(LabelFactory.getLabel("label.cari.adi"))
-                    .addCell(LabelFactory.getLabel("label.toplam.borc"))
-                    .addCell(LabelFactory.getLabel("label.toplam.alacak"))
-                    .addCell(LabelFactory.getLabel("label.bakiye"))
+                    .addCell(entry.getCariKodu())
+                    .addCell(entry.getCariAdi())
+                    .addCell(MoneyUtils.currencyFormat(entry.getToplamBorc()))
+                    .addCell(MoneyUtils.currencyFormat(entry.getToplamAlacak()))
+                    .addCell(MoneyUtils.currencyFormat(entry.getBakiye()))
+                    .addCell(MoneyUtils.currencyFormat(entry.getToplamCiro()))
+                    .addCell(MoneyUtils.currencyFormat(entry.getYillikHedef()))
+                    .addCell(MoneyUtils.currencyFormat(entry.getGerceklesmeYuzdesi()))
             );
-
-            List<CariKartDto> cariKartDtoList = cariKartMapper.carikartToDtoList(entry.getValue());
-            cariKartDtoList.sort(Comparator.comparing(CariKartDto::getBakiye));
-            for (CariKartDto cariKart : cariKartDtoList) {
-                tableBuilder.addRow(
-                    EmailIcerikUtils.createRowBuilder()
-                        .addCell(cariKart.getCariKodu())
-                        .addCell(cariKart.getCariAdi())
-                        .addCell(MoneyUtils.currencyFormat(cariKart.getToplamBorc()))
-                        .addCell(MoneyUtils.currencyFormat(cariKart.getToplamAlacak()))
-                        .addCell(MoneyUtils.currencyFormat(cariKart.getBakiye()))
-                );
-            }
             mailIcerigi.add(tableBuilder);
         }
 
         return mailIcerigi.build();
-    }
-
-    private Map<User, List<CariKart>> getCariKarts(Sirket sirket) {
-        // tamamlanmamış tüm siparişler tespit ediliyor.
-        List<CariKart> cariKarts = cariKartRepository.findCariKartByDurumAndSirketAndCariTipi(EDurum.AKTIF, sirket, ECariTipi.BAGLANTILI_CALISAN);
-        // siparis listesini cari kart bazında gruplarız.
-        return cariKarts.stream().collect(
-            Collectors.toMap(
-                CariKart::getSorumluPersonel,
-                x -> {
-                    List<CariKart> list = new ArrayList<>();
-                    list.add(x);
-                    return list;
-                },
-                (left, right) -> {
-                    left.addAll(right);
-                    return left;
-                },
-                HashMap::new
-
-            )
-        );
     }
 }

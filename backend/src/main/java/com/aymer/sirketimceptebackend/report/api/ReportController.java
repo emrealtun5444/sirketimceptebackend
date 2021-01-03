@@ -7,6 +7,7 @@ import com.aymer.sirketimceptebackend.report.service.ReportService;
 import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.system.user.service.UserService;
+import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,11 +29,13 @@ public class ReportController {
 
     private final ReportService reportService;
     private final UserService userService;
+    private final SessionUtils sessionUtils;
 
     @Autowired
-    public ReportController(ReportService reportService, UserService userService) {
+    public ReportController(ReportService reportService, UserService userService, SessionUtils sessionUtils) {
         this.reportService = reportService;
         this.userService = userService;
+        this.sessionUtils = sessionUtils;
     }
 
     @GetMapping("/loadPerformansOzet/{year}")
@@ -78,7 +81,7 @@ public class ReportController {
     @PreAuthorize("hasAuthority('PERFORMANS_REPORT_MENU')")
     public ResponseEntity<?> loadHedefCariDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName) {
         User user = getUser(userName);
-        List<HedefCariDto> hedefCariDtoList = reportService.donemeGoreHedefCariDagilimi(user, year);
+        List<HedefCariDto> hedefCariDtoList = reportService.donemeGoreHedefCariDagilimi(user, year, sessionUtils.getSelectedCompany());
         return ResponseEntity.ok(new AppResponse(hedefCariDtoList));
     }
 

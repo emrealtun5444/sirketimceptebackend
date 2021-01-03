@@ -2,6 +2,7 @@ package com.aymer.sirketimceptebackend.report.service;
 
 
 import com.aymer.sirketimceptebackend.report.dto.*;
+import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 
 import java.util.List;
@@ -23,6 +24,5 @@ public interface ReportService {
 
     List<MarkaDagilimDto> donemeGoreMarkaDagilimi(User staff, Integer year);
 
-    List<HedefCariDto> donemeGoreHedefCariDagilimi(User staff, Integer year);
-
+    List<HedefCariDto> donemeGoreHedefCariDagilimi(User staff, Integer year, Sirket sirket);
 }

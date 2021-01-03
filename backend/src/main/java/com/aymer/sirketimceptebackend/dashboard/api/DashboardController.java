@@ -69,11 +69,4 @@ public class DashboardController {
         return new AppResponse<List<SorumluPersonelCiroDto>>(pageObject);
     }
 
-    @GetMapping("/donemCiroDagilimi")
-    @PreAuthorize("hasAuthority('FATURA_MENU')")
-    public AppResponse<List<HedefDto>> donemeGoreCiroDagilimi() {
-        List<HedefDto> pageObject = reportService.donemeGoreCiroDagilimi(null, DateUtils.getYearFromDate(DateUtils.getToday()));
-        return new AppResponse<List<HedefDto>>(pageObject);
-    }
-
 }
