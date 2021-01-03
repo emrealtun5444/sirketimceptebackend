@@ -1,6 +1,8 @@
 package com.aymer.sirketimceptebackend.cariKart.model;
 
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.Auditable;
+import com.aymer.sirketimceptebackend.fatura.model.Fatura;
+import com.aymer.sirketimceptebackend.fatura.model.FaturaDetay;
 import com.aymer.sirketimceptebackend.system.contactinformation.model.Ilce;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.system.user.model.User;
@@ -11,6 +13,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: ealtun

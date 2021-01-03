@@ -60,65 +60,67 @@
                 </div>
             </p-accordionTab>
             <p-accordionTab header="{{'label.yillik.durum' | translate}}">
-                <div class="p-grid dashboard">
-                    <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="p-grid card p-nogutter overview-box overview-box-1">
-                            <div class="p-col-4 overview-box-icon">
-                                <img src="../../../../../../assets/layout/images/icon-paper.png">
-                            </div>
-                            <div class="p-col-8">
-                                <span class="overview-box-count">{{ozetPerformans.yillikCiro.tutar | paraFormat}}</span>
-                                <span class="overview-box-name">{{'label.yillik.ciro' | translate}}</span>
+                <ng-template pTemplate="content">
+                    <div class="p-grid dashboard">
+                        <div class="p-col-12 p-md-6 p-lg-3">
+                            <div class="p-grid card p-nogutter overview-box overview-box-1">
+                                <div class="p-col-4 overview-box-icon">
+                                    <img src="../../../../../../assets/layout/images/icon-paper.png">
+                                </div>
+                                <div class="p-col-8">
+                                    <span class="overview-box-count">{{ozetPerformans.yillikCiro.tutar | paraFormat}}</span>
+                                    <span class="overview-box-name">{{'label.yillik.ciro' | translate}}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="p-grid card p-nogutter overview-box overview-box-3">
-                            <div class="p-col-4 overview-box-icon">
-                                <img src="../../../../../../assets/layout/images/icon-location.png">
-                            </div>
-                            <div class="p-col-8">
+                        <div class="p-col-12 p-md-6 p-lg-3">
+                            <div class="p-grid card p-nogutter overview-box overview-box-3">
+                                <div class="p-col-4 overview-box-icon">
+                                    <img src="../../../../../../assets/layout/images/icon-location.png">
+                                </div>
+                                <div class="p-col-8">
                                 <span
                                     class="overview-box-count">{{ozetPerformans.yillikHedef.hedefTutari | paraFormat}}</span>
-                                <span class="overview-box-name">{{'label.yillik.hedef' | translate}}</span>
-                                <span
-                                    class="overview-box-rate"> {{ozetPerformans.yillikHedef.gerceklesmeOrani | paraFormat}}
-                                    % </span>
+                                    <span class="overview-box-name">{{'label.yillik.hedef' | translate}}</span>
+                                    <span
+                                        class="overview-box-rate"> {{ozetPerformans.yillikHedef.gerceklesmeOrani | paraFormat}}
+                                        % </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="p-grid card p-nogutter overview-box overview-box-4">
-                            <div class="p-col-4 overview-box-icon">
-                                <img src="../../../../../../assets/layout/images/icon-orders.png">
-                            </div>
-                            <div class="p-col-8">
+                        <div class="p-col-12 p-md-6 p-lg-3">
+                            <div class="p-grid card p-nogutter overview-box overview-box-4">
+                                <div class="p-col-4 overview-box-icon">
+                                    <img src="../../../../../../assets/layout/images/icon-orders.png">
+                                </div>
+                                <div class="p-col-8">
                     <span class="overview-box-count">{{ozetPerformans.yillikSiparis.teslimAdet}}
                         / {{ozetPerformans.yillikSiparis.toplamAdet}}</span>
-                                <span class="overview-box-name">{{'label.yillik.siparis' | translate}}</span>
-                                <span
-                                    class="overview-box-rate"> {{ozetPerformans.yillikSiparis.teslimOran | paraFormat}}
-                                    % </span>
+                                    <span class="overview-box-name">{{'label.yillik.siparis' | translate}}</span>
+                                    <span
+                                        class="overview-box-rate"> {{ozetPerformans.yillikSiparis.teslimOran | paraFormat}}
+                                        % </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-col-12 p-md-6 p-lg-3">
-                        <div class="p-grid card p-nogutter overview-box overview-box-2">
-                            <div class="p-col-4 overview-box-icon">
-                                <img src="../../../../../../assets/layout/images/icon-mail.png">
-                            </div>
-                            <div class="p-col-8">
+                        <div class="p-col-12 p-md-6 p-lg-3">
+                            <div class="p-grid card p-nogutter overview-box overview-box-2">
+                                <div class="p-col-4 overview-box-icon">
+                                    <img src="../../../../../../assets/layout/images/icon-mail.png">
+                                </div>
+                                <div class="p-col-8">
                                 <span class="overview-box-count">{{ozetPerformans.yillikTahsilat.tutar | paraFormat}}
                                     TL</span>
-                                <span class="overview-box-name">{{'label.yillik.tahsilat' | translate}}</span>
+                                    <span class="overview-box-name">{{'label.yillik.tahsilat' | translate}}</span>
+                                </div>
                             </div>
                         </div>
+                        <div class="p-col-12 p-md-12 p-lg-12">
+                            <app-performans-item  [year]="reportForm.value.year"></app-performans-item>
+                        </div>
                     </div>
-                    <div class="p-col-12 p-md-12 p-lg-12">
-                        <app-performans-item  [year]="reportForm.value.year"></app-performans-item>
-                    </div>
-                </div>
+                </ng-template>
             </p-accordionTab>
         </p-accordion>
 

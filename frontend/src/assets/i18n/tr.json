@@ -230,6 +230,8 @@
   "label.WAITING_ORDER": "Bekleyen Siparişler Bildirimi",
   "label.BORC_ALACAK_ACCOUNT": "Borç/Alacak Bildirimi",
 
+  "label.cari.borc.alacak.hedef.durum": "Cari Borç Alacak Hedef Durumu",
+  "label.gerceklesme.yuzdesi": "Gerçekleşme Yüzdesi",
   "label.ciro.dagilim": "Ciro Hedef Durumu",
   "label.siparis.dagilim": "Sipariş Durumu",
   "label.tahsilat.dagilim": "Tahsilat Durumu",

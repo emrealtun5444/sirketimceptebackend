@@ -23,4 +23,6 @@ public interface ReportService {
 
     List<MarkaDagilimDto> donemeGoreMarkaDagilimi(User staff, Integer year);
 
+    List<HedefCariDto> donemeGoreHedefCariDagilimi(User staff, Integer year);
+
 }

@@ -36,5 +36,10 @@ export class ReportService extends AbstractService {
   onDonemCiroMarkaDagilim(year: number, userName: string): Observable<AppResponse> {
     return this.http.get<AppResponse>(`${this.SERVICE_PATH}/loadMarkaDagilim/${year}/${userName}`);
   }
+
+  onDonemCiroHedefDagilim(year: number, userName: string): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/loadHedefCariDagilim/${year}/${userName}`);
+  }
+
 }
 

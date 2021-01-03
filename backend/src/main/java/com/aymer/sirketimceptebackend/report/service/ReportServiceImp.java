@@ -106,5 +106,17 @@ public class ReportServiceImp implements ReportService {
         return reportRepository.donemeGoreMarkaDagilimi(year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), staff);
     }
 
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public List<HedefCariDto> donemeGoreHedefCariDagilimi(User staff, Integer year) {
+        List<HedefCariDto> hedefCariDtoList = reportRepository.donemeGoreHedefCariDagilimi(year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), staff);
+        BigDecimal currentDateDif = BigDecimal.valueOf(LocalDate.now().lengthOfYear());
+        hedefCariDtoList.stream().forEach(hedefCariDto -> {
+            BigDecimal yillikHedefTutari = hedefCariDto.getYillikHedef().multiply(currentDateDif).divide(BigDecimal.valueOf(365), 2, RoundingMode.HALF_UP);
+            hedefCariDto.setGerceklesmeYuzdesi(yillikHedefTutari.compareTo(BigDecimal.ZERO) > 0 ? (hedefCariDto.getToplamCiro().multiply(BigDecimal.valueOf(100)).divide(yillikHedefTutari, 2, RoundingMode.HALF_UP)) : BigDecimal.valueOf(100));
+        });
+        return hedefCariDtoList;
+    }
+
 
 }

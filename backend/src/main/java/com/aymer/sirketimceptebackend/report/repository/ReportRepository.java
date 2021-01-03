@@ -2,10 +2,7 @@ package com.aymer.sirketimceptebackend.report.repository;
 
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
-import com.aymer.sirketimceptebackend.report.dto.CiroDto;
-import com.aymer.sirketimceptebackend.report.dto.HedefDto;
-import com.aymer.sirketimceptebackend.report.dto.MarkaDagilimDto;
-import com.aymer.sirketimceptebackend.report.dto.SiparisDto;
+import com.aymer.sirketimceptebackend.report.dto.*;
 import com.aymer.sirketimceptebackend.siparis.model.SiparisYonu;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.system.user.model.User;
@@ -127,4 +124,18 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
                                                   @Param("faturaYonu") EOdemeYonu odemeYonu,
                                                   @Param("sirket") Sirket sirket,
                                                   @Param("staff") User staff);
+
+    @Query("select new com.aymer.sirketimceptebackend.report.dto.HedefCariDto(" +
+        "c.cariKodu, c.cariAdi, c.toplamBorc, c.toplamAlacak, (c.toplamAlacak- c.toplamBorc), COALESCE(c.yillikHedef,0), COALESCE(sum(fd.toplamTutar),0)) " +
+        "from CariKart c " +
+        "left join Fatura f on f.cariKart = c and f.durum = :durum and f.faturaYonu = :faturaYonu and YEAR(f.faturaTarihi) = :year " +
+        "left join FaturaDetay fd on fd.fatura = f " +
+        "where c.sirket = :sirket " +
+        "and (:staff is null or c.sorumluPersonel = :staff) " +
+        "group by c.cariKodu, c.cariAdi, c.toplamBorc, c.toplamAlacak, (c.toplamAlacak- c.toplamBorc), COALESCE(c.yillikHedef,0)")
+    List<HedefCariDto> donemeGoreHedefCariDagilimi(@Param("year") Integer year,
+                                                   @Param("durum") EDurum durum,
+                                                   @Param("faturaYonu") EOdemeYonu odemeYonu,
+                                                   @Param("sirket") Sirket sirket,
+                                                   @Param("staff") User staff);
 }

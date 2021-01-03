@@ -39,7 +39,6 @@ export class MarketPlaceComponent extends AbstractBaseComponent implements OnIni
     }
 
     sorgula() {
-        let event = {first: 0, rows: 20};
         this.subscribeToResponseBase(this.marketPlaceService.loadMarketPlaces(), this.sorgulaSuccess, undefined);
     }
 

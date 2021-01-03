@@ -74,6 +74,14 @@ public class ReportController {
         return ResponseEntity.ok(new AppResponse(markaDagilimDtos));
     }
 
+    @GetMapping("/loadHedefCariDagilim/{year}/{userName}")
+    @PreAuthorize("hasAuthority('PERFORMANS_REPORT_MENU')")
+    public ResponseEntity<?> loadHedefCariDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName) {
+        User user = getUser(userName);
+        List<HedefCariDto> hedefCariDtoList = reportService.donemeGoreHedefCariDagilimi(user, year);
+        return ResponseEntity.ok(new AppResponse(hedefCariDtoList));
+    }
+
     @GetMapping("/staffs")
     @PreAuthorize("hasAuthority('REPORT_MENU')")
     public ResponseEntity<?> loadStaffs() {
