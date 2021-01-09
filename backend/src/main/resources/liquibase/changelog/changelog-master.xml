@@ -44,5 +44,7 @@
     <include file="/liquibase/changelog/changes/create-user_notification-table.xml"/>
     <include file="/liquibase/changelog/changes/update-user-table_1.xml"/>
 
+    <include file="/liquibase/changelog/changes/update-finansal_hareket-table_1.xml"/>
+
 
 </databaseChangeLog>

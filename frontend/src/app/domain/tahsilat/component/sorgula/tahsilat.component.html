@@ -1,0 +1,71 @@
+<form [formGroup]="sorguForm">
+
+    <div class="card">
+        <h3>{{'menu.tahsilat.sorgulama' | translate}}</h3>
+        <br/>
+        <div class="p-grid p-fluid">
+            <div class="p-field p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-shopping-cart"></i></span>
+                    <span class="p-float-label">
+                             <input id="evrakNo" formControlName="evrakNo" type="text" pInputText>
+                            <label for="evrakNo">{{'label.evrak.no' | translate}}</label>
+                        </span>
+                </div>
+            </div>
+
+            <div class="p-field p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-shopping-cart"></i></span>
+                    <span class="p-float-label">
+                             <input id="cariKodu" formControlName="cariKodu" type="text" pInputText>
+                            <label for="cariKodu">{{'label.cari.kodu' | translate}}</label>
+                        </span>
+                </div>
+            </div>
+
+            <div class="p-field p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-tags"></i></span>
+                    <span class="p-float-label">
+                             <input id="cariAdi" formControlName="cariAdi" type="text" pInputText>
+                            <label for="cariAdi">{{'label.cari.adi' | translate}}</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-field p-col-12 p-md-4">
+                <p-calendar id="islemTarihi" showButtonBar="true" formControlName="islemTarihi"
+                            placeholder="{{'label.islem.tarihi' | translate}}"
+                            [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+            </div>
+            <div class="p-field p-col-12 p-md-4">
+                <span class="p-float-label">
+                     <p-dropdown id="odemeTipi" formControlName="odemeTipi"
+                                 [options]="odemeTipiList"
+                                 optionValue="value" optionLabel="label"
+                     ></p-dropdown>
+                    <label for="odemeTipi">{{'label.odeme.tipi' | translate}}</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-4">
+                <span class="p-float-label">
+                  <p-dropdown id="odemeYonu" formControlName="odemeYonu"
+                              [options]="odemeYonuList"
+                              optionValue="value" optionLabel="label"></p-dropdown>
+                  <label for="odemeYonu">{{'label.odeme.yonu' | translate}}</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-4"></div>
+            <div class="p-field p-col-12 p-md-4"></div>
+            <div class="p-field p-col-12 p-md-4">
+                <button pButton type="button" label="{{'btn.sorgula' | translate}}"
+                        (click)="sorgula()"></button>
+            </div>
+        </div>
+    </div>
+    <app-common-lazy-dt #laztTable [cols]="cols" (loadLazyEvent)="loadLazy($event)"
+                        [loading]="loading" [data]="resultList"
+                        [hiddenColumn]="hiddenColumn" [that]="this"
+                        [totalRecords]="totalRecords"></app-common-lazy-dt>
+</form>

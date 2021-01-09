@@ -65,11 +65,11 @@ public class CariSiparisVisitor implements CariKartVisitor {
     private Siparis saveSiparis(CariKart cariKart, SiparisViewHolder siparisViewHolder) {
         StokKart stokKart = stokKartService.getStokKart(cariKart.getSirket(), siparisViewHolder.getMalKodu());
         Siparis siparis = Siparis.builder()
-            .durum(EDurum.AKTIF)
-            .cariKart(cariKart)
-            .sirket(cariKart.getSirket())
-            .stokKart(stokKart)
-            .build();
+                .durum(EDurum.AKTIF)
+                .cariKart(cariKart)
+                .sirket(cariKart.getSirket())
+                .stokKart(stokKart)
+                .build();
         siparisMapper.update(siparisViewHolder, siparis);
         return siparis;
     }

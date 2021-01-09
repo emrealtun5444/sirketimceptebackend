@@ -98,3 +98,15 @@ export enum SiparisYonu {
   ALINAN_SIPARIS = 'ALINAN_SIPARIS',
   VERILEN_SIPARIS = 'VERILEN_SIPARIS'
 }
+
+export enum OdemeYonu {
+  BORC = 'BORC',
+  ALACAK = 'ALACAK'
+}
+
+export enum OdemeTipi {
+  NAKIT = 'NAKIT',
+  KREDI_KARTI = 'KREDI_KARTI',
+  CEK = 'CEK',
+  SENET = 'SENET'
+}

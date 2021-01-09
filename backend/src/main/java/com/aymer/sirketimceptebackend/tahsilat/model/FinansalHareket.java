@@ -34,6 +34,10 @@ public class FinansalHareket extends Auditable<String> implements Serializable {
     private CariKart cariKart;
 
     @NotNull
+    @Column(name = "evrak_no")
+    private String evrakNo;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "odeme_yonu", length = 20)
     private EOdemeYonu odemeYonu;
@@ -60,6 +64,10 @@ public class FinansalHareket extends Auditable<String> implements Serializable {
     private Date islemTarihi;
 
     @NotNull
+    @Column(name = "vade")
+    private Date vadeTarihi;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private EDurum durum;
@@ -68,4 +76,10 @@ public class FinansalHareket extends Auditable<String> implements Serializable {
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
+
+    public void init(CariKart cariKart) {
+        this.cariKart = cariKart;
+        this.sirket = cariKart.getSirket();
+        this.durum = EDurum.AKTIF;
+    }
 }

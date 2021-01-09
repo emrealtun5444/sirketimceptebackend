@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  * User: ealtun
@@ -22,8 +22,8 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue(IConstants.KREDI_KARTI)
 public class FinansalHareketKrediKarti extends FinansalHareket {
 
-    @ManyToOne
-    @JoinColumn(name = "banka_id")
-    private Banka banka;
+    @NotNull
+    @Column(name = "banka")
+    private String banka;
 
 }

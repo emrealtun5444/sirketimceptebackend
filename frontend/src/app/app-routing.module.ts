@@ -36,6 +36,10 @@ import {AuthGuard} from './shared/auth/AuthGuard';
             loadChildren: () => import('src/app/domain/fatura/fatura.module').then(m => m.FaturaModule),
           },
           {
+            path: 'tahsilat',
+            loadChildren: () => import('src/app/domain/tahsilat/tahsilat.module').then(m => m.TahsilatModule),
+          },
+          {
             path: 'siparis',
             loadChildren: () => import('src/app/domain/siparis/siparis.module').then(m => m.SiparisModule),
           },

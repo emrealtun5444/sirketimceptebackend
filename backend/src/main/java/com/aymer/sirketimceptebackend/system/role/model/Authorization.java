@@ -30,6 +30,9 @@ public enum Authorization implements Serializable {
     // Siparis
     SIPARIS_MENU("menu.siparis.yonetimi", ROOT_AUTHORIZATION),
 
+    // Tahsilat
+    TAHSILAT_MENU("menu.tahsilat.yonetimi", ROOT_AUTHORIZATION),
+
     // Marketplace
     PAZARYERI_MENU("menu.pazaryeri.yonetimi", ROOT_AUTHORIZATION),
     ENTEGRASYON_AYAR("menu.pazaryeri.conf", PAZARYERI_MENU),

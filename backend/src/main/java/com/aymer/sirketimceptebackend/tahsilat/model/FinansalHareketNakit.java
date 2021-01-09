@@ -1,9 +1,7 @@
 package com.aymer.sirketimceptebackend.tahsilat.model;
 
 import com.aymer.sirketimceptebackend.common.constants.IConstants;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -13,6 +11,7 @@ import javax.persistence.Entity;
  * Date: 7.06.2020
  * Time: 16:15
  */
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="admin" id="1">
+
+        <dropColumn tableName="finansal_hareket" columnName="banka_id"/>
+
+        <addColumn tableName="finansal_hareket" >
+            <column name="banka_hesap_no" type="VARCHAR(256)"/>
+            <column name="banka_cek_no" type="VARCHAR(256)"/>
+            <column name="banka" type="VARCHAR(256)"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
