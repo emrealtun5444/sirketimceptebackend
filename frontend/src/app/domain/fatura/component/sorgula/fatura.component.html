@@ -41,8 +41,14 @@
             </div>
 
             <div class="p-field p-col-12 p-md-4">
-
+                <span class="p-float-label">
+                     <p-dropdown id="staff" [options]="staffs" formControlName="staff"
+                                 optionValue="value" optionLabel="label"
+                     ></p-dropdown>
+                  <label for="staff">{{'label.sorumlu.personel' | translate}}</label>
+                </span>
             </div>
+
             <div class="p-field p-col-12 p-md-4">
                 <button pButton type="button" label="{{'btn.sorgula' | translate}}"
                         (click)="sorgula()"></button>

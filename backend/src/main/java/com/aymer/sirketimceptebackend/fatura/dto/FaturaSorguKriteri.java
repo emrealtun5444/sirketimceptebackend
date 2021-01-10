@@ -15,6 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class FaturaSorguKriteri implements Serializable {
 
+    private Long staff;
     private String faturaNo;
     private String cariKodu;
     private String cariAdi;

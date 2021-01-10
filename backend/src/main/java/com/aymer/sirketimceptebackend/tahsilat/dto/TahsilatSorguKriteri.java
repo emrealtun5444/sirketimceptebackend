@@ -17,6 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class TahsilatSorguKriteri implements Serializable {
 
+    private Long staff;
     private String evrakNo;
     private String cariKodu;
     private String cariAdi;

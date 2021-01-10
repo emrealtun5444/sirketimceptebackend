@@ -4,6 +4,7 @@ import {FaturaRoutingModule} from "./fatura-routing.module";
 import {FaturaComponent} from "./component/sorgula/fatura.component";
 import {FaturaService} from "./service/fatura.service";
 import {FaturaDetayComponent} from "./component/detay/fatura-detay.component";
+import {UserService} from "../settings/user/service/user.service";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {FaturaDetayComponent} from "./component/detay/fatura-detay.component";
         FaturaDetayComponent
     ],
     providers: [
-        FaturaService
+        FaturaService,
+        UserService
     ]
 })
 

@@ -5,7 +5,8 @@ import {AppStore} from '../../../../shared/app.store';
 import {FaturaService} from '../../service/fatura.service';
 import {FaturaSorguKriterleri} from '../../dto/fatura-sorgu-kriterleri';
 import {Fatura} from '../../dto/fatura';
-import {LazyLoadEvent} from 'primeng/api';
+import {LazyLoadEvent, SelectItem} from 'primeng/api';
+import {UserService} from "../../../settings/user/service/user.service";
 
 @Component({
   selector: 'app-fatura',
@@ -40,20 +41,32 @@ export class FaturaComponent extends AbstractBaseComponent implements OnInit {
   totalRecords: number;
   loading: boolean;
   resultList: Fatura[];
+  staffs: SelectItem[] = [];
+
 
   constructor(public appStore: AppStore,
+              private userService: UserService,
               private faturaService: FaturaService,
               private formBuilder: FormBuilder) {
     super(appStore);
   }
 
   ngOnInit(): void {
-    this.loading = false;
+    this.loadData();
     this.buildForms();
+  }
+
+  loadData() {
+    this.loading = false;
+    this.subscribeToResponse(this.userService.grantedUsers(), data => {
+      this.staffs = data;
+      this.staffs.unshift({label: this.appStore.translate.instant('label.select.all'), value: null});
+    }, undefined);
   }
 
   private buildForms() {
     this.sorguForm = this.formBuilder.group({
+      staff: null,
       faturaNo: null,
       cariKodu: null,
       cariAdi: null,
@@ -81,6 +94,7 @@ export class FaturaComponent extends AbstractBaseComponent implements OnInit {
   private prepareData(lazyLoadEvent: LazyLoadEvent): FaturaSorguKriterleri {
     const formModel = this.sorguForm.value;
     return {
+      staff: formModel.staff,
       faturaNo: formModel.faturaNo,
       cariKodu: formModel.cariKodu,
       cariAdi: formModel.cariAdi,

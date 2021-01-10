@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {TahsilatService} from "../../service/tahsilat.service";
 import {TahsilatSorguKriterleri} from "../../dto/tahsilat-sorgu-kriterleri";
 import {Tahsilat} from "../../dto/tahsilat";
+import {UserService} from "../../../settings/user/service/user.service";
 
 @Component({
     selector: 'app-tahsilat',
@@ -57,8 +58,10 @@ export class TahsilatComponent extends AbstractBaseComponent implements OnInit {
     totalRecords: number;
     loading: boolean;
     resultList: Tahsilat[];
+    staffs: SelectItem[] = [];
 
     constructor(public appStore: AppStore,
+                private userService: UserService,
                 private tahsilatService: TahsilatService,
                 private router: Router,
                 private formBuilder: FormBuilder) {
@@ -66,8 +69,16 @@ export class TahsilatComponent extends AbstractBaseComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loading = false;
+        this.loadData();
         this.buildForms();
+    }
+
+    loadData() {
+        this.loading = false;
+        this.subscribeToResponse(this.userService.grantedUsers(), data => {
+            this.staffs = data;
+            this.staffs.unshift({label: this.appStore.translate.instant('label.select.all'), value: null});
+        }, undefined);
     }
 
     private buildForms() {
@@ -77,7 +88,8 @@ export class TahsilatComponent extends AbstractBaseComponent implements OnInit {
             cariAdi: null,
             odemeYonu: OdemeYonu.ALACAK,
             odemeTipi: null,
-            islemTarihi: null
+            islemTarihi: null,
+            staff: null
         });
     }
 
@@ -101,6 +113,7 @@ export class TahsilatComponent extends AbstractBaseComponent implements OnInit {
     private prepareData(lazyLoadEvent: LazyLoadEvent): TahsilatSorguKriterleri {
         const formModel = this.sorguForm.value;
         return {
+            staff: formModel.staff,
             evrakNo: formModel.evrakNo,
             cariKodu: formModel.cariKodu,
             cariAdi: formModel.cariAdi,

@@ -5,7 +5,8 @@ import {AppStore} from '../../../../shared/app.store';
 import {CariKart} from '../../dto/cari-kart';
 import {CariKartService} from '../../service/cari-kart.service';
 import {CariKartSorguKriterleri} from '../../dto/cari-kart-sorgu-kriterleri';
-import {LazyLoadEvent} from 'primeng/api';
+import {LazyLoadEvent, SelectItem} from 'primeng/api';
+import {UserService} from "../../../settings/user/service/user.service";
 
 @Component({
     selector: 'app-cari-kart',
@@ -28,20 +29,31 @@ export class CariKartComponent extends AbstractBaseComponent implements OnInit {
     totalRecords: number;
     loading: boolean;
     resultList: CariKart[];
+    staffs: SelectItem[] = [];
 
     constructor(public appStore: AppStore,
+                private userService: UserService,
                 private cariKartService: CariKartService,
                 private formBuilder: FormBuilder) {
         super(appStore);
     }
 
     ngOnInit(): void {
-        this.loading = false;
+        this.loadData();
         this.buildForms();
+    }
+
+    loadData() {
+        this.loading = false;
+        this.subscribeToResponse(this.userService.grantedUsers(), data => {
+            this.staffs = data;
+            this.staffs.unshift({label: this.appStore.translate.instant('label.select.all'), value: null});
+        }, undefined);
     }
 
     private buildForms() {
         this.sorguForm = this.formBuilder.group({
+            staff: null,
             cariKodu: null,
             cariAdi: null
         });
@@ -67,6 +79,7 @@ export class CariKartComponent extends AbstractBaseComponent implements OnInit {
     private prepareData(lazyLoadEvent: LazyLoadEvent): CariKartSorguKriterleri {
         const formModel = this.sorguForm.value;
         return {
+            staff: formModel.staff,
             cariKodu: formModel.cariKodu,
             cariAdi: formModel.cariAdi,
             lazyLoadEvent: lazyLoadEvent

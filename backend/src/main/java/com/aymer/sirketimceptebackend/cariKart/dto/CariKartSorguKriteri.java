@@ -14,6 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class CariKartSorguKriteri implements Serializable {
 
+    private Long staff;
     private String cariKodu;
     private String cariAdi;
 

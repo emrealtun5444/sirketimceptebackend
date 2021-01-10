@@ -36,6 +36,10 @@ public class SiparisSpesification implements Specification<Siparis> {
             predicates.add(cb.like(cb.upper(cariJoin.get("cariAdi")), "%" + sorguKriteri.getCariAdi().toUpperCase(LocaleContextHolder.getLocale()) + "%"));
         }
 
+        if (sorguKriteri.getStaff() != null) {
+            predicates.add(cb.equal(cariJoin.get("sorumluPersonel"), sorguKriteri.getStaff()));
+        }
+
         if (sorguKriteri.getBaslangicTarihi() != null) {
             predicates.add(cb.greaterThanOrEqualTo(root.get("islemTarihi"), sorguKriteri.getBaslangicTarihi()));
         }

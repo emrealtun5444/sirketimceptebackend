@@ -6,7 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import {AbstractBaseComponent} from '../../../shared/abstract-base-component';
 import {AppStore} from '../../../shared/app.store';
 import {DashboardService} from '../service/dashboard.service';
-import {SiparisDurumu, SiparisYonu} from '../../../shared/constants';
+import {SiparisYonu} from '../../../shared/constants';
 import {Siparis} from "../../siparis/dto/siparis";
 import {SiparisSorguKriterleri} from "../../siparis/dto/siparis-sorgu-kriterleri";
 import {UserSorguSonucu} from "../../settings/user/dto/user-sorgu-sonucu";
@@ -65,6 +65,7 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
     private prepareData(page): SiparisSorguKriterleri {
         let event = {first: page * 4, rows: 4};
         return {
+            staff: null,
             siparisNo: null,
             cariKodu: null,
             cariAdi: null,

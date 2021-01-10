@@ -24,6 +24,7 @@ public class SiparisSorguKriteri implements Serializable {
     private SiparisYonu siparisYonu;
     private Date baslangicTarihi;
     private Date bitisTarihi;
+    private Long staff;
 
     @Valid
     @NotNull

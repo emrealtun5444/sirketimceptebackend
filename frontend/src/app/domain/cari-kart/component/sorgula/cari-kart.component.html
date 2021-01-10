@@ -3,7 +3,7 @@
         <h3>{{'menu.cari.sorgulama' | translate}}</h3>
         <br/>
         <div class="p-grid p-fluid">
-            <div class="p-col-12 p-md-4">
+            <div class="p-col-12 p-md-3">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-shopping-cart" style="line-height: 1.25;"></i></span>
                     <span class="p-float-label">
@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="p-col-12 p-md-4">
+            <div class="p-col-12 p-md-3">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-tags" style="line-height: 1.25;"></i></span>
                     <span class="p-float-label">
@@ -22,8 +22,15 @@
                     </span>
                 </div>
             </div>
-
-            <div class="p-col-12 p-md-4">
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label">
+                     <p-dropdown id="staff" [options]="staffs" formControlName="staff"
+                                 optionValue="value" optionLabel="label"
+                     ></p-dropdown>
+                  <label for="staff">{{'label.sorumlu.personel' | translate}}</label>
+                </span>
+            </div>
+            <div class="p-col-12 p-md-3">
                 <button pButton type="button" label="{{'btn.sorgula' | translate}}"
                         (click)="sorgula()"></button>
             </div>

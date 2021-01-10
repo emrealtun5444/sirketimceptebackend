@@ -2,6 +2,7 @@ import {SiparisDurumu, SiparisYonu} from "../../../shared/constants";
 import {LazyLoadEvent} from "primeng/api";
 
 export interface SiparisSorguKriterleri {
+  staff: number;
   siparisNo: string;
   cariKodu: string;
   cariAdi: string;

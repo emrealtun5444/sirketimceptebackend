@@ -3,7 +3,7 @@ package com.aymer.sirketimceptebackend.system.user.api;
 import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItem;
-import com.aymer.sirketimceptebackend.security.service.UserDetailsImpl;
+import com.aymer.sirketimceptebackend.common.model.abstructcommon.SelectItemMapper;
 import com.aymer.sirketimceptebackend.system.mail.model.Notification;
 import com.aymer.sirketimceptebackend.system.user.dto.UserInput;
 import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
@@ -42,8 +42,8 @@ public class UserController {
 
     @GetMapping("/grantedUsers")
     @PreAuthorize("hasAuthority('ROOT_AUTHORIZATION')")
-    AppResponse<List<UserListItem>> grantedUsers() {
-        return new AppResponse<List<UserListItem>>(service.grantedUsers());
+    AppResponse<List<SelectItem>> grantedUsers() {
+        return new AppResponse<List<SelectItem>>(SelectItemMapper.toComboItems(service.grantedUsers()));
     }
 
     @PostMapping

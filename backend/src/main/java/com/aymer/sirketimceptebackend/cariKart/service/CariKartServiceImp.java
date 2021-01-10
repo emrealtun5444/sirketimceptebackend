@@ -51,6 +51,9 @@ public class CariKartServiceImp implements CariKartService {
     @Transactional(propagation = Propagation.SUPPORTS)
     public Page<CariKart> findCariKartByCriteria(CariKartSorguKriteri cariKartSorguKriteri, int page, int rows) {
         BaseSpesification spesification = new BaseSpesification<CariKart>();
+        if (cariKartSorguKriteri.getStaff() != null) {
+            spesification.add(new SearchCriteria("sorumluPersonel", cariKartSorguKriteri.getStaff(), SearchOperation.EQUAL));
+        }
         if (StringUtils.isNotEmpty(cariKartSorguKriteri.getCariKodu())) {
             spesification.add(new SearchCriteria("cariKodu", cariKartSorguKriteri.getCariKodu(), SearchOperation.MATCH));
         }

@@ -8,6 +8,7 @@ import {SiparisDurumu, SiparisYonu} from "../../../../shared/constants";
 import {SiparisSorguKriterleri} from "../../dto/siparis-sorgu-kriterleri";
 import {Siparis} from "../../dto/siparis";
 import {Router} from "@angular/router";
+import {UserService} from "../../../settings/user/service/user.service";
 
 @Component({
   selector: 'app-siparis',
@@ -17,6 +18,8 @@ import {Router} from "@angular/router";
 export class SiparisComponent extends AbstractBaseComponent implements OnInit {
 
   sorguForm: FormGroup;
+  staffs: SelectItem[] = [];
+
   operations: Operations[] = [
     {
       id: 'goruntule',
@@ -75,6 +78,7 @@ export class SiparisComponent extends AbstractBaseComponent implements OnInit {
   resultList: Siparis[];
 
   constructor(public appStore: AppStore,
+              private userService: UserService,
               private siparisService: SiparisService,
               private router: Router,
               private formBuilder: FormBuilder) {
@@ -82,8 +86,16 @@ export class SiparisComponent extends AbstractBaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = false;
+    this.loadData();
     this.buildForms();
+  }
+
+  loadData() {
+    this.loading = false;
+    this.subscribeToResponse(this.userService.grantedUsers(), data => {
+      this.staffs = data;
+      this.staffs.unshift({label: this.appStore.translate.instant('label.select.all'), value: null});
+    }, undefined);
   }
 
   private buildForms() {
@@ -93,7 +105,8 @@ export class SiparisComponent extends AbstractBaseComponent implements OnInit {
       cariAdi: null,
       siparisDurumu: SiparisDurumu.ACIK,
       siparisYonu: SiparisYonu.ALINAN_SIPARIS,
-      islemTarihi: null
+      islemTarihi: null,
+      staff: null
     });
   }
 
@@ -117,6 +130,7 @@ export class SiparisComponent extends AbstractBaseComponent implements OnInit {
   private prepareData(lazyLoadEvent: LazyLoadEvent): SiparisSorguKriterleri {
     const formModel = this.sorguForm.value;
     return {
+      staff: formModel.staff,
       siparisNo: formModel.siparisNo,
       cariKodu: formModel.cariKodu,
       cariAdi: formModel.cariAdi,

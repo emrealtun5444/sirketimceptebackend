@@ -52,4 +52,8 @@ export class UserService extends AbstractService {
     return this.http.delete<AppResponse>(`${this.SERVICE_PATH}/${userId}`);
   }
 
+  grantedUsers(): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${this.SERVICE_PATH}/grantedUsers`);
+  }
+
 }
