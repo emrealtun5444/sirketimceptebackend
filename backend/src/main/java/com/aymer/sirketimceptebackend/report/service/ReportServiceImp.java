@@ -43,8 +43,8 @@ public class ReportServiceImp implements ReportService {
         CiroDto yillikCiro = reportRepository.amountOfSalesForPeriod(null, year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany());
 
         // tahsilat aliniyor
-        TahsilatDto aylikTahsilat = new TahsilatDto(BigDecimal.ZERO);
-        TahsilatDto yillikTahsilat = new TahsilatDto(BigDecimal.ZERO);
+        TahsilatDto aylikTahsilat = reportRepository.amountOfTahsilatForPeriod(donem, year, EDurum.AKTIF, EOdemeYonu.ALACAK, sessionUtils.getSelectedCompany());
+        TahsilatDto yillikTahsilat = reportRepository.amountOfTahsilatForPeriod(null, year, EDurum.AKTIF, EOdemeYonu.ALACAK, sessionUtils.getSelectedCompany());
 
         // siparis aliniyor
         SiparisDto aylikSiparis = reportRepository.amountOfSiparisForPeriod(donem, year, EDurum.AKTIF, SiparisYonu.ALINAN_SIPARIS, sessionUtils.getSelectedCompany());
@@ -92,7 +92,7 @@ public class ReportServiceImp implements ReportService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<TahsilatDto> donemeGoreTahsilatDagilimi(User staff, Integer year) {
-        return Arrays.asList(new TahsilatDto(0, BigDecimal.ZERO));
+        return reportRepository.donemeGoreTahsilatDagilimi(year, EDurum.AKTIF, EOdemeYonu.ALACAK, sessionUtils.getSelectedCompany(), staff);
     }
 
     @Override

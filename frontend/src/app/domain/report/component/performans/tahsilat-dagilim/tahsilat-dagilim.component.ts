@@ -15,6 +15,9 @@ export class TahsilatDagilimComponent extends AbstractBaseComponent implements O
 
   tahsilatDagilim: any;
   toplamTutar: number = 0;
+  toplamNakit: number = 0;
+  toplamCek: number = 0;
+  toplamSenet: number = 0;
 
 
   constructor(public appStore: AppStore,
@@ -29,10 +32,16 @@ export class TahsilatDagilimComponent extends AbstractBaseComponent implements O
   private onDonemTahsilatDagilim(data) {
     data.forEach(row => {
       this.toplamTutar += row.tutar;
+      this.toplamNakit += row.nakitTutar;
+      this.toplamCek += row.cekTutar;
+      this.toplamSenet += row.senetTutar;
     });
     data.sort((a, b) => a.donem < b.donem ? -1 : a.donem > b.donem ? 1 : 0);
     const labels = data.map(x => x.donem);
-    const totals = data.map(x => x.tutar);
+    const tutar = data.map(x => x.tutar);
+    const nakitTutar = data.map(x => x.nakitTutar);
+    const cekTutar = data.map(x => x.cekTutar);
+    const senetTutar = data.map(x => x.senetTutar);
     this.tahsilatDagilim = {
       labels: labels,
       datasets: [
@@ -40,7 +49,25 @@ export class TahsilatDagilimComponent extends AbstractBaseComponent implements O
           label: 'Toplam Tutar',
           backgroundColor: '#42A5F5',
           borderColor: '#1E88E5',
-          data: totals
+          data: tutar
+        },
+        {
+          label: 'Nakit',
+          backgroundColor: '#56ff9a',
+          borderColor: '#56ff9a',
+          data: nakitTutar
+        },
+        {
+          label: 'Cek',
+          backgroundColor: '#FFCE56',
+          borderColor: '#FFCE56',
+          data: cekTutar
+        },
+        {
+          label: 'Senet',
+          backgroundColor: '#FF6384',
+          borderColor: '#FF6384',
+          data: senetTutar
         }
       ]
     }

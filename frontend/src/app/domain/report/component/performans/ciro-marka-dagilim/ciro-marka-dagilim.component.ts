@@ -14,6 +14,7 @@ export class CiroMarkaDagilimComponent extends AbstractBaseComponent implements 
   @Input() year: number = (new Date()).getFullYear();
 
   ciroMarkaDagilim: any;
+  resList: any[];
   toplamTutar: number = 0;
 
 
@@ -27,6 +28,7 @@ export class CiroMarkaDagilimComponent extends AbstractBaseComponent implements 
   }
 
   private onDonemCiroMarkaDagilim(data) {
+    this.resList = data;
     data.forEach(row => {
       this.toplamTutar += row.tutar;
     });
@@ -39,12 +41,26 @@ export class CiroMarkaDagilimComponent extends AbstractBaseComponent implements 
           backgroundColor: [
             "#FF6384",
             "#36A2EB",
-            "#FFCE56"
+            "#FFCE56",
+            "#ff56b3",
+            "#ff6f56",
+            "#56ff9a",
+            "#da56ff",
+            "#f9ff56",
+            "#56ffeb",
+            "#9156ff",
           ],
           hoverBackgroundColor: [
             "#FF6384",
             "#36A2EB",
-            "#FFCE56"
+            "#FFCE56",
+            "#ff56b3",
+            "#ff6f56",
+            "#56ff9a",
+            "#da56ff",
+            "#f9ff56",
+            "#56ffeb",
+            "#9156ff",
           ],
           data: totals
         }

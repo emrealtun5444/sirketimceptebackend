@@ -30,7 +30,7 @@ public class TahsilatServiceImp implements TahsilatService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public Page<FinansalHareket> findByCriteria(TahsilatSorguKriteri sorguKriteri, int page, int rows) {
-        Pageable pageable = PageRequest.of(page, rows, Sort.by("evrakNo").descending());
+        Pageable pageable = PageRequest.of(page, rows, Sort.by("islemTarihi").descending());
         Page<FinansalHareket> finansalHareketPage = tahsilatRepository.findAll(new TahsilatSpesification(sessionUtils, sorguKriteri), pageable);
         return finansalHareketPage;
     }

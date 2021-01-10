@@ -7,11 +7,13 @@
         <div class="p-col-12 p-md-12">
             <p-panel header="{{'label.ozet' | translate}}">
                 <div class="p-grid ">
-                    <div class="p-col-12 p-md-3">
+                    <div class="p-col-12 p-md-4">
                         <strong>    {{'label.toplam.tutar' | translate}}: </strong>
-                    </div>
-                    <div class="p-col-12 p-md-3">
                         <span class="overview-box-rate"> {{toplamTutar | paraFormat}}</span>
+                    </div>
+                    <div class="p-col-12 p-md-4" *ngFor="let mrk of resList">
+                        <strong>   {{ mrk.marka }} : </strong>
+                        <span class="overview-box-rate"> {{mrk.tutar | paraFormat}}</span>
                     </div>
                 </div>
             </p-panel>

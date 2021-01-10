@@ -40,6 +40,21 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
                                    @Param("faturaYonu") EOdemeYonu odemeYonu,
                                    @Param("sirket") Sirket sirket);
 
+    @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.TahsilatDto(" +
+            "COALESCE(sum(fh.tutar), 0) " +
+            ") " +
+            "from FinansalHareket fh " +
+            "where fh.durum = :durum " +
+            "and fh.odemeYonu = :odemeYonu " +
+            "and fh.sirket = :sirket " +
+            "and (:donem is null or MONTH(fh.islemTarihi) = :donem) " +
+            "and YEAR(fh.islemTarihi) = :year ")
+    TahsilatDto amountOfTahsilatForPeriod(@Param("donem") Integer donem,
+                                   @Param("year") Integer year,
+                                   @Param("durum") EDurum durum,
+                                   @Param("odemeYonu") EOdemeYonu odemeYonu,
+                                   @Param("sirket") Sirket sirket);
+
     @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.SiparisDto(" +
         "COALESCE(count(s.miktar),0), " +
         "COALESCE(count(s.teslimMiktari),0), " +
@@ -84,6 +99,26 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
                                     @Param("sirket") Sirket sirket,
                                     @Param("staff") User staff);
 
+    @Query("select new com.aymer.sirketimceptebackend.report.dto.TahsilatDto( " +
+            "MONTH(fh.islemTarihi), " +
+            "sum(fh.tutar), " +
+            "sum(case when fh.odemeTipi = 'NAKIT' then fh.tutar else 0 end ), " +
+            "sum(case when fh.odemeTipi = 'CEK' then fh.tutar else 0 end ), " +
+            "sum(case when fh.odemeTipi = 'SENET' then fh.tutar else 0 end ) " +
+            ") " +
+            "from FinansalHareket fh " +
+            "join fh.cariKart c " +
+            "where fh.durum = :durum " +
+            "and fh.odemeYonu = :odemeYonu " +
+            "and fh.sirket = :sirket " +
+            "and (:staff is null or c.sorumluPersonel = :staff) " +
+            "and YEAR(fh.islemTarihi) = :year " +
+            "group by MONTH(fh.islemTarihi)")
+    List<TahsilatDto> donemeGoreTahsilatDagilimi(@Param("year") Integer year,
+                                    @Param("durum") EDurum durum,
+                                    @Param("odemeYonu") EOdemeYonu odemeYonu,
+                                    @Param("sirket") Sirket sirket,
+                                    @Param("staff") User staff);
 
     @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.SiparisDto(" +
         "MONTH(s.islemTarihi), " +
