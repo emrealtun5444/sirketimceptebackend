@@ -37,6 +37,7 @@ export class PerformansItemComponent extends AbstractBaseComponent implements On
 
   ngOnInit(): void {
     this.subscribeToResponseBase(this.reportService.onDonemCiroHedefDagilim(this.year, this.userName ? this.userName : 'all'), data => {
+      data.sort((a, b) => a.toplamCiro < b.toplamCiro ? 1 : a.toplamCiro > b.toplamCiro ? -1 : 0);
       this.resultList = data;
     }, undefined);
   }

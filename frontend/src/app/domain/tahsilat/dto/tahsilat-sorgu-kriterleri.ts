@@ -10,6 +10,8 @@ export interface TahsilatSorguKriterleri {
     odemeYonu: OdemeYonu;
     baslangicTarihi: Date;
     bitisTarihi: Date;
+    vadeBaslangicTarihi: Date;
+    vadeBitisTarihi: Date;
 
     lazyLoadEvent?: LazyLoadEvent;
 }

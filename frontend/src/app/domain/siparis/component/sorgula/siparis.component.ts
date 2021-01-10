@@ -136,8 +136,8 @@ export class SiparisComponent extends AbstractBaseComponent implements OnInit {
       cariAdi: formModel.cariAdi,
       siparisDurumu: formModel.siparisDurumu,
       siparisYonu: formModel.siparisYonu,
-      baslangicTarihi: formModel.islemTatihi != null ? formModel.islemTatihi[0] : null,
-      bitisTarihi: formModel.islemTatihi != null ? formModel.islemTatihi[1] : null,
+      baslangicTarihi: formModel.islemTarihi != null ? formModel.islemTarihi[0] : null,
+      bitisTarihi: formModel.islemTarihi != null ? formModel.islemTarihi[1] : null,
       lazyLoadEvent: lazyLoadEvent
     };
   }

@@ -48,6 +48,14 @@ public class TahsilatSpesification implements Specification<FinansalHareket> {
             predicates.add(cb.lessThanOrEqualTo(root.get("islemTarihi"), sorguKriteri.getBitisTarihi()));
         }
 
+        if (sorguKriteri.getVadeBaslangicTarihi() != null) {
+            predicates.add(cb.greaterThanOrEqualTo(root.get("vadeTarihi"), sorguKriteri.getVadeBaslangicTarihi()));
+        }
+
+        if (sorguKriteri.getVadeBitisTarihi() != null) {
+            predicates.add(cb.lessThanOrEqualTo(root.get("vadeTarihi"), sorguKriteri.getVadeBitisTarihi()));
+        }
+
         if (sorguKriteri.getOdemeTipi() != null) {
             predicates.add(cb.equal(root.get("odemeTipi"), sorguKriteri.getOdemeTipi()));
         }

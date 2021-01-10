@@ -64,7 +64,11 @@
                   <label for="staff">{{'label.sorumlu.personel' | translate}}</label>
                 </span>
             </div>
-            <div class="p-field p-col-12 p-md-4"></div>
+            <div class="p-field p-col-12 p-md-4">
+                <p-calendar id="vadeTarihi" showButtonBar="true" formControlName="vadeTarihi"
+                            placeholder="{{'label.vade.tarihi' | translate}}"
+                            [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+            </div>
             <div class="p-field p-col-12 p-md-4">
                 <button pButton type="button" label="{{'btn.sorgula' | translate}}"
                         (click)="sorgula()"></button>

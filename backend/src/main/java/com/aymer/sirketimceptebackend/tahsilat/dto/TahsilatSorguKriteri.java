@@ -25,6 +25,8 @@ public class TahsilatSorguKriteri implements Serializable {
     private EOdemeYonu odemeYonu;
     private Date baslangicTarihi;
     private Date bitisTarihi;
+    private Date vadeBaslangicTarihi;
+    private Date vadeBitisTarihi;
 
     @Valid
     @NotNull

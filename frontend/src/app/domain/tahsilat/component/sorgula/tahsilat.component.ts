@@ -89,6 +89,7 @@ export class TahsilatComponent extends AbstractBaseComponent implements OnInit {
             odemeYonu: OdemeYonu.ALACAK,
             odemeTipi: null,
             islemTarihi: null,
+            vadeTarihi: null,
             staff: null
         });
     }
@@ -119,8 +120,10 @@ export class TahsilatComponent extends AbstractBaseComponent implements OnInit {
             cariAdi: formModel.cariAdi,
             odemeTipi: formModel.odemeTipi,
             odemeYonu: formModel.odemeYonu,
-            baslangicTarihi: formModel.islemTatihi != null ? formModel.islemTatihi[0] : null,
-            bitisTarihi: formModel.islemTatihi != null ? formModel.islemTatihi[1] : null,
+            baslangicTarihi: formModel.islemTarihi != null ? formModel.islemTarihi[0] : null,
+            bitisTarihi: formModel.islemTarihi != null ? formModel.islemTarihi[1] : null,
+            vadeBaslangicTarihi: formModel.vadeTarihi != null ? formModel.vadeTarihi[0] : null,
+            vadeBitisTarihi: formModel.vadeTarihi != null ? formModel.vadeTarihi[1] : null,
             lazyLoadEvent: lazyLoadEvent
         };
     }
