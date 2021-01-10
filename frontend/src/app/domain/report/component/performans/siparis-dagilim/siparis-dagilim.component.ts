@@ -14,6 +14,8 @@ export class SiparisDagilimComponent extends AbstractBaseComponent implements On
   @Input() year: number = (new Date()).getFullYear();
 
   siparisDagilim: any;
+  options: any;
+
   totalAdet: number = 0;
   teslimAdet: number = 0;
   toplamTutar: number = 0;
@@ -54,6 +56,15 @@ export class SiparisDagilimComponent extends AbstractBaseComponent implements On
           data: teslims
         }
       ]
+    }
+    this.options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
   }
 

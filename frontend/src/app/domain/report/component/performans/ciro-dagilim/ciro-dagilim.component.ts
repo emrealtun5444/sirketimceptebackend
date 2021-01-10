@@ -59,10 +59,12 @@ export class CiroDagilimComponent extends AbstractBaseComponent implements OnIni
             ]
         }
         this.options = {
-            scale: {
-                ticks: {
-                    beginAtZero: true,
-                }
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
         }
     }

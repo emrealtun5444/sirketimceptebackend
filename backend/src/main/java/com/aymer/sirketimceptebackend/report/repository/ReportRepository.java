@@ -56,10 +56,10 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
                                    @Param("sirket") Sirket sirket);
 
     @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.SiparisDto(" +
-        "COALESCE(count(s.miktar),0), " +
-        "COALESCE(count(s.teslimMiktari),0), " +
-        "COALESCE((count(s.miktar) - count(s.teslimMiktari)),0), " +
-        "(case when COALESCE(count(s.miktar),0) > 0 then (COALESCE(count(s.teslimMiktari),0) * 100 / COALESCE(count(s.miktar),0)) else 0 end ), " +
+        "COALESCE(sum(s.miktar),0), " +
+        "COALESCE(sum(s.teslimMiktari),0), " +
+        "COALESCE((sum(s.miktar) - sum(s.teslimMiktari)),0), " +
+        "(case when COALESCE(sum(s.miktar),0) > 0 then (COALESCE(sum(s.teslimMiktari),0) * 100 / COALESCE(sum(s.miktar),0)) else 0 end ), " +
         "COALESCE(sum(s.tutari),0)" +
         ") " +
         "from Siparis s " +
@@ -122,10 +122,10 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
 
     @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.SiparisDto(" +
         "MONTH(s.islemTarihi), " +
-        "COALESCE(count(s.miktar),0), " +
-        "COALESCE(count(s.teslimMiktari),0), " +
-        "COALESCE((count(s.miktar) - count(s.teslimMiktari)),0), " +
-        "(case when COALESCE(count(s.miktar),0) > 0 then (COALESCE(count(s.teslimMiktari),0) * 100 / COALESCE(count(s.miktar),0)) else 0 end ), " +
+        "COALESCE(sum(s.miktar),0), " +
+        "COALESCE(sum(s.teslimMiktari),0), " +
+        "COALESCE((sum(s.miktar) - sum(s.teslimMiktari)),0), " +
+        "(case when COALESCE(sum(s.miktar),0) > 0 then (COALESCE(sum(s.teslimMiktari),0) * 100 / COALESCE(sum(s.miktar),0)) else 0 end ), " +
         "COALESCE(sum(s.tutari),0)" +
         ") " +
         "from Siparis s " +

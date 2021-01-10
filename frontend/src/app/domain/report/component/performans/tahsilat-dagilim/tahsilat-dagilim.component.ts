@@ -14,6 +14,8 @@ export class TahsilatDagilimComponent extends AbstractBaseComponent implements O
   @Input() year: number = (new Date()).getFullYear();
 
   tahsilatDagilim: any;
+  options: any;
+
   toplamTutar: number = 0;
   toplamNakit: number = 0;
   toplamCek: number = 0;
@@ -70,6 +72,16 @@ export class TahsilatDagilimComponent extends AbstractBaseComponent implements O
           data: senetTutar
         }
       ]
+    }
+
+    this.options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
   }
 
