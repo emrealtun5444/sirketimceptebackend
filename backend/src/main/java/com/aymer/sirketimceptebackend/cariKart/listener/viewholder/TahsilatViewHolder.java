@@ -21,13 +21,22 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TahsilatViewHolder implements Serializable {
-    String hesapKodu;
-    Date islemTarihi;
-    String evrakNo;
-    String aciklama;
-    EOdemeYonu odemeYonu;
-    EOdemeTipi odemeTipi;
-    BigDecimal tutar;
-    Date vadeTarihi;
-    EKdvOrani kdvOrani;
+    private String hesapKodu;
+    private Date islemTarihi;
+    private String evrakNo;
+    private String aciklama;
+    private EOdemeYonu odemeYonu;
+    private EOdemeTipi odemeTipi;
+    private BigDecimal tutar;
+    private Date vadeTarihi;
+    private EKdvOrani kdvOrani;
+
+    private String banka;
+    private String subeAdi;
+    private String bankaHesapNo;
+    private String bankaCekNo;
+    private String borcluAdi;
+    private String borcluAdresi;
+
+
 }

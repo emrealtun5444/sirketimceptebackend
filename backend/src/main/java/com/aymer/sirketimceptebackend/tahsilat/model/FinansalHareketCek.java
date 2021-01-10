@@ -25,7 +25,6 @@ public class FinansalHareketCek extends FinansalHareket {
     @Column(name = "banka")
     private String banka;
 
-    @NotNull
     @Column(name = "sube_adi")
     private String subeAdi;
 

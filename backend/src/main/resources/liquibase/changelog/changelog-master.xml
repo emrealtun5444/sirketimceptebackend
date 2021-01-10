@@ -45,6 +45,7 @@
     <include file="/liquibase/changelog/changes/update-user-table_1.xml"/>
 
     <include file="/liquibase/changelog/changes/update-finansal_hareket-table_1.xml"/>
+    <include file="/liquibase/changelog/changes/update-finansal_hareket-table_2.xml"/>
 
 
 </databaseChangeLog>
