@@ -76,33 +76,31 @@ public class BorcAlacakBildirimService implements Tasklet {
         mailIcerigi.add(EmailIcerikUtils.createParagraf("<strong>" + groupingValue + "</strong>"));
 
         EmailIcerikUtils.TableBuilder tableBuilder = EmailIcerikUtils.createTableBuilder(
-            EmailIcerikUtils.createRowBuilder()
-                .addCell(LabelFactory.getLabel("label.cari.kodu"))
-                .addCell(LabelFactory.getLabel("label.cari.adi"))
-                .addCell(LabelFactory.getLabel("label.toplam.borc"))
-                .addCell(LabelFactory.getLabel("label.toplam.alacak"))
-                .addCell(LabelFactory.getLabel("label.bakiye"))
-                .addCell(LabelFactory.getLabel("label.toplam.ciro"))
-                .addCell(LabelFactory.getLabel("label.yillik.hedef"))
-                .addCell(LabelFactory.getLabel("label.gerceklesme.orani"))
+                EmailIcerikUtils.createRowBuilder()
+                        .addCell(LabelFactory.getLabel("label.cari.kodu"))
+                        .addCell(LabelFactory.getLabel("label.cari.adi"))
+                        .addCell(LabelFactory.getLabel("label.toplam.borc"))
+                        .addCell(LabelFactory.getLabel("label.toplam.alacak"))
+                        .addCell(LabelFactory.getLabel("label.bakiye"))
+                        .addCell(LabelFactory.getLabel("label.toplam.ciro"))
+                        .addCell(LabelFactory.getLabel("label.yillik.hedef"))
+                        .addCell(LabelFactory.getLabel("label.gerceklesme.orani"))
         );
 
         hedefCariDtos.sort(Comparator.comparing(HedefCariDto::getBakiye));
         for (HedefCariDto entry : hedefCariDtos) {
             tableBuilder.addRow(
-                EmailIcerikUtils.createRowBuilder()
-                    .addCell(entry.getCariKodu())
-                    .addCell(entry.getCariAdi())
-                    .addCell(MoneyUtils.currencyFormat(entry.getToplamBorc()))
-                    .addCell(MoneyUtils.currencyFormat(entry.getToplamAlacak()))
-                    .addCell(MoneyUtils.currencyFormat(entry.getBakiye()))
-                    .addCell(MoneyUtils.currencyFormat(entry.getToplamCiro()))
-                    .addCell(MoneyUtils.currencyFormat(entry.getYillikHedef()))
-                    .addCell(MoneyUtils.currencyFormat(entry.getGerceklesmeYuzdesi()))
+                    EmailIcerikUtils.createRowBuilder()
+                            .addCell(entry.getCariKodu())
+                            .addCell(entry.getCariAdi())
+                            .addCell(MoneyUtils.currencyFormat(entry.getToplamBorc()))
+                            .addCell(MoneyUtils.currencyFormat(entry.getToplamAlacak()))
+                            .addCell(MoneyUtils.currencyFormat(entry.getBakiye()))
+                            .addCell(MoneyUtils.currencyFormat(entry.getToplamCiro()))
+                            .addCell(MoneyUtils.currencyFormat(entry.getYillikHedef()))
+                            .addCell(MoneyUtils.currencyFormat(entry.getGerceklesmeYuzdesi()))
             );
-            mailIcerigi.add(tableBuilder);
         }
-
-        return mailIcerigi.build();
+        return mailIcerigi.add(tableBuilder).build();
     }
 }
