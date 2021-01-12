@@ -12,6 +12,7 @@ export class TahsilatDagilimComponent extends AbstractBaseComponent implements O
 
   @Input() userName: string = null;
   @Input() year: number = (new Date()).getFullYear();
+  @Input() cariKart: string = null;
 
   tahsilatDagilim: any;
   options: any;
@@ -28,7 +29,7 @@ export class TahsilatDagilimComponent extends AbstractBaseComponent implements O
   }
 
   ngOnInit(): void {
-    this.subscribeToResponseBase(this.reportService.onDonemTahsilatDagilim(this.year, this.userName ? this.userName : 'all'), this.onDonemTahsilatDagilim, undefined);
+    this.subscribeToResponseBase(this.reportService.onDonemTahsilatDagilim(this.year, this.userName ? this.userName : 'all', (this.cariKart ? this.cariKart.toString() : 'all')), this.onDonemTahsilatDagilim, undefined);
   }
 
   private onDonemTahsilatDagilim(data) {

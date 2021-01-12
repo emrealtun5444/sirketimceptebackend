@@ -11,6 +11,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 /**
@@ -31,6 +33,7 @@ public abstract class FaturaMapper {
     @Mappings({
             @Mapping(target = "stokKodu", source = "stokKart.stokKodu"),
             @Mapping(target = "urunAdi", source = "stokKart.urunAdi"),
+            @Mapping(target = "iskontoOrani", expression = "java(getKdvOrani(faturaDetay))")
     })
     public abstract FaturaDetayDto faturaDetayToDto(FaturaDetay faturaDetay);
     public abstract List<FaturaDetayDto> faturaDetayToDtoList(List<FaturaDetay> faturaDetayList);
@@ -39,4 +42,8 @@ public abstract class FaturaMapper {
     public abstract void updateFatura(FaturaViewHolder faturaViewHolder, @MappingTarget Fatura fatura);
     public abstract void updateFaturaDetay(FaturaDetayViewHolder faturaDetayViewHolder, @MappingTarget FaturaDetay faturaDetay);
 
+    public BigDecimal getKdvOrani(FaturaDetay faturaDetay) {
+       return faturaDetay.getTutar().compareTo(BigDecimal.ZERO) > 0 ? (faturaDetay.getIskonto().divide(faturaDetay.getTutar(),2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100))) : BigDecimal.valueOf(0);
+    }
 }
+

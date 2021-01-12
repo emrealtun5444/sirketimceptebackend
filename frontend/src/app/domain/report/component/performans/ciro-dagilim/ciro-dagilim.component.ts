@@ -12,6 +12,7 @@ export class CiroDagilimComponent extends AbstractBaseComponent implements OnIni
 
     @Input() userName: string = null;
     @Input() year: number = (new Date()).getFullYear();
+    @Input() cariKart: string = null;
 
     ciroDagilim: any;
     options: any;
@@ -27,7 +28,7 @@ export class CiroDagilimComponent extends AbstractBaseComponent implements OnIni
     }
 
     ngOnInit(): void {
-        this.subscribeToResponseBase(this.reportService.onDonemCiroDagilim(this.year, this.userName ? this.userName : 'all'), this.onDonemCiroDagilim, undefined);
+        this.subscribeToResponseBase(this.reportService.onDonemCiroDagilim(this.year, this.userName ? this.userName : 'all', (this.cariKart ? this.cariKart.toString() : 'all')), this.onDonemCiroDagilim, undefined);
     }
 
     private onDonemCiroDagilim(data) {

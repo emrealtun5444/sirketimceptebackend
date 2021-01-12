@@ -47,6 +47,9 @@ public class FaturaDetayDto implements Serializable {
     private BigDecimal iskonto;
 
     @NotNull
+    private BigDecimal iskontoOrani;
+
+    @NotNull
     private BigDecimal kdvTutari;
 
     @NotNull

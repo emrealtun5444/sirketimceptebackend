@@ -63,6 +63,7 @@
   "btn.tanimla": "Tanımla",
   "btn.guncelle": "Güncelle",
   "btn.kaydet": "Kaydet",
+  "btn.tamam": "Tamam",
   "btn.is.ata": "İş Ata",
   "btn.ayarla": "Ayarla",
   "btn.gonder": "Gönder",
@@ -125,6 +126,7 @@
   "label.para.birimi": "Para Birimi",
   "label.urun.fiyati": "Ürün Fiyatı",
   "label.kdv.orani": "Kdv Oranı",
+  "label.oran": "Oran",
   "label.urun.gorsel": "Ürün Görseli",
   "label.cari.bilgileri": "Cari Bilgileri",
   "label.cari.kartı.listesi": "Cari Kartı Listesi",
@@ -271,6 +273,7 @@
   "label.yillik.siparis": "Yıllık Sipariş",
   "label.yillik.tahsilat": "Yıllık Tahsilat",
 
+  "label.cari.performans": "Cari Performans",
 
   "##############################################################################################": "MENUS",
   "root.authorization": "Temel Yetki",

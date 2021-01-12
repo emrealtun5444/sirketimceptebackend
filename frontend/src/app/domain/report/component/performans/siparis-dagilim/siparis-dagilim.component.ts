@@ -12,6 +12,7 @@ export class SiparisDagilimComponent extends AbstractBaseComponent implements On
 
   @Input() userName: string = null;
   @Input() year: number = (new Date()).getFullYear();
+  @Input() cariKart: string = null;
 
   siparisDagilim: any;
   options: any;
@@ -27,7 +28,7 @@ export class SiparisDagilimComponent extends AbstractBaseComponent implements On
   }
 
   ngOnInit(): void {
-    this.subscribeToResponseBase(this.reportService.onDonemSiparisDagilim(this.year, this.userName ? this.userName : 'all'), this.onDonemSiparisDagilim, undefined);
+    this.subscribeToResponseBase(this.reportService.onDonemSiparisDagilim(this.year, this.userName ? this.userName : 'all', (this.cariKart ? this.cariKart.toString() : 'all')), this.onDonemSiparisDagilim, undefined);
   }
 
   private onDonemSiparisDagilim(data) {

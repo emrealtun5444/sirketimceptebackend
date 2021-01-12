@@ -44,6 +44,7 @@
                                 <th>{{'label.birim.fiyati' | translate}}</th>
                                 <th>{{'label.tutar' | translate}}</th>
                                 <th>{{'label.iskonto' | translate}}</th>
+                                <th>{{'label.oran' | translate}}</th>
                                 <th>{{'label.kdv.tutari' | translate}}</th>
                                 <th>{{'label.toplam.tutar' | translate}}</th>
                             </tr>
@@ -56,6 +57,7 @@
                                 <td>{{fd.birimFiyati | paraFormat}}</td>
                                 <td>{{fd.tutar | paraFormat}}</td>
                                 <td>{{fd.iskonto | paraFormat}}</td>
+                                <td>%{{fd.iskontoOrani | paraFormat}}</td>
                                 <td>{{fd.kdvTutari | paraFormat}}</td>
                                 <td>{{fd.toplamTutar | paraFormat}}</td>
                             </tr>

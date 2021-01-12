@@ -8,6 +8,7 @@ import { CiroDagilimComponent } from './component/performans/ciro-dagilim/ciro-d
 import {SiparisDagilimComponent} from "./component/performans/siparis-dagilim/siparis-dagilim.component";
 import {TahsilatDagilimComponent} from "./component/performans/tahsilat-dagilim/tahsilat-dagilim.component";
 import {CiroMarkaDagilimComponent} from "./component/performans/ciro-marka-dagilim/ciro-marka-dagilim.component";
+import {ChartItemComponent} from "./component/performans/chart-item/chart-item.component";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {CiroMarkaDagilimComponent} from "./component/performans/ciro-marka-dagil
     CiroDagilimComponent,
     SiparisDagilimComponent,
     TahsilatDagilimComponent,
-    CiroMarkaDagilimComponent
+    CiroMarkaDagilimComponent,
+    ChartItemComponent
   ],
   providers: [
     ReportService

@@ -9,6 +9,7 @@ export class FaturaDetay {
     birimFiyati: number;
     tutar: number;
     iskonto: number;
+    iskontoOrani: number;
     kdvTutari: number;
     toplamTutar: number;
 

@@ -26,6 +26,7 @@ export class FaturaDetayComponent extends AbstractBaseComponent implements OnIni
         {type: ColumnType.PARA, field: 'birimFiyati', header: this.appStore.translate.instant('label.birim.fiyati')},
         {type: ColumnType.PARA, field: 'tutar', header: this.appStore.translate.instant('label.tutar')},
         {type: ColumnType.PARA, field: 'iskonto', header: this.appStore.translate.instant('label.iskonto')},
+        {type: ColumnType.PARA, field: 'iskontoOrani', header: this.appStore.translate.instant('label.oran')},
         {type: ColumnType.PARA, field: 'kdvTutari', header: this.appStore.translate.instant('label.kdv.tutari')},
         {type: ColumnType.STRING, field: 'kdvOrani', header: this.appStore.translate.instant('label.kdv.orani')},
         {type: ColumnType.PARA, field: 'toplamTutar', header: this.appStore.translate.instant('label.toplam.tutar')},

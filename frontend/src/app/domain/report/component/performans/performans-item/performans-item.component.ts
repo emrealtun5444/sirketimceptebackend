@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AbstractBaseComponent, ColumnType} from "../../../../../shared/abstract-base-component";
+import {AbstractBaseComponent, ColumnType, Operations} from "../../../../../shared/abstract-base-component";
 import {AppStore} from "../../../../../shared/app.store";
 import {ReportService} from "../../../service/report.service";
 
@@ -12,6 +12,18 @@ export class PerformansItemComponent extends AbstractBaseComponent implements On
 
   @Input() userName: string;
   @Input() year: number;
+  selectedCariKart: number;
+
+  showCariKartDialog = false;
+
+  operations: Operations[] = [
+    {
+      id: 'goruntule',
+      event: this.showCariPerformance,
+      tooltip: 'label.cari.performans',
+      class: 'pi pi-chart-bar'
+    }
+  ];
 
   cols: any[] = [
     {type: ColumnType.STRING, field: 'cariKodu', header: this.appStore.translate.instant('label.cari.kodu')},
@@ -40,6 +52,11 @@ export class PerformansItemComponent extends AbstractBaseComponent implements On
       data.sort((a, b) => a.toplamCiro < b.toplamCiro ? 1 : a.toplamCiro > b.toplamCiro ? -1 : 0);
       this.resultList = data;
     }, undefined);
+  }
+
+  showCariPerformance(data) {
+    this.selectedCariKart = data.cariKodu;
+    this.showCariKartDialog = true;
   }
 
 }
