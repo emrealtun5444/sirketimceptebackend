@@ -13,6 +13,7 @@ import com.aymer.sirketimceptebackend.siparis.repository.SiparisRepository;
 import com.aymer.sirketimceptebackend.stokkart.model.StokKart;
 import com.aymer.sirketimceptebackend.stokkart.repository.StokKartRepository;
 import com.aymer.sirketimceptebackend.stokkart.service.StokKartService;
+import com.aymer.sirketimceptebackend.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -49,7 +50,7 @@ public class CariSiparisVisitor implements CariKartVisitor {
     public void visit(CariKartViewHolder cariKartViewHolder) {
         // cariKart bulunur
         CariKart cariKart = cariKartRepository.findByCariKodu(cariKartViewHolder.getHesapKodu());
-        final List<Siparis> oldSiparisList = siparisRepository.findAllByCariKart(cariKart);
+        final List<Siparis> oldSiparisList = siparisRepository.findAllByCariKartAndIslemTarihiGreaterThanEqual(cariKart, DateUtils.firstDayOfYear());
         // siparis kayitlarini sileriz.
         siparisRepository.deleteAll(oldSiparisList);
         // siparis üzerinde giziniriz

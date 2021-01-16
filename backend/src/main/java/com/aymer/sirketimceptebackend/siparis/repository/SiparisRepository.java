@@ -4,10 +4,12 @@ import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.siparis.model.Siparis;
 import com.aymer.sirketimceptebackend.siparis.model.SiparisDurumu;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
+import com.aymer.sirketimceptebackend.tahsilat.model.FinansalHareket;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +19,8 @@ import java.util.List;
  */
 @Repository
 public interface SiparisRepository extends JpaRepository<Siparis, Long>, JpaSpecificationExecutor<Siparis> {
+
+    List<Siparis> findAllByCariKartAndIslemTarihiGreaterThanEqual(CariKart cariKart, Date islemTarihi);
 
     List<Siparis> findAllByCariKart(CariKart cariKart);
 

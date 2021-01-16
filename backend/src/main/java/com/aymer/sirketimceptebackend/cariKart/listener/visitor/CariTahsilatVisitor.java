@@ -8,6 +8,7 @@ import com.aymer.sirketimceptebackend.tahsilat.mapper.TahsilatMapper;
 import com.aymer.sirketimceptebackend.tahsilat.model.FinansalHareket;
 import com.aymer.sirketimceptebackend.tahsilat.repository.TahsilatRepository;
 import com.aymer.sirketimceptebackend.tahsilat.service.TahsilatFactory;
+import com.aymer.sirketimceptebackend.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -35,7 +36,7 @@ public class CariTahsilatVisitor implements CariKartVisitor {
     public void visit(CariKartViewHolder cariKartViewHolder) {
         // cariKart bulunur
         CariKart cariKart = cariKartRepository.findByCariKodu(cariKartViewHolder.getHesapKodu());
-        List<FinansalHareket> oldFinansalHareketList = tahsilatRepository.findAllByCariKart(cariKart);
+        List<FinansalHareket> oldFinansalHareketList = tahsilatRepository.findAllByCariKartAndIslemTarihiGreaterThanEqual(cariKart, DateUtils.firstDayOfYear());
 
         // siparis kayitlarini sileriz.
         tahsilatRepository.deleteAll(oldFinansalHareketList);
