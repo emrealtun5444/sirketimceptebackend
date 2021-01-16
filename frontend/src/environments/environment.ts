@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  //URL: 'http://localhost:8090/api',
-  URL: 'http://78.186.68.95:8090/api'
+  URL: 'http://localhost:8090/api',
+  //URL: 'http://78.186.68.95:8090/api'
 };
