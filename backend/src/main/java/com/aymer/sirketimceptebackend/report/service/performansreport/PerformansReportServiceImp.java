@@ -1,4 +1,4 @@
-package com.aymer.sirketimceptebackend.report.service;
+package com.aymer.sirketimceptebackend.report.service.performansreport;
 
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
@@ -26,7 +26,7 @@ import java.util.List;
  * Time: 16:10
  */
 @Service
-public class ReportServiceImp implements ReportService {
+public class PerformansReportServiceImp implements PerformansReportService {
 
     @Autowired
     private ReportRepository reportRepository;

@@ -2,7 +2,7 @@ package com.aymer.sirketimceptebackend.cariKart.service;
 
 import com.aymer.sirketimceptebackend.cariKart.mapper.CariKartMapper;
 import com.aymer.sirketimceptebackend.report.dto.HedefCariDto;
-import com.aymer.sirketimceptebackend.report.service.ReportService;
+import com.aymer.sirketimceptebackend.report.service.performansreport.PerformansReportService;
 import com.aymer.sirketimceptebackend.system.mail.model.Notification;
 import com.aymer.sirketimceptebackend.system.mail.service.MailService;
 import com.aymer.sirketimceptebackend.system.mail.service.NotificationService;
@@ -34,7 +34,7 @@ import java.util.Set;
 public class BorcAlacakBildirimService implements Tasklet {
 
     @Autowired
-    private ReportService reportService;
+    private PerformansReportService performansReportService;
 
     @Autowired
     private MailService mailService;
@@ -59,7 +59,7 @@ public class BorcAlacakBildirimService implements Tasklet {
             if (targetUsers.size() == 0) continue;
 
             targetUsers.forEach(user -> {
-                List<HedefCariDto> hedefCariDtos = reportService.donemeGoreHedefCariDagilimi(user, DateUtils.getYearFromDate(DateUtils.getToday()), sirket);
+                List<HedefCariDto> hedefCariDtos = performansReportService.donemeGoreHedefCariDagilimi(user, DateUtils.getYearFromDate(DateUtils.getToday()), sirket);
                 if (!hedefCariDtos.isEmpty()) {
                     String content = prepareMailContent(hedefCariDtos, user, sirket);
                     mailService.htmlMailGonder(user.getEmail(), subject, EmailIcerikUtils.generateTemplateModel(user, sirket, text, content));

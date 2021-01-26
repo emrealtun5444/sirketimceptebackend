@@ -5,7 +5,7 @@ import com.aymer.sirketimceptebackend.cariKart.repository.CariKartRepository;
 import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
 import com.aymer.sirketimceptebackend.report.dto.*;
-import com.aymer.sirketimceptebackend.report.service.ReportService;
+import com.aymer.sirketimceptebackend.report.service.performansreport.PerformansReportService;
 import com.aymer.sirketimceptebackend.system.user.dto.UserListItem;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.system.user.service.UserService;
@@ -29,14 +29,14 @@ import java.util.Optional;
 @RequestMapping(path = BaseController.BASE_PATH + "/report")
 public class ReportController {
 
-    private final ReportService reportService;
+    private final PerformansReportService performansReportService;
     private final UserService userService;
     private final SessionUtils sessionUtils;
     private final CariKartRepository cariKartRepository;
 
     @Autowired
-    public ReportController(ReportService reportService, UserService userService, SessionUtils sessionUtils, CariKartRepository cariKartRepository) {
-        this.reportService = reportService;
+    public ReportController(PerformansReportService performansReportService, UserService userService, SessionUtils sessionUtils, CariKartRepository cariKartRepository) {
+        this.performansReportService = performansReportService;
         this.userService = userService;
         this.sessionUtils = sessionUtils;
         this.cariKartRepository = cariKartRepository;
@@ -45,7 +45,7 @@ public class ReportController {
     @GetMapping("/loadPerformansOzet/{year}")
     @PreAuthorize("hasAuthority('PERFORMANS_REPORT_MENU')")
     public ResponseEntity<?> loadPerformansReportOzet(@Valid @PathVariable(name = "year") Integer yil) {
-        PerformansOzetDto performansOzetDto = reportService.preparePerformansOzet(yil);
+        PerformansOzetDto performansOzetDto = performansReportService.preparePerformansOzet(yil);
         return ResponseEntity.ok(new AppResponse(performansOzetDto));
     }
 
@@ -54,7 +54,7 @@ public class ReportController {
     public ResponseEntity<?> loadCiroDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName, @PathVariable(name = "cariKart") String cariKart) {
         User user = getUser(userName);
         CariKart ck = getCariKart(cariKart);
-        List<HedefDto> ciroDtoList = reportService.donemeGoreCiroDagilimi(user, year, ck);
+        List<HedefDto> ciroDtoList = performansReportService.donemeGoreCiroDagilimi(user, year, ck);
         return ResponseEntity.ok(new AppResponse(ciroDtoList));
     }
 
@@ -63,7 +63,7 @@ public class ReportController {
     public ResponseEntity<?> loadTahsilatDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName, @PathVariable(name = "cariKart") String cariKart) {
         User user = getUser(userName);
         CariKart ck = getCariKart(cariKart);
-        List<TahsilatDto> tahsilatDtos = reportService.donemeGoreTahsilatDagilimi(user, year, ck);
+        List<TahsilatDto> tahsilatDtos = performansReportService.donemeGoreTahsilatDagilimi(user, year, ck);
         return ResponseEntity.ok(new AppResponse(tahsilatDtos));
     }
 
@@ -72,7 +72,7 @@ public class ReportController {
     public ResponseEntity<?> loadSiparisDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName, @PathVariable(name = "cariKart") String cariKart) {
         User user = getUser(userName);
         CariKart ck = getCariKart(cariKart);
-        List<SiparisDto> siparisDtoList = reportService.donemeGoreSiparisDagilimi(user, year, ck);
+        List<SiparisDto> siparisDtoList = performansReportService.donemeGoreSiparisDagilimi(user, year, ck);
         return ResponseEntity.ok(new AppResponse(siparisDtoList));
     }
 
@@ -81,7 +81,7 @@ public class ReportController {
     public ResponseEntity<?> loadMarkaDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName, @PathVariable(name = "cariKart") String cariKart) {
         User user = getUser(userName);
         CariKart ck = getCariKart(cariKart);
-        List<MarkaDagilimDto> markaDagilimDtos = reportService.donemeGoreMarkaDagilimi(user, year, ck);
+        List<MarkaDagilimDto> markaDagilimDtos = performansReportService.donemeGoreMarkaDagilimi(user, year, ck);
         return ResponseEntity.ok(new AppResponse(markaDagilimDtos));
     }
 
@@ -89,7 +89,7 @@ public class ReportController {
     @PreAuthorize("hasAuthority('PERFORMANS_REPORT_MENU')")
     public ResponseEntity<?> loadHedefCariDagilim(@Valid @PathVariable(name = "year") Integer year, @PathVariable(name = "userName") String userName) {
         User user = getUser(userName);
-        List<HedefCariDto> hedefCariDtoList = reportService.donemeGoreHedefCariDagilimi(user, year, sessionUtils.getSelectedCompany());
+        List<HedefCariDto> hedefCariDtoList = performansReportService.donemeGoreHedefCariDagilimi(user, year, sessionUtils.getSelectedCompany());
         return ResponseEntity.ok(new AppResponse(hedefCariDtoList));
     }
 

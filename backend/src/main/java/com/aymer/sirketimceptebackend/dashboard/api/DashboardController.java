@@ -4,10 +4,7 @@ import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
 import com.aymer.sirketimceptebackend.dashboard.dto.SorumluPersonelCiroDto;
 import com.aymer.sirketimceptebackend.dashboard.service.DashboardService;
-import com.aymer.sirketimceptebackend.report.dto.CiroDto;
-import com.aymer.sirketimceptebackend.report.dto.HedefDto;
-import com.aymer.sirketimceptebackend.report.service.ReportService;
-import com.aymer.sirketimceptebackend.utils.DateUtils;
+import com.aymer.sirketimceptebackend.report.service.performansreport.PerformansReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +23,12 @@ import java.util.List;
 public class DashboardController {
 
     private DashboardService dashboardService;
-    private ReportService reportService;
+    private PerformansReportService performansReportService;
 
     @Autowired
-    public DashboardController(DashboardService dashboardService, ReportService reportService) {
+    public DashboardController(DashboardService dashboardService, PerformansReportService performansReportService) {
         this.dashboardService = dashboardService;
-        this.reportService = reportService;
+        this.performansReportService = performansReportService;
     }
 
     @GetMapping("/currentNumberOfSales")

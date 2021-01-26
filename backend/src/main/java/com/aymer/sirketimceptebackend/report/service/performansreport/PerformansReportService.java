@@ -1,4 +1,4 @@
-package com.aymer.sirketimceptebackend.report.service;
+package com.aymer.sirketimceptebackend.report.service.performansreport;
 
 
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
@@ -13,7 +13,7 @@ import java.util.List;
  * Date: 12.03.2020
  * Time: 16:10
  */
-public interface ReportService {
+public interface PerformansReportService {
 
     PerformansOzetDto preparePerformansOzet(Integer year);
 
