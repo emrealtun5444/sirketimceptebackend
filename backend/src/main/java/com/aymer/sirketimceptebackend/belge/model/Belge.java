@@ -1,12 +1,10 @@
 package com.aymer.sirketimceptebackend.belge.model;
 
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.Auditable;
-import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
-import com.aymer.sirketimceptebackend.common.model.enums.EBelgeTipi;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
+import com.aymer.sirketimceptebackend.utils.SessionUtils;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,9 +15,11 @@ import java.io.Serializable;
  * Date: 12.03.2020
  * Time: 16:04
  */
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "belge")
 public class Belge extends Auditable<String> implements Serializable {
@@ -31,7 +31,7 @@ public class Belge extends Auditable<String> implements Serializable {
     private byte[] content;
 
     @NotNull
-    @Column(name = "file_name", length = 512)
+    @Column(name = "fileName", length = 512)
     private String fileName;
 
     @NotNull
@@ -63,5 +63,15 @@ public class Belge extends Auditable<String> implements Serializable {
     @ManyToOne
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
+
+    public void initialize(Sirket sirket, String fileName, String minetype, EBelgeTipi belgeTipi, byte[] excelBytes) {
+        this.setBelgeTipi(belgeTipi);
+        this.setContent(excelBytes);
+        this.setSize((long) excelBytes.length);
+        this.setFileName(fileName);
+        this.setMinetype(minetype);
+        this.setDurum(EDurum.AKTIF);
+        this.setSirket(sirket);
+    }
 
 }

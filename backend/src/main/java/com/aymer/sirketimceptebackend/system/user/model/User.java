@@ -92,6 +92,10 @@ public class User extends Auditable<String> implements Serializable, Idendifier 
         this.setDurum(EDurum.AKTIF);
     }
 
+    public User(Long id) {
+        this.setId(id);
+    }
+
     public void prepareUserRegister(String password, Set<Role> roleList) {
         this.setPassword(password);
         this.setRoles(roleList);

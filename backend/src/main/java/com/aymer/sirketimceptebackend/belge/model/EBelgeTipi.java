@@ -1,4 +1,4 @@
-package com.aymer.sirketimceptebackend.common.model.enums;
+package com.aymer.sirketimceptebackend.belge.model;
 
 public enum EBelgeTipi {
     FIYAT_LISTESI,
@@ -7,5 +7,6 @@ public enum EBelgeTipi {
     FATURA,
     BELGE,
     SOZLESME,
-    DIGER
+    DIGER,
+    RAPOR
 }

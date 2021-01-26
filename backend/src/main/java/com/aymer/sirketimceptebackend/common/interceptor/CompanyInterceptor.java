@@ -3,6 +3,7 @@ package com.aymer.sirketimceptebackend.common.interceptor;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.system.sirket.repository.SirketRepository;
 import com.aymer.sirketimceptebackend.system.user.service.UserService;
+import com.aymer.sirketimceptebackend.utils.SecurityUtils;
 import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,12 +25,15 @@ public class CompanyInterceptor implements HandlerInterceptor {
     @Autowired
     private SessionUtils sessionUtils;
 
+    @Autowired
+    private SecurityUtils securityUtils;
+
 
     @Override
     public boolean preHandle(
-        HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+            HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        if (sessionUtils.hasAuthentication()) {
+        if (securityUtils.hasAuthentication()) {
             String companyIdStr = request.getHeader("Company");
             if (StringUtils.hasText(companyIdStr)) {
                 Sirket company = companyRepository.findById(Long.valueOf(companyIdStr)).get();
@@ -45,8 +49,8 @@ public class CompanyInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(
-        HttpServletRequest request, HttpServletResponse response, Object handler,
-        ModelAndView modelAndView) throws Exception {
+            HttpServletRequest request, HttpServletResponse response, Object handler,
+            ModelAndView modelAndView) throws Exception {
     }
 
     @Override

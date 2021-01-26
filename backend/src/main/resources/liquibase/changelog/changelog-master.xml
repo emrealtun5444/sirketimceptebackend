@@ -47,6 +47,8 @@
     <include file="/liquibase/changelog/changes/update-finansal_hareket-table_1.xml"/>
     <include file="/liquibase/changelog/changes/update-finansal_hareket-table_2.xml"/>
     <include file="/liquibase/changelog/changes/create-maliyet-table.xml"/>
+    <include file="/liquibase/changelog/changes/update-maliyet-table_1.xml"/>
+    <include file="/liquibase/changelog/changes/create-asenkron_rapor_bilgi-table.xml"/>
 
 
 </databaseChangeLog>
