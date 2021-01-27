@@ -1,6 +1,5 @@
 package com.aymer.sirketimceptebackend.report.api;
 
-import com.aymer.sirketimceptebackend.belge.model.Belge;
 import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
 import com.aymer.sirketimceptebackend.report.dto.AsenkronRaporBilgiSorguSonucu;
@@ -16,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -58,11 +58,11 @@ public class AsenkronReportController {
 
     @GetMapping("/{id}/indir")
     @PreAuthorize("hasAuthority('MERKEZI_REPORT_MENU')")
-    public AppResponse<String> fetchBelge(@Valid @PathVariable(name = "id") Long id) {
+    public AppResponse<String> fetchBelge(@Valid @PathVariable(name = "id") Long id, HttpServletRequest http_request) {
         Long belgeId = asenkronRaporGeneratorService.findBelgeById(id);
         String documentClassName = "com.aymer.sirketimceptebackend.belge.model.Belge";
         String documentId = String.valueOf(belgeId);
-        String requestContextPath = "http://localhost:8090";
+        String requestContextPath = http_request.getRequestURL().toString().replace(http_request.getRequestURI(), "");
         String url = requestContextPath + "/.downloadfile?id=" + documentId + "&class=" + documentClassName;
         return new AppResponse<String>(url);
     }
