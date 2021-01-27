@@ -26,6 +26,7 @@ public class Belge extends Auditable<String> implements Documentable, Serializab
     @NotNull
     @Lob
     @Column(name = "content")
+    @Basic(fetch = FetchType.LAZY)
     private byte[] documentContent;
 
     @NotNull

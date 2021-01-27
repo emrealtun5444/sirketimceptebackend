@@ -1,15 +1,14 @@
 package com.aymer.sirketimceptebackend.common.servlet;
 
 import com.aymer.sirketimceptebackend.belge.model.Documentable;
+import com.aymer.sirketimceptebackend.belge.service.BelgeService;
 import com.aymer.sirketimceptebackend.common.constants.IConstants;
 import com.aymer.sirketimceptebackend.common.exception.ServiceException;
 import com.aymer.sirketimceptebackend.utils.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class FileDownloadServlet extends HttpServlet {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+
+    @Autowired
+    private BelgeService belgeService;
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -58,8 +58,7 @@ public class FileDownloadServlet extends HttpServlet {
     }
 
     private Documentable getDocumentById(String documentClassName, String id) throws ClassNotFoundException {
-        Class documentClass = Class.forName(documentClassName);
-        Documentable document = (Documentable) entityManager.find(documentClass, Long.parseLong(id));
+        Documentable document = belgeService.findBelgeById(documentClassName, Long.valueOf(id));
         if (document == null) {
             throw new ServiceException("error.belge.bulunamadi");
         }
