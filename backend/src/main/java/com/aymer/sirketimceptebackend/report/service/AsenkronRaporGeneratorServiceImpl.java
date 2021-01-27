@@ -45,7 +45,7 @@ public class AsenkronRaporGeneratorServiceImpl implements AsenkronRaporGenerator
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public AsenkronRaporBilgi finish(AsenkronRaporBilgi raporBilgi, byte[] excelBytes) {
-        String reportName = raporBilgi.getRaporTuru().name().concat(DateUtils.getNowDateTimeFormatted()).concat(".xlsx");
+        String reportName = raporBilgi.getRaporAdi();
         String minetype = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
         Belge belge = belgeService.saveBelge(raporBilgi.getSirket(), reportName, minetype, EBelgeTipi.RAPOR, excelBytes);
         raporBilgi.finishProcess(belge);
@@ -58,9 +58,9 @@ public class AsenkronRaporGeneratorServiceImpl implements AsenkronRaporGenerator
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public AsenkronRaporBilgi create(RaporTuru raporTuru, KnowsQueryCriteriaHolderClass sorguKriteriClass, SessionUtils sessionInfo) {
+    public AsenkronRaporBilgi create(String raporAdi, RaporTuru raporTuru, KnowsQueryCriteriaHolderClass sorguKriteriClass, SessionUtils sessionInfo) {
         AsenkronRaporBilgi asenkronRaporBilgi = new AsenkronRaporBilgi();
-        asenkronRaporBilgi.initialize(sessionInfo, raporTuru);
+        asenkronRaporBilgi.initialize(raporAdi, sessionInfo, raporTuru);
         asenkronRaporBilgi.setSerializedFields(sorguKriteriClass, sessionInfo);
         return asenkronRaporBilgiRepository.save(asenkronRaporBilgi);
     }

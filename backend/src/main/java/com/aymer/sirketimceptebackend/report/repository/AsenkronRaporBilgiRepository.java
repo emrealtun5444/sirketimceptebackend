@@ -29,10 +29,10 @@ public interface AsenkronRaporBilgiRepository extends JpaRepository<AsenkronRapo
     @Query("select count(v) from AsenkronRaporBilgi v where v.id = :id and v.raporOlusmaDurumu = :olusmaDurumu")
     Long countAllByIdAndRaporOlusmaDurumu(@Param("id") Long id, @Param("olusmaDurumu") RaporOlusmaDurumu olusmaDurumu);
 
-    @Query("select new com.aymer.sirketimceptebackend.report.dto.AsenkronRaporBilgiSorguSonucu (v.id, v.raporTuru, v.raporOlusmaDurumu, v.islemCevap, b.fileName, v.raporOlusmaTarihi, k) from AsenkronRaporBilgi v left join v.kullanici k left join v.belge b where v.kullanici.id = :kullanici order by v.id desc")
+    @Query("select new com.aymer.sirketimceptebackend.report.dto.AsenkronRaporBilgiSorguSonucu (v.id, v.raporTuru, v.raporOlusmaDurumu, v.islemCevap, b.fileName, v.raporOlusmaZamani, k) from AsenkronRaporBilgi v left join v.kullanici k left join v.belge b where v.kullanici.id = :kullanici order by v.id desc")
     List<AsenkronRaporBilgiSorguSonucu> getAsenkronRaporBilgiByKullaniciOrderByIdDesc(@Param("kullanici") Long kullanici);
 
-    @Query("select new com.aymer.sirketimceptebackend.report.dto.AsenkronRaporBilgiSorguSonucu (v.id, v.raporTuru, v.raporOlusmaDurumu, v.islemCevap, b.fileName, v.raporOlusmaTarihi, k) from AsenkronRaporBilgi v left join v.kullanici k left join v.belge b  where v.kullanici.id = :kullanici and v.raporTuru = :raporTuru order by v.id desc")
+    @Query("select new com.aymer.sirketimceptebackend.report.dto.AsenkronRaporBilgiSorguSonucu (v.id, v.raporTuru, v.raporOlusmaDurumu, v.islemCevap, b.fileName, v.raporOlusmaZamani, k) from AsenkronRaporBilgi v left join v.kullanici k left join v.belge b  where v.kullanici.id = :kullanici and v.raporTuru = :raporTuru order by v.id desc")
     List<AsenkronRaporBilgiSorguSonucu> getAsenkronRaporBilgiByKullaniciAndRaporTuruOrderByIdDesc(@Param("kullanici") Long kullanici, @Param("raporTuru") RaporTuru raporTuru);
 
 

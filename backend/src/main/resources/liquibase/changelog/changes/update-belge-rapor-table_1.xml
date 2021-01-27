@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="admin" id="1">
+        <addColumn tableName="asenkron_rapor_bilgi" >
+            <column name="rapor_adi" type="VARCHAR(256)"/>
+        </addColumn>
+
+        <renameColumn  columnDataType="VARCHAR(512)"
+                       newColumnName="file_name"
+                       oldColumnName="fileName"
+                       tableName="belge"/>
+
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -32,6 +32,9 @@ Date    : 15.01.2021
 @Builder
 public class AsenkronRaporBilgi extends Auditable<String> implements Serializable {
 
+    @Column
+    private String raporAdi;
+
     @Enumerated(EnumType.STRING)
     @Column
     private RaporTuru raporTuru;
@@ -64,16 +67,17 @@ public class AsenkronRaporBilgi extends Auditable<String> implements Serializabl
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
-    private Date raporOlusmaTarihi;
+    private Date raporOlusmaZamani;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Belge belge;
 
 
-    public void initialize(SessionUtils sessionInfo, RaporTuru raporTuru) {
+    public void initialize(String raporAdi, SessionUtils sessionInfo, RaporTuru raporTuru) {
         this.raporOlusmaDurumu = RaporOlusmaDurumu.ISLENMEYI_BEKLIYOR;
         this.raporTuru = raporTuru;
+        this.raporAdi = raporAdi;
         this.sirket = sessionInfo.getSelectedCompany();
         this.setKullanici(new User(sessionInfo.getUserDetails().getId()));
     }
@@ -84,7 +88,7 @@ public class AsenkronRaporBilgi extends Auditable<String> implements Serializabl
 
     public void finishProcess(Belge belge) {
         this.raporOlusmaDurumu = RaporOlusmaDurumu.BASARILI;
-        this.raporOlusmaTarihi = DateUtils.getNow();
+        this.raporOlusmaZamani = DateUtils.getNow();
         this.belge = belge;
     }
 

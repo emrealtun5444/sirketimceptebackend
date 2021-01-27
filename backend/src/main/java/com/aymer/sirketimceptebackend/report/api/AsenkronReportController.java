@@ -8,6 +8,7 @@ import com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi;
 import com.aymer.sirketimceptebackend.report.model.RaporTuru;
 import com.aymer.sirketimceptebackend.report.service.AsenkronRaporGeneratorService;
 import com.aymer.sirketimceptebackend.report.service.AsenkronReportThread;
+import com.aymer.sirketimceptebackend.utils.DateUtils;
 import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -46,7 +47,8 @@ public class AsenkronReportController {
     @PostMapping("/raporla")
     @PreAuthorize("hasAuthority('MERKEZI_REPORT_MENU')")
     public AppResponse raporla(@Valid @RequestBody RaporSorguKriteri sorguKriteri) {
-        AsenkronRaporBilgi asenkronRaporBilgi = asenkronRaporGeneratorService.create(sorguKriteri.getRaporTuru(), sorguKriteri, sessionUtils);
+        String reportName = sorguKriteri.getRaporTuru().name().concat(DateUtils.getNowDateTimeFormatted()).concat(".xlsx");
+        AsenkronRaporBilgi asenkronRaporBilgi = asenkronRaporGeneratorService.create(reportName, sorguKriteri.getRaporTuru(), sorguKriteri, sessionUtils);
         AsenkronReportThread thread = context.getBean("asenkronReportThread", AsenkronReportThread.class);
         thread.init(asenkronRaporBilgi);
         executorService.execute(thread);

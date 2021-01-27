@@ -3,7 +3,6 @@ package com.aymer.sirketimceptebackend.belge.model;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.Auditable;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
-import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,7 +30,7 @@ public class Belge extends Auditable<String> implements Documentable, Serializab
     private byte[] documentContent;
 
     @NotNull
-    @Column(name = "fileName", length = 512)
+    @Column(name = "file_name", length = 512)
     private String fileName;
 
     @NotNull
@@ -68,7 +67,7 @@ public class Belge extends Auditable<String> implements Documentable, Serializab
         this.setBelgeTipi(belgeTipi);
         this.setDocumentContent(excelBytes);
         this.setDocumentSize((long) excelBytes.length);
-        this.setFileName(fileName);
+        this.setFileName(!fileName.contains(".xlsx") ? fileName.concat(".xlsx") : fileName);
         this.setMinetype(minetype);
         this.setDurum(EDurum.AKTIF);
         this.setSirket(sirket);
