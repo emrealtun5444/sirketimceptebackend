@@ -48,7 +48,7 @@ public class AsenkronReportController {
     @PostMapping("/raporAl")
     @PreAuthorize("hasAuthority('MERKEZI_REPORT_MENU')")
     public AppResponse raporla(@Valid @RequestBody RaporSorguKriteri sorguKriteri) {
-        String reportName = sorguKriteri.getRaporTuru().name().concat(DateUtils.getNowDateTimeFormatted()).concat(".xlsx");
+        String reportName = sorguKriteri.getRaporTuru().name().concat("_").concat(DateUtils.getNowDateTimeFormatted()).concat(".xlsx");
         AsenkronRaporBilgi asenkronRaporBilgi = asenkronRaporGeneratorService.create(reportName, sorguKriteri.getRaporTuru(), sorguKriteri, sessionUtils);
         AsenkronReportThread thread = context.getBean("asenkronReportThread", AsenkronReportThread.class);
         thread.init(asenkronRaporBilgi);

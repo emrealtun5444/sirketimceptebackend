@@ -123,4 +123,8 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
         };
     }
 
+    onRefresh() {
+        this.sorgula();
+    }
+
 }

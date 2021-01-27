@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.report.service;
 
 import com.aymer.sirketimceptebackend.report.model.RaporTuru;
+import com.aymer.sirketimceptebackend.report.service.carimaliyet.CariMaliyetRaporService;
 import com.aymer.sirketimceptebackend.report.service.markamaliyet.MarkaMaliyetRaporService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

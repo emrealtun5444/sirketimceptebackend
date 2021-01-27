@@ -1,4 +1,4 @@
-package com.aymer.sirketimceptebackend.report.service;
+package com.aymer.sirketimceptebackend.report.service.carimaliyet;
 
 public interface CariMaliyetRaporService {
 }

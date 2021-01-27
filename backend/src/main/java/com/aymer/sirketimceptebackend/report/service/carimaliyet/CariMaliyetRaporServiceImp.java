@@ -1,9 +1,11 @@
-package com.aymer.sirketimceptebackend.report.service;
+package com.aymer.sirketimceptebackend.report.service.carimaliyet;
 
 import com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi;
 import com.aymer.sirketimceptebackend.report.model.ColumnDataType;
 import com.aymer.sirketimceptebackend.report.model.ReportBaseEnum;
 import com.aymer.sirketimceptebackend.report.repository.AsenkronRaporBilgiRepository;
+import com.aymer.sirketimceptebackend.report.service.AbstractAsenkronVeriHazirlamaRaporServiceImp;
+import com.aymer.sirketimceptebackend.report.service.AsenkronRaporGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

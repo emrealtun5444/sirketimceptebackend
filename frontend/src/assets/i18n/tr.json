@@ -68,6 +68,7 @@
   "btn.is.ata": "İş Ata",
   "btn.ayarla": "Ayarla",
   "btn.gonder": "Gönder",
+  "btn.yenile": "Yenile",
   "btn.devam": "Devam",
   "btn.ekle": "Ekle",
   "btn.sil": "Sil",
@@ -277,6 +278,7 @@
   "label.yillik.tahsilat": "Yıllık Tahsilat",
   "label.cari.performans": "Cari Performans",
 
+  "label.rapor.list": "Rapor Listesi",
   "label.rapor.turu": "Rapor Türü",
   "label.rapor.tarihi": "Rapor Tarihi",
   "label.islem.cevap": "İşlem Cevap",

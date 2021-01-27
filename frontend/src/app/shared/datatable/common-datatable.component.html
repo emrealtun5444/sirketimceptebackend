@@ -61,6 +61,8 @@
                         <div style="display: inline-flex;">
                             <button pButton pRipple *ngIf="add" label="{{ 'btn.ekle' | translate}}" icon="pi pi-plus"
                                     class="p-mr-2 p-d-inline-block" (click)="addAction()"></button>
+                            <button pButton pRipple *ngIf="refresh" label="{{ 'btn.yenile' | translate}}" icon="pi pi-refresh"
+                                    class="p-mr-2 p-d-inline-block" (click)="refreshAction()"></button>
                             <p-toggleButton [(ngModel)]="showFilter" offIcon="pi pi-filter" onIcon="pi pi-filter"
                                             onLabel=""
                                             offLabel=""></p-toggleButton>

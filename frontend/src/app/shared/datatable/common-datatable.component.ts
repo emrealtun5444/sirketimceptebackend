@@ -38,6 +38,7 @@ export class CommonDatatableComponent extends AbstractBaseComponent implements O
   @Input() guncelle = false;
   @Input() sil = false;
   @Input() add = false;
+  @Input() refresh = false;
   @Input() silObject = false;
   @Input() tarihce = false;
   @Input() sortField;
@@ -54,6 +55,7 @@ export class CommonDatatableComponent extends AbstractBaseComponent implements O
   @Output() filtered: EventEmitter<any> = new EventEmitter<any>();
   @Output() silEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() addEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() refreshEvent: EventEmitter<any> = new EventEmitter<any>();
 
   secilecekKayitSayisi: number = 0;
   secilenKayitSayisi: number = 0;
@@ -209,6 +211,10 @@ export class CommonDatatableComponent extends AbstractBaseComponent implements O
 
   addAction() {
     this.addEvent.emit();
+  }
+
+  refreshAction() {
+    this.refreshEvent.emit();
   }
 
   silObjectConfirm(obj) {
