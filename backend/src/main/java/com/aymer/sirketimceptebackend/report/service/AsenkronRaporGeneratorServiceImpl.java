@@ -9,7 +9,6 @@ import com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi;
 import com.aymer.sirketimceptebackend.report.model.RaporOlusmaDurumu;
 import com.aymer.sirketimceptebackend.report.model.RaporTuru;
 import com.aymer.sirketimceptebackend.report.repository.AsenkronRaporBilgiRepository;
-import com.aymer.sirketimceptebackend.utils.DateUtils;
 import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +71,11 @@ public class AsenkronRaporGeneratorServiceImpl implements AsenkronRaporGenerator
         } else {
             return asenkronRaporBilgiRepository.getAsenkronRaporBilgiByKullaniciAndRaporTuruOrderByIdDesc(sessionInfo.getUserDetails().getId(), raporTuru);
         }
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public Long findBelgeById(Long id) {
+        return asenkronRaporBilgiRepository.findBelgeById(id);
     }
 
 

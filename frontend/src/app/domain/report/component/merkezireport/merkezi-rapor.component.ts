@@ -59,7 +59,7 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
             event: this.raporIndir,
             rendered: this.belgeIndirilebilirMi,
             tooltip: 'label.indir',
-            class: 'fa fa-download'
+            class: 'pi pi-download'
         }
     ]
 
@@ -79,8 +79,8 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
 
     private buildForms() {
         this.sorguForm = this.formBuilder.group({
-            raporTuru: null,
-            raporTarihi: null,
+            raporTuru: RaporTuru.MARKA_MALIYET_RAPORU,
+            raporTarihi: null
         });
     }
 

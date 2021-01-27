@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -65,10 +66,11 @@ public abstract class AbstractAsenkronVeriHazirlamaRaporServiceImp implements Ab
         ReportBaseEnum<String>[] headers = getReportHeaders();
         int rowNum = createHeader(workbook, sheet, headers);
         //  rapor detayları yazılıyor.
-        for (Object rowData : resultList) {
-            rowNum = createRows(workbook, sheet, headers, rowNum, rowData);
+        if (!CollectionUtils.isEmpty(resultList)) {
+            for (Object rowData : resultList) {
+                rowNum = createRows(workbook, sheet, headers, rowNum, rowData);
+            }
         }
-
         return convertWorkbookBytes(workbook);
     }
 

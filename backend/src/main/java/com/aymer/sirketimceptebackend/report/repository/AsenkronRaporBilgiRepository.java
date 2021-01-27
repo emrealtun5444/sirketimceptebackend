@@ -1,5 +1,6 @@
 package com.aymer.sirketimceptebackend.report.repository;
 
+import com.aymer.sirketimceptebackend.belge.model.Belge;
 import com.aymer.sirketimceptebackend.report.dto.AsenkronRaporBilgiSorguSonucu;
 import com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi;
 import com.aymer.sirketimceptebackend.report.model.RaporOlusmaDurumu;
@@ -45,4 +46,6 @@ public interface AsenkronRaporBilgiRepository extends JpaRepository<AsenkronRapo
     @Query("update AsenkronRaporBilgi asb set asb.islemCevap= :islemCevap, asb.raporOlusmaDurumu= :raporOlusmaDurumu where asb.id= :id")
     void updateWhenStatusChanged(@Param("id") Long id, @Param("islemCevap") String islemCevap, @Param("raporOlusmaDurumu") RaporOlusmaDurumu raporOlusmaDurumu);
 
+    @Query("select b.id from AsenkronRaporBilgi v join v.belge b where v.id = :id")
+    Long findBelgeById(@Param("id") Long id);
 }

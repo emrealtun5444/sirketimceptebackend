@@ -1,5 +1,6 @@
 package com.aymer.sirketimceptebackend.report.api;
 
+import com.aymer.sirketimceptebackend.belge.model.Belge;
 import com.aymer.sirketimceptebackend.common.api.BaseController;
 import com.aymer.sirketimceptebackend.common.api.dto.AppResponse;
 import com.aymer.sirketimceptebackend.report.dto.AsenkronRaporBilgiSorguSonucu;
@@ -44,7 +45,7 @@ public class AsenkronReportController {
         this.executorService = Executors.newFixedThreadPool(MAX_ACTIVE_THREAD);
     }
 
-    @PostMapping("/raporla")
+    @PostMapping("/raporAl")
     @PreAuthorize("hasAuthority('MERKEZI_REPORT_MENU')")
     public AppResponse raporla(@Valid @RequestBody RaporSorguKriteri sorguKriteri) {
         String reportName = sorguKriteri.getRaporTuru().name().concat(DateUtils.getNowDateTimeFormatted()).concat(".xlsx");
@@ -58,9 +59,10 @@ public class AsenkronReportController {
     @GetMapping("/{id}/indir")
     @PreAuthorize("hasAuthority('MERKEZI_REPORT_MENU')")
     public AppResponse<String> fetchBelge(@Valid @PathVariable(name = "id") Long id) {
-        String documentClassName = " com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi";
-        String documentId = String.valueOf(id);
-        String requestContextPath = "";
+        Long belgeId = asenkronRaporGeneratorService.findBelgeById(id);
+        String documentClassName = "com.aymer.sirketimceptebackend.belge.model.Belge";
+        String documentId = String.valueOf(belgeId);
+        String requestContextPath = "http://localhost:8090";
         String url = requestContextPath + "/.downloadfile?id=" + documentId + "&class=" + documentClassName;
         return new AppResponse<String>(url);
     }

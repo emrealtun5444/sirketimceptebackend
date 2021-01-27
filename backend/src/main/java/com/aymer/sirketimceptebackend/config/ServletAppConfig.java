@@ -22,7 +22,7 @@ public class ServletAppConfig {
     public ServletRegistrationBean exampleServletBean() {
         FileDownloadServlet fileDownloadServlet = context.getBean("fileDownloadServlet", FileDownloadServlet.class);
         ServletRegistrationBean bean = new ServletRegistrationBean(
-                fileDownloadServlet, "/.downloadfile/*");
+                fileDownloadServlet, "/.downloadfile");
         bean.setLoadOnStartup(1);
         return bean;
     }

@@ -26,7 +26,6 @@ public class Belge extends Auditable<String> implements Documentable, Serializab
     @NotNull
     @Lob
     @Column(name = "content")
-    @Basic(fetch = FetchType.LAZY)
     private byte[] documentContent;
 
     @NotNull
@@ -68,6 +67,7 @@ public class Belge extends Auditable<String> implements Documentable, Serializab
         this.setDocumentContent(excelBytes);
         this.setDocumentSize((long) excelBytes.length);
         this.setFileName(!fileName.contains(".xlsx") ? fileName.concat(".xlsx") : fileName);
+        this.setKisaAciklama(this.getFileName());
         this.setMinetype(minetype);
         this.setDurum(EDurum.AKTIF);
         this.setSirket(sirket);

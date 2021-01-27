@@ -30,6 +30,8 @@
 
 
     <div class="ui-g ui-fluid">
-        <app-common-dt [title]="'label.market.place.list'" [data]="resultList" [cols]="cols"></app-common-dt>
+        <app-common-dt [title]="'label.market.place.list'"
+                       [data]="resultList" [cols]="cols" [that]="this"
+                       [operations]="operations"></app-common-dt>
     </div>
 </form>
