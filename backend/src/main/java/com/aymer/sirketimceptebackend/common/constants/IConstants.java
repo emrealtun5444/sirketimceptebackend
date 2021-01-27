@@ -12,4 +12,9 @@ public interface IConstants {
     public static final String SENET = "SENET";
     public static final String KREDI_KARTI = "KREDI_KARTI";
 
+    // file download
+    public static final String FILE_DOWNLOAD_MANAGER_SERVLET_ID_PARAM			= "id";
+    public static final String FILE_DOWNLOAD_MANAGER_SERVLET_CLASS_PARAM		= "class";
+    public static final String CONTENT_TYPE		= "application/octet-stream";
+
 }

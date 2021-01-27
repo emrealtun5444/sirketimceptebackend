@@ -57,10 +57,12 @@ public class AsenkronRaporGeneratorServiceImpl implements AsenkronRaporGenerator
         asenkronRaporBilgiRepository.updateWhenStatusChanged(raporBilgiId, exp.length() >= 4000 ? exp.substring(0, 4000) : exp, RaporOlusmaDurumu.BASARISIZ);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void create(AsenkronRaporBilgi asenkronRaporBilgi, KnowsQueryCriteriaHolderClass sorguKriteriClass, SessionUtils sessionInfo) {
+    @Transactional(propagation = Propagation.REQUIRED)
+    public AsenkronRaporBilgi create(RaporTuru raporTuru, KnowsQueryCriteriaHolderClass sorguKriteriClass, SessionUtils sessionInfo) {
+        AsenkronRaporBilgi asenkronRaporBilgi = new AsenkronRaporBilgi();
+        asenkronRaporBilgi.initialize(sessionInfo, raporTuru);
         asenkronRaporBilgi.setSerializedFields(sorguKriteriClass, sessionInfo);
-        asenkronRaporBilgiRepository.save(asenkronRaporBilgi);
+        return asenkronRaporBilgiRepository.save(asenkronRaporBilgi);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

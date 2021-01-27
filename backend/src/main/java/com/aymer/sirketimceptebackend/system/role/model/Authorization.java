@@ -39,7 +39,8 @@ public enum Authorization implements Serializable {
 
     // Raporlar
     REPORT_MENU("menu.rapor.yonetimi", ROOT_AUTHORIZATION),
-    PERFORMANS_REPORT_MENU("menu.rapor.performans", REPORT_MENU);
+    PERFORMANS_REPORT_MENU("menu.rapor.performans", REPORT_MENU),
+    MERKEZI_REPORT_MENU("menu.rapor.merkezi", REPORT_MENU);
 
     private String label;
     private Authorization parent;

@@ -23,7 +23,7 @@ public interface AsenkronRaporGeneratorService {
 
     void fail(Long raporBilgiId, String exp);
 
-    void create(AsenkronRaporBilgi asenkronRaporBilgi, KnowsQueryCriteriaHolderClass sorguKriteri, SessionUtils sessionInfo);
+    AsenkronRaporBilgi create(RaporTuru raporTuru, KnowsQueryCriteriaHolderClass sorguKriteri, SessionUtils sessionInfo);
 
     List<AsenkronRaporBilgiSorguSonucu> getAsenkronRaporBilgiList(SessionUtils sessionInfo, RaporTuru raporTuru);
 }

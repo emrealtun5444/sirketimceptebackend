@@ -20,8 +20,6 @@ import java.util.List;
 @Repository
 public interface SiparisRepository extends JpaRepository<Siparis, Long>, JpaSpecificationExecutor<Siparis> {
 
-    List<Siparis> findAllByCariKartAndIslemTarihiGreaterThanEqual(CariKart cariKart, Date islemTarihi);
-
     List<Siparis> findAllByCariKart(CariKart cariKart);
 
     List<Siparis> findAllBySiparisNo(String siparisNo);

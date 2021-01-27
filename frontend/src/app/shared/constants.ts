@@ -110,3 +110,16 @@ export enum OdemeTipi {
   CEK = 'CEK',
   SENET = 'SENET'
 }
+
+export enum RaporTuru {
+  CARI_MALIYET_RAPORU = "CARI_MALIYET_RAPORU",
+  MARKA_MALIYET_RAPORU = "MARKA_MALIYET_RAPORU",
+  BOS = "BOS"
+}
+
+export enum RaporOlusmaDurumu {
+  ISLENMEYI_BEKLIYOR = "ISLENMEYI_BEKLIYOR",
+  ISLENIYOR = "ISLENIYOR",
+  BASARILI = "BASARILI",
+  BASARISIZ = "BASARISIZ"
+}

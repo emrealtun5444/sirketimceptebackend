@@ -64,6 +64,7 @@
   "btn.guncelle": "Güncelle",
   "btn.kaydet": "Kaydet",
   "btn.tamam": "Tamam",
+  "btn.rapor.al": "Rapor Al",
   "btn.is.ata": "İş Ata",
   "btn.ayarla": "Ayarla",
   "btn.gonder": "Gönder",
@@ -102,6 +103,7 @@
   "label.ad": "Ad",
   "label.soyad": "Soyad",
   "label.ad.soyad": "Soyad",
+  "label.kullanici": "Kullanıcı",
   "label.kullanici.adi": "Kullanıcı Adı",
   "label.kullanici.code": "Özel Kod",
   "label.sifre": "Şifre",
@@ -272,8 +274,17 @@
   "label.yillik.hedef": "Yıllık Hedef",
   "label.yillik.siparis": "Yıllık Sipariş",
   "label.yillik.tahsilat": "Yıllık Tahsilat",
-
   "label.cari.performans": "Cari Performans",
+
+  "label.rapor.turu": "Rapor Türü",
+  "label.rapor.tarihi": "Rapor Tarihi",
+  "label.islem.cevap": "İşlem Cevap",
+  "label.belge.adi": "Belge Adı",
+  "label.rapor.durumu": "Rapor Durumu",
+  "label.rapor.olusturma.tarihi": "Rapor Oluşturma Tarihi",
+  "label.rapor.cari.maliyet": "Cari Bazında Karlılık Raporu",
+  "label.rapor.marka.maliyet": "Marka Bazında Karlılık Raporu",
+
 
   "##############################################################################################": "MENUS",
   "root.authorization": "Temel Yetki",
@@ -283,6 +294,7 @@
   "menu.role.ayarlari": "Role Ayarları",
   "menu.rapor.yonetimi": "Raporlar",
   "menu.rapor.performans": "Performans Raporları",
+  "menu.rapor.merkezi": "Merkezi Raporlar",
 
   "menu.stok.yonetimi": "Stok Yönetimi",
   "menu.stok.sorgulama": "Stok Kartı Sorgulama",

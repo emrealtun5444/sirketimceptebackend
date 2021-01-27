@@ -30,13 +30,7 @@ public class CariSiparisVisitor implements CariKartVisitor {
     private CariKartRepository cariKartRepository;
 
     @Autowired
-    private FaturaRepository faturaRepository;
-
-    @Autowired
     private SiparisRepository siparisRepository;
-
-    @Autowired
-    private StokKartRepository stokKartRepository;
 
     @Autowired
     private SiparisMapper siparisMapper;
@@ -50,7 +44,7 @@ public class CariSiparisVisitor implements CariKartVisitor {
     public void visit(CariKartViewHolder cariKartViewHolder) {
         // cariKart bulunur
         CariKart cariKart = cariKartRepository.findByCariKodu(cariKartViewHolder.getHesapKodu());
-        final List<Siparis> oldSiparisList = siparisRepository.findAllByCariKartAndIslemTarihiGreaterThanEqual(cariKart, DateUtils.firstDayOfYear());
+        final List<Siparis> oldSiparisList = siparisRepository.findAllByCariKart(cariKart);
         // siparis kayitlarini sileriz.
         siparisRepository.deleteAll(oldSiparisList);
         // siparis üzerinde giziniriz

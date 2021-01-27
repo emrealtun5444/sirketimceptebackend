@@ -14,3 +14,4 @@ public interface MaliyetRepository extends JpaRepository<Maliyet, Long> {
 
 
 }
+

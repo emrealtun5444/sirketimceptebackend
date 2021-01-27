@@ -40,6 +40,12 @@ public class UserController {
         return new AppResponse<List<UserListItem>>(service.listUsers());
     }
 
+    @GetMapping("/grantedUsersData")
+    @PreAuthorize("hasAuthority('ROOT_AUTHORIZATION')")
+    AppResponse<List<UserListItem>> grantedUsersData() {
+        return new AppResponse<List<UserListItem>>(service.grantedUsers());
+    }
+
     @GetMapping("/grantedUsers")
     @PreAuthorize("hasAuthority('ROOT_AUTHORIZATION')")
     AppResponse<List<SelectItem>> grantedUsers() {

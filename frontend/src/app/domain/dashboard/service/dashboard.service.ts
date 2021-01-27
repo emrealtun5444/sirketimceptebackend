@@ -42,7 +42,7 @@ export class DashboardService extends AbstractService {
   }
 
   allUsers(): Observable<AppResponse> {
-    return this.http.get<AppResponse>(`${this.USER_SERVICE_PATH}/grantedUsers`);
+    return this.http.get<AppResponse>(`${this.USER_SERVICE_PATH}/grantedUsersData`);
   }
 
 }

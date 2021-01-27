@@ -126,6 +126,12 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-bars',
                         authorization: 'PERFORMANS_REPORT_MENU',
                         routerLink: ['/report/performans']
+                    },
+                    {
+                        label: this.appStore.translate.instant('menu.rapor.merkezi'),
+                        icon: 'pi pi-fw pi-bars',
+                        authorization: 'MERKEZI_REPORT_MENU',
+                        routerLink: ['/report/merkezi-rapor']
                     }
                 ]
             },

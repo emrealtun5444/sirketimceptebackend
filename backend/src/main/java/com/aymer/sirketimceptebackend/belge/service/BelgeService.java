@@ -4,7 +4,6 @@ package com.aymer.sirketimceptebackend.belge.service;
 import com.aymer.sirketimceptebackend.belge.model.Belge;
 import com.aymer.sirketimceptebackend.belge.model.EBelgeTipi;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
-import com.aymer.sirketimceptebackend.utils.SessionUtils;
 
 /**
  * User: ealtun
@@ -15,4 +14,5 @@ public interface BelgeService {
 
     Belge saveBelge(Sirket sirket, String fileName, String minetype, EBelgeTipi belgeTipi, byte[] excelBytes);
 
+    Belge findBelgeById(Long id);
 }

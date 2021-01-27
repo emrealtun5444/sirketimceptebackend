@@ -22,13 +22,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @Table(name = "belge")
-public class Belge extends Auditable<String> implements Serializable {
+public class Belge extends Auditable<String> implements Documentable, Serializable {
 
     @NotNull
     @Lob
     @Column(name = "content")
     @Basic(fetch = FetchType.LAZY)
-    private byte[] content;
+    private byte[] documentContent;
 
     @NotNull
     @Column(name = "fileName", length = 512)
@@ -43,7 +43,7 @@ public class Belge extends Auditable<String> implements Serializable {
 
     @NotNull
     @Column(name = "size")
-    private Long size;
+    private Long DocumentSize;
 
     @NotNull
     @Column(name = "minetype")
@@ -66,8 +66,8 @@ public class Belge extends Auditable<String> implements Serializable {
 
     public void initialize(Sirket sirket, String fileName, String minetype, EBelgeTipi belgeTipi, byte[] excelBytes) {
         this.setBelgeTipi(belgeTipi);
-        this.setContent(excelBytes);
-        this.setSize((long) excelBytes.length);
+        this.setDocumentContent(excelBytes);
+        this.setDocumentSize((long) excelBytes.length);
         this.setFileName(fileName);
         this.setMinetype(minetype);
         this.setDurum(EDurum.AKTIF);
