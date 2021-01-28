@@ -85,6 +85,10 @@ public class CariKart extends Auditable<String> implements Serializable {
     @JoinColumn(name = "sirket_id")
     private Sirket sirket;
 
+    public BigDecimal getBakiye() {
+        return toplamAlacak.subtract(toplamBorc);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

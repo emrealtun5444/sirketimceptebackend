@@ -75,4 +75,11 @@ public class AsenkronReportController {
         return new AppResponse<List<AsenkronRaporBilgiSorguSonucu>>(asenkronRaporBilgiSorguSonucuList);
     }
 
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('MERKEZI_REPORT_MENU')")
+    public AppResponse delete(@Valid @PathVariable(name = "id") Long id) {
+        asenkronRaporGeneratorService.delete(id);
+        return AppResponse.nullResponse();
+    }
+
 }

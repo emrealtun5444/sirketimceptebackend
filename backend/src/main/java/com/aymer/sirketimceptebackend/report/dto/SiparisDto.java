@@ -18,12 +18,14 @@ public class SiparisDto {
     private Long kalanAdet;
     private Long teslimOran;
     private BigDecimal toplamTutar;
+    private BigDecimal kalanTutar;
 
-    public SiparisDto(Long toplamAdet, Long teslimAdet, Long kalanAdet, Long teslimOran, BigDecimal toplamTutar) {
+    public SiparisDto(Long toplamAdet, Long teslimAdet, Long kalanAdet, Long teslimOran, BigDecimal toplamTutar,BigDecimal kalanTutar) {
         this.toplamAdet = toplamAdet;
         this.teslimAdet = teslimAdet;
         this.kalanAdet = kalanAdet;
         this.teslimOran = teslimOran;
         this.toplamTutar = toplamTutar;
+        this.kalanTutar = kalanTutar;
     }
 }

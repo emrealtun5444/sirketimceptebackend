@@ -4,7 +4,7 @@ import {AbstractBaseComponent} from "../../../../shared/abstract-base-component"
 import {AppStore} from "../../../../shared/app.store";
 import {AsenkronRaporBilgiSorguSonucu} from "../../dto/asenkron-rapor-bilgi-sorgu-sonucu";
 import {AsenkronRaporService} from "../../service/asenkron-rapor.service";
-import {RaporOlusmaDurumu, RaporTuru, SiparisDurumu, SiparisYonu} from "../../../../shared/constants";
+import {RaporOlusmaDurumu, RaporTuru} from "../../../../shared/constants";
 import {RaporSorguKriterleri} from "../../dto/rapor-sorgu-kriterleri";
 import {SelectItem} from "primeng/api";
 
@@ -31,14 +31,14 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
             enum: RaporTuru
         },
         {
-            field: 'islemCevap',
-            header: this.appStore.translate.instant('label.islem.cevap'),
-            type: this.ColumnType.STRING
-        },
-        {
             field: 'documentName',
             header: this.appStore.translate.instant('label.belge.adi'),
             type: this.ColumnType.STRING
+        },
+        {
+            field: 'raporOlusmaTarihi',
+            header: this.appStore.translate.instant('label.rapor.olusturma.tarihi'),
+            type: this.ColumnType.DATE
         },
         {
             field: 'raporOlusmaDurumu',
@@ -47,9 +47,9 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
             enum: RaporOlusmaDurumu
         },
         {
-            field: 'raporOlusmaTarihi',
-            header: this.appStore.translate.instant('label.rapor.olusturma.tarihi'),
-            type: this.ColumnType.DATE
+            field: 'islemCevap',
+            header: this.appStore.translate.instant('label.islem.cevap'),
+            type: this.ColumnType.STRING
         }
     ]
 
@@ -60,6 +60,13 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
             rendered: this.belgeIndirilebilirMi,
             tooltip: 'label.indir',
             class: 'pi pi-download'
+        },
+        {
+            id: 'sil',
+            event: this.raporSil,
+            rendered: this.belgeSilinebilirMi,
+            tooltip: 'label.sil',
+            class: 'pi pi-trash'
         }
     ]
 
@@ -96,8 +103,16 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
         return row.raporOlusmaDurumu === RaporOlusmaDurumu.BASARILI
     }
 
+    private belgeSilinebilirMi(row) {
+        return row.raporOlusmaDurumu === RaporOlusmaDurumu.BASARILI || row.raporOlusmaDurumu === RaporOlusmaDurumu.BASARISIZ
+    }
+
     private raporIndir(row) {
         this.subscribeToResponseBase(this.asenkronRaporService.raporIndir(row.id), this.raporIndirSuccess);
+    }
+
+    private raporSil(row) {
+        this.subscribeToResponseBase(this.asenkronRaporService.raporSil(row.id), this.raporlaSuccess);
     }
 
     private raporIndirSuccess(url: string) {

@@ -78,5 +78,10 @@ public class AsenkronRaporGeneratorServiceImpl implements AsenkronRaporGenerator
         return asenkronRaporBilgiRepository.findBelgeById(id);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void delete(Long id) {
+        asenkronRaporBilgiRepository.deleteById(id);
+    }
+
 
 }

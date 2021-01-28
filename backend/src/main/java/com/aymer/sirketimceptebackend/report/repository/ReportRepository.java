@@ -29,50 +29,60 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
             ") " +
             "from Fatura f " +
             "join f.faturaDetays fd " +
+            "join f.cariKart c " +
             "where f.durum = :durum " +
             "and f.faturaYonu = :faturaYonu " +
             "and f.sirket = :sirket " +
+            "and (:cariKart is null or c = :cariKart) " +
             "and (:donem is null or MONTH(f.faturaTarihi) = :donem) " +
             "and YEAR(f.faturaTarihi) = :year ")
     CiroDto amountOfSalesForPeriod(@Param("donem") Integer donem,
                                    @Param("year") Integer year,
                                    @Param("durum") EDurum durum,
                                    @Param("faturaYonu") EOdemeYonu odemeYonu,
-                                   @Param("sirket") Sirket sirket);
+                                   @Param("sirket") Sirket sirket,
+                                   @Param("cariKart") CariKart cariKart);
 
     @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.TahsilatDto(" +
             "COALESCE(sum(fh.tutar), 0) " +
             ") " +
             "from FinansalHareket fh " +
+            "join fh.cariKart c " +
             "where fh.durum = :durum " +
             "and fh.odemeYonu = :odemeYonu " +
             "and fh.sirket = :sirket " +
+            "and (:cariKart is null or c = :cariKart) " +
             "and (:donem is null or MONTH(fh.islemTarihi) = :donem) " +
             "and YEAR(fh.islemTarihi) = :year ")
     TahsilatDto amountOfTahsilatForPeriod(@Param("donem") Integer donem,
                                           @Param("year") Integer year,
                                           @Param("durum") EDurum durum,
                                           @Param("odemeYonu") EOdemeYonu odemeYonu,
-                                          @Param("sirket") Sirket sirket);
+                                          @Param("sirket") Sirket sirket,
+                                          @Param("cariKart") CariKart cariKart);
 
     @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.SiparisDto(" +
             "COALESCE(sum(s.miktar),0), " +
             "COALESCE(sum(s.teslimMiktari),0), " +
             "COALESCE((sum(s.miktar) - sum(s.teslimMiktari)),0), " +
             "(case when COALESCE(sum(s.miktar),0) > 0 then (COALESCE(sum(s.teslimMiktari),0) * 100 / COALESCE(sum(s.miktar),0)) else 0 end ), " +
-            "COALESCE(sum(s.tutari),0)" +
+            "COALESCE(sum(s.tutari),0), " +
+            "(COALESCE(s.miktar,0) - COALESCE(s.teslimMiktari,0)) * COALESCE(s.birimFiyati,0) " +
             ") " +
             "from Siparis s " +
+            "join s.cariKart c " +
             "where s.durum = :durum " +
             "and s.siparisYonu = :siparisYonu " +
             "and s.sirket = :sirket " +
+            "and (:cariKart is null or c = :cariKart) " +
             "and (:donem is null or MONTH(s.islemTarihi) = :donem) " +
             "and YEAR(s.islemTarihi) = :year ")
     SiparisDto amountOfSiparisForPeriod(@Param("donem") Integer donem,
                                         @Param("year") Integer year,
                                         @Param("durum") EDurum durum,
                                         @Param("siparisYonu") SiparisYonu siparisYonu,
-                                        @Param("sirket") Sirket sirket);
+                                        @Param("sirket") Sirket sirket,
+                                        @Param("cariKart") CariKart cariKart);
 
     @Query("select COALESCE(sum(COALESCE(c.yillikHedef,0)),0) " +
             "from CariKart c " +
@@ -133,7 +143,8 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
             "COALESCE(sum(s.teslimMiktari),0), " +
             "COALESCE((sum(s.miktar) - sum(s.teslimMiktari)),0), " +
             "(case when COALESCE(sum(s.miktar),0) > 0 then (COALESCE(sum(s.teslimMiktari),0) * 100 / COALESCE(sum(s.miktar),0)) else 0 end ), " +
-            "COALESCE(sum(s.tutari),0)" +
+            "COALESCE(sum(s.tutari),0), " +
+            "(COALESCE(s.miktar,0) - COALESCE(s.teslimMiktari,0)) * COALESCE(s.birimFiyati,0) " +
             ") " +
             "from Siparis s " +
             "join s.cariKart c " +

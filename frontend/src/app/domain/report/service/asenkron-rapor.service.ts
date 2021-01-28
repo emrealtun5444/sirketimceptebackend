@@ -23,6 +23,10 @@ export class AsenkronRaporService extends AbstractService {
         return this.http.get<AppResponse>(`${this.SERVICE_PATH}/${raporId}/indir`);
     }
 
+    raporSil(raporId: number): Observable<AppResponse> {
+        return this.http.delete<AppResponse>(`${this.SERVICE_PATH}/${raporId}`);
+    }
+
     getRaporListesiByRaporTipi(raporTipi: RaporTuru): Observable<AppResponse> {
         return this.http.post<AppResponse>(`${this.SERVICE_PATH}/sorgula`, raporTipi);
     }

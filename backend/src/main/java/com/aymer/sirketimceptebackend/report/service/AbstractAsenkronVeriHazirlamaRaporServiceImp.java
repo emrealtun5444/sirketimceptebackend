@@ -19,6 +19,7 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public abstract class AbstractAsenkronVeriHazirlamaRaporServiceImp implements AbstractAsenkronVeriHazirlamaRaporService {
@@ -50,14 +51,14 @@ public abstract class AbstractAsenkronVeriHazirlamaRaporServiceImp implements Ab
     }
 
 
-    public abstract Set sorguSonucuGetir(AsenkronRaporBilgi asenkronRaporBilgi);
+    public abstract List sorguSonucuGetir(AsenkronRaporBilgi asenkronRaporBilgi);
 
     public abstract ReportBaseEnum<String>[] getReportHeaders();
 
 
     private byte[] createExcelBytes(AsenkronRaporBilgi asenkronRaporBilgi) {
         // Sorgu Sonucu Çekiliyor.
-        Set resultList = sorguSonucuGetir(asenkronRaporBilgi);
+        List resultList = sorguSonucuGetir(asenkronRaporBilgi);
 
         // header bilgileri alınıyopr.
         XSSFWorkbook workbook = new XSSFWorkbook();

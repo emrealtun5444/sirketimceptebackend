@@ -1,7 +1,6 @@
 package com.aymer.sirketimceptebackend.report.service;
 
 
-import com.aymer.sirketimceptebackend.belge.model.Belge;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.KnowsQueryCriteriaHolderClass;
 import com.aymer.sirketimceptebackend.report.dto.AsenkronRaporBilgiSorguSonucu;
 import com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi;
@@ -29,4 +28,6 @@ public interface AsenkronRaporGeneratorService {
     List<AsenkronRaporBilgiSorguSonucu> getAsenkronRaporBilgiList(SessionUtils sessionInfo, RaporTuru raporTuru);
 
     Long findBelgeById(Long id);
+
+    void delete(Long id);
 }

@@ -39,16 +39,16 @@ public class PerformansReportServiceImp implements PerformansReportService {
         Integer donem = DateUtils.getDonem(DateUtils.getToday());
 
         // ciro dagilimi aliniyor
-        CiroDto aylikCiro = reportRepository.amountOfSalesForPeriod(donem, year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany());
-        CiroDto yillikCiro = reportRepository.amountOfSalesForPeriod(null, year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany());
+        CiroDto aylikCiro = reportRepository.amountOfSalesForPeriod(donem, year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), null);
+        CiroDto yillikCiro = reportRepository.amountOfSalesForPeriod(null, year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), null);
 
         // tahsilat aliniyor
-        TahsilatDto aylikTahsilat = reportRepository.amountOfTahsilatForPeriod(donem, year, EDurum.AKTIF, EOdemeYonu.ALACAK, sessionUtils.getSelectedCompany());
-        TahsilatDto yillikTahsilat = reportRepository.amountOfTahsilatForPeriod(null, year, EDurum.AKTIF, EOdemeYonu.ALACAK, sessionUtils.getSelectedCompany());
+        TahsilatDto aylikTahsilat = reportRepository.amountOfTahsilatForPeriod(donem, year, EDurum.AKTIF, EOdemeYonu.ALACAK, sessionUtils.getSelectedCompany(), null);
+        TahsilatDto yillikTahsilat = reportRepository.amountOfTahsilatForPeriod(null, year, EDurum.AKTIF, EOdemeYonu.ALACAK, sessionUtils.getSelectedCompany(), null);
 
         // siparis aliniyor
-        SiparisDto aylikSiparis = reportRepository.amountOfSiparisForPeriod(donem, year, EDurum.AKTIF, SiparisYonu.ALINAN_SIPARIS, sessionUtils.getSelectedCompany());
-        SiparisDto yillikSiparis = reportRepository.amountOfSiparisForPeriod(null, year, EDurum.AKTIF, SiparisYonu.ALINAN_SIPARIS, sessionUtils.getSelectedCompany());
+        SiparisDto aylikSiparis = reportRepository.amountOfSiparisForPeriod(donem, year, EDurum.AKTIF, SiparisYonu.ALINAN_SIPARIS, sessionUtils.getSelectedCompany(), null);
+        SiparisDto yillikSiparis = reportRepository.amountOfSiparisForPeriod(null, year, EDurum.AKTIF, SiparisYonu.ALINAN_SIPARIS, sessionUtils.getSelectedCompany(), null);
 
         // hedef aliniyor
         BigDecimal totalHedef = reportRepository.totalHedefTutar(EDurum.AKTIF, sessionUtils.getSelectedCompany(), null, null);

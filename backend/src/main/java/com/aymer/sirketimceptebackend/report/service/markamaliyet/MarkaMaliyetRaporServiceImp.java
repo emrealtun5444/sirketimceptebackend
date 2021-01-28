@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 @Service("markaMaliyetRaporService")
@@ -22,7 +23,7 @@ public class MarkaMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRa
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    public Set sorguSonucuGetir(AsenkronRaporBilgi asenkronRaporBilgi) {
+    public List sorguSonucuGetir(AsenkronRaporBilgi asenkronRaporBilgi) {
         return null;
     }
 

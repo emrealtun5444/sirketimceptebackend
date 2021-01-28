@@ -20,6 +20,8 @@ public interface CariKartRepository extends JpaRepository<CariKart, Long>, JpaSp
 
     List<CariKart> findCariKartByDurumAndSirketAndCariTipi(EDurum durum, Sirket sirket, ECariTipi cariTipi);
 
+    List<CariKart> findCariKartByDurumAndSirketOrderBySorumluPersonelAscYillikHedefDesc(EDurum durum, Sirket sirket);
+
     Boolean existsByCariKodu(String cariKodu);
 
     CariKart findByCariKodu(String cariKodu);

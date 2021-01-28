@@ -13,11 +13,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class RaporSorguKriteri implements KnowsQueryCriteriaHolderClass, Serializable {
-
-
     private RaporTuru raporTuru;
-    private Date baslangicTarihi;
-    private Date bitisTarihi;
-
-
+    private Integer yil;
+    private Integer donem;
 }
