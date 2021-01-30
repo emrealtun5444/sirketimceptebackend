@@ -60,22 +60,22 @@ public class CariMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRap
             CiroDto ciroDto = reportRepository.amountOfSalesForPeriod(sorguKriteri.getDonem(), sorguKriteri.getYil(), EDurum.AKTIF, EOdemeYonu.BORC, asenkronRaporBilgi.getSirket(), cariKart);
             TahsilatDto tahsilatDto = reportRepository.amountOfTahsilatForPeriod(sorguKriteri.getDonem(), sorguKriteri.getYil(), EDurum.AKTIF, EOdemeYonu.ALACAK, asenkronRaporBilgi.getSirket(), cariKart);
             SiparisDto siparisDto = reportRepository.amountOfSiparisForPeriod(sorguKriteri.getDonem(), sorguKriteri.getYil(), EDurum.AKTIF, SiparisYonu.ALINAN_SIPARIS, asenkronRaporBilgi.getSirket(), cariKart);
-            Karlilik karlilik = getkarlilikByCariKart(cariKart, maliyetList);
+            Karlilik karlilik = getkarlilikByCariKart(sorguKriteri, cariKart, maliyetList);
             CariMaliyetDto maliyetDto = CariMaliyetDto.builder()
-                .cariTipi(cariKart.getCariTipi().name())
-                .sorumluPersonel(cariKart.getSorumluPersonel() != null ? cariKart.getSorumluPersonel().getAciklama() : null)
-                .cariKodu(cariKart.getCariKodu())
-                .cariAdi(cariKart.getCariAdi())
-                .toplamCiro(ciroDto.getTutar())
-                .toplamTahsilat(tahsilatDto.getTutar())
-                .bekleyenSiparis(siparisDto.getKalanTutar())
-                .hedef(cariKart.getYillikHedef())
-                .toplamBorc(cariKart.getToplamBorc())
-                .toplamAlacak(cariKart.getToplamAlacak())
-                .bakiye(cariKart.getBakiye())
-                .karlilikOrani(karlilik.getKarlilikOrani())
-                .toplamKar(karlilik.getToplamKarTutari())
-                .build();
+                    .cariTipi(cariKart.getCariTipi().name())
+                    .sorumluPersonel(cariKart.getSorumluPersonel() != null ? cariKart.getSorumluPersonel().getAciklama() : null)
+                    .cariKodu(cariKart.getCariKodu())
+                    .cariAdi(cariKart.getCariAdi())
+                    .toplamCiro(ciroDto.getTutar())
+                    .toplamTahsilat(tahsilatDto.getTutar())
+                    .bekleyenSiparis(siparisDto.getKalanTutar())
+                    .hedef(cariKart.getYillikHedef())
+                    .toplamBorc(cariKart.getToplamBorc())
+                    .toplamAlacak(cariKart.getToplamAlacak())
+                    .bakiye(cariKart.getBakiye())
+                    .karlilikOrani(karlilik.getKarlilikOrani())
+                    .toplamKar(karlilik.getToplamKarTutari())
+                    .build();
 
             list.add(maliyetDto);
         });
@@ -83,17 +83,17 @@ public class CariMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRap
     }
 
 
-    private Karlilik getkarlilikByCariKart(CariKart cariKart, List<Maliyet> maliyetList) {
-        List<FaturaDetay> faturaDetays = faturaDetayRepository.findAllByCariKart(cariKart);
+    private Karlilik getkarlilikByCariKart(RaporSorguKriteri sorguKriteri, CariKart cariKart, List<Maliyet> maliyetList) {
+        List<FaturaDetay> faturaDetays = faturaDetayRepository.faturaKalems(cariKart, EDurum.AKTIF, EOdemeYonu.BORC, sorguKriteri.getDonem(), sorguKriteri.getYil());
         BigDecimal toplamMaliyetTutari = BigDecimal.ZERO;
         BigDecimal toplamSatisTutari = BigDecimal.ZERO;
         BigDecimal toplamKarTutari = BigDecimal.ZERO;
         BigDecimal karlilikOrani = BigDecimal.ZERO;
         for (FaturaDetay faturaDetay : faturaDetays) {
             Maliyet maliyet = maliyetList.stream()
-                .filter(m -> faturaDetay.getStokKart().getMarka().getId().equals(m.getId()) && (m.getBaslangicTarihi().compareTo(faturaDetay.getIslemTarihi()) * faturaDetay.getIslemTarihi().compareTo(m.getBitisTarihi()) >= 0))
-                .findAny()
-                .orElse(null);
+                    .filter(m -> faturaDetay.getStokKart().getMarka().getId().equals(m.getId()) && (m.getBaslangicTarihi().compareTo(faturaDetay.getIslemTarihi()) * faturaDetay.getIslemTarihi().compareTo(m.getBitisTarihi()) >= 0))
+                    .findAny()
+                    .orElse(null);
 
             toplamMaliyetTutari = toplamMaliyetTutari.add(faturaDetay.getMaliyetTutari(maliyet));
             toplamSatisTutari = toplamSatisTutari.add(faturaDetay.getSatisTutari());

@@ -90,8 +90,8 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
 
   private buildForms() {
     this.sorguForm = this.formBuilder.group({
-      raporTuru: RaporTuru.MARKA_MALIYET_RAPORU,
-      yil: null,
+      raporTuru: RaporTuru.CARI_MALIYET_RAPORU,
+      yil: new Date().getFullYear(),
       donem: null
     });
   }
