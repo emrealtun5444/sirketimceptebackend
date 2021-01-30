@@ -122,7 +122,7 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
   }
 
   private belgeSilinebilirMi(row) {
-    return row.raporOlusmaDurumu === RaporOlusmaDurumu.BASARILI || row.raporOlusmaDurumu === RaporOlusmaDurumu.BASARISIZ
+    return true;
   }
 
   private raporIndir(row) {
