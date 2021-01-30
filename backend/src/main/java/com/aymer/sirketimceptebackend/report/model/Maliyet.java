@@ -5,6 +5,7 @@ import com.aymer.sirketimceptebackend.stokkart.model.Marka;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Maliyet extends Auditable<String> implements Serializable {
 
     @ManyToOne

@@ -8,6 +8,7 @@ import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.tahsilat.model.EKdvOrani;
 import com.aymer.sirketimceptebackend.tahsilat.model.EParaBirimi;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "stok_kart")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class StokKart extends Auditable<String> implements Serializable {
 
     @ManyToOne

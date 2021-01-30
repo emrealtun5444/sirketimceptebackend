@@ -6,6 +6,7 @@ import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "marka")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Marka extends Auditable<String> implements Serializable, Idendifier {
 
     @Column(name = "kisa_aciklama")

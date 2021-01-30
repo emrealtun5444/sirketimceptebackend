@@ -6,6 +6,7 @@ import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -22,6 +23,8 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Table(name = "sirket")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Sirket extends Auditable<String> implements Serializable, Idendifier {
     @NotNull
     private String name;

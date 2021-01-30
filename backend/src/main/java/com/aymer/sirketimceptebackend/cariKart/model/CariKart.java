@@ -8,6 +8,7 @@ import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,8 @@ import java.util.List;
  * Date: 12.03.2020
  * Time: 16:04
  */
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
 @Setter
 @Builder

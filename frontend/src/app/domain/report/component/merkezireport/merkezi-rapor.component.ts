@@ -41,7 +41,7 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
     {
       field: 'raporOlusmaTarihi',
       header: this.appStore.translate.instant('label.rapor.olusturma.tarihi'),
-      type: this.ColumnType.DATE
+      type: this.ColumnType.DATE_TIME
     },
     {
       field: 'raporOlusmaDurumu',

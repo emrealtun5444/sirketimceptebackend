@@ -7,6 +7,7 @@ import com.aymer.sirketimceptebackend.common.model.enums.EIletisimBilgiTipi;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "iletisim_bilgi")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class IletisimBilgi extends Auditable<String> implements Serializable {
 
     @NotNull
