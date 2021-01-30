@@ -20,6 +20,8 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
   raporTuruList: SelectItem[] = [
     {label: this.appStore.translate.instant('label.rapor.cari.maliyet'), value: 'CARI_MALIYET_RAPORU'},
     {label: this.appStore.translate.instant('label.rapor.marka.maliyet'), value: 'MARKA_MALIYET_RAPORU'},
+    {label: this.appStore.translate.instant('label.rapor.cari.donem.ciro'), value: 'CARI_DONEM_CIRO_RAPORU'},
+    {label: this.appStore.translate.instant('label.rapor.cari.donem.tahsilat'), value: 'CAR_DNM_TAHSILAT_RAPORU'},
   ];
 
   yilList: SelectItem[] = [];
@@ -72,6 +74,7 @@ export class MerkeziRaporComponent extends AbstractBaseComponent implements OnIn
       class: 'pi pi-trash'
     }
   ]
+  hiddenColumn: string[] = ['islemCevap'];
 
 
   resultList: AsenkronRaporBilgiSorguSonucu[];

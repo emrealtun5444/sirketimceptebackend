@@ -288,7 +288,9 @@
   "label.rapor.durumu": "Rapor Durumu",
   "label.rapor.olusturma.tarihi": "Rapor Oluşturma Tarihi",
   "label.rapor.cari.maliyet": "Cari Bazında Karlılık Raporu",
-  "label.rapor.marka.maliyet": "Marka Bazında Karlılık Raporu",
+  "label.rapor.marka.maliyet": "Marka Bazında Aylara Göre Ciro Karlılık Raporu",
+  "label.rapor.cari.donem.ciro": "Cari Bazında Aylara Göre Ciro Raporu",
+  "label.rapor.cari.donem.tahsilat": "Cari Bazında Aylara Göre Tahsilat Raporu",
 
 
   "##############################################################################################": "MENUS",

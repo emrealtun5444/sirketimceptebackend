@@ -5,6 +5,7 @@ import com.aymer.sirketimceptebackend.belge.model.Belge;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -20,6 +21,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "cari_belge")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONE)
 public class CariBelge extends Auditable<String> implements Serializable {
 
     @NotNull

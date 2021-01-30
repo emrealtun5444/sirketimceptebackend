@@ -1,6 +1,8 @@
 package com.aymer.sirketimceptebackend.report.service;
 
 import com.aymer.sirketimceptebackend.report.model.RaporTuru;
+import com.aymer.sirketimceptebackend.report.service.caridonemciro.CariDonemCiroRaporService;
+import com.aymer.sirketimceptebackend.report.service.caridonemciro.CariDonemTahsilatRaporService;
 import com.aymer.sirketimceptebackend.report.service.carimaliyet.CariMaliyetRaporService;
 import com.aymer.sirketimceptebackend.report.service.markamaliyet.MarkaMaliyetRaporService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,10 @@ public class AsenkronRaporFactory {
             raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("cariMaliyetRaporService", CariMaliyetRaporService.class);
         } else if (reportType.equals(RaporTuru.MARKA_MALIYET_RAPORU)) {
             raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("markaMaliyetRaporService", MarkaMaliyetRaporService.class);
+        } else if (reportType.equals(RaporTuru.CARI_DONEM_CIRO_RAPORU)) {
+            raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("cariDonemCiroRaporService", CariDonemCiroRaporService.class);
+        } else if (reportType.equals(RaporTuru.CAR_DNM_TAHSILAT_RAPORU)) {
+            raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("cariDonemTahsilatRaporService", CariDonemTahsilatRaporService.class);
         }
         return raporHazirlamaService;
     }

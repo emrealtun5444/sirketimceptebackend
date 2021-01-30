@@ -1,6 +1,6 @@
 package com.aymer.sirketimceptebackend.report.dto;
 
-import com.aymer.sirketimceptebackend.stokkart.model.Marka;
+import com.aymer.sirketimceptebackend.cariKart.model.ECariTipi;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -10,10 +10,12 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MarkaMaliyetDto {
+public class CariDonemDto {
 
-    private Marka marka;
-    private String markaAdi;
+    private String cariTipi;
+    private String sorumluPersonel;
+    private String cariKodu;
+    private String cariAdi;
     private BigDecimal donem1;
     private BigDecimal donem2;
     private BigDecimal donem3;
@@ -26,13 +28,13 @@ public class MarkaMaliyetDto {
     private BigDecimal donem10;
     private BigDecimal donem11;
     private BigDecimal donem12;
-    private BigDecimal toplamCiro;
-    private BigDecimal toplamKar;
-    private BigDecimal karlilikOrani;
+    private BigDecimal toplam;
 
-    public MarkaMaliyetDto(Marka marka, String markaAdi, BigDecimal donem1, BigDecimal donem2, BigDecimal donem3, BigDecimal donem4, BigDecimal donem5, BigDecimal donem6, BigDecimal donem7, BigDecimal donem8, BigDecimal donem9, BigDecimal donem10, BigDecimal donem11, BigDecimal donem12, BigDecimal toplamCiro) {
-        this.marka = marka;
-        this.markaAdi = markaAdi;
+    public CariDonemDto(ECariTipi cariTipi, String sorumluPersonel, String cariKodu, String cariAdi, BigDecimal donem1, BigDecimal donem2, BigDecimal donem3, BigDecimal donem4, BigDecimal donem5, BigDecimal donem6, BigDecimal donem7, BigDecimal donem8, BigDecimal donem9, BigDecimal donem10, BigDecimal donem11, BigDecimal donem12, BigDecimal toplam) {
+        this.cariTipi = cariTipi.name();
+        this.sorumluPersonel = sorumluPersonel;
+        this.cariKodu = cariKodu;
+        this.cariAdi = cariAdi;
         this.donem1 = donem1;
         this.donem2 = donem2;
         this.donem3 = donem3;
@@ -45,11 +47,6 @@ public class MarkaMaliyetDto {
         this.donem10 = donem10;
         this.donem11 = donem11;
         this.donem12 = donem12;
-        this.toplamCiro = toplamCiro;
-    }
-
-    public void initKarlilik(Karlilik karlilik) {
-        this.setToplamKar(karlilik.getToplamKarTutari());
-        this.setKarlilikOrani(karlilik.getKarlilikOrani());
+        this.toplam = toplam;
     }
 }

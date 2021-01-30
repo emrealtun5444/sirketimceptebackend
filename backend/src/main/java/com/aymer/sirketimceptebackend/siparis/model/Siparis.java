@@ -11,6 +11,7 @@ import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -34,6 +35,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "siparis")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONE)
 public class Siparis extends Auditable<String> implements Serializable {
 
     @NotNull

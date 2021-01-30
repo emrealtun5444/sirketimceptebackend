@@ -42,7 +42,7 @@
 
     <div class="ui-g ui-fluid">
         <app-common-dt [title]="'label.rapor.list'" (refreshEvent)="onRefresh()" [refresh]="true"
-                       [data]="resultList" [cols]="cols" [that]="this"
+                       [data]="resultList" [cols]="cols" [that]="this" [hiddenColumn]="hiddenColumn"
                        [operations]="operations"></app-common-dt>
     </div>
 </form>

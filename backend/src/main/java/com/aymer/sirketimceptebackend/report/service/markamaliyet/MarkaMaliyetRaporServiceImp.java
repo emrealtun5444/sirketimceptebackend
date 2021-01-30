@@ -52,24 +52,13 @@ public class MarkaMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRa
     @Transactional(propagation = Propagation.SUPPORTS)
     public List sorguSonucuGetir(AsenkronRaporBilgi asenkronRaporBilgi) {
         RaporSorguKriteri sorguKriteri = (RaporSorguKriteri) createSorguKriteri(asenkronRaporBilgi);
-        SessionUtils sessionInfo = createSessionInfo(asenkronRaporBilgi);
         final List<Maliyet> maliyetList = maliyetRepository.findAll();
-
-        List list = new LinkedList<CariMaliyetDto>();
-        List<Marka> markaList = brandRepository.findAll();
-        markaList.forEach(marka -> {
-            CiroDto ciroDto = reportRepository.amountOfSalesForPeriod(sorguKriteri.getDonem(), sorguKriteri.getYil(), EDurum.AKTIF, EOdemeYonu.BORC, asenkronRaporBilgi.getSirket(), null, marka);
-            Karlilik karlilik = getkarlilikByMarka(sorguKriteri, marka, maliyetList);
-            MarkaMaliyetDto maliyetDto = MarkaMaliyetDto.builder()
-                    .markaAdi(marka.getAciklama())
-                    .toplamCiro(ciroDto.getTutar())
-                    .toplamKar(karlilik.getToplamKarTutari())
-                    .karlilikOrani(karlilik.getKarlilikOrani())
-                    .build();
-            list.add(maliyetDto);
+        List<MarkaMaliyetDto> markaMaliyetDtoList = reportRepository.markaCiroDonemList(sorguKriteri.getDonem(),sorguKriteri.getYil(),EDurum.AKTIF,EOdemeYonu.BORC,asenkronRaporBilgi.getSirket());
+        markaMaliyetDtoList.forEach(markaMaliyetDto -> {
+            Karlilik karlilik = getkarlilikByMarka(sorguKriteri, markaMaliyetDto.getMarka(), maliyetList);
+            markaMaliyetDto.initKarlilik(karlilik);
         });
-
-        return list;
+        return markaMaliyetDtoList;
     }
 
     private Karlilik getkarlilikByMarka(RaporSorguKriteri sorguKriteri, Marka marka, List<Maliyet> maliyetList) {
@@ -104,6 +93,18 @@ public class MarkaMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRa
 
     enum MaliyetReportHeader implements ReportBaseEnum<String> {
         MARKA("markaAdi", "Marka Adı", ColumnDataType.STRING),
+        OCAK("donem1", "Ocak", ColumnDataType.MONEY),
+        SUBAK("donem2", "Şubat", ColumnDataType.MONEY),
+        MART("donem3", "Mart", ColumnDataType.MONEY),
+        NISAN("donem4", "Nisan", ColumnDataType.MONEY),
+        MAYIS("donem5", "Mayıs", ColumnDataType.MONEY),
+        HAZIRAN("donem6", "Haziran", ColumnDataType.MONEY),
+        TEMMUZ("donem7", "Temmuz", ColumnDataType.MONEY),
+        AGUSTOS("donem8", "Ağustos", ColumnDataType.MONEY),
+        EYLUL("donem9", "Eylül", ColumnDataType.MONEY),
+        EKIM("donem10", "Ekim", ColumnDataType.MONEY),
+        KASIM("donem11", "Kasım", ColumnDataType.MONEY),
+        ARALIK("donem12", "Aralık", ColumnDataType.MONEY),
         TOPLAM_SATIS("toplamCiro", "Toplam Ciro", ColumnDataType.MONEY),
         TOPLAM_KARLILIK("toplamKar", "Toplam Kar", ColumnDataType.MONEY),
         KARLILIK_ORANI("karlilikOrani", "Karlılık Oranı", ColumnDataType.MONEY);

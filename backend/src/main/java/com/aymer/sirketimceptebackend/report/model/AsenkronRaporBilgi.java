@@ -9,6 +9,7 @@ import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.utils.DateUtils;
 import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -30,6 +31,7 @@ Date    : 15.01.2021
 @Getter
 @Setter
 @Builder
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONE)
 public class AsenkronRaporBilgi extends Auditable<String> implements Serializable {
 
     @Column

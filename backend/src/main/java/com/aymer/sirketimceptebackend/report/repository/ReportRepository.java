@@ -200,4 +200,120 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
                                                    @Param("faturaYonu") EOdemeYonu odemeYonu,
                                                    @Param("sirket") Sirket sirket,
                                                    @Param("staff") User staff);
+
+    @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.CariDonemDto( " +
+            "c.cariTipi, " +
+            "concat(sp.name, ' ', sp.surname), " +
+            "c.cariKodu, " +
+            "c.cariAdi, " +
+            "sum(case when MONTH(fd.islemTarihi) = 1 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 2 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 3 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 4 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 5 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 6 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 7 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 8 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 9 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 10 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 11 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 12 then fd.toplamTutar else 0 end ), " +
+            "COALESCE(sum(fd.toplamTutar), 0) " +
+            ") " +
+            "from Fatura f " +
+            "join f.faturaDetays fd " +
+            "join f.cariKart c " +
+            "left join c.sorumluPersonel sp " +
+            "where f.durum = :durum " +
+            "and f.faturaYonu = :faturaYonu " +
+            "and f.sirket = :sirket " +
+            "and (:donem is null or MONTH(f.faturaTarihi) = :donem) " +
+            "and YEAR(f.faturaTarihi) = :year " +
+            "group by " +
+            "c.cariTipi, " +
+            "concat(sp.name, ' ', sp.surname), " +
+            "c.cariKodu, " +
+            "c.cariAdi " +
+            "order by COALESCE(sum(fd.toplamTutar), 0) desc ")
+    List<CariDonemDto> cariCiroDonemList(@Param("donem") Integer donem,
+                                         @Param("year") Integer year,
+                                         @Param("durum") EDurum durum,
+                                         @Param("faturaYonu") EOdemeYonu odemeYonu,
+                                         @Param("sirket") Sirket sirket);
+
+    @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.CariDonemDto( " +
+            "c.cariTipi, " +
+            "concat(sp.name, ' ', sp.surname), " +
+            "c.cariKodu, " +
+            "c.cariAdi, " +
+            "sum(case when MONTH(fh.islemTarihi) = 1 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 2 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 3 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 4 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 5 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 6 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 7 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 8 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 9 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 10 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 11 then fh.tutar else 0 end ), " +
+            "sum(case when MONTH(fh.islemTarihi) = 12 then fh.tutar else 0 end ), " +
+            "COALESCE(sum(fh.tutar), 0) " +
+            ") " +
+            "from FinansalHareket fh " +
+            "join fh.cariKart c " +
+            "left join c.sorumluPersonel sp " +
+            "where fh.durum = :durum " +
+            "and fh.odemeYonu = :odemeYonu " +
+            "and fh.sirket = :sirket " +
+            "and (:donem is null or MONTH(fh.islemTarihi) = :donem) " +
+            "and YEAR(fh.islemTarihi) = :year " +
+            "group by " +
+            "c.cariTipi, " +
+            "concat(sp.name, ' ', sp.surname), " +
+            "c.cariKodu, " +
+            "c.cariAdi " +
+            "order by COALESCE(sum(fh.tutar), 0) desc")
+    List<CariDonemDto> cariTahsilatDonemList(@Param("donem") Integer donem,
+                                             @Param("year") Integer year,
+                                             @Param("durum") EDurum durum,
+                                             @Param("odemeYonu") EOdemeYonu odemeYonu,
+                                             @Param("sirket") Sirket sirket);
+
+    @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.MarkaMaliyetDto( " +
+            "m, " +
+            "m.aciklama, " +
+            "sum(case when MONTH(fd.islemTarihi) = 1 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 2 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 3 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 4 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 5 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 6 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 7 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 8 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 9 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 10 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 11 then fd.toplamTutar else 0 end ), " +
+            "sum(case when MONTH(fd.islemTarihi) = 12 then fd.toplamTutar else 0 end ), " +
+            "COALESCE(sum(fd.toplamTutar), 0) " +
+            ") " +
+            "from Fatura f " +
+            "join f.faturaDetays fd " +
+            "join fd.stokKart sk " +
+            "left join sk.marka m " +
+            "where f.durum = :durum " +
+            "and f.faturaYonu = :faturaYonu " +
+            "and f.sirket = :sirket " +
+            "and (:donem is null or MONTH(f.faturaTarihi) = :donem) " +
+            "and YEAR(f.faturaTarihi) = :year " +
+            "group by " +
+            "m, " +
+            "m.aciklama " +
+            "order by COALESCE(sum(fd.toplamTutar), 0) desc ")
+    List<MarkaMaliyetDto> markaCiroDonemList(@Param("donem") Integer donem,
+                                         @Param("year") Integer year,
+                                         @Param("durum") EDurum durum,
+                                         @Param("faturaYonu") EOdemeYonu odemeYonu,
+                                         @Param("sirket") Sirket sirket);
+
 }
