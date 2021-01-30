@@ -67,7 +67,7 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
             "COALESCE((sum(s.miktar) - sum(s.teslimMiktari)),0), " +
             "(case when COALESCE(sum(s.miktar),0) > 0 then (COALESCE(sum(s.teslimMiktari),0) * 100 / COALESCE(sum(s.miktar),0)) else 0 end ), " +
             "COALESCE(sum(s.tutari),0), " +
-            "(COALESCE(s.miktar,0) - COALESCE(s.teslimMiktari,0)) * COALESCE(s.birimFiyati,0) " +
+            "sum((COALESCE(s.miktar,0) - COALESCE(s.teslimMiktari,0)) * COALESCE(s.birimFiyati,0)) " +
             ") " +
             "from Siparis s " +
             "join s.cariKart c " +
@@ -144,7 +144,7 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
             "COALESCE((sum(s.miktar) - sum(s.teslimMiktari)),0), " +
             "(case when COALESCE(sum(s.miktar),0) > 0 then (COALESCE(sum(s.teslimMiktari),0) * 100 / COALESCE(sum(s.miktar),0)) else 0 end ), " +
             "COALESCE(sum(s.tutari),0), " +
-            "(COALESCE(s.miktar,0) - COALESCE(s.teslimMiktari,0)) * COALESCE(s.birimFiyati,0) " +
+            "sum((COALESCE(s.miktar,0) - COALESCE(s.teslimMiktari,0)) * COALESCE(s.birimFiyati,0)) " +
             ") " +
             "from Siparis s " +
             "join s.cariKart c " +

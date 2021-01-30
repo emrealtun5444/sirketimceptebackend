@@ -3,6 +3,7 @@ package com.aymer.sirketimceptebackend.fatura.model;
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.Auditable;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.report.model.Maliyet;
 import com.aymer.sirketimceptebackend.stokkart.model.StokKart;
 import com.aymer.sirketimceptebackend.tahsilat.model.EKdvOrani;
 import lombok.*;
@@ -80,8 +81,11 @@ public class FaturaDetay extends Auditable<String> implements Serializable {
         return getTutar().compareTo(BigDecimal.ZERO) > 0 ? (getIskonto().divide(getTutar(), 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100))) : BigDecimal.valueOf(0);
     }
 
-    public BigDecimal getMaliyetTutari(BigDecimal maliyetOrani) {
-        return getTutar().subtract(getTutar().multiply(maliyetOrani).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP));
+    public BigDecimal getMaliyetTutari(Maliyet maliyet) {
+        if (maliyet != null) {
+            return getTutar().subtract(getTutar().multiply(maliyet.getOran()).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP));
+        }
+        return getSatisTutari();
     }
 
     public BigDecimal getSatisTutari() {

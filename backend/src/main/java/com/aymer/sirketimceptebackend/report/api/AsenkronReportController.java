@@ -32,7 +32,6 @@ import java.util.concurrent.Executors;
 public class AsenkronReportController {
 
     private static final int MAX_ACTIVE_THREAD = 10;
-    private final ExecutorService executorService;
     private final AsenkronRaporGeneratorService asenkronRaporGeneratorService;
     private final SessionUtils sessionUtils;
     private final ApplicationContext context;
@@ -42,12 +41,12 @@ public class AsenkronReportController {
         this.asenkronRaporGeneratorService = asenkronRaporGeneratorService;
         this.sessionUtils = sessionUtils;
         this.context = context;
-        this.executorService = Executors.newFixedThreadPool(MAX_ACTIVE_THREAD);
     }
 
     @PostMapping("/raporAl")
     @PreAuthorize("hasAuthority('MERKEZI_REPORT_MENU')")
     public AppResponse raporla(@Valid @RequestBody RaporSorguKriteri sorguKriteri) {
+        ExecutorService executorService = Executors.newCachedThreadPool();
         String reportName = sorguKriteri.getRaporTuru().name().concat("_").concat(DateUtils.getNowDateTimeFormatted()).concat(".xlsx");
         AsenkronRaporBilgi asenkronRaporBilgi = asenkronRaporGeneratorService.create(reportName, sorguKriteri.getRaporTuru(), sorguKriteri, sessionUtils);
         AsenkronReportThread thread = context.getBean("asenkronReportThread", AsenkronReportThread.class);

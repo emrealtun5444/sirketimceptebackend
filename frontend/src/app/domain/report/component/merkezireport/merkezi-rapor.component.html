@@ -4,13 +4,25 @@
         <h3>{{'menu.rapor.merkezi' | translate}}</h3>
         <br/>
         <div class="p-grid p-fluid">
-
-            <div class="p-field p-col-12 p-md-4">
-                <p-calendar id="raporTarihi" showButtonBar="true" formControlName="raporTarihi"
-                            placeholder="{{'label.rapor.tarihi' | translate}}"
-                            [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label">
+                <p-dropdown id="yil" formControlName="yil"
+                            [options]="yilList"
+                            optionValue="value" optionLabel="label"
+                ></p-dropdown>
+                <label for="yil">{{'label.yil' | translate}}</label>
+                </span>
             </div>
-            <div class="p-field p-col-12 p-md-4">
+            <div class="p-field p-col-12 p-md-3">
+                <span class="p-float-label">
+                <p-dropdown id="donem" formControlName="donem"
+                            [options]="donemList"
+                            optionValue="value" optionLabel="label"
+                ></p-dropdown>
+                <label for="donem">{{'label.donem' | translate}}</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-3">
                 <span class="p-float-label">
                      <p-dropdown id="raporTuru" formControlName="raporTuru"
                                  [options]="raporTuruList"
@@ -20,7 +32,7 @@
                 </span>
             </div>
 
-            <div class="p-field p-col-12 p-md-4">
+            <div class="p-field p-col-12 p-md-3">
                 <button pButton type="button" label="{{'btn.rapor.al' | translate}}"
                         (click)="raporla()"></button>
             </div>

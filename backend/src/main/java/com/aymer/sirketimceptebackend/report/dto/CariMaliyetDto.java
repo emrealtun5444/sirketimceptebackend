@@ -18,6 +18,7 @@ public class CariMaliyetDto {
     private BigDecimal toplamCiro;
     private BigDecimal toplamTahsilat;
     private BigDecimal bekleyenSiparis;
+    private BigDecimal hedef;
     private BigDecimal toplamBorc;
     private BigDecimal toplamAlacak;
     private BigDecimal bakiye;

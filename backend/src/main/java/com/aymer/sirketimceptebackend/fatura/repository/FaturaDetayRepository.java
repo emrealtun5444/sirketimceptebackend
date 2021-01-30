@@ -1,5 +1,6 @@
 package com.aymer.sirketimceptebackend.fatura.repository;
 
+import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.fatura.model.Fatura;
 import com.aymer.sirketimceptebackend.fatura.model.FaturaDetay;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +18,7 @@ import java.util.Optional;
 public interface FaturaDetayRepository extends JpaRepository<FaturaDetay, Long> {
 
     Optional<List<FaturaDetay>> findAllByFatura(Fatura fatura);
+
+    List<FaturaDetay> findAllByCariKart(CariKart cariKart);
 
 }
