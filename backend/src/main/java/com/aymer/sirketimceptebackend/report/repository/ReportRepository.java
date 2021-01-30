@@ -4,6 +4,7 @@ import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.report.dto.*;
 import com.aymer.sirketimceptebackend.siparis.model.SiparisYonu;
+import com.aymer.sirketimceptebackend.stokkart.model.Marka;
 import com.aymer.sirketimceptebackend.system.sirket.model.Sirket;
 import com.aymer.sirketimceptebackend.system.user.model.User;
 import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
@@ -30,10 +31,13 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
             "from Fatura f " +
             "join f.faturaDetays fd " +
             "join f.cariKart c " +
+            "join fd.stokKart s " +
+            "left join s.marka m " +
             "where f.durum = :durum " +
             "and f.faturaYonu = :faturaYonu " +
             "and f.sirket = :sirket " +
             "and (:cariKart is null or c = :cariKart) " +
+            "and (:marka is null or m = :marka) " +
             "and (:donem is null or MONTH(f.faturaTarihi) = :donem) " +
             "and YEAR(f.faturaTarihi) = :year ")
     CiroDto amountOfSalesForPeriod(@Param("donem") Integer donem,
@@ -41,7 +45,8 @@ public interface ReportRepository extends JpaRepository<CariKart, Long>, JpaSpec
                                    @Param("durum") EDurum durum,
                                    @Param("faturaYonu") EOdemeYonu odemeYonu,
                                    @Param("sirket") Sirket sirket,
-                                   @Param("cariKart") CariKart cariKart);
+                                   @Param("cariKart") CariKart cariKart,
+                                   @Param("marka") Marka marka);
 
     @Query("SELECT new com.aymer.sirketimceptebackend.report.dto.TahsilatDto(" +
             "COALESCE(sum(fh.tutar), 0) " +

@@ -1,21 +1,48 @@
 package com.aymer.sirketimceptebackend.report.service.markamaliyet;
 
+import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.fatura.model.FaturaDetay;
+import com.aymer.sirketimceptebackend.fatura.repository.FaturaDetayRepository;
+import com.aymer.sirketimceptebackend.report.dto.*;
 import com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi;
 import com.aymer.sirketimceptebackend.report.model.ColumnDataType;
+import com.aymer.sirketimceptebackend.report.model.Maliyet;
 import com.aymer.sirketimceptebackend.report.model.ReportBaseEnum;
 import com.aymer.sirketimceptebackend.report.repository.AsenkronRaporBilgiRepository;
+import com.aymer.sirketimceptebackend.report.repository.MaliyetRepository;
+import com.aymer.sirketimceptebackend.report.repository.ReportRepository;
 import com.aymer.sirketimceptebackend.report.service.AbstractAsenkronVeriHazirlamaRaporServiceImp;
 import com.aymer.sirketimceptebackend.report.service.AsenkronRaporGeneratorService;
+import com.aymer.sirketimceptebackend.stokkart.model.Marka;
+import com.aymer.sirketimceptebackend.stokkart.model.StokKart;
+import com.aymer.sirketimceptebackend.stokkart.repository.BrandRepository;
+import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
+import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 @Service("markaMaliyetRaporService")
 public class MarkaMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRaporServiceImp implements MarkaMaliyetRaporService {
+
+    @Autowired
+    private MaliyetRepository maliyetRepository;
+
+    @Autowired
+    private BrandRepository brandRepository;
+
+    @Autowired
+    private ReportRepository reportRepository;
+
+    @Autowired
+    private FaturaDetayRepository faturaDetayRepository;
+
 
     @Autowired
     public MarkaMaliyetRaporServiceImp(AsenkronRaporGeneratorService asenkronRaporGeneratorService, AsenkronRaporBilgiRepository asenkronRaporBilgiRepository) {
@@ -24,7 +51,49 @@ public class MarkaMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRa
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public List sorguSonucuGetir(AsenkronRaporBilgi asenkronRaporBilgi) {
-        return null;
+        RaporSorguKriteri sorguKriteri = (RaporSorguKriteri) createSorguKriteri(asenkronRaporBilgi);
+        SessionUtils sessionInfo = createSessionInfo(asenkronRaporBilgi);
+        final List<Maliyet> maliyetList = maliyetRepository.findAll();
+
+        List list = new LinkedList<CariMaliyetDto>();
+        List<Marka> markaList = brandRepository.findAll();
+        markaList.forEach(marka -> {
+            CiroDto ciroDto = reportRepository.amountOfSalesForPeriod(sorguKriteri.getDonem(), sorguKriteri.getYil(), EDurum.AKTIF, EOdemeYonu.BORC, asenkronRaporBilgi.getSirket(), null, marka);
+            Karlilik karlilik = getkarlilikByMarka(sorguKriteri, marka, maliyetList);
+            MarkaMaliyetDto maliyetDto = MarkaMaliyetDto.builder()
+                    .markaAdi(marka.getAciklama())
+                    .toplamCiro(ciroDto.getTutar())
+                    .toplamKar(karlilik.getToplamKarTutari())
+                    .karlilikOrani(karlilik.getKarlilikOrani())
+                    .build();
+            list.add(maliyetDto);
+        });
+
+        return list;
+    }
+
+    private Karlilik getkarlilikByMarka(RaporSorguKriteri sorguKriteri, Marka marka, List<Maliyet> maliyetList) {
+        List<FaturaDetay> faturaDetays = faturaDetayRepository.faturaKalems(marka, null, EDurum.AKTIF, EOdemeYonu.BORC, sorguKriteri.getDonem(), sorguKriteri.getYil());
+        BigDecimal toplamMaliyetTutari = BigDecimal.ZERO;
+        BigDecimal toplamSatisTutari = BigDecimal.ZERO;
+        BigDecimal toplamKarTutari = BigDecimal.ZERO;
+        BigDecimal karlilikOrani = BigDecimal.ZERO;
+        for (FaturaDetay faturaDetay : faturaDetays) {
+            StokKart stokKart = faturaDetay.getStokKart();
+            Maliyet maliyet = null;
+            if (stokKart.getMarka() != null) {
+                maliyet = maliyetList.stream()
+                        .filter(m -> stokKart.getMarka().getId().equals(m.getId()) && (m.getBaslangicTarihi().compareTo(faturaDetay.getIslemTarihi()) * faturaDetay.getIslemTarihi().compareTo(m.getBitisTarihi()) >= 0))
+                        .findAny()
+                        .orElse(null);
+            }
+
+            toplamMaliyetTutari = toplamMaliyetTutari.add(faturaDetay.getMaliyetTutari(maliyet));
+            toplamSatisTutari = toplamSatisTutari.add(faturaDetay.getSatisTutari());
+        }
+        toplamKarTutari = toplamSatisTutari.subtract(toplamMaliyetTutari);
+        karlilikOrani = toplamSatisTutari.equals(BigDecimal.ZERO) ? BigDecimal.ZERO : toplamKarTutari.divide(toplamSatisTutari, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
+        return new Karlilik(toplamKarTutari, karlilikOrani);
     }
 
 
@@ -34,7 +103,10 @@ public class MarkaMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRa
     }
 
     enum MaliyetReportHeader implements ReportBaseEnum<String> {
-        EKLENME_SEBEBI("eklenmeSebebi", "Eklenme Sebebi", ColumnDataType.STRING);
+        MARKA("markaAdi", "Marka Adı", ColumnDataType.STRING),
+        TOPLAM_SATIS("toplamCiro", "Toplam Ciro", ColumnDataType.MONEY),
+        TOPLAM_KARLILIK("toplamKar", "Toplam Kar", ColumnDataType.MONEY),
+        KARLILIK_ORANI("karlilikOrani", "Karlılık Oranı", ColumnDataType.MONEY);
 
 
         private String field;

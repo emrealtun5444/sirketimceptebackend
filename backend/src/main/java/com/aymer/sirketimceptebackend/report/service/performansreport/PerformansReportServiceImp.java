@@ -39,8 +39,8 @@ public class PerformansReportServiceImp implements PerformansReportService {
         Integer donem = DateUtils.getDonem(DateUtils.getToday());
 
         // ciro dagilimi aliniyor
-        CiroDto aylikCiro = reportRepository.amountOfSalesForPeriod(donem, year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), null);
-        CiroDto yillikCiro = reportRepository.amountOfSalesForPeriod(null, year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), null);
+        CiroDto aylikCiro = reportRepository.amountOfSalesForPeriod(donem, year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), null, null);
+        CiroDto yillikCiro = reportRepository.amountOfSalesForPeriod(null, year, EDurum.AKTIF, EOdemeYonu.BORC, sessionUtils.getSelectedCompany(), null, null);
 
         // tahsilat aliniyor
         TahsilatDto aylikTahsilat = reportRepository.amountOfTahsilatForPeriod(donem, year, EDurum.AKTIF, EOdemeYonu.ALACAK, sessionUtils.getSelectedCompany(), null);

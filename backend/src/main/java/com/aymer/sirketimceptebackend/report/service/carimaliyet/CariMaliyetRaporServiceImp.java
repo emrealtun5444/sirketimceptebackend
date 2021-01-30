@@ -16,6 +16,7 @@ import com.aymer.sirketimceptebackend.report.repository.ReportRepository;
 import com.aymer.sirketimceptebackend.report.service.AbstractAsenkronVeriHazirlamaRaporServiceImp;
 import com.aymer.sirketimceptebackend.report.service.AsenkronRaporGeneratorService;
 import com.aymer.sirketimceptebackend.siparis.model.SiparisYonu;
+import com.aymer.sirketimceptebackend.stokkart.model.StokKart;
 import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
 import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class CariMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRap
         List list = new LinkedList<CariMaliyetDto>();
         List<CariKart> cariKartList = cariKartRepository.findCariKartByDurumAndSirketOrderBySorumluPersonelAscYillikHedefDesc(EDurum.AKTIF, asenkronRaporBilgi.getSirket());
         cariKartList.forEach(cariKart -> {
-            CiroDto ciroDto = reportRepository.amountOfSalesForPeriod(sorguKriteri.getDonem(), sorguKriteri.getYil(), EDurum.AKTIF, EOdemeYonu.BORC, asenkronRaporBilgi.getSirket(), cariKart);
+            CiroDto ciroDto = reportRepository.amountOfSalesForPeriod(sorguKriteri.getDonem(), sorguKriteri.getYil(), EDurum.AKTIF, EOdemeYonu.BORC, asenkronRaporBilgi.getSirket(), cariKart, null);
             TahsilatDto tahsilatDto = reportRepository.amountOfTahsilatForPeriod(sorguKriteri.getDonem(), sorguKriteri.getYil(), EDurum.AKTIF, EOdemeYonu.ALACAK, asenkronRaporBilgi.getSirket(), cariKart);
             SiparisDto siparisDto = reportRepository.amountOfSiparisForPeriod(sorguKriteri.getDonem(), sorguKriteri.getYil(), EDurum.AKTIF, SiparisYonu.ALINAN_SIPARIS, asenkronRaporBilgi.getSirket(), cariKart);
             Karlilik karlilik = getkarlilikByCariKart(sorguKriteri, cariKart, maliyetList);
@@ -84,16 +85,20 @@ public class CariMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRap
 
 
     private Karlilik getkarlilikByCariKart(RaporSorguKriteri sorguKriteri, CariKart cariKart, List<Maliyet> maliyetList) {
-        List<FaturaDetay> faturaDetays = faturaDetayRepository.faturaKalems(cariKart, EDurum.AKTIF, EOdemeYonu.BORC, sorguKriteri.getDonem(), sorguKriteri.getYil());
+        List<FaturaDetay> faturaDetays = faturaDetayRepository.faturaKalems(null, cariKart, EDurum.AKTIF, EOdemeYonu.BORC, sorguKriteri.getDonem(), sorguKriteri.getYil());
         BigDecimal toplamMaliyetTutari = BigDecimal.ZERO;
         BigDecimal toplamSatisTutari = BigDecimal.ZERO;
         BigDecimal toplamKarTutari = BigDecimal.ZERO;
         BigDecimal karlilikOrani = BigDecimal.ZERO;
         for (FaturaDetay faturaDetay : faturaDetays) {
-            Maliyet maliyet = maliyetList.stream()
-                    .filter(m -> faturaDetay.getStokKart().getMarka().getId().equals(m.getId()) && (m.getBaslangicTarihi().compareTo(faturaDetay.getIslemTarihi()) * faturaDetay.getIslemTarihi().compareTo(m.getBitisTarihi()) >= 0))
-                    .findAny()
-                    .orElse(null);
+            StokKart stokKart = faturaDetay.getStokKart();
+            Maliyet maliyet = null;
+            if (stokKart.getMarka() != null) {
+                maliyet = maliyetList.stream()
+                        .filter(m -> stokKart.getMarka().getId().equals(m.getId()) && (m.getBaslangicTarihi().compareTo(faturaDetay.getIslemTarihi()) * faturaDetay.getIslemTarihi().compareTo(m.getBitisTarihi()) >= 0))
+                        .findAny()
+                        .orElse(null);
+            }
 
             toplamMaliyetTutari = toplamMaliyetTutari.add(faturaDetay.getMaliyetTutari(maliyet));
             toplamSatisTutari = toplamSatisTutari.add(faturaDetay.getSatisTutari());
