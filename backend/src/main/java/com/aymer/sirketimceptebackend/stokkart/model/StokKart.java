@@ -92,6 +92,7 @@ public class StokKart extends Auditable<String> implements Serializable {
         this.setStokAdedi(stokAdedi);
         this.setUrunFiyat(urunFiyati);
         this.setUrunAdi(aciklama);
+        this.setDurum(EDurum.AKTIF);
     }
 
 }

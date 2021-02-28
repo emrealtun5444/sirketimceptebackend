@@ -1,5 +1,6 @@
 package com.aymer.sirketimceptebackend.report.service.stok;
 
+import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.common.model.enums.EEvetHayir;
 import com.aymer.sirketimceptebackend.report.dto.RaporSorguKriteri;
 import com.aymer.sirketimceptebackend.report.dto.ReportGroup;
@@ -38,7 +39,7 @@ public class StokRaporServiceImp extends AbstractAsenkronVeriHazirlamaRaporServi
     @Transactional(propagation = Propagation.SUPPORTS)
     public List sorguSonucuGetir(AsenkronRaporBilgi asenkronRaporBilgi) {
         RaporSorguKriteri sorguKriteri = (RaporSorguKriteri) createSorguKriteri(asenkronRaporBilgi);
-        return stokKartRepository.findAllByStokAdediGreaterThan(0L);
+        return stokKartRepository.findAllByStokAdediGreaterThan(0L, EDurum.AKTIF);
     }
 
 
