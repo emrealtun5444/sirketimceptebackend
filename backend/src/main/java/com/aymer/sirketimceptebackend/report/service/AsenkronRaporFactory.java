@@ -5,6 +5,7 @@ import com.aymer.sirketimceptebackend.report.service.caridonemciro.CariDonemCiro
 import com.aymer.sirketimceptebackend.report.service.caridonemciro.CariDonemTahsilatRaporService;
 import com.aymer.sirketimceptebackend.report.service.carimaliyet.CariMaliyetRaporService;
 import com.aymer.sirketimceptebackend.report.service.markamaliyet.MarkaMaliyetRaporService;
+import com.aymer.sirketimceptebackend.report.service.stok.StokRaporService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,8 @@ public class AsenkronRaporFactory {
             raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("cariDonemCiroRaporService", CariDonemCiroRaporService.class);
         } else if (reportType.equals(RaporTuru.CAR_DNM_TAHSILAT_RAPORU)) {
             raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("cariDonemTahsilatRaporService", CariDonemTahsilatRaporService.class);
+        } else if (reportType.equals(RaporTuru.STOK_BEKLEYEN)) {
+            raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("stokRaporService", StokRaporService.class);
         }
         return raporHazirlamaService;
     }

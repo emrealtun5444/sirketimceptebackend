@@ -3,6 +3,7 @@ package com.aymer.sirketimceptebackend.report.service.carimaliyet;
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.cariKart.repository.CariKartRepository;
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.common.model.enums.EEvetHayir;
 import com.aymer.sirketimceptebackend.fatura.model.FaturaDetay;
 import com.aymer.sirketimceptebackend.fatura.repository.FaturaDetayRepository;
 import com.aymer.sirketimceptebackend.report.dto.*;
@@ -112,6 +113,11 @@ public class CariMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRap
     @Override
     public MaliyetReportHeader[] getReportHeaders() {
         return MaliyetReportHeader.values();
+    }
+
+    @Override
+    public ReportGroup getReportGroup(List result) {
+        return ReportGroup.builder().status(EEvetHayir.HAYIR_YOK).build();
     }
 
     enum MaliyetReportHeader implements ReportBaseEnum<String> {

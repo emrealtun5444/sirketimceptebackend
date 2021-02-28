@@ -1,10 +1,15 @@
 package com.aymer.sirketimceptebackend.report.service;
 
+import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.common.model.abstructcommon.KnowsQueryCriteriaHolderClass;
+import com.aymer.sirketimceptebackend.common.model.enums.EEvetHayir;
+import com.aymer.sirketimceptebackend.report.dto.ReportGroup;
+import com.aymer.sirketimceptebackend.report.dto.Stok;
 import com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi;
 import com.aymer.sirketimceptebackend.report.model.ColumnDataType;
 import com.aymer.sirketimceptebackend.report.model.ReportBaseEnum;
 import com.aymer.sirketimceptebackend.report.repository.AsenkronRaporBilgiRepository;
+import com.aymer.sirketimceptebackend.siparis.model.Siparis;
 import com.aymer.sirketimceptebackend.utils.MoneyUtils;
 import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.apache.poi.ss.usermodel.*;
@@ -20,7 +25,7 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 public abstract class AbstractAsenkronVeriHazirlamaRaporServiceImp implements AbstractAsenkronVeriHazirlamaRaporService {
 
@@ -55,6 +60,7 @@ public abstract class AbstractAsenkronVeriHazirlamaRaporServiceImp implements Ab
 
     public abstract ReportBaseEnum<String>[] getReportHeaders();
 
+    public abstract ReportGroup getReportGroup(List result);
 
     private byte[] createExcelBytes(AsenkronRaporBilgi asenkronRaporBilgi) {
         // Sorgu Sonucu Çekiliyor.
@@ -62,8 +68,20 @@ public abstract class AbstractAsenkronVeriHazirlamaRaporServiceImp implements Ab
 
         // header bilgileri alınıyopr.
         XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet(asenkronRaporBilgi.getRaporTuru().name());
+        // RAPOR GRUBU ÇEKİLİYOR.
+        ReportGroup reportGroup = getReportGroup(resultList);
+        if (reportGroup.getStatus().equals(EEvetHayir.EVET_VAR)) {
+            for (Map.Entry<String, List> entry : reportGroup.getGroup().entrySet()) {
+                executeSheet(entry.getKey(), entry.getValue(), workbook);
+            }
+        } else {
+            executeSheet(asenkronRaporBilgi.getRaporTuru().name(), resultList, workbook);
+        }
+        return convertWorkbookBytes(workbook);
+    }
 
+    private void executeSheet(String sheetName, List resultList, XSSFWorkbook workbook) {
+        XSSFSheet sheet = workbook.createSheet(sheetName);
         ReportBaseEnum<String>[] headers = getReportHeaders();
         int rowNum = createHeader(workbook, sheet, headers);
         //  rapor detayları yazılıyor.
@@ -72,7 +90,6 @@ public abstract class AbstractAsenkronVeriHazirlamaRaporServiceImp implements Ab
                 rowNum = createRows(workbook, sheet, headers, rowNum, rowData);
             }
         }
-        return convertWorkbookBytes(workbook);
     }
 
     private byte[] convertWorkbookBytes(XSSFWorkbook workbook) {

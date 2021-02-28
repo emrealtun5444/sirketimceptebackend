@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.report.service.markamaliyet;
 
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.common.model.enums.EEvetHayir;
 import com.aymer.sirketimceptebackend.fatura.model.FaturaDetay;
 import com.aymer.sirketimceptebackend.fatura.repository.FaturaDetayRepository;
 import com.aymer.sirketimceptebackend.report.dto.*;
@@ -17,7 +18,6 @@ import com.aymer.sirketimceptebackend.stokkart.model.Marka;
 import com.aymer.sirketimceptebackend.stokkart.model.StokKart;
 import com.aymer.sirketimceptebackend.stokkart.repository.BrandRepository;
 import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
-import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,7 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service("markaMaliyetRaporService")
@@ -89,6 +88,11 @@ public class MarkaMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRa
     @Override
     public MaliyetReportHeader[] getReportHeaders() {
         return MaliyetReportHeader.values();
+    }
+
+    @Override
+    public ReportGroup getReportGroup(List result) {
+        return ReportGroup.builder().status(EEvetHayir.HAYIR_YOK).build();
     }
 
     enum MaliyetReportHeader implements ReportBaseEnum<String> {

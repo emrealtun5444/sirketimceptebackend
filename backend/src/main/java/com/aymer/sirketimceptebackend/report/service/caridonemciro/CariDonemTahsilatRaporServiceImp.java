@@ -1,7 +1,9 @@
 package com.aymer.sirketimceptebackend.report.service.caridonemciro;
 
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
+import com.aymer.sirketimceptebackend.common.model.enums.EEvetHayir;
 import com.aymer.sirketimceptebackend.report.dto.RaporSorguKriteri;
+import com.aymer.sirketimceptebackend.report.dto.ReportGroup;
 import com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi;
 import com.aymer.sirketimceptebackend.report.model.ColumnDataType;
 import com.aymer.sirketimceptebackend.report.model.ReportBaseEnum;
@@ -10,7 +12,6 @@ import com.aymer.sirketimceptebackend.report.repository.ReportRepository;
 import com.aymer.sirketimceptebackend.report.service.AbstractAsenkronVeriHazirlamaRaporServiceImp;
 import com.aymer.sirketimceptebackend.report.service.AsenkronRaporGeneratorService;
 import com.aymer.sirketimceptebackend.tahsilat.model.EOdemeYonu;
-import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -38,6 +39,11 @@ public class CariDonemTahsilatRaporServiceImp extends AbstractAsenkronVeriHazirl
     @Override
     public CariDonemReportHeader[] getReportHeaders() {
         return CariDonemReportHeader.values();
+    }
+
+    @Override
+    public ReportGroup getReportGroup(List result) {
+        return ReportGroup.builder().status(EEvetHayir.HAYIR_YOK).build();
     }
 
     enum CariDonemReportHeader implements ReportBaseEnum<String> {
