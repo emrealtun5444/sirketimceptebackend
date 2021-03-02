@@ -106,7 +106,9 @@ export class SiparisComponent extends AbstractBaseComponent implements OnInit {
       siparisDurumu: SiparisDurumu.ACIK,
       siparisYonu: SiparisYonu.ALINAN_SIPARIS,
       islemTarihi: null,
-      staff: null
+      staff: null,
+      stokKodu: null,
+      urunAdi: null
     });
   }
 
@@ -138,6 +140,8 @@ export class SiparisComponent extends AbstractBaseComponent implements OnInit {
       siparisYonu: formModel.siparisYonu,
       baslangicTarihi: formModel.islemTarihi != null ? formModel.islemTarihi[0] : null,
       bitisTarihi: formModel.islemTarihi != null ? formModel.islemTarihi[1] : null,
+      stokKodu: formModel.stokKodu,
+      urunAdi: formModel.urunAdi,
       lazyLoadEvent: lazyLoadEvent
     };
   }

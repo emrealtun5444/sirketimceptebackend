@@ -73,6 +73,8 @@ export class DashboardDemoComponent extends AbstractBaseComponent implements OnI
             siparisYonu: SiparisYonu.ALINAN_SIPARIS,
             baslangicTarihi: null,
             bitisTarihi: null,
+            stokKodu: null,
+            urunAdi: null,
             lazyLoadEvent: event
         };
     }

@@ -10,6 +10,8 @@ export interface SiparisSorguKriterleri {
   siparisYonu: SiparisYonu;
   baslangicTarihi: Date;
   bitisTarihi: Date;
+  stokKodu: string;
+  urunAdi: string;
 
   lazyLoadEvent?: LazyLoadEvent;
 }

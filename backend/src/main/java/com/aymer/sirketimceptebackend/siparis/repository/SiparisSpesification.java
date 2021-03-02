@@ -3,6 +3,7 @@ package com.aymer.sirketimceptebackend.siparis.repository;
 import com.aymer.sirketimceptebackend.cariKart.model.CariKart;
 import com.aymer.sirketimceptebackend.siparis.dto.SiparisSorguKriteri;
 import com.aymer.sirketimceptebackend.siparis.model.Siparis;
+import com.aymer.sirketimceptebackend.stokkart.model.StokKart;
 import com.aymer.sirketimceptebackend.utils.SessionUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -23,6 +24,7 @@ public class SiparisSpesification implements Specification<Siparis> {
         List<Predicate> predicates = new LinkedList<>();
 
         Join<Siparis, CariKart> cariJoin = root.join("cariKart", JoinType.INNER);
+        Join<Siparis, StokKart> stokJoin = root.join("stokKart", JoinType.INNER);
 
         if (sorguKriteri.getSiparisNo() != null) {
             predicates.add(cb.like(cb.upper(root.get("siparisNo")), "%" + sorguKriteri.getSiparisNo().toUpperCase(LocaleContextHolder.getLocale()) + "%"));
@@ -54,6 +56,14 @@ public class SiparisSpesification implements Specification<Siparis> {
 
         if (sorguKriteri.getSiparisYonu() != null) {
             predicates.add(cb.equal(root.get("siparisYonu"), sorguKriteri.getSiparisYonu()));
+        }
+
+        if (sorguKriteri.getStokKodu() != null) {
+            predicates.add(cb.like(cb.upper(stokJoin.get("stokKodu")), "%" + sorguKriteri.getStokKodu().toUpperCase(LocaleContextHolder.getLocale()) + "%"));
+        }
+
+        if (sorguKriteri.getUrunAdi() != null) {
+            predicates.add(cb.like(cb.upper(stokJoin.get("urunAdi")), "%" + sorguKriteri.getUrunAdi().toUpperCase(LocaleContextHolder.getLocale()) + "%"));
         }
 
         predicates.add(cb.equal(root.get("sirket"), sessionUtils.getSelectedCompany()));

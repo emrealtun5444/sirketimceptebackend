@@ -35,6 +35,26 @@
             </div>
 
             <div class="p-field p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-shopping-cart"></i></span>
+                    <span class="p-float-label">
+                             <input id="stokKodu" formControlName="stokKodu" type="text" pInputText>
+                            <label for="stokKodu">{{'label.stok.kodu' | translate}}</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-field p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-tags"></i></span>
+                    <span class="p-float-label">
+                             <input id="urunAdi" formControlName="urunAdi" type="text" pInputText>
+                            <label for="urunAdi">{{'label.urun.adi' | translate}}</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-field p-col-12 p-md-4">
                 <p-calendar id="islemTarihi" showButtonBar="true" formControlName="islemTarihi"
                             placeholder="{{'label.islem.tarihi' | translate}}"
                             [showIcon]="true" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
@@ -64,7 +84,6 @@
                   <label for="staff">{{'label.sorumlu.personel' | translate}}</label>
                 </span>
             </div>
-            <div class="p-field p-col-12 p-md-4"></div>
             <div class="p-field p-col-12 p-md-4">
                 <button pButton type="button" label="{{'btn.sorgula' | translate}}"
                         (click)="sorgula()"></button>

@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.report.service;
 
 import com.aymer.sirketimceptebackend.report.model.RaporTuru;
+import com.aymer.sirketimceptebackend.report.service.bekleyensiparis.BekleyenSiparisRaporService;
 import com.aymer.sirketimceptebackend.report.service.caridonemciro.CariDonemCiroRaporService;
 import com.aymer.sirketimceptebackend.report.service.caridonemciro.CariDonemTahsilatRaporService;
 import com.aymer.sirketimceptebackend.report.service.carimaliyet.CariMaliyetRaporService;
@@ -28,6 +29,8 @@ public class AsenkronRaporFactory {
             raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("cariDonemTahsilatRaporService", CariDonemTahsilatRaporService.class);
         } else if (reportType.equals(RaporTuru.STOK_BEKLEYEN)) {
             raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("stokRaporService", StokRaporService.class);
+        } else if (reportType.equals(RaporTuru.SIPARIS_BEKLEYEN)) {
+            raporHazirlamaService = (AbstractAsenkronVeriHazirlamaRaporService) context.getBean("bekleyenSiparisRaporService", BekleyenSiparisRaporService.class);
         }
         return raporHazirlamaService;
     }

@@ -1,6 +1,7 @@
 package com.aymer.sirketimceptebackend.siparis.mapper;
 
 import com.aymer.sirketimceptebackend.cariKart.listener.viewholder.SiparisViewHolder;
+import com.aymer.sirketimceptebackend.report.dto.SiparisReportDto;
 import com.aymer.sirketimceptebackend.siparis.dto.SiparisDto;
 import com.aymer.sirketimceptebackend.siparis.model.Siparis;
 import org.mapstruct.Mapper;
@@ -30,6 +31,25 @@ public abstract class SiparisMapper {
     public abstract SiparisDto toDto(Siparis siparis);
 
     public abstract List<SiparisDto> toDtoList(List<Siparis> siparisList);
+
+
+    @Mappings({
+
+            @Mapping(target = "cariAdi", source = "cariKart.cariAdi"),
+            @Mapping(target = "siparisNo", source = "siparisNo"),
+            @Mapping(target = "siparisTarihi", source = "islemTarihi"),
+            @Mapping(target = "stokKodu", source = "stokKart.stokKodu"),
+            @Mapping(target = "urunAdi", source = "stokKart.urunAdi"),
+            @Mapping(target = "miktar", source = "miktar"),
+            @Mapping(target = "teslimMiktari", source = "teslimMiktari"),
+            @Mapping(target = "kalanMiktar", source = "kalanMiktar"),
+            @Mapping(target = "stokMiktar", source = "stokKart.stokAdedi"),
+            @Mapping(target = "siparisDurumu", source = "siparisDurumu")
+    })
+    public abstract SiparisReportDto toReportDto(Siparis siparis);
+    public abstract List<SiparisReportDto> toReportDtoList(List<Siparis> siparisList);
+
+
 
     public abstract void update(SiparisViewHolder siparisViewHolder, @MappingTarget Siparis siparis);
 }

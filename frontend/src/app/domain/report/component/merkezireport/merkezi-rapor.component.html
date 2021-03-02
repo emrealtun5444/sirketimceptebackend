@@ -7,7 +7,7 @@
             <div class="p-field p-col-12 p-md-3">
                 <span class="p-float-label">
                 <p-dropdown id="yil" formControlName="yil"
-                            [options]="yilList"
+                            [options]="yilList" disabled="true"
                             optionValue="value" optionLabel="label"
                 ></p-dropdown>
                 <label for="yil">{{'label.yil' | translate}}</label>
@@ -16,7 +16,7 @@
             <div class="p-field p-col-12 p-md-3">
                 <span class="p-float-label">
                 <p-dropdown id="donem" formControlName="donem"
-                            [options]="donemList"
+                            [options]="donemList" disabled="true"
                             optionValue="value" optionLabel="label"
                 ></p-dropdown>
                 <label for="donem">{{'label.donem' | translate}}</label>
@@ -25,15 +25,19 @@
             <div class="p-field p-col-12 p-md-3">
                 <span class="p-float-label">
                      <p-dropdown id="raporTuru" formControlName="raporTuru"
-                                 [options]="raporTuruList"
-                                 optionValue="value" optionLabel="label"
-                     ></p-dropdown>
-                    <label for="raporTuru">{{'label.rapor.turu' | translate}}</label>
+                                 [options]="raporTuruList" [group]="true"
+                                 placeholder="{{'label.rapor.select' | translate}}">
+                               <ng-template let-group pTemplate="group">
+                                <div class="p-d-flex p-ai-center">
+                                    <span>{{group.label}}</span>
+                                </div>
+                            </ng-template>
+                     </p-dropdown>
                 </span>
             </div>
 
             <div class="p-field p-col-12 p-md-3">
-                <button pButton type="button" label="{{'btn.rapor.al' | translate}}"
+                <button pButton type="button" label="{{'btn.rapor.al' | translate}}" [disabled]="!sorguForm.valid"
                         (click)="raporla()"></button>
             </div>
         </div>
