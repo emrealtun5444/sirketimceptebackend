@@ -25,4 +25,8 @@ public class CariMaliyetDto {
     private BigDecimal toplamKar;
     private BigDecimal karlilikOrani;
 
+    public String sorumluPersonelGroup() {
+        return sorumluPersonel != null ? sorumluPersonel : "Diger";
+    }
+
 }

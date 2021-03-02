@@ -49,4 +49,8 @@ public class CariDonemDto {
         this.donem12 = donem12;
         this.toplam = toplam;
     }
+
+    public String sorumluPersonelGroup() {
+        return sorumluPersonel != null ? sorumluPersonel : "Diger";
+    }
 }

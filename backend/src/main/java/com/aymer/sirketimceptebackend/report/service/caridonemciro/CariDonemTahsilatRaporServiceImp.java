@@ -2,6 +2,7 @@ package com.aymer.sirketimceptebackend.report.service.caridonemciro;
 
 import com.aymer.sirketimceptebackend.common.model.enums.EDurum;
 import com.aymer.sirketimceptebackend.common.model.enums.EEvetHayir;
+import com.aymer.sirketimceptebackend.report.dto.CariDonemDto;
 import com.aymer.sirketimceptebackend.report.dto.RaporSorguKriteri;
 import com.aymer.sirketimceptebackend.report.dto.ReportGroup;
 import com.aymer.sirketimceptebackend.report.model.AsenkronRaporBilgi;
@@ -18,6 +19,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service("cariDonemTahsilatRaporService")
 public class CariDonemTahsilatRaporServiceImp extends AbstractAsenkronVeriHazirlamaRaporServiceImp implements CariDonemTahsilatRaporService {
@@ -43,12 +46,13 @@ public class CariDonemTahsilatRaporServiceImp extends AbstractAsenkronVeriHazirl
 
     @Override
     public ReportGroup getReportGroup(List result) {
-        return ReportGroup.builder().status(EEvetHayir.HAYIR_YOK).build();
+        Map<String, List> map = (Map<String, List>) result.stream().collect(Collectors.groupingBy(CariDonemDto::sorumluPersonelGroup));
+        return ReportGroup.builder().status(EEvetHayir.EVET_VAR).group(map).build();
     }
 
     enum CariDonemReportHeader implements ReportBaseEnum<String> {
         CARI_TIPI("cariTipi", "Cari Tipi", ColumnDataType.STRING),
-        SORUMLU_PERSONEL("sorumluPersonel", "Sorumlu Personel", ColumnDataType.STRING),
+       // SORUMLU_PERSONEL("sorumluPersonel", "Sorumlu Personel", ColumnDataType.STRING),
         CARI_KODU("cariKodu", "Cari Kodu", ColumnDataType.STRING),
         CARI_ADI("cariAdi", "Cari Adı", ColumnDataType.STRING),
         OCAK("donem1", "Ocak", ColumnDataType.MONEY),

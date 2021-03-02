@@ -29,6 +29,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service("cariMaliyetRaporService")
 public class CariMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRaporServiceImp implements CariMaliyetRaporService {
@@ -117,12 +119,13 @@ public class CariMaliyetRaporServiceImp extends AbstractAsenkronVeriHazirlamaRap
 
     @Override
     public ReportGroup getReportGroup(List result) {
-        return ReportGroup.builder().status(EEvetHayir.HAYIR_YOK).build();
+        Map<String, List> map = (Map<String, List>) result.stream().collect(Collectors.groupingBy(CariMaliyetDto::sorumluPersonelGroup));
+        return ReportGroup.builder().status(EEvetHayir.EVET_VAR).group(map).build();
     }
 
     enum MaliyetReportHeader implements ReportBaseEnum<String> {
         CARI_TIPI("cariTipi", "Cari Tipi", ColumnDataType.STRING),
-        SORUMLU_PERSONEL("sorumluPersonel", "Sorumlu Personel", ColumnDataType.STRING),
+       // SORUMLU_PERSONEL("sorumluPersonel", "Sorumlu Personel", ColumnDataType.STRING),
         CARI_KODU("cariKodu", "Cari Kodu", ColumnDataType.STRING),
         CARI_ADI("cariAdi", "Cari Adı", ColumnDataType.STRING),
         TOPLAM_CIRO("toplamCiro", "Toplam Ciro", ColumnDataType.MONEY),
